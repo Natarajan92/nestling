@@ -105,7 +105,7 @@ def mock_graph(monkeypatch, lesson_id="cord_care", topic="cord_care"):
 def test_approved_steps_skip_verifier(lesson_root, monkeypatch):
     mock_graph(monkeypatch)
     monkeypatch.setattr(graph.verifier, "verify", lambda *a, **kw: pytest.fail("approved lesson must not be rewritten"))
-    out = graph.ask("How do I clean the cord?", version="v6+lessons")
+    out = graph.ask("How do I clean the cord?", version=graph.APP_VERSION)
     assert out["error"] is None and out["route"] == "lessons" and out["lesson"]["lesson_id"] == "cord_care"
     assert "1. Keep the cord clean and dry. [WHO-POSTNATAL, p. 120]" in out["answer"]
     assert out["sources_cited"] == ["WHO-POSTNATAL"] and out["verification"] is None
@@ -157,6 +157,6 @@ def test_runtime_empty_retrieval_cannot_release_uncited_clinical_claim(monkeypat
     monkeypatch.setattr(concierge, "route", lambda *a, **kw: {"route": "care", "usage": None})
     monkeypatch.setattr(graph.care, "answer", lambda *a, **kw: {"answer": "Drink this herb.", "sources_cited": [], "hits": [], "agent": "care", "usage": []})
     monkeypatch.setattr(graph.verifier, "main_json", lambda *a, **kw: pytest.fail("empty trusted retrieval needs no paid verifier"))
-    out = graph.ask("A general care question", version="v6+lessons")
+    out = graph.ask("A general care question", version=graph.APP_VERSION)
     assert out["error"] is None and out["answer"] == graph.verifier.NO_SOURCE_LINE
     assert out["verification"]["verdict"] == "replaced" and out["sources_cited"] == []

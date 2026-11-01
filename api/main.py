@@ -30,7 +30,7 @@ from pydantic import BaseModel  # noqa: E402
 from starlette.concurrency import run_in_threadpool  # noqa: E402
 
 from api.uploads import AUDIO_TYPES, MAX_AUDIO_BYTES, MAX_POLICY_BYTES, memory_form, read_file  # noqa: E402
-from nestling import graph, profile  # noqa: E402
+from nestling import graph, guardian, profile  # noqa: E402
 from nestling.agents import celebrate as celebrate_agent  # noqa: E402
 from nestling.agents import ready as ready_agent  # noqa: E402
 from nestling.capture import estimate as capture_estimate  # noqa: E402
@@ -130,6 +130,7 @@ def _app_ask(message: str, context: dict, can_save: bool) -> dict:
     out = graph.ask(message, context, version=graph.APP_VERSION, can_save=can_save)
     run = get_current_run_tree()
     if run is not None:  # §9.4 metadata; labels and numbers only, no personal data
+        known_rules = {rule.id for rule in guardian.RED_FLAGS}
         run.add_metadata(trace_metadata(
             pipeline_version=graph.APP_VERSION, prompt_version=graph.PROMPT_VERSIONS[graph.APP_VERSION], model=out["model"],
             predicted_escalate=out["escalate"], predicted_route=out["route"], refused=out["refused"],
@@ -137,7 +138,9 @@ def _app_ask(message: str, context: dict, can_save: bool) -> dict:
             tokens_out=out["tokens_out"], cost_inr=out["cost_inr"], error="pipeline_error" if out["error"] else None,
             lesson_gap_topic=out.get("lesson_gap_topic") if out.get("lesson_gap_topic") in {*LESSONS, "newborn_care"} else None,
             retrieval_mode=out.get("retrieval_mode"),
-            retrieval_fallback="vector_order" if out.get("retrieval_fallback") == "vector_order" else None))
+            retrieval_fallback="vector_order" if out.get("retrieval_fallback") == "vector_order" else None,
+            rules_fired=list(dict.fromkeys(rule for rule in (out.get("rules_fired") or [])
+                                          if isinstance(rule, str) and rule in known_rules))))
     return out
 
 
