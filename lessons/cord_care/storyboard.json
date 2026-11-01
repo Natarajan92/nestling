@@ -1,7 +1,7 @@
 {
   "lesson_id": "cord_care",
   "title": "Caring for the umbilical cord",
-  "version": 1,
+  "version": 2,
   "stage": "first_weeks",
   "language": "en",
   "sources": [
@@ -13,7 +13,7 @@
       "step_no": 1,
       "caption": "Keep the cord stump clean and dry",
       "narration_line": "Keep your baby’s cord stump clean and dry every day.",
-      "icon": "hand",
+      "icon": "sun",
       "source_id": "WHO-POSTNATAL",
       "page_label": "120",
       "safety_points": []
