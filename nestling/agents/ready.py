@@ -42,8 +42,9 @@ def answer(question: str, context: dict, mode: str = "reranked") -> dict:
     if mode == "plain":
         hits = retrieval.search(question, top_k=6)
     else:
-        stage = context.get("life_stage") if mode == "staged" else None
+        stage = context.get("life_stage") if mode in {"staged", "staged_vector"} else None
         sources = retrieval.sources_for("ready") + retrieval.sources_for("care", stage)
-        hits = retrieval.search_reranked(retrieval_query(question, context), source_ids=sources)
+        search = retrieval.search_vector if mode == "staged_vector" else retrieval.search_reranked
+        hits = search(retrieval_query(question, context), source_ids=sources)
     out = answer_from_sources("Ready", question, context, hits, INSTRUCTIONS, extra=checklist_text())
     return {**out, "hits": hits, "agent": "ready"}

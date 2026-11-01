@@ -1,7 +1,8 @@
 """API contracts with external model, retrieval, search and voice calls mocked."""
 
 import os
-from io import BytesIO
+import subprocess
+import sys
 
 os.environ["LANGSMITH_TRACING"] = "false"
 
@@ -143,3 +144,32 @@ def test_capture_routes_preserve_sources_and_never_send_quote(client, monkeypatc
     assert estimate.status_code == 200 and estimate.json()["tiers"]["All studios"]["estimate"] is None
     quote = client.post("/api/capture/quote", json={"studio": "Studio", "shoot_type": "maternity", "picks": {"album": True}}).json()
     assert quote["sent"] is False and "printed album" in quote["draft"]
+
+
+def test_app_import_enforces_trace_privacy_even_with_false_shell_flags():
+    script = ("import os; import api.main; "
+              "assert os.environ['LANGSMITH_HIDE_INPUTS'] == 'true'; "
+              "assert os.environ['LANGSMITH_HIDE_OUTPUTS'] == 'true'")
+    result = subprocess.run([sys.executable, "-c", script], env={**os.environ, "LANGSMITH_TRACING": "false",
+                             "LANGSMITH_HIDE_INPUTS": "false", "LANGSMITH_HIDE_OUTPUTS": "false"},
+                            capture_output=True, text=True, timeout=60)
+    assert result.returncode == 0, result.stderr
+
+
+def test_streamed_oversized_audio_is_rejected_before_disk_rollover(client, monkeypatch):
+    monkeypatch.setattr(formparsers.SpooledTemporaryFile, "rollover", lambda *a: pytest.fail("upload rolled to disk"))
+    monkeypatch.setattr(voice, "transcribe", lambda *a: pytest.fail("oversized stream reached provider"))
+    def body():
+        yield b'--test\r\nContent-Disposition: form-data; name="file"; filename="x.webm"\r\nContent-Type: audio/webm\r\n\r\n'
+        for _ in range(10):
+            yield b"x" * (1024 * 1024)
+        yield b"\r\n--test--\r\n"
+    response = client.post("/api/voice/transcribe", headers={"Content-Type": "multipart/form-data; boundary=test"}, content=body())
+    assert response.status_code == 413
+
+
+def test_missing_audio_and_malformed_multipart_reject_without_provider(client, monkeypatch):
+    monkeypatch.setattr(voice, "transcribe", lambda *a: pytest.fail("invalid upload reached provider"))
+    assert client.post("/api/voice/transcribe", json={"file": "not audio"}).status_code == 400
+    assert client.post("/api/voice/transcribe", files={"sample": ("x.webm", b"audio", "audio/webm")}).status_code == 422
+    assert client.post("/api/voice/transcribe", headers={"Content-Type": "multipart/form-data"}, content=b"bad").status_code == 400

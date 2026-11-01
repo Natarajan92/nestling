@@ -7,6 +7,8 @@ import pytest
 
 from nestling import graph, retrieval
 from nestling import agents
+from nestling import concierge, guardian
+from nestling.agents import ready
 
 
 class RerankError(Exception):
@@ -88,3 +90,33 @@ def test_vector_variant_uses_stage_filters_and_never_attempts_rerank(monkeypatch
     assert "WHO-ANC" in seen[0]["source_ids"] and "WHO-POSTNATAL" not in seen[0]["source_ids"]
     assert graph.VERSIONS["v7_vector"]["lessons"] is False
     assert graph.VERSIONS["v7_vector"]["strict_verifier"] is True
+
+
+def test_real_graph_preserves_app_fallback_scope_and_verifier(monkeypatch):
+    mock_rerank(monkeypatch)
+    monkeypatch.setattr(guardian, "screen", lambda q: (guardian.decide(q), None))
+    monkeypatch.setattr(concierge, "route", lambda *a, **kw: {"route": "care", "usage": None})
+    def care(*a, **kw):
+        hits = retrieval.search_reranked("q", source_ids=["A", "B"])
+        return {"answer": "Sourced answer", "sources_cited": ["A"], "hits": hits, "usage": [], "agent": "care"}
+    monkeypatch.setattr(graph.care, "answer", care)
+    monkeypatch.setattr(graph.verifier, "verify", lambda *a, **kw: {"verdict": "passed", "answer": "Verified answer", "sources_cited": ["A"], "unsupported": [], "usage": []})
+    app = graph.ask("question", version="v6+lessons")
+    assert app["error"] is None and app["answer"] == "Verified answer" and app["retrieval_fallback"] == "vector_order"
+    assert app["verification"]["verdict"] == "passed" and any("vector order" in step for step in app["steps"])
+    strict = graph.ask("question", version="v6")
+    assert "RerankError" in strict["error"] and strict["retrieval_fallback"] is None
+
+
+def test_ready_vector_variant_preserves_ready_and_staged_care_sources(monkeypatch):
+    seen = []
+    def vector(query, source_ids=None, **kw):
+        seen.append(source_ids)
+        return []
+    monkeypatch.setattr(retrieval, "search_vector", vector)
+    monkeypatch.setattr(retrieval, "search_reranked", lambda *a, **kw: pytest.fail("Ready vector mode attempted rerank"))
+    monkeypatch.setattr(ready, "answer_from_sources", lambda *a, **kw: {"answer": "checklist", "sources_cited": []})
+    out = ready.answer("What should I pack?", {"life_stage": "pregnancy", "week": 30}, mode="staged_vector")
+    assert out["agent"] == "ready"
+    assert set(retrieval.sources_for("ready")) <= set(seen[0])
+    assert "WHO-ANC" in seen[0] and "WHO-POSTNATAL" not in seen[0]
