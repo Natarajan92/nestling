@@ -1,7 +1,7 @@
 {
   "lesson_id": "holding",
   "title": "Holding your newborn",
-  "version": 1,
+  "version": 2,
   "stage": "first_weeks",
   "language": "en",
   "sources": [
@@ -40,7 +40,7 @@
       "step_no": 4,
       "caption": "Hold at the shoulders, not the head",
       "narration_line": "Hold your baby at the back of their shoulders.",
-      "icon": "hand",
+      "icon": "shield-check",
       "source_id": "MOHFW-IYCF",
       "page_label": "88",
       "safety_points": [

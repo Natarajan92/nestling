@@ -337,8 +337,9 @@ def render_title(board: dict) -> Image.Image:
     tone = TONES[0]
     img, draw = _frame(tone["bg"])
     _wordmark(img, draw)
-    first_icon = board["scenes"][0]["icon"]
-    _blob_with_icon(img, tone, "hand-heart" if first_icon != "hand-heart" else "baby", seed=7, cy=740, r=310, icon_size=360)
+    used = {sc["icon"] for sc in board["scenes"]}
+    title_icon = next((i for i in ("hand-heart", "baby", "heart", "sparkle", "smiley") if i not in used), "sparkle")
+    _blob_with_icon(img, tone, title_icon, seed=7, cy=740, r=310, icon_size=360)
     pill(img, (W // 2 - 190, 1120, W // 2 + 190, 1196), INK)
     draw.text((W // 2, 1158), "LITTLE LESSONS", font=font("Inter", 30, 700), fill=CREAM, anchor="mm")
     y = text_block(draw, (W // 2, 1250), board["title"], font("Fraunces", 104, 700), INK, W - 160, 118, anchor="m", max_lines=3)
