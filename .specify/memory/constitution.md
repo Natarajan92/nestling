@@ -64,8 +64,8 @@ Rationale: the demo and the story come first; rigor serves them, not the reverse
 
 - Spec Kit lite: constitution → one spec per phase → a one-page plan → at most 15 tasks per
   phase → implement.
-- `evals/golden_v1.csv` MUST be frozen before the baseline run and never edited afterwards;
-  new cases go in `golden_v2`.
+- The active golden set (`evals/golden_v2_india.csv`) MUST be frozen before the baseline run
+  and never edited afterwards; new cases go in a new version.
 - Verify ONE LangSmith trace end to end before running a full eval.
 - Week 4 pass bars: escalation recall 100%, faithfulness ≥90%, routing ≥90%, refusal 100%,
   p95 latency < 8s, cost < ₹2 per answer.
@@ -80,4 +80,4 @@ Rationale: the demo and the story come first; rigor serves them, not the reverse
 - Every spec, plan and PR MUST be checked against Principles I–V before merge.
 - Runtime guidance for Claude Code lives in `CLAUDE.md`.
 
-**Version**: 1.0.0 | **Ratified**: 2026-11-01 | **Last Amended**: 2026-11-01
+**Version**: 1.0.1 | **Ratified**: 2026-11-01 | **Last Amended**: 2026-11-01

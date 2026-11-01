@@ -6,6 +6,6 @@
 - Every medical/diet/insurance answer must cite a source ID from sources/registry.yaml, or say it has no trusted source.
 - Never output medicine doses or diagnoses.
 - Every LangSmith trace carries the metadata in §9.4. No personal data in traces.
-- Never edit evals/golden_v1.csv after the baseline run.
+- The active golden set is evals/golden_v2_india.csv (golden_v1 is history). Never edit it after the baseline run; new cases go in a new version.
 - Keep it light: no new frameworks, docs or abstractions unless a phase needs them.
 - Never commit keys. Use .env (gitignored) and .env.example.
