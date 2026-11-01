@@ -1,1 +1,58 @@
-# labour_bag playbook: filled in a later phase. Every item must cite a source ID or be marked as family custom.
+# Labour bag and birth-day checklist (Ready). Code owns this list (constitution III); the LLM
+# only explains it. Every item cites a source ID and page, or says `source: common_practice`
+# (sensible, non-medical, not from a guideline). Pages are the printed page labels.
+title: Hospital bag and birth-day checklist
+when: Have the bag packed by about 36 weeks, earlier if your doctor expects an early birth.
+sections:
+  - name: Documents
+    items:
+      - item: Mother and Child Protection (MCP) card and all antenatal records, scan and test reports
+        source: MOHFW-ANC
+        page: "28"
+      - item: Photo ID and address proof for the mother and the person going with her
+        source: common_practice
+      - item: Health insurance card or policy number, and the hospital's pre-authorisation form if you have one
+        source: common_practice
+      - item: For JSY at an accredited private hospital, the BPL or SC/ST certificate where your state requires it
+        source: MOHFW-ANC
+        page: "110"
+  - name: For the mother
+    items:
+      - item: Clean clothes, washed and sun-dried; loose, front-opening tops make breastfeeding easier
+        source: MOHFW-ANC
+        page: "28"
+      - item: Sanitary pads (maternity pads) or clean cloth
+        source: MOHFW-ANC
+        page: "28"
+      - item: Food and water for the mother and the support person
+        source: MOHFW-ANC
+        page: "28"
+      - item: Toiletries, slippers, a shawl or sweater, phone charger
+        source: common_practice
+  - name: For the baby
+    items:
+      - item: Clean towels or soft cloth to dry and wrap the baby
+        source: MOHFW-ANC
+        page: "28"
+      - item: Clean baby clothes, washed and sun-dried, a cap and socks to keep the baby warm
+        source: MOHFW-ANC
+        page: "28"
+  - name: Plan ahead
+    items:
+      - item: Know which facility you will go to (24-hour PHC or FRU) and how to reach it
+        source: MOHFW-ANC
+        page: "29"
+      - item: Arrange transport and save the ambulance number (108; 102 for free transport to a government hospital)
+        source: MOHFW-ANC
+        page: "28"
+      - item: Keep an emergency fund and know which schemes (such as JSY or JSSK) can help with costs
+        source: MOHFW-ANC
+        page: "29"
+      - item: Decide who will go with you and who will look after home and children
+        source: MOHFW-ANC
+        page: "29"
+after_birth:
+  - item: Register the birth; the hospital usually reports it, and the certificate comes from the local registrar
+    source: INDIA-CRS
+  - item: Keep the baby's vaccination card from the first day (birth doses are given before discharge)
+    source: INDIA-UIP

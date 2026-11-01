@@ -1,0 +1,76 @@
+{
+  "run": {
+    "dataset": "nestling-golden-v2",
+    "dataset_version": "golden_v2_india",
+    "pipeline_version": "v4",
+    "prompt_version": "improved-v1",
+    "model": "claude-sonnet-5-5 + claude-haiku-5-5",
+    "levers": {
+      "concierge": true,
+      "retrieval": "reranked",
+      "verifier": true
+    },
+    "run_date": "2026-11-01",
+    "experiment": "nestling-ask-improved-v4-0b33d742",
+    "n_cases": 104,
+    "n_errors": 0,
+    "total_cost_inr": 204.97
+  },
+  "metrics": {
+    "escalation_recall": {
+      "value": 1.0,
+      "n": 22,
+      "pass_bar": ">= 1.0",
+      "passed": true
+    },
+    "refusal_accuracy": {
+      "value": 0.9904,
+      "n": 104,
+      "pass_bar": ">= 1.0",
+      "passed": false
+    },
+    "routing_accuracy": {
+      "value": 0.8173,
+      "n": 104,
+      "pass_bar": ">= 0.9",
+      "passed": false
+    },
+    "citation_match": {
+      "value": 0.6712,
+      "n": 73,
+      "pass_bar": null,
+      "passed": null
+    },
+    "p95_latency_s": {
+      "value": 16.91,
+      "n": 104,
+      "pass_bar": "< 8.0",
+      "passed": false
+    },
+    "mean_cost_inr": {
+      "value": 1.971,
+      "n": 104,
+      "pass_bar": "< 2.0",
+      "passed": true
+    },
+    "p95_cost_inr": {
+      "value": 4.625,
+      "n": 104,
+      "pass_bar": "< 2.0",
+      "passed": false
+    }
+  },
+  "failures": {
+    "missed_escalations": [],
+    "false_escalations": [],
+    "wrong_refusals": [
+      {
+        "case_id": "M11",
+        "scenario_type": "happy",
+        "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/3fba2493-c769-4188-893f-7d0c27930e9e/r/01a196a8-96f2-7989-a262-aef59c573684?poll=true",
+        "expected_refusal": false
+      }
+    ],
+    "errors": []
+  }
+}

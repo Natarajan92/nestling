@@ -1,1 +1,21 @@
-# seemantha_karnataka playbook: filled in a later phase. Every item must cite a source ID or be marked as family custom.
+# Celebrate playbook (family customs; customs vary).
+tradition: Seemantha (Karnataka)
+also_called: [Seemantha, Seemantham, Kubusa, Baby shower]
+timing: Commonly in the 7th month of pregnancy (some families choose the 5th or 9th), on a day chosen with family elders.
+source: family_custom
+note: Customs differ between communities and families. Ask the elders in your family what they follow.
+rituals:
+  - name: Seemantha pooja
+    what: A pooja for the wellbeing of mother and baby, often with the husband and elders taking part.
+  - name: Udi tumbuvudu (filling the lap)
+    what: Married women fill the mother-to-be's lap (madilu) with fruits, coconut, betel leaves and blessings.
+  - name: Bangles and blessings
+    what: Women of the family put bangles on the mother-to-be and apply turmeric and kumkum.
+checklist:
+  - Fix the date with family elders (and a priest if you hold a pooja)
+  - Silk saree, flowers and bangles for the mother
+  - Fruits, coconut, betel leaves and sweets for the lap-filling
+  - Return gifts (bangles, blouse pieces, small gifts) for married women guests
+menu_ideas:
+  - Holige (obbattu), kosambari, chitranna, payasa, banana-leaf meal
+health_note: For food safety in pregnancy, ask Nestling's Nourish or your doctor.
