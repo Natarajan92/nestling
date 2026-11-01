@@ -149,16 +149,40 @@ def build(lesson_id: str, hits: list[dict] | None = None, version: int = 1) -> d
     return {"status": "ok", "storyboard": board, "problems": [], "usage": usage}
 
 
-def write(lesson_id: str, board: dict) -> None:
-    """Save storyboard.json and a fresh unreviewed review.yaml (an approved review is never overwritten)."""
+def _dump(board: dict) -> str:
+    return json.dumps(board, indent=2, ensure_ascii=False) + "
+"
+
+
+def write(lesson_id: str, board: dict) -> dict:
+    """Save storyboard.json and return the board as written.
+
+    Identical content: nothing changes and the review (and any approval) stays. Changed content: the
+    version goes up by one and review.yaml is reset to unreviewed, so an approval never carries over
+    to content nobody reviewed.
+    """
     folder = LESSONS_DIR / lesson_id
     folder.mkdir(parents=True, exist_ok=True)
-    (folder / "storyboard.json").write_text(json.dumps(board, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    review = folder / "review.yaml"
-    if not (review.exists() and "approved: true" in review.read_text(encoding="utf-8")):
-        scenes = "\n".join(f'  - {{step_no: {s["step_no"]}, passed: null, notes: ""}}' for s in board["scenes"])
-        review.write_text(f"lesson_id: {lesson_id}\nversion: {board['version']}\napproved: false\nreviewer: null\n"
-                          f"review_date: null\nscenes:\n{scenes}\n", encoding="utf-8")
+    path = folder / "storyboard.json"
+    if path.exists():
+        prior = json.loads(path.read_text(encoding="utf-8"))
+        board = {**board, "version": prior["version"]}
+        if path.read_text(encoding="utf-8") == _dump(board):
+            return board
+        board["version"] = prior["version"] + 1
+    path.write_text(_dump(board), encoding="utf-8")
+    scenes = "
+".join(f'  - {{step_no: {s["step_no"]}, passed: null, notes: ""}}' for s in board["scenes"])
+    (folder / "review.yaml").write_text(f"lesson_id: {lesson_id}
+version: {board['version']}
+approved: false
+reviewer: null
+"
+                                        f"review_date: null
+scenes:
+{scenes}
+", encoding="utf-8")
+    return board
 
 
 if __name__ == "__main__":
@@ -173,5 +197,5 @@ if __name__ == "__main__":
     if out["status"] != "ok":
         print(f"{lesson}: {NO_TRUSTED_SOURCE} ({tokens} tokens)\n  " + "\n  ".join(out["problems"]))
         sys.exit(1)
-    write(lesson, out["storyboard"])
-    print(f"{lesson}: wrote storyboard v{out['storyboard']['version']} ({len(out['storyboard']['scenes'])} steps, {tokens} tokens)")
+    board = write(lesson, out["storyboard"])
+    print(f"{lesson}: wrote storyboard v{board['version']} ({len(board['scenes'])} steps, {tokens} tokens)")
