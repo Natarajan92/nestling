@@ -40,6 +40,11 @@ def load_registry() -> dict[str, dict]:
         return {s["id"]: s for s in yaml.safe_load(f)["sources"]}
 
 
+def counts_as(registry: dict[str, dict]) -> dict[str, set[str]]:
+    """Golden-set citation IDs each source satisfies: its own ID plus its `counts_as` list."""
+    return {sid: {sid, *(s.get("counts_as") or [])} for sid, s in registry.items()}
+
+
 def ingestable(registry: dict[str, dict]) -> list[dict]:
     """Entries that have a local PDF, are cleared for ingestion and are not per-user."""
     return [s for s in registry.values() if s.get("file") and s.get("ingest_allowed") and not s.get("private")]

@@ -283,6 +283,8 @@ nestling/
 > Fill to 40: about 20 happy, 12 edge, 6 known failures, 2 adversarial. Freeze as `golden_v1` before the baseline run and never edit it after; add new cases as `golden_v2`.
 >
 > **Update 2026-11-01:** the active dataset is `evals/golden_v2_india.csv` (104 cases: 50 happy, 35 edge, 15 known-fail, 4 adversarial; mothers, fathers and both; pregnancy and postpartum). `golden_v1` is kept for history only. **v2 frozen on 2026-11-01** (content SHA-256 `366efb04…`, checked by `nestling/golden.py`; LangSmith dataset `nestling-golden-v2`, version tag `frozen`; git tag `golden-v2-frozen`).
+>
+> **Baseline result 2026-11-01** (`nestling-ask-baseline-c7951af1`, notebook 01, `evals/results/baseline_2026-11-01_*`): escalation recall **100%** (22/22, self-reported), refusal 97.1%, routing 84.6%, citation match 78.1%, p95 latency 8.57 s, cost ₹1.31 mean / ₹1.50 p95 (₹136 for the run). Top failure modes: routing boundaries (care vs nourish, partner prep, postpartum mood), refusal calibration (E05, B11 over-refused; B18 under-refused), wrong source family (postpartum → antenatal guide).
 
 ### 9.4 LangSmith setup
 

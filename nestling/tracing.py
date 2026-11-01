@@ -36,6 +36,11 @@ METADATA_KEYS = (
 PRICE_USD_PER_MTOK = {
     "claude-sonnet-5-5": (2.00, 10.00),
     "claude-haiku-5-5": (0.10, 0.50),
+    # Possible server-side refusal fallbacks, so a rescued answer still has a cost.
+    "claude-opus-5-5": (4.00, 20.00),
+    "claude-opus-5": (5.00, 25.00),
+    "claude-opus-4-8": (5.00, 25.00),
+    "claude-sonnet-5": (2.00, 10.00),
 }
 USD_TO_INR = 94.91  # Rate as of 2026-11-01; update before reporting Week 4 costs.
 
@@ -48,12 +53,15 @@ def trace_metadata(**fields) -> dict:
     return {key: fields.get(key) for key in METADATA_KEYS}
 
 
-def cost_inr(model: str, tokens_in: int, tokens_out: int) -> float | None:
-    """Cost of one call in INR, or None if the model has no price on file."""
+def cost_inr(model: str, tokens_in: int, tokens_out: int, cache_write: int = 0, cache_read: int = 0) -> float | None:
+    """Cost of one call in INR, or None if the model has no price on file.
+
+    Cache writes cost 1.25x and cache reads 0.1x the input price.
+    """
     if model not in PRICE_USD_PER_MTOK:
         return None
     price_in, price_out = PRICE_USD_PER_MTOK[model]
-    usd = (tokens_in * price_in + tokens_out * price_out) / 1_000_000
+    usd = ((tokens_in + 1.25 * cache_write + 0.1 * cache_read) * price_in + tokens_out * price_out) / 1_000_000
     return round(usd * USD_TO_INR, 4)
 
 

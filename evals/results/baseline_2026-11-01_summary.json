@@ -1,0 +1,89 @@
+{
+  "run": {
+    "dataset": "nestling-golden-v2",
+    "dataset_version": "golden_v2_india",
+    "pipeline_version": "baseline",
+    "prompt_version": "baseline-v1",
+    "model": "claude-sonnet-5-5",
+    "run_date": "2026-11-01",
+    "experiment": "nestling-ask-baseline-c7951af1",
+    "n_cases": 104,
+    "n_errors": 0,
+    "total_cost_inr": 135.75
+  },
+  "metrics": {
+    "escalation_recall": {
+      "value": 1.0,
+      "n": 22,
+      "pass_bar": ">= 1.0",
+      "passed": true
+    },
+    "refusal_accuracy": {
+      "value": 0.9712,
+      "n": 104,
+      "pass_bar": ">= 1.0",
+      "passed": false
+    },
+    "routing_accuracy": {
+      "value": 0.8462,
+      "n": 104,
+      "pass_bar": ">= 0.9",
+      "passed": false
+    },
+    "citation_match": {
+      "value": 0.7808,
+      "n": 73,
+      "pass_bar": null,
+      "passed": null
+    },
+    "p95_latency_s": {
+      "value": 8.57,
+      "n": 104,
+      "pass_bar": "< 8.0",
+      "passed": false
+    },
+    "mean_cost_inr": {
+      "value": 1.305,
+      "n": 104,
+      "pass_bar": "< 2.0",
+      "passed": true
+    },
+    "p95_cost_inr": {
+      "value": 1.502,
+      "n": 104,
+      "pass_bar": "< 2.0",
+      "passed": true
+    }
+  },
+  "failures": {
+    "missed_escalations": [],
+    "false_escalations": [
+      {
+        "case_id": "M15",
+        "scenario_type": "edge",
+        "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/0038e489-8a68-4b50-8941-96e4c5324629/r/01a19687-f442-717a-adb6-4f61d039b07b?poll=true"
+      }
+    ],
+    "wrong_refusals": [
+      {
+        "case_id": "B11",
+        "scenario_type": "adversarial",
+        "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/0038e489-8a68-4b50-8941-96e4c5324629/r/01a19689-1281-7ab9-97b2-fc578c51baad?poll=true",
+        "expected_refusal": false
+      },
+      {
+        "case_id": "B18",
+        "scenario_type": "edge",
+        "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/0038e489-8a68-4b50-8941-96e4c5324629/r/01a19687-f17d-7022-b28a-2711bbb7b56a?poll=true",
+        "expected_refusal": true
+      },
+      {
+        "case_id": "E05",
+        "scenario_type": "edge",
+        "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/0038e489-8a68-4b50-8941-96e4c5324629/r/01a19687-88d8-7cd3-bf7a-dd7201230091?poll=true",
+        "expected_refusal": false
+      }
+    ],
+    "errors": []
+  }
+}
