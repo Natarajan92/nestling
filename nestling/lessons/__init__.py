@@ -24,9 +24,9 @@ SEE_HOW_GHMP = {
 # The six first lessons. `queries` search the registered sources; `see_how` is hand-curated (never model-written).
 LESSONS: dict[str, dict] = {
     "holding": {"title": "Holding your newborn", "stage": "first_weeks", "see_how": None,
-                "sources": ["WHO-POSTNATAL", "MOHFW-IYCF", "MOHFW-MAA"],
+                "sources": ["NHS-RWT-HOLDING"],
                 "queries": ["how to hold and carry a newborn baby, support head and neck",
-                            "holding the baby skin-to-skin, kangaroo mother care position"]},
+                            "lifting and cradling a newborn, support head neck shoulders back and bottom"]},
     "bathing": {"title": "Bathing your newborn", "stage": "first_weeks", "see_how": SEE_HOW_NHS,
                 "sources": ["WHO-POSTNATAL", "MOHFW-IYCF", "MOHFW-MAA", "NHS-BABY-BATHING"],
                 "queries": ["bathing a newborn baby: when, how, water, drying and keeping warm",
@@ -36,7 +36,7 @@ LESSONS: dict[str, dict] = {
                 "queries": ["how to burp a baby after a feed, hold upright, pat the back",
                             "bringing up wind after breastfeeding, baby position after feeding"]},
     "swaddling": {"title": "Swaddling safely", "stage": "first_weeks", "see_how": None,
-                  "sources": ["WHO-POSTNATAL", "MOHFW-IYCF", "MOHFW-MAA"],
+                  "sources": ["NSW-SCHN-SWADDLING"],
                   "queries": ["how to wrap or swaddle a newborn baby safely in a cloth",
                               "keeping the newborn warm, wrapping, safe sleep position on the back"]},
     "latching": {"title": "A good breastfeeding latch", "stage": "first_weeks", "see_how": SEE_HOW_GHMP,

@@ -376,6 +376,38 @@ sources:
     source_reviewed_on: 2026-05-21
     note: "Introduction explicitly requires emergency help for an unresponsive baby or child who is not breathing normally. Section 5b covers absent/infrequent/irregular breathing. Registration supports emergency escalation only, not generated CPR instructions. No source-namespace write authorized."
 
+  - id: NSW-SCHN-SWADDLING
+    title: Swaddling newborns
+    publisher: Sydney Children's Hospitals Network (NSW Health)
+    year: 2026
+    url: https://www.schn.health.nsw.gov.au/kids-health-hub/healthy-sleep-children/newborn-sleep/swaddling-newborns
+    file: NSW-SCHN-SWADDLING.pdf
+    pages: 1
+    used_by: [care]
+    licence: Copyright NSW Government / Sydney Children's Hospitals Network; citation only, no public source-text or image reproduction
+    licence_url: https://www.schn.health.nsw.gov.au/copyright
+    attribution: Source guidance from Sydney Children's Hospitals Network, updated 7 October 2026; Nestling uses independently written factual instructions and its own icons. No endorsement implied.
+    ingest_allowed: false
+    verified: true
+    verified_on: 2026-11-01
+    source_reviewed_on: 2026-10-07
+    note: A private one-page research print under gitignored sources/pdfs contains the original method, safety and rolling sections together, so every cited local page supports its scene and safety points. This is local pagination, not official article pagination. No full text, illustrations or video are copied into the public repository or Pinecone. Do not enable ingestion without separate rights clearance and owner approval.
+
+  - id: NHS-RWT-HOLDING
+    title: Holding a new baby
+    publisher: Royal Wolverhampton NHS Trust (Healthy Child Wolves)
+    year: null
+    url: https://healthychild.royalwolverhampton.nhs.uk/0-4-years/my-new-baby/dads-and-new-babies
+    file: NHS-RWT-HOLDING.pdf
+    pages: 1
+    used_by: [care]
+    licence: Copyright Royal Wolverhampton NHS Trust; citation only, independently written factual instructions and original icons
+    attribution: General newborn-holding guidance from Royal Wolverhampton NHS Trust, accessed 1 November 2026. Nestling wording and icons are independently created; no endorsement implied.
+    ingest_allowed: false
+    verified: true
+    verified_on: 2026-11-01
+    note: Only the general holding sections are used, not bathing or breastfeeding. They support head and neck, lifting with head and bottom supported, cradling with the entire body supported, supporting the back and keeping close. Upper-body support includes the shoulders. A one-page personal research print under gitignored sources/pdfs retains these original passages for source checking; local pagination is not official pagination. No full text or media is distributed or indexed in Pinecone.
+
   - id: USER-POLICY
     title: The user's own uploaded insurance policy
     publisher: user's insurer

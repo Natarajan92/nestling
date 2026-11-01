@@ -1,8 +1,8 @@
 {
   "cap_inr": 20.0,
-  "accounted_inr": 1.6711,
+  "accounted_inr": 1.8918,
   "pending": {},
-  "actual_response_cost_inr": 1.6711,
+  "actual_response_cost_inr": 1.8918,
   "calls": [
     {
       "model": "deepseek-ai/DeepSeek-V4.1-Flash",
@@ -267,6 +267,36 @@
       "tokens_in": 3790,
       "tokens_out": 167,
       "cost_inr": 0.081452
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 1726,
+      "tokens_out": 154,
+      "cost_inr": 0.041533
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 1756,
+      "tokens_out": 464,
+      "cost_inr": 0.059755
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 1068,
+      "tokens_out": 92,
+      "cost_inr": 0.025512
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 1757,
+      "tokens_out": 372,
+      "cost_inr": 0.054535
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 1772,
+      "tokens_out": 100,
+      "cost_inr": 0.039331
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "status": "approved by owner; current review-date media validated and publication ready",
+  "status": "All six lessons owner-approved for their current exact storyboard versions; reviewed-date media installed",
   "lessons": [
     {
       "lesson_id": "bathing",
@@ -418,6 +418,334 @@
           "size": "2919682"
         }
       }
+    },
+    {
+      "lesson_id": "holding",
+      "version": 3,
+      "storyboard_path": "E:\\maai-projects\\nestling\\lessons\\holding\\storyboard.json",
+      "storyboard_sha256": "07028a5e36d121619a365ce4c1c7bdd6358e50c2bdf10614ff6522dab4e6688f",
+      "video_path": "E:\\maai-projects\\nestling\\lessons\\holding\\renders\\lesson.mp4",
+      "video_sha256": "a94bc4e8f9dccf37c124a828a75f5a154d678f17567574accb1d2df4f9dbc522",
+      "review_path": "E:\\maai-projects\\nestling\\lessons\\holding\\review.yaml",
+      "checklist_path": "E:\\maai-projects\\nestling\\lessons\\holding\\checklist.yaml",
+      "sources": [
+        "NHS-RWT-HOLDING"
+      ],
+      "render_log": {
+        "cost_inr": 0.0,
+        "cost_is_estimate": true,
+        "characters_billed": 0,
+        "seconds": 20.3,
+        "rendered_at": "2026-11-01T16:54:35+00:00",
+        "storyboard_version": 3,
+        "source_fidelity": "source-checked; independent fidelity verdict faithful",
+        "human_review": "approved",
+        "narration_retries": 0,
+        "cached_cards_reused": [
+          1,
+          6
+        ],
+        "ffprobe_verified": true,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "dimensions": [
+          1080,
+          1920
+        ],
+        "verified_duration_seconds": 20.333333,
+        "storyboard_sha256": "07028a5e36d121619a365ce4c1c7bdd6358e50c2bdf10614ff6522dab4e6688f",
+        "cost_basis": "approval-date badge refresh using cached narration; prior charges retained in render_history",
+        "reviewed_on": "2026-11-01",
+        "render_history": [
+          {
+            "cost_inr": 4.92,
+            "cost_is_estimate": true,
+            "characters_billed": 246,
+            "seconds": 20.3,
+            "rendered_at": "2026-11-01T16:44:26.309237+00:00",
+            "storyboard_version": 3,
+            "source_fidelity": "local source checks passed; independent judge pending",
+            "human_review": "pending",
+            "narration_retries": 0,
+            "cached_cards_reused": [
+              1,
+              6
+            ],
+            "ffprobe_verified": true,
+            "video_codec": "h264",
+            "audio_codec": "aac",
+            "dimensions": [
+              1080,
+              1920
+            ],
+            "verified_duration_seconds": 20.333333,
+            "storyboard_sha256": "07028a5e36d121619a365ce4c1c7bdd6358e50c2bdf10614ff6522dab4e6688f"
+          }
+        ]
+      },
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All steps and safety points in the storyboard are supported by the source passage NHS-RWT-HOLDING page 1. Head/neck support, hand placement, cradling, gentle handling, and the warning against shaking are all explicitly mentioned. No unsupported or missing safety-critical steps for basic holding are present.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 1068,
+          "tokens_out": 92
+        },
+        "cost_inr": 0.0255,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "holding:v3",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "holding",
+          "predicted_route": "holding",
+          "refused": null,
+          "sources_cited": [
+            "NHS-RWT-HOLDING"
+          ],
+          "correct": true,
+          "latency_ms": 2249,
+          "tokens_in": 1068,
+          "tokens_out": 92,
+          "cost_inr": 0.0255,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        }
+      },
+      "human_review": {
+        "lesson_id": "holding",
+        "version": 3,
+        "approved": true,
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
+          },
+          {
+            "step_no": 2,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
+          },
+          {
+            "step_no": 3,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
+          },
+          {
+            "step_no": 4,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
+          }
+        ]
+      },
+      "source_check_path": "E:\\maai-projects\\nestling\\lessons\\holding\\source_check.json",
+      "approval_status": "owner-approved; reviewed-date media installed",
+      "human_approved_video_sha256": "5d38dbc62764b41005435b67b05dd4016e74abf192b02da1babbf5534e586650",
+      "owner_approval_received": {
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "version": 3,
+        "storyboard_sha256": "07028a5e36d121619a365ce4c1c7bdd6358e50c2bdf10614ff6522dab4e6688f",
+        "all_scenes_passed": true,
+        "original_video_sha256": "5d38dbc62764b41005435b67b05dd4016e74abf192b02da1babbf5534e586650"
+      },
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1080,
+            "height": 1920
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "44100"
+          }
+        ],
+        "format": {
+          "duration": "20.333333",
+          "size": "2985719"
+        }
+      },
+      "approval_refresh_note": "Same exact storyboard and narration; only reviewed-date badge/media refresh. Original human-approved video SHA retained separately."
+    },
+    {
+      "lesson_id": "swaddling",
+      "version": 5,
+      "storyboard_path": "E:\\maai-projects\\nestling\\lessons\\swaddling\\storyboard.json",
+      "storyboard_sha256": "f57fa4d131a823a8cf5261b4952ebbf18a416057f73659b3e3123f8b125aaab9",
+      "video_path": "E:\\maai-projects\\nestling\\lessons\\swaddling\\renders\\lesson.mp4",
+      "video_sha256": "e59d1ef4a3cdc6a38df116d276404b26d48c12f2d5b0d599af30756ea5324e43",
+      "review_path": "E:\\maai-projects\\nestling\\lessons\\swaddling\\review.yaml",
+      "checklist_path": "E:\\maai-projects\\nestling\\lessons\\swaddling\\checklist.yaml",
+      "sources": [
+        "NSW-SCHN-SWADDLING"
+      ],
+      "render_log": {
+        "cost_inr": 0.0,
+        "cost_is_estimate": true,
+        "current_version_narration_characters": 439,
+        "cumulative_characters_billed": 630,
+        "correction_v2_characters_billed": 54,
+        "seconds": 31.6,
+        "rendered_at": "2026-11-01T16:55:07+00:00",
+        "storyboard_version": 5,
+        "source_fidelity": "source-checked; independent fidelity verdict faithful",
+        "human_review": "approved",
+        "ffprobe_verified": true,
+        "citation_correction_v3_characters_billed": 0,
+        "clarity_correction_v4_characters_billed": 0,
+        "precision_correction_v5_characters_billed": 176,
+        "characters_billed": 0,
+        "cost_basis": "approval-date badge refresh using cached narration; prior charges retained in render_history",
+        "storyboard_sha256": "f57fa4d131a823a8cf5261b4952ebbf18a416057f73659b3e3123f8b125aaab9",
+        "reviewed_on": "2026-11-01",
+        "render_history": [
+          {
+            "cost_inr": 12.6,
+            "cost_is_estimate": true,
+            "current_version_narration_characters": 439,
+            "cumulative_characters_billed": 630,
+            "correction_v2_characters_billed": 54,
+            "seconds": 31.6,
+            "rendered_at": "2026-11-01T16:51:51+00:00",
+            "storyboard_version": 5,
+            "source_fidelity": "pending independent check",
+            "human_review": "pending",
+            "ffprobe_verified": true,
+            "citation_correction_v3_characters_billed": 0,
+            "clarity_correction_v4_characters_billed": 0,
+            "precision_correction_v5_characters_billed": 176
+          }
+        ],
+        "verified_duration_seconds": 31.566667
+      },
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All steps and safety points in the storyboard are supported by the source passage NSW-SCHN-SWADDLING page 1. Each swaddling step, safety instruction, and transition guidance (e.g., stopping at rolling, hip movement, back sleeping, avoiding heavy wraps) is explicitly mentioned in the source. No unsupported or invented steps are present.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 1772,
+          "tokens_out": 100
+        },
+        "cost_inr": 0.0393,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "swaddling:v5",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "swaddling",
+          "predicted_route": "swaddling",
+          "refused": null,
+          "sources_cited": [
+            "NSW-SCHN-SWADDLING"
+          ],
+          "correct": true,
+          "latency_ms": 4090,
+          "tokens_in": 1772,
+          "tokens_out": 100,
+          "cost_inr": 0.0393,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        }
+      },
+      "human_review": {
+        "lesson_id": "swaddling",
+        "version": 5,
+        "approved": true,
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
+          },
+          {
+            "step_no": 2,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
+          },
+          {
+            "step_no": 3,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
+          },
+          {
+            "step_no": 4,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
+          },
+          {
+            "step_no": 5,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
+          }
+        ]
+      },
+      "source_check_path": "E:\\maai-projects\\nestling\\lessons\\swaddling\\source_check.json",
+      "approval_status": "owner-approved; reviewed-date media installed",
+      "human_approved_video_sha256": "03f42698f6207aed6d0337b9c37582cf0193896d6ccdbab56605dcd2e80d7eec",
+      "owner_approval_received": {
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "version": 5,
+        "storyboard_sha256": "f57fa4d131a823a8cf5261b4952ebbf18a416057f73659b3e3123f8b125aaab9",
+        "all_scenes_passed": true,
+        "original_video_sha256": "03f42698f6207aed6d0337b9c37582cf0193896d6ccdbab56605dcd2e80d7eec"
+      },
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1080,
+            "height": 1920
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "44100"
+          }
+        ],
+        "format": {
+          "duration": "31.566667",
+          "size": "4943665"
+        }
+      },
+      "approval_refresh_note": "Same exact storyboard and narration; only reviewed-date badge/media refresh. Original human-approved video SHA retained separately."
     }
   ]
 }

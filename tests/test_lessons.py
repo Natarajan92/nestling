@@ -58,7 +58,60 @@ def test_step_count_and_numbering():
 
 def test_length_limits():
     assert any("caption" in p for p in sb.validate(four(caption="one two three four five six seven eight nine"), HITS, ICONS))
-    assert any("narration_line" in p for p in sb.validate(four(narration_line=" ".join(["word"] * 13)), HITS, ICONS))
+    assert any("narration_line" in p for p in sb.validate(four(narration_line=" ".join(["word"] * 21)), HITS, ICONS))
+
+
+@pytest.mark.parametrize("narration", [
+    "Bring the remaining cloth across your baby, leaving their hips and knees free to bend naturally.",
+    "Bring the remaining cloth across your baby, leaving their hips and knees free to bend naturally without restricting their movement.",
+])
+def test_complete_safe_method_can_use_more_than_twelve_narration_words(narration):
+    scenes = four(source_id="NSW-SCHN-SWADDLING", page_label="1", caption="Leave room for hips and knees",
+                  narration_line=narration, evidence="hips and knees free to bend naturally")
+    assert sb.validate(scenes, [hit("NSW-SCHN-SWADDLING", "1", narration)], ICONS) == []
+
+
+@pytest.mark.parametrize("lesson_id,source_id", [("holding", "NHS-RWT-HOLDING"), ("swaddling", "NSW-SCHN-SWADDLING")])
+def test_citation_only_lesson_source_reads_local_chunks_without_pinecone(monkeypatch, tmp_path, lesson_id, source_id):
+    source = {"id": source_id, "file": "private-research.pdf", "ingest_allowed": False}
+    (tmp_path / source["file"]).write_bytes(b"private fixture")
+    monkeypatch.setattr(sb.retrieval, "PDF_DIR", tmp_path)
+    monkeypatch.setattr(sb.retrieval, "load_registry", lambda: {source_id: source})
+    local = {"_id": source_id + ":p1:c0", "source_id": source_id, "page_label": "1", "page": 1,
+             "chunk_text": "Local registered evidence for independently written instructions."}
+    reads = []
+    monkeypatch.setattr(sb.retrieval, "load_chunks", lambda registered: reads.append(registered["id"]) or [local, local])
+    monkeypatch.setattr(sb.retrieval, "search_reranked", lambda *a, **kw: pytest.fail("citation-only content reached Pinecone"))
+    hits = sb.retrieve(lesson_id)
+    assert reads == [source_id] and len(hits) == 1
+    assert hits[0]["source_id"] == source_id and hits[0]["page_label"] == "1"
+    assert hits[0]["chunk_text"] == local["chunk_text"]
+    assert hits[0]["id"] == local["_id"]
+
+
+@pytest.mark.parametrize("lesson_id,source_id", [("holding", "NHS-RWT-HOLDING"), ("swaddling", "NSW-SCHN-SWADDLING")])
+def test_missing_private_source_means_no_source_and_no_llm_or_pinecone(monkeypatch, tmp_path, lesson_id, source_id):
+    monkeypatch.setattr(sb.retrieval, "PDF_DIR", tmp_path)
+    monkeypatch.setattr(sb.retrieval, "load_registry", lambda: {
+        source_id: {"id": source_id, "file": "absent.pdf", "ingest_allowed": False}})
+    monkeypatch.setattr(sb.retrieval, "search_reranked", lambda *a, **kw: pytest.fail("fallback used an unrelated indexed source"))
+    monkeypatch.setattr(sb.retrieval, "load_chunks", lambda *a: pytest.fail("missing PDF was read"))
+    monkeypatch.setattr(sb, "chat_json", lambda *a, **kw: pytest.fail("empty trusted evidence reached LLM"))
+    out = sb.build(lesson_id)
+    assert out["status"] == sb.NO_TRUSTED_SOURCE and out["storyboard"] is None and out["usage"] == []
+
+
+def test_licensed_lesson_sources_keep_filtered_pinecone_reads_and_deduplication(monkeypatch):
+    ids = ["WHO-POSTNATAL", "MOHFW-IYCF", "MOHFW-MAA"]
+    monkeypatch.setattr(sb.retrieval, "load_registry", lambda: {sid: {"id": sid, "ingest_allowed": True} for sid in ids})
+    monkeypatch.setattr(sb.retrieval, "load_chunks", lambda *a: pytest.fail("indexed source unexpectedly loaded locally"))
+    calls = []
+    def search(query, source_ids, **kw):
+        calls.append(source_ids)
+        return HITS
+    monkeypatch.setattr(sb.retrieval, "search_reranked", search)
+    assert sb.retrieve("cord_care") == HITS
+    assert calls and all(sources == ids for sources in calls)
 
 
 @pytest.mark.parametrize("text", ["Give 5 ml twice a day.", "Use paracetamol if warm.", "Your baby has an infection."])
