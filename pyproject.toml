@@ -10,6 +10,7 @@ dependencies = [
     "langgraph>=1.2.19",
     "langsmith>=0.14.16",
     "llama-index-core>=0.14.25",
+    "openai>=3.42.0",
     "pinecone>=10.2.0",
     "pypdf>=6.21.4",
     "python-dotenv>=1.2.4",

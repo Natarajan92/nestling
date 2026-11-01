@@ -89,10 +89,10 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
 ```
                  ┌───────────────────────────────┐
   Message ─────► │ 🛡️ Guardian (every message)    │──► RED FLAG → code rule fires →
-                 │  rules + Haiku classifier      │    "Contact your doctor now" + source
+                 │  rules + FAST-model classifier      │    "Contact your doctor now" + source
                  └──────────────┬────────────────┘
                                 ▼
-                 🧭 Concierge (router / supervisor, Haiku)
+                 🧭 Concierge (router / supervisor, FAST model)
      ┌────────┬─────────┬───────┴──┬──────────┬────────────┬────────────┬────────────┐
    🩺 Care  🥗 Nourish  🎒 Ready  💰 Money  🎉 Celebrate  📸 Capture  🎬 Lessons  📔 Journal
      └────────┴─────────┴───────┬──┴──────────┴────────────┴────────────┴────────────┘
@@ -101,13 +101,13 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
                                 ▼
                          Answer + sources + trace
 
-  📸 Capture:  Tavily (Keenable fallback) → fetch studio pages → Haiku extracts StudioPackage
+  📸 Capture:  Tavily (Keenable fallback) → fetch studio pages → FAST model extracts StudioPackage
                → code compares (INR, total cost, cost per edited photo) → comparison
                → estimate_cost() in code (tier ranges + confidence) → optional enquiry draft
                → parent approves → sent
 
   🎬 Little Lessons, build time (offline, never per question):
-               registry steps → Sonnet storyboard (5–6 scenes, JSON; each scene's narration_line
+               registry steps → MAIN-model storyboard (5–6 scenes, JSON; each scene's narration_line
                and image_prompt written together) → image per scene (one fixed style) + ElevenLabs
                narration per scene → ffmpeg/Remotion stitch (audio length sets scene duration)
                → MP4 + thumbnail → human review per scene → approved library
@@ -120,21 +120,21 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
 
 | Agent | Job | Mostly |
 |---|---|---|
-| Guardian | Detect red flags and unsafe requests (dosing, diagnosis, jailbreaks) | Code rules + Haiku classification |
-| Concierge | Route to the right specialist(s); ask a clarifying question if needed | Haiku + few-shot |
-| Care | Prenatal and postnatal questions from the source library | Sonnet + RAG |
-| Nourish | Diet by week, food habit and region (ICMR-NIN based) | Sonnet + RAG |
-| Ready | Labour bag, hospital and documents checklist | Deterministic YAML + Sonnet to explain |
+| Guardian | Detect red flags and unsafe requests (dosing, diagnosis, jailbreaks) | Code rules + FAST-model classification |
+| Concierge | Route to the right specialist(s); ask a clarifying question if needed | FAST model + few-shot |
+| Care | Prenatal and postnatal questions from the source library | MAIN model + RAG |
+| Nourish | Diet by week, food habit and region (ICMR-NIN based) | MAIN model + RAG |
+| Ready | Labour bag, hospital and documents checklist | Deterministic YAML + MAIN model to explain |
 | Money | Maternity cover, claims, newborn add-on; exact clause quotes from the uploaded policy | RAG over policy PDF + rules |
-| Celebrate | Tradition playbooks, babymoon ideas (Tavily for live venues and stays) | YAML playbooks + Sonnet |
-| Capture | Plan and compare photoshoots (maternity, baby shower / seemantham, newborn, hand & foot casting): find studios for a city, budget, shoot type and date; compare packages side by side; draft quote requests | Tavily/Keenable search → page fetch → Haiku extraction to `StudioPackage` → code comparison → approved enquiry |
-| Little Lessons | Short illustrated how-to videos for new parents (holding, bathing, burping, swaddling, latching, cord care) | **Build time:** Sonnet storyboard → image model → ElevenLabs → ffmpeg/Remotion → human review. **Runtime:** retrieval of an approved video only; no live generation |
-| Journal | Voice and text entries → mood, notes, profile updates | Sonnet + ElevenLabs |
-| Verifier | Faithfulness check of every claim against its source | Sonnet or cross-family judge |
+| Celebrate | Tradition playbooks, babymoon ideas (Tavily for live venues and stays) | YAML playbooks + MAIN model |
+| Capture | Plan and compare photoshoots (maternity, baby shower / seemantham, newborn, hand & foot casting): find studios for a city, budget, shoot type and date; compare packages side by side; draft quote requests | Tavily/Keenable search → page fetch → FAST model extraction to `StudioPackage` → code comparison → approved enquiry |
+| Little Lessons | Short illustrated how-to videos for new parents (holding, bathing, burping, swaddling, latching, cord care) | **Build time:** MAIN-model storyboard → image model → ElevenLabs → ffmpeg/Remotion → human review. **Runtime:** retrieval of an approved video only; no live generation |
+| Journal | Voice and text entries → mood, notes, profile updates | MAIN model + ElevenLabs |
+| Verifier | Faithfulness check of every claim against its source | MAIN model, checked by a cross-family judge |
 
 **📸 Capture: how it gets the data** (most studios have no public API; pilot city: **Bengaluru**)
 1. **Search:** Tavily (Keenable as fallback) for studios in the city by shoot type. Instagram is where many Bengaluru studios post packages, so it is used where this can be done properly: public profile and post pages that search already surfaces, the studio's bio link (often its website or price list), and later Meta's official Business Discovery API (needs our own Instagram business account and Meta app review; text and captions only). No logged-in scraping, and no images copied (prices shown only inside images stay *"Not listed — ask the studio"*).
-2. **Fetch:** read each studio's website or package page; Haiku extracts a structured `StudioPackage` (Pydantic): package price and inclusions/extras (travel, props, outfits, makeup), duration, photos taken, edited soft copies and delivery time, album (price, type e.g. flush mount, matte/glossy, size, pages, photos), frames (sizes, count), hand & foot casting (offered, price, type), rating/reviews summary, location, contact link.
+2. **Fetch:** read each studio's website or package page; the FAST model extracts a structured `StudioPackage` (Pydantic): package price and inclusions/extras (travel, props, outfits, makeup), duration, photos taken, edited soft copies and delivery time, album (price, type e.g. flush mount, matte/glossy, size, pages, photos), frames (sizes, count), hand & foot casting (offered, price, type), rating/reviews summary, location, contact link.
 3. **Partner API (future):** a simple Studio Partner API + onboarding form so studios publish packages as structured `StudioPackage` data. Design the schema now, build later.
 4. **Estimate (`estimate_cost()`, code only):** for the chosen city and shoot type, group the found packages into Budget / Mid / Premium tiers by listed price. For each component (base shoot, extra edited photos, album, frames, casting, travel/makeup add-ons), take the low, high and median of comparable listed packages, then sum them into a total range per tier. Always a range, never a single number. Confidence comes from the number of studios behind the range: **High** (≥8), **Medium** (4–7), **Low** (3). With fewer than 3: *"Not enough data for a reliable estimate — request quotes."*
 5. **Enquire (human in the loop):** when a detail is missing, or to get a firm price, draft a quote-request message (WhatsApp/email) listing exactly the components the parent picked, for the parent to approve.
@@ -148,7 +148,7 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
 - Nothing is sent, and the parent's contact details are never shared, without explicit approval.
 
 **🎬 Little Lessons: how a lesson is made** (constitution rule 8 applies)
-1. **Storyboard (Sonnet):** sourced steps from the registry (WHO, MoHFW, other registered sources) → 5–6 scenes as JSON: `step_no, caption, image_prompt, narration_line, source_id, safety_points[]`. The storyboard is the single source of truth: each scene's narration and image prompt are written together from the same sourced step, so they match.
+1. **Storyboard (MAIN model):** sourced steps from the registry (WHO, MoHFW, other registered sources) → 5–6 scenes as JSON: `step_no, caption, image_prompt, narration_line, source_id, safety_points[]`. The storyboard is the single source of truth: each scene's narration and image prompt are written together from the same sourced step, so they match.
 2. **Images:** each scene's `image_prompt` plus one fixed illustration-style prompt → an image model on Fireworks or Nebius (e.g. FLUX), so all scenes look consistent.
 3. **Voice:** ElevenLabs narration per scene from its `narration_line`; English first, Tamil/Hindi as optional later variants.
 4. **Stitch:** ffmpeg (or Remotion) combines images, gentle pan/zoom, captions and voice into a 20–40 second MP4, plus a thumbnail. Each narration's length sets how long its scene stays on screen.
@@ -165,7 +165,7 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
 
 | Tool | Use |
 |---|---|
-| **Claude API** | `claude-sonnet-5-5` for specialists, the Verifier and Little Lessons storyboards; `claude-haiku-5-5` for the Guardian classifier, Concierge and Capture's studio-page extraction |
+| **Nebius open models** (`nestling/llm.py`, OpenAI-compatible) | MAIN `deepseek-ai/DeepSeek-V4-Pro` for specialists, the Verifier, policy Q&A and Little Lessons storyboards; FAST `deepseek-ai/DeepSeek-V4.1-Flash` for the Guardian classifier, Concierge and Capture's studio-page extraction. The judge stays Qwen3-235B on Nebius (a different family). No Anthropic API at runtime; Claude stays only in the Phase 2 baseline record |
 | **LangGraph** | Agent graph, routing, checkpoints |
 | **LangSmith** | Traces, datasets, evaluators, experiment comparison (**Week 4 core**) |
 | **LlamaIndex** | Ingest guideline and policy PDFs with page and section metadata |
@@ -234,7 +234,7 @@ nestling/
 │   ├── capture/
 │   │   └── estimate.py            # estimate_cost(): tier ranges + confidence, code only
 │   ├── lessons/                   # Little Lessons (build time, except library.py)
-│   │   ├── storyboard.py          # sourced steps → scene JSON (Sonnet)
+│   │   ├── storyboard.py          # sourced steps → scene JSON (MAIN model)
 │   │   ├── render_images.py       # scenes → images (Fireworks/Nebius, fixed style)
 │   │   ├── narrate.py             # narration per scene (ElevenLabs)
 │   │   ├── stitch.py              # ffmpeg/Remotion → MP4 + thumbnail
@@ -345,7 +345,7 @@ nestling/
 
 | # | Lever | Change | Targets | Predicted |
 |---|---|---|---|---|
-| 1 | Guardrail | Guardian: code red-flag rules + Haiku classifier before any answer | Missed escalations | Recall → 100% |
+| 1 | Guardrail | Guardian: code red-flag rules + FAST-model classifier before any answer | Missed escalations | Recall → 100% |
 | 2 | Control flow | Concierge router with few-shot examples | Wrong specialist | Routing +15–20 pts |
 | 3 | Retrieval | Hybrid search + rerank, metadata filters (trimester, diet) | Unfaithful or irrelevant answers | Faithfulness +8–10 pts |
 | 4 | Verification | Verifier node: claim ↔ source check, 1 rewrite, else "I don't know" | Hallucinated claims | Faithfulness +5 pts, latency +1–2s |
@@ -442,7 +442,7 @@ Skip `analyze`, `checklist` and `converge` unless something is genuinely unclear
 # Nestling: rules for Claude Code
 - Read docs/NESTLING_PLAN.md first. The constitution (§2) overrides everything.
 - Python 3.12 + uv. Notebooks import from the `nestling/` package; logic lives in .py, not in notebook cells.
-- Models: claude-sonnet-5-5 (specialists, verifier), claude-haiku-5-5 (guardian classifier, concierge).
+- Models (no Anthropic API at runtime): MAIN deepseek-ai/DeepSeek-V4-Pro (specialists, verifier), FAST deepseek-ai/DeepSeek-V4.1-Flash (guardian classifier, concierge), both on Nebius via nestling/llm.py.
 - Red-flag escalation is decided in code (nestling/guardian.py). Never let an LLM decide it alone.
 - Every medical/diet/insurance answer must cite a source ID from sources/registry.yaml, or say it has no trusted source.
 - Never output medicine doses or diagnoses.

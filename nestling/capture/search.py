@@ -1,7 +1,7 @@
 """Find photo studios and extract their listed packages (Capture).
 
 Tavily search (non-medical lookups only, constitution) returns studio pages with their text;
-Haiku extracts a `StudioPackage` from the page text only. No images are downloaded or
+The FAST model extracts a `StudioPackage` from the page text only. No images are downloaded or
 re-published, and nothing behind a login is read. Prices shown only inside images stay
 None ("Not listed — ask the studio").
 """
@@ -11,15 +11,14 @@ import os
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date
-from functools import cache
 
 from langsmith import traceable
 
+from nestling.llm import FAST, chat_json
 from nestling.capture.estimate import parse_inr
 from nestling.schemas.studio_package import Album, Casting, Extra, Frame, StudioPackage
 
 TAVILY_URL = "https://api.tavily.com/search"
-HAIKU = "claude-haiku-5-5"
 SHOOT_QUERIES = {
     "maternity": "maternity photoshoot packages price",
     "baby_shower": "baby shower seemantham photography packages price",
@@ -32,14 +31,6 @@ Copy only what the page says. If a value is not written on the page, leave it nu
 price_inr is the package price in rupees as a whole number; if the page says GST is extra, still give the listed number and put the exact wording in price_text.
 If the page lists several packages, extract the one that best matches the requested shoot type (prefer the mid-priced one).
 If the page is not a studio's own package or price page, set studio_name to "NOT_A_STUDIO_PAGE"."""
-
-
-@cache
-def _client():
-    import anthropic
-    from langsmith.wrappers import wrap_anthropic
-
-    return wrap_anthropic(anthropic.Anthropic())
 
 
 @traceable(name="tavily_search", run_type="tool")
@@ -107,16 +98,10 @@ def extract_package(page: dict, shoot_type: str, city: str) -> StudioPackage | N
     text = (page.get("raw_content") or page.get("content") or "")[:12000]
     if len(text) < 200:
         return None
-    response = _client().messages.create(
-        model=HAIKU,
-        max_tokens=3000,
-        system=EXTRACT_PROMPT,
-        messages=[{"role": "user", "content": f"Shoot type: {shoot_type}. City: {city}.\nPage URL: {page['url']}\nPage title: {page.get('title')}\n\nPage text:\n{text}"}],
-        output_config={"effort": "low", "format": {"type": "json_schema", "schema": EXTRACT_SCHEMA}},
-    )
-    if response.stop_reason in ("refusal", "max_tokens"):
+    user = f"Shoot type: {shoot_type}. City: {city}. Page URL: {page['url']} Page title: {page.get('title')}" + "\n\nPage text:\n" + text
+    data, _, _ = chat_json(FAST, EXTRACT_PROMPT, user, EXTRACT_SCHEMA, max_tokens=3000)
+    if data is None:
         return None
-    data = json.loads("".join(b.text for b in response.content if b.type == "text"))
     if data["studio_name"] == "NOT_A_STUDIO_PAGE":
         return None
     return to_package(data, page["url"], shoot_type, city)

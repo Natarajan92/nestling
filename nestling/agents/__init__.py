@@ -1,19 +1,18 @@
 """Specialist agents: care, nourish, ready, money, celebrate, journal.
 
 Each specialist answers from passages of its own sources (registry `used_by`) with one
-Sonnet call, through `answer_from_sources`. Deterministic content (checklists, playbooks)
+MAIN-model call, through `answer_from_sources`. Deterministic content (checklists, playbooks)
 is passed in by the agent as extra context; the LLM explains it and never invents it.
-Every call reports its token usage so the pipeline can total the cost.
+Every call (Nebius open models, see nestling/llm.py) reports its token usage so the pipeline can total the cost.
 """
 
-import json
-from functools import cache
+import re
 
 from langsmith import traceable
 
 from nestling import retrieval
+from nestling.llm import MAIN, chat_json
 
-SONNET = "claude-sonnet-5-5"
 NO_SOURCE_LINE = "I don't have a trusted source for that. Please ask your doctor."
 
 ANSWER_SCHEMA = {
@@ -34,40 +33,9 @@ Rules:
 {instructions}"""
 
 
-@cache
-def client():
-    import anthropic
-    from langsmith.wrappers import wrap_anthropic
-
-    return wrap_anthropic(anthropic.Anthropic())
-
-
-def usage_of(response) -> dict:
-    u = response.usage
-    return {"model": response.model, "tokens_in": u.input_tokens, "tokens_out": u.output_tokens,
-            "cache_write": u.cache_creation_input_tokens or 0, "cache_read": u.cache_read_input_tokens or 0}
-
-
-def final_text(response) -> str:
-    """Text written by the model that finally answered (after any refusal-fallback switch)."""
-    blocks = list(response.content)
-    last_switch = max((i for i, b in enumerate(blocks) if b.type == "fallback"), default=-1)
-    return "".join(b.text for b in blocks[last_switch + 1:] if b.type == "text")
-
-
-def sonnet_json(system: str, user: str, schema: dict, max_tokens: int = 3000) -> tuple[dict | None, dict, str]:
-    """One structured Sonnet call with server-side refusal fallback. Returns (data, usage, stop_reason)."""
-    response = client().beta.messages.create(
-        model=SONNET,
-        max_tokens=max_tokens,
-        system=system,
-        messages=[{"role": "user", "content": user}],
-        output_config={"effort": "low", "format": {"type": "json_schema", "schema": schema}},
-        betas=["server-side-fallback-2026-07-01"],
-        fallbacks="default",
-    )
-    data = json.loads(final_text(response)) if response.stop_reason not in ("refusal", "max_tokens") else None
-    return data, usage_of(response), response.stop_reason
+def main_json(system: str, user: str, schema: dict, max_tokens: int = 3000) -> tuple[dict | None, dict, str]:
+    """One structured MAIN-model call. Returns (data, usage, raw text); data is None if the reply was not valid."""
+    return chat_json(MAIN, system, user, schema, max_tokens)
 
 
 def profile_line(context: dict) -> str:
@@ -92,6 +60,30 @@ def retrieve(question: str, context: dict, agent: str, mode: str) -> list[dict]:
     return retrieval.search_reranked(retrieval_query(question, context), source_ids=retrieval.sources_for(agent))
 
 
+_MARK = re.compile(r"[(\[]\s*([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+)\s*,?\s*(?:pp?\.|pages?)\s*([0-9ivxlcdm]+)\s*[)\]]", re.IGNORECASE)
+
+
+def enforce_citations(answer: str, sources_cited: list[str], hits: list[dict]) -> tuple[str, list[str]]:
+    """Make the citations real, in code. Every "(SOURCE-ID, p. N)" is rewritten to that exact format and kept
+    only if that source and page are in the passages the model was given; any other marker is dropped from
+    the text. sources_cited keeps only IDs of given passages (those the model listed, plus those cited in text)."""
+    given = {(h["source_id"], str(h.get("page_label") or h.get("page")).lower()) for h in hits}
+    ids = {sid for sid, _ in given}
+    cited_in_text = []
+
+    def fix(m):
+        sid, page = m.group(2).upper(), m.group(3).lower()
+        if (sid, page) not in given:
+            return ""
+        cited_in_text.append(sid)
+        return f"{m.group(1)}({sid}, p. {m.group(3)})"
+
+    cleaned = re.sub(r"( ?)" + _MARK.pattern, fix, answer, flags=re.IGNORECASE)
+    cleaned = re.sub(r" +([.,;])", r"", cleaned)
+    kept = [x for x in dict.fromkeys([*sources_cited, *cited_in_text]) if x in ids]
+    return cleaned, kept
+
+
 def passages_text(hits: list[dict]) -> str:
     return "\n".join(f"\n[{n}] {retrieval.format_citation(h)}\n{h['chunk_text']}" for n, h in enumerate(hits, 1))
 
@@ -99,13 +91,14 @@ def passages_text(hits: list[dict]) -> str:
 @traceable(name="specialist_answer", run_type="chain")
 def answer_from_sources(agent: str, question: str, context: dict, hits: list[dict], instructions: str = "",
                         extra: str = "") -> dict:
-    """{"answer", "sources_cited", "usage": [..], "stop_reason"} from one Sonnet call over the passages."""
+    """{"answer", "sources_cited", "usage": [..], "raw"} from one MAIN-model call over the passages."""
     system = BASE_PROMPT.format(agent=agent, no_source=NO_SOURCE_LINE, instructions=instructions)
     user = f"{profile_line(context)}\n\nParent's message: {question}\n"
     if extra:
         user += f"\nNestling's own checklist/playbook (code-owned; explain it, do not add to it):\n{extra}\n"
     user += f"\nPassages:{passages_text(hits) or ' (none found)'}"
-    data, usage, stop = sonnet_json(system, user, ANSWER_SCHEMA)
+    data, usage, raw = main_json(system, user, ANSWER_SCHEMA)
     if data is None:
         data = {"answer": NO_SOURCE_LINE, "sources_cited": []}
-    return {**data, "usage": [usage], "stop_reason": stop}
+    data["answer"], data["sources_cited"] = enforce_citations(data["answer"], data["sources_cited"], hits)
+    return {**data, "usage": [usage], "raw": raw}

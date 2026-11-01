@@ -32,11 +32,14 @@ METADATA_KEYS = (
     "error",
 )
 
-# USD per million tokens (input, output), Anthropic first-party pricing.
+# USD per million tokens (input, output). Runtime models are Nebius open models; prices from the Nebius
+# Token Factory model list (GET https://api.tokenfactory.nebius.com/v1/models?verbose=true, "pricing"),
+# read 2026-11-01. Claude prices are kept for the Phase 2 baseline and v1-v5 records (Anthropic first-party).
 PRICE_USD_PER_MTOK = {
+    "deepseek-ai/DeepSeek-V4-Pro": (1.75, 3.50),
+    "deepseek-ai/DeepSeek-V4.1-Flash": (0.30, 1.20),
     "claude-sonnet-5-5": (2.00, 10.00),
     "claude-haiku-5-5": (0.10, 0.50),
-    # Possible server-side refusal fallbacks, so a rescued answer still has a cost.
     "claude-opus-5-5": (4.00, 20.00),
     "claude-opus-5": (5.00, 25.00),
     "claude-opus-4-8": (5.00, 25.00),

@@ -1,4 +1,4 @@
-"""Phase 3 comparison from saved results only (no API calls): baseline vs v1...v5.
+"""Phase 3 comparison from saved results only (no API calls): baseline vs v1...v6.
 
     uv run python -m evals.compare     # rewrites phase3_judge_round1.json and phase3_failure_analysis.json
 """
@@ -10,7 +10,7 @@ from pathlib import Path
 from evals import judge
 from evals.evaluators import PASS_BARS, RESULTS_DIR
 
-VERSIONS = ["baseline", "v1", "v2", "v3", "v4", "v5"]
+VERSIONS = ["baseline", "v1", "v2", "v3", "v4", "v5", "v6"]
 FAITHFULNESS_BAR = (">=", 0.9)  # plan §9.1
 METRICS = ["escalation_recall", "refusal_accuracy", "routing_accuracy", "citation_match", "faithfulness",
            "p95_latency_s", "mean_cost_inr", "p95_cost_inr"]

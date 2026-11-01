@@ -1,17 +1,16 @@
 """Concierge: routes each message to the right specialist, or asks a clarifying question.
 
-Haiku with explicit route definitions and few-shot examples (plan §9.5 lever 2). The examples
+the FAST model with explicit route definitions and few-shot examples (plan §9.5 lever 2). The examples
 are written for this module and are not taken from the golden set. The Guardian runs first;
 the Concierge only sees messages the Guardian did not answer itself, and Guardian-owned
 topics (medicine questions, scans) arrive pre-routed, so they never reach it.
 """
 
-import json
-from functools import cache
 
 from langsmith import traceable
 
-MODEL = "claude-haiku-5-5"
+from nestling.llm import FAST, chat_json
+
 PROMPT_VERSION = "concierge-v2"
 ROUTES = ["care", "nourish", "ready", "money", "celebrate", "journal", "out_of_scope", "clarify"]
 
@@ -60,33 +59,16 @@ SCHEMA = {
 }
 
 
-@cache
-def _client():
-    import anthropic
-    from langsmith.wrappers import wrap_anthropic
-
-    return wrap_anthropic(anthropic.Anthropic())
-
-
-def _messages(text: str) -> list[dict]:
+def _user(text: str) -> str:
     shots = "\n".join(f'Message: "{q}" -> {r}' for q, r in EXAMPLES)
-    return [{"role": "user", "content": f"Examples:\n{shots}\n\nMessage: \"{text}\""}]
+    return f"Examples:\n{shots}\n\nMessage: \"{text}\""
 
 
 @traceable(name="concierge", run_type="chain")
 def route(text: str) -> dict:
     """{"route": one of ROUTES, "usage": {...}}. Falls back to clarify if the call fails."""
     try:
-        response = _client().messages.create(
-            model=MODEL,
-            max_tokens=500,
-            system=SYSTEM,
-            messages=_messages(text),
-            output_config={"effort": "low", "format": {"type": "json_schema", "schema": SCHEMA}},
-        )
+        data, usage, _ = chat_json(FAST, SYSTEM, _user(text), SCHEMA, max_tokens=500)
     except Exception as exc:
         return {"route": "clarify", "usage": None, "error": type(exc).__name__}
-    usage = {"model": response.model, "tokens_in": response.usage.input_tokens, "tokens_out": response.usage.output_tokens}
-    if response.stop_reason in ("refusal", "max_tokens"):
-        return {"route": "clarify", "usage": usage}
-    return {**json.loads("".join(b.text for b in response.content if b.type == "text")), "usage": usage}
+    return {"route": data["route"] if data else "clarify", "usage": usage}
