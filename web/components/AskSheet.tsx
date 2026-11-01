@@ -1,6 +1,8 @@
 "use client";
-import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
+import Link from "next/link";
+import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode, type Dispatch, type SetStateAction } from "react";
 import AskPanel, { type Msg } from "./AskPanel";
+import { getPrivacyEpoch, subscribePrivacyReset, useVoiceCleanupError } from "@/lib/store";
 
 type Ctx = { open: boolean; setOpen: (v: boolean) => void; prefill: (text: string) => void };
 const AskCtx = createContext<Ctx>({ open: false, setOpen: () => {}, prefill: () => {} });
@@ -11,8 +13,19 @@ export default function AskSheetProvider({ children }: { children: ReactNode }) 
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [draft, setDraft] = useState("");
+  const voiceCleanupError = useVoiceCleanupError();
   const dialog = useRef<HTMLDivElement>(null);
   const prefill = useCallback((text: string) => { setDraft(text); setOpen(true); }, []);
+  const epoch = getPrivacyEpoch();
+  const updateMessages: Dispatch<SetStateAction<Msg[]>> = value => {
+    if (epoch === getPrivacyEpoch()) setMsgs(value);
+  };
+
+  useEffect(() => subscribePrivacyReset(() => {
+    setMsgs([]);
+    setDraft("");
+    setOpen(false);
+  }), []);
 
   useEffect(() => {
     if (!open) return;
@@ -31,6 +44,7 @@ export default function AskSheetProvider({ children }: { children: ReactNode }) 
 
   return (
     <AskCtx.Provider value={{ open, setOpen, prefill }}>
+      {voiceCleanupError && <div role="alert" className="mx-auto mt-4 max-w-md rounded-card bg-blush/25 p-4 text-sm">{voiceCleanupError} <Link href="/settings" className="underline">Retry voice deletion</Link></div>}
       {children}
       {open && (
         <div className="fixed inset-0 z-20 flex items-end justify-center bg-ink/30" onClick={() => setOpen(false)}>
@@ -48,7 +62,7 @@ export default function AskSheetProvider({ children }: { children: ReactNode }) 
                 Close
               </button>
             </div>
-            <AskPanel msgs={msgs} setMsgs={setMsgs} initialText={draft} />
+            <AskPanel msgs={msgs} setMsgs={updateMessages} initialText={draft} />
           </div>
         </div>
       )}

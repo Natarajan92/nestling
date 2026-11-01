@@ -69,10 +69,10 @@ def prompts(strict: bool) -> tuple[str, str]:
     return (STRICT_CHECK_PROMPT, STRICT_REWRITE_PROMPT) if strict else (CHECK_PROMPT, REWRITE_PROMPT)
 
 
-def _check(answer: str, hits: list[dict], prompt: str = CHECK_PROMPT) -> tuple[list[dict], dict]:
+def _check(answer: str, hits: list[dict], prompt: str = CHECK_PROMPT) -> tuple[list[dict] | None, dict]:
     user = f"Answer:\n{answer}\n\nPassages:{passages_text(hits) or ' (none)'}"
     data, usage, _ = main_json(prompt, user, CHECK_SCHEMA, max_tokens=3000)
-    return (data or {"claims": []})["claims"], usage
+    return data["claims"] if data is not None else None, usage
 
 
 @traceable(name="verifier", run_type="chain")
@@ -80,9 +80,14 @@ def verify(answer: str, sources_cited: list[str], hits: list[dict], strict: bool
     """{"answer", "sources_cited", "verdict": passed|rewritten|replaced, "unsupported": [...], "usage": [...]}"""
     usage = []
     check_prompt, rewrite_prompt = prompts(strict)
+    answer, sources_cited = enforce_citations(answer, sources_cited, hits)
+    if not sources_cited:
+        return {"answer": NO_SOURCE_LINE, "sources_cited": [], "verdict": "replaced", "unsupported": [], "usage": usage}
     hits = cited_passages(answer, sources_cited, hits)
     claims, u = _check(answer, hits, check_prompt)
     usage.append(u)
+    if claims is None:
+        return {"answer": NO_SOURCE_LINE, "sources_cited": [], "verdict": "replaced", "unsupported": [], "usage": usage}
     unsupported = [c["claim"] for c in claims if not c["supported"]]
     if not unsupported:
         return {"answer": answer, "sources_cited": sources_cited, "verdict": "passed", "unsupported": [], "usage": usage}
@@ -94,6 +99,8 @@ def verify(answer: str, sources_cited: list[str], hits: list[dict], strict: bool
     if rewritten and rewritten["answer"].strip() != NO_SOURCE_LINE:
         # One rewrite (plan §4); the sources are the ones still named in the rewritten text.
         text, listed = enforce_citations(rewritten["answer"], rewritten["sources_cited"], hits)
+        if not listed:
+            return {"answer": NO_SOURCE_LINE, "sources_cited": [], "verdict": "replaced", "unsupported": unsupported, "usage": usage}
         rewritten = {"answer": text, "sources_cited": listed}
         named = {sid.upper() for sid, _ in _CITE.findall(rewritten["answer"])} | set(rewritten["sources_cited"])
         kept = [s for s in dict.fromkeys(sources_cited + rewritten["sources_cited"]) if s in named]

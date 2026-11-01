@@ -10,13 +10,15 @@ import {
   getChecklist,
   getLessons,
   getPlaybook,
+  getToday,
   type Checklist,
   type Invitation,
   type Lesson,
   type Playbook,
+  type Stage,
 } from "@/lib/api";
 
-import { useProfile, useTicks } from "@/lib/store";
+import { profileBody, useProfile, useTicks } from "@/lib/store";
 import { cardImage, downloadBlob } from "@/lib/cards";
 import CaptureBudget from "./CaptureBudget";
 
@@ -93,6 +95,22 @@ export function ReadyJourney(
 
   const [list, setList] = useState<Checklist | null>(null);
   const [failed, setFailed] = useState(false);
+  const { profile } = useProfile();
+  const partnerBody = partner && profile ? JSON.stringify(profileBody(profile)) : null;
+  const [partnerToday, setPartnerToday] = useState<{ body: string; stage: Stage } | null>(null);
+  const [partnerFailed, setPartnerFailed] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!partnerBody) return;
+    let alive = true;
+    getToday(JSON.parse(partnerBody)).then(today => {
+      if (alive) {
+        setPartnerToday({ body: partnerBody, stage: today.stage });
+        setPartnerFailed(null);
+      }
+    }).catch(() => { if (alive) setPartnerFailed(partnerBody); });
+    return () => { alive = false; };
+  }, [partnerBody]);
 
   useEffect(() => {
     let alive = true;
@@ -112,15 +130,30 @@ export function ReadyJourney(
 
   const items = list?.sections.flatMap(s => s.items) ?? [];
   const done = items.filter(i => ticks.has(i.id)).length;
+  const stage = partnerToday?.body === partnerBody ? partnerToday?.stage : null;
+  const postpartum = stage?.life_stage === "postpartum" || (!stage && !!profile?.birth_date);
+  const weekLabel = stage?.life_stage === "postpartum" ? `Baby's week ${(stage.baby_age_weeks ?? 0) + 1}`
+    : stage?.life_stage === "pregnancy" ? `Pregnancy week ${stage.week}`
+    : postpartum ? "Supporting each other after birth" : "Getting ready together";
 
   return (
-    <div className="space-y-5">{partner && <><Card tone="sage"><h2 className="text-xl">What can I do this week?</h2><p className="mt-2">Take one thing off their list. Ask what would help today, then own the follow-through.</p><ul className="mt-3 list-disc space-y-2 pl-5"><li>Bag duty: check what is still unpacked below.</li><li>Paperwork: gather the policy, identity documents and hospital contacts.</li><li>Make room for rest, meals and a conversation.</li></ul></Card><Questions questions={["What paperwork should we prepare for delivery?", "How can a partner help in the first weeks?"]} /></>}{failed ? <Card><p role="alert">The checklist could not load. Reload this page to try again.</p></Card> : !list ? <p>Loading the checklist…</p> : <><Card tone="sage"><h2 className="text-xl">{list.title}</h2><p className="mt-2 text-sm">{list.when}</p><p className="mt-3 font-semibold">{done}of {items.length}packed</p><progress aria-label="Ready meter" max={items.length || 1} value={done} className="mt-2 w-full accent-[var(--sage)]" /><p className="mt-2 text-xs text-ink-soft">Ticks stay in this browser. You and your partner can use this same device.</p></Card>{list.sections.map(
+    <div className="space-y-5">{partner && <><Card tone="sage">
+      <h2 className="text-xl">What can I do this week?</h2>
+      <p className="mt-2 font-semibold">{weekLabel}</p>
+      {!stage && <p className="mt-2 text-xs text-ink-soft">{partnerFailed === partnerBody && partnerBody ? "Your week could not load. These are general support ideas." : partnerBody ? "Loading your week. Here are a few practical ideas while you wait." : "Add your date in Settings for a weekly view. These are general support ideas."}</p>}
+      <p className="mt-2">{postpartum ? "In the first weeks, ask what would make today easier and take responsibility for one practical job." : "Take one thing off their list. Ask what would help today, then own the follow-through."}</p>
+      <ul className="mt-3 list-disc space-y-2 pl-5">
+        <li>{postpartum ? "Rest and meals: agree on a household job or meal you can take care of today." : `Bag duty: ${list ? `${items.length - done} items remain on your shared packing list below.` : "check the shared packing list when it loads."}`}</li>
+        <li>{postpartum ? "Paperwork: check which newborn documents or insurer forms still need attention." : "Paperwork: gather the policy, identity documents and hospital contacts."}</li>
+        <li>Make room for a conversation about what support feels helpful this week.</li>
+      </ul>
+    </Card><Questions questions={postpartum ? ["How can a partner help in the first weeks?", "How do I add my newborn to health insurance?"] : ["What paperwork should we prepare for delivery?", "How can my partner help me prepare for birth?"]} /></>}{failed ? <Card><p role="alert">The checklist could not load. Reload this page to try again.</p></Card> : !list ? <p>Loading the checklist…</p> : <><Card tone="sage"><h2 className="text-xl">{list.title}</h2><p className="mt-2 text-sm">{list.when}</p><p className="mt-3 font-semibold">{done} of {items.length} packed</p><progress aria-label="Ready meter" max={items.length || 1} value={done} className="mt-2 w-full accent-[var(--sage)]" /><p className="mt-2 text-xs text-ink-soft">Ticks stay in this browser. You and your partner can use this same device.</p></Card>{list.sections.map(
           section => <Card key={section.name}><h2 className="text-xl">{section.name}</h2><ul className="mt-3 divide-y divide-ink/10">{section.items.map(i => <li key={i.id} className="py-3"><label className="flex gap-3"><input
                     type="checkbox"
                     checked={ticks.has(i.id)}
                     onChange={() => toggle(i.id)}
                     className="mt-1 size-5 shrink-0 accent-[var(--sage)]" /><span>{i.item}</span></label><div className="ml-8 mt-2">{i.source ? <SourceChip source={i.source} /> : <span className="text-xs text-ink-soft">Practical packing suggestion</span>}</div></li>)}</ul></Card>
-        )}</>}<LessonsRow stage="before_birth" /></div>
+        )}</>}<LessonsRow stage={partner && postpartum ? "first_weeks" : "before_birth"} /></div>
   );
 }
 

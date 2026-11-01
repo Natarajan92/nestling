@@ -19,12 +19,13 @@ from dotenv import find_dotenv, load_dotenv  # noqa: E402
 load_dotenv(find_dotenv(usecwd=True))
 
 from datetime import date  # noqa: E402
+from functools import cache  # noqa: E402
 from typing import Literal  # noqa: E402
 
 from fastapi import FastAPI, HTTPException, Request  # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
-from fastapi.responses import FileResponse, Response  # noqa: E402
-from langsmith import get_current_run_tree, traceable  # noqa: E402
+from fastapi.responses import FileResponse, JSONResponse, Response  # noqa: E402
+from langsmith import Client, get_current_run_tree, traceable, tracing_context  # noqa: E402
 from pydantic import BaseModel  # noqa: E402
 from starlette.concurrency import run_in_threadpool  # noqa: E402
 
@@ -45,6 +46,32 @@ DISCLAIMER = ("Nestling offers general information from trusted sources and is n
 app = FastAPI(title="Nestling API", version="0.1.0")
 app.add_middleware(CORSMiddleware, allow_origins=[s.strip() for s in os.getenv("NESTLING_WEB_ORIGINS", "http://localhost:3000").split(",") if s.strip()],
                    allow_methods=["*"], allow_headers=["*"])
+
+
+def _redact_app_error(fields: dict) -> dict:
+    # LangSmith hides inputs/outputs independently of exceptions. Its anonymizer
+    # receives error strings wrapped in this dict for both create and update.
+    return {key: "pipeline_error" if key == "error" and value else value for key, value in fields.items()}
+
+
+@cache
+def app_trace_client() -> Client:
+    """A separate export policy; never change the cached evaluation client."""
+    return Client(hide_inputs=True, hide_outputs=True, anonymizer=_redact_app_error)
+
+
+@app.middleware("http")
+async def private_app_traces(request: Request, call_next):
+    # ContextVars propagate through FastAPI's thread pool and LangGraph's nested
+    # calls. Parent=False also prevents an ambient eval run selecting its client.
+    with tracing_context(client=app_trace_client(), parent=False, project_name=APP_PROJECT,
+                         metadata=trace_metadata()):
+        try:
+            return await call_next(request)
+        except Exception:
+            # Provider errors can echo private prompts/documents. The sanitized
+            # nested trace retains the failure; the response/log path gets none.
+            return JSONResponse(status_code=502, content={"detail": "Request unavailable. Please try again."})
 
 
 class ProfileIn(BaseModel):

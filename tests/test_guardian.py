@@ -151,3 +151,50 @@ def test_classifier_cannot_reintroduce_resolved_remote_breathing():
     text = "My baby stopped breathing last year but is breathing normally now"
     proposal = {"red_flags": [{"sign": "RF-ABSENT-BREATHING", "quote": "stopped breathing"}], "unsafe": []}
     assert not guardian.decide(text, proposal).escalate
+
+
+@pytest.mark.parametrize("text", [
+    "My older child had blue lips months ago but is well now. My newborn has blue lips.",
+    "My older child had blue lips months ago but is well now; my newborn has blue lips.",
+    "My older child stopped breathing last year but is breathing normally now. My newborn is not breathing.",
+    "My baby had blue lips months ago but is well now, but my baby has blue lips again.",
+    "No cough but my baby is not breathing",
+    "No cough; my baby is not breathing",
+    "No cough. My baby is not breathing",
+    "My baby stopped breathing a minute ago but is breathing normally now",
+    "My baby had blue lips this morning but is well now",
+])
+def test_present_or_recent_breathing_emergency_is_not_cancelled_by_other_clauses(text):
+    assert guardian.decide(text).escalate
+
+
+@pytest.mark.parametrize("text,quote,rule", [
+    ("My older child had blue lips months ago but is well now. My newborn has blue lips.", "blue lips", "RF-BLUE-LIPS"),
+    ("No cough but my baby is not breathing", "not breathing", "RF-ABSENT-BREATHING"),
+])
+def test_classifier_checks_each_occurrence_in_its_own_breathing_context(text, quote, rule):
+    assert rule in guardian.accept_classifier_flags(text, [{"sign": rule, "quote": quote}])
+
+
+@pytest.mark.parametrize("text,quote,rule", [
+    ("My baby has no blue lips", "blue lips", "RF-BLUE-LIPS"),
+    ("My baby's lips are not blue", "lips are not blue", "RF-BLUE-LIPS"),
+    ("My baby stopped breathing last year but is breathing normally now", "stopped breathing", "RF-ABSENT-BREATHING"),
+    ("My baby had blue lips months ago but is well now", "blue lips", "RF-BLUE-LIPS"),
+    ("What should I do if my baby stops breathing?", "stops breathing", "RF-ABSENT-BREATHING"),
+    ("If my baby has blue lips, what should I do?", "blue lips", "RF-BLUE-LIPS"),
+])
+def test_breathing_context_excludes_negated_hypothetical_and_resolved_remote_events(text, quote, rule):
+    assert not guardian.decide(text).escalate
+    assert not guardian.accept_classifier_flags(text, [{"sign": rule, "quote": quote}])
+
+
+def test_frozen_104_code_decisions_remain_identical():
+    import hashlib
+    import json
+    from nestling import golden
+
+    decisions = [(row["case_id"], guardian.decide(row["input"]).as_dict()) for row in golden.load()]
+    assert len(decisions) == 104
+    # Captured before the event-local fix; includes rules, sources, reply, and refusal.
+    assert hashlib.sha256(json.dumps(decisions, sort_keys=True).encode()).hexdigest() == "49c1ced9e0bab15c14c91ccf7869e257bc4563d98ca84d56a948c3d1928ab046"

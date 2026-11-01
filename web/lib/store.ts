@@ -13,7 +13,8 @@ const KEYS = {
   voice: `${PREFIX}voice_id`,
   journal: `${PREFIX}journal`,
   letters: `${PREFIX}letters`,
-  capture: `${PREFIX}capture`
+  capture: `${PREFIX}capture`,
+  voiceCleanupError: `${PREFIX}voice_cleanup_error`
 } as const;
 
 const SSR = "\u0000ssr"; // server snapshot sentinel: "not read yet"
@@ -30,6 +31,16 @@ export type Profile = ProfileBody & {
 
 const listeners = new Set<() => void>();
 const emit = () => listeners.forEach(l => l());
+let privacyEpoch = 0;
+const resetListeners = new Set<() => void>();
+export const getPrivacyEpoch = () => privacyEpoch;
+export function subscribePrivacyReset(listener: () => void) {
+  resetListeners.add(listener);
+  return () => { resetListeners.delete(listener); };
+}
+// If storage is unavailable, keep failed remote cleanup recoverable in this tab.
+let retryVoiceId: string | null = null;
+let voiceCleanupError = "";
 
 function read(key: string): string {
   try {
@@ -45,9 +56,12 @@ function write(key: string, value: string | null) {
       localStorage.removeItem(key);
     else
       localStorage.setItem(key, value);
-  } catch {}
+  } catch {
+    return false;
+  }
 
   emit();
+  return true;
 }
 
 function subscribe(cb: () => void) {
@@ -143,15 +157,44 @@ export function addJournalEntry(text: string) {
     text
   });
 
-  write(KEYS.journal, JSON.stringify(all));
+  return write(KEYS.journal, JSON.stringify(all));
 }
 
-export const getVoiceId = () => read(KEYS.voice) || null;
-export const setVoiceId = (id: string | null) => write(KEYS.voice, id);
+export const getVoiceId = () => read(KEYS.voice) || retryVoiceId;
+export function setVoiceId(id: string | null) {
+  const saved = write(KEYS.voice, id);
+  retryVoiceId = saved ? null : id;
+  if (!id) {
+    voiceCleanupError = "";
+    write(KEYS.voiceCleanupError, null);
+  }
+  emit();
+  return saved;
+}
 
 export function useVoiceId() {
-  const raw = useRaw(KEYS.voice);
+  const raw = useSyncExternalStore(subscribe, () => getVoiceId() || "", () => SSR);
   return raw === SSR ? null : raw || null;
+}
+
+export function useVoiceCleanupError() {
+  return useSyncExternalStore(subscribe, () => read(KEYS.voiceCleanupError) || voiceCleanupError, () => "");
+}
+
+/** A late clone must be removed remotely, even after its page has gone away. */
+export async function finishVoiceClone(id: string, epoch: number, active: boolean) {
+  if (active && epoch === privacyEpoch && setVoiceId(id)) return "ready";
+  try {
+    await deleteVoice(id);
+    if (getVoiceId() === id) setVoiceId(null);
+    return "discarded";
+  } catch {
+    setVoiceId(id);
+    const message = "A voice created by an earlier request could not be deleted. Keep this tab open and retry Delete everything in Settings.";
+    voiceCleanupError = write(KEYS.voiceCleanupError, message) ? "" : message;
+    emit();
+    return "retry";
+  }
 }
 
 export function useJournal() {
@@ -182,7 +225,7 @@ export function addLetter(title: string, text: string) {
     saved_at: new Date().toISOString()
   });
 
-  write(KEYS.letters, JSON.stringify(all));
+  return write(KEYS.letters, JSON.stringify(all));
 }
 
 export function removeLetter(id: string) {
@@ -211,15 +254,10 @@ export async function deleteEverything(): Promise<{
   const voiceId = getVoiceId();
   let voiceDeleted = false;
   let voiceError = false;
-
-  if (voiceId) {
-    try {
-      await deleteVoice(voiceId);
-      voiceDeleted = true;
-    } catch {
-      voiceError = true; // keep the voice id so the parent can try again
-    }
-  }
+  privacyEpoch++;
+  resetListeners.forEach(listener => listener());
+  retryVoiceId = null;
+  voiceCleanupError = "";
 
   try {
     const mine: string[] = [];
@@ -231,11 +269,22 @@ export async function deleteEverything(): Promise<{
         mine.push(k);
     }
 
-    for (const k of mine) if (!(voiceError && k === KEYS.voice))
-      localStorage.removeItem(k);
+    for (const k of mine) localStorage.removeItem(k);
   } catch {}
 
   emit();
+
+  // Clear local data before waiting: a late clone cleanup may need to retain a
+  // new retry ID, which must not be removed by this already-started deletion.
+  if (voiceId) {
+    try {
+      await deleteVoice(voiceId);
+      voiceDeleted = true;
+    } catch {
+      voiceError = true;
+      setVoiceId(voiceId);
+    }
+  }
 
   return {
     voiceDeleted,

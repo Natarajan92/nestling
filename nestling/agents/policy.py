@@ -76,6 +76,8 @@ def ask_policy(question: str, pdf: bytes) -> dict:
     if data is None:
         return {"answer": "I couldn't read this policy. Please ask your insurer or TPA.", "quotes": [], "cost_inr": cost}
     quotes = verified_quotes(data["quotes"], pages)
-    if not quotes:
+    # A rejected clause invalidates the explanation that relied on it. Keeping
+    # another genuine quote must never rescue an unsupported coverage claim.
+    if not quotes or any(not verified_quotes([q], pages) for q in data["quotes"]):
         return {"answer": NOT_FOUND + " I could not match a clause in the document to your question.", "quotes": [], "cost_inr": cost}
     return {"answer": data["answer"].strip(), "quotes": quotes, "cost_inr": cost}

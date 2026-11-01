@@ -113,6 +113,19 @@ def test_policy_without_surviving_quote_says_none_found(monkeypatch):
     assert out["quotes"] == [] and out["answer"].startswith("I couldn't find this in your policy")
 
 
+def test_policy_rejects_answer_with_mixed_valid_and_invented_support(monkeypatch):
+    clause = "Maternity coverage begins after 24 continuous months."
+    monkeypatch.setattr(policy, "read_pages", lambda pdf: [clause + " NICU is excluded from this plan."])
+    monkeypatch.setattr(policy, "chat_json", lambda *a, **k: (
+        {"answer": clause + " NICU is covered without limits.", "quotes": [
+            {"text": clause, "page": 1}, {"text": "NICU is covered without limits.", "page": 1}]},
+        {"model": "m", "tokens_in": 1, "tokens_out": 1}, ""))
+    out = policy.ask_policy("What is covered?", b"%PDF")
+    assert out["answer"].startswith(policy.NOT_FOUND)
+    assert "covered without limits" not in out["answer"]
+    assert out["quotes"] == []
+
+
 def test_only_baseline_imports_anthropic():
     root = pathlib.Path(__file__).resolve().parents[1]
     offenders = []
@@ -159,6 +172,24 @@ def test_answer_from_sources_enforces_citations(monkeypatch):
         {"answer": "Yes (WHO-ANC, p. 34) and (BOGUS-ID, p. 1).", "sources_cited": ["WHO-ANC", "BOGUS-ID"]}, {"model": "m"}, ""))
     out = agents.answer_from_sources("Care", "q", {}, HITS)
     assert out["sources_cited"] == ["WHO-ANC"] and "BOGUS" not in out["answer"]
+
+
+@pytest.mark.parametrize("agent", ["Care", "nourish", "money"])
+@pytest.mark.parametrize("hits", [[], HITS, [{"source_id": "FAKE-SOURCE", "page_label": "99", "chunk_text": "untrusted"}]])
+def test_clinical_answer_without_a_registered_cited_source_is_replaced(monkeypatch, agent, hits):
+    from nestling import agents
+    monkeypatch.setattr(agents, "main_json", lambda *a, **kw: (
+        {"answer": "Drink this herb to treat your condition. [FAKE-SOURCE, p. 99]", "sources_cited": ["FAKE-SOURCE"]}, {"model": "m"}, ""))
+    out = agents.answer_from_sources(agent, "q", {}, hits)
+    assert out["answer"] == agents.NO_SOURCE_LINE and out["sources_cited"] == []
+
+
+@pytest.mark.parametrize("agent", ["Ready", "Celebrate", "journal"])
+def test_nonclinical_common_practice_text_does_not_require_medical_source(monkeypatch, agent):
+    from nestling import agents
+    monkeypatch.setattr(agents, "main_json", lambda *a, **kw: (
+        {"answer": "Pack your phone charger.", "sources_cited": []}, {"model": "m"}, ""))
+    assert agents.answer_from_sources(agent, "q", {}, [])["answer"] == "Pack your phone charger."
 
 
 def test_enforce_citations_keeps_punctuation_and_adds_no_control_characters():

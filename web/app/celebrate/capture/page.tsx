@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import Card from "@/components/Card";
 import { draftQuote, estimateCapture, searchCapture, type CapturePicks, type Estimate, type StudioPackage } from "@/lib/api";
 import { dateLabel, inr, safeLink } from "@/lib/format";
@@ -12,8 +12,9 @@ const offered = (
   item: {
     offered: boolean | null;
     price_inr: number | null;
-  }
-) => item.offered === false ? "Not offered" : item.price_inr != null ? inr(item.price_inr) : item.offered ? "Included as listed" : MISSING;
+  },
+  includedWhenUnpriced = false
+) => item.offered === false ? "Not offered" : item.price_inr != null ? inr(item.price_inr) : item.offered && includedWhenUnpriced ? "Included as listed" : MISSING;
 
 const rows: {
   label: string;
@@ -38,7 +39,7 @@ const rows: {
   value: p => show(p.delivery_days, " days")
 }, {
   label: "Album",
-  value: p => `${offered(p.album)}${p.album.pages ? ` · ${p.album.pages} pages` : ""}${p.album.size ? ` · ${p.album.size}` : ""}${p.album.type ? ` · ${p.album.type}` : ""}`
+  value: p => `${offered(p.album, true)}${p.album.pages ? ` · ${p.album.pages} pages` : ""}${p.album.size ? ` · ${p.album.size}` : ""}${p.album.type ? ` · ${p.album.type}` : ""}`
 }, {
   label: "Frames",
   value: p => p.frames.length ? p.frames.map(f => `${show(f.count)} × ${show(f.size)} (${inr(f.price_inr)})`).join("; ") : MISSING
@@ -84,8 +85,12 @@ export default function CapturePage() {
   const [approved, setApproved] = useState(false);
   const [reply, setReply] = useState("");
   const [storeConsent, setStoreConsent] = useState(false);
+  const requestGeneration = useRef(0);
+  useEffect(() => () => { requestGeneration.current++; }, []);
 
   const changePicks = (patch: Partial<CapturePicks>) => {
+    requestGeneration.current++;
+    setBusy("");
     setPicks(p => ({
       ...p,
       ...patch
@@ -98,6 +103,7 @@ export default function CapturePage() {
 
   async function search(e: FormEvent) {
     e.preventDefault();
+    const generation = ++requestGeneration.current;
     setBusy("search");
     setError("");
     setMessage("");
@@ -105,9 +111,13 @@ export default function CapturePage() {
     setEstimate(null);
     setDraft("");
     setSelected(null);
+    setApproved(false);
+    setReply("");
+    setStoreConsent(false);
 
     try {
       const result = await searchCapture(city.trim(), shoot);
+      if (generation !== requestGeneration.current) return;
       setPackages(result.packages);
 
       setContext({
@@ -115,9 +125,9 @@ export default function CapturePage() {
         shoot
       });
     } catch {
-      setError("Studios could not be found just now. Check your connection and try again.");
+      if (generation === requestGeneration.current) setError("Studios could not be found just now. Check your connection and try again.");
     } finally {
-      setBusy("");
+      if (generation === requestGeneration.current) setBusy("");
     }
   }
 
@@ -125,19 +135,26 @@ export default function CapturePage() {
     if (!packages)
       return;
 
+    const generation = ++requestGeneration.current;
     setBusy("estimate");
     setError("");
 
     try {
-      setEstimate(await estimateCapture(packages, picks));
+      const result = await estimateCapture(packages, picks);
+      if (generation === requestGeneration.current) setEstimate(result);
     } catch {
-      setError("The estimate could not be calculated. Please try again.");
+      if (generation === requestGeneration.current) setError("The estimate could not be calculated. Please try again.");
     } finally {
-      setBusy("");
+      if (generation === requestGeneration.current) setBusy("");
     }
   }
 
   async function quote(p: StudioPackage) {
+    const generation = ++requestGeneration.current;
+    if (selected?.source_url !== p.source_url || selected?.package_name !== p.package_name) {
+      setReply("");
+      setStoreConsent(false);
+    }
     setSelected(p);
     setBusy("quote");
     setDraft("");
@@ -145,13 +162,12 @@ export default function CapturePage() {
     setError("");
 
     try {
-      setDraft(
-        (await draftQuote(p.studio_name, context.shoot || p.shoot_type, picks, date, context.city || p.city || city)).draft
-      );
+      const result = await draftQuote(p.studio_name, context.shoot || p.shoot_type, picks, date, context.city || p.city || city);
+      if (generation === requestGeneration.current) setDraft(result.draft);
     } catch {
-      setError("The quote draft could not be prepared. Please try again.");
+      if (generation === requestGeneration.current) setError("The quote draft could not be prepared. Please try again.");
     } finally {
-      setBusy("");
+      if (generation === requestGeneration.current) setBusy("");
     }
   }
 
@@ -164,6 +180,8 @@ export default function CapturePage() {
                 type="date"
                 value={date}
                 onChange={e => {
+                  requestGeneration.current++;
+                  setBusy("");
                   setDate(e.target.value);
                   setDraft("");
                   setApproved(false);
@@ -259,14 +277,20 @@ export default function CapturePage() {
           className="button mt-3"
           disabled={!storeConsent}
           onClick={() => {
-            saveCapture({
+            const stored = saveCapture({
               package: selected,
               quote: reply,
               budget: budget ? Number(budget) : null,
               saved_at: new Date().toISOString()
             });
 
-            setMessage("Photoshoot budget saved to Today and Celebrate.");
+            if (stored) {
+              setError("");
+              setMessage("Photoshoot budget saved to Today and Celebrate.");
+            } else {
+              setMessage("");
+              setError("This browser could not save the package. Free some browser storage and retry. Your reply is still on this page.");
+            }
           }}>Save selected package</button></Card>}
       {saved && <Card><h2 className="text-xl">Your saved photoshoot budget</h2><p className="mt-2">{saved.package.studio_name}· {saved.package.package_name}</p><p className="mt-2 text-sm">Listed total: {inr(saved.package.total_cost ?? saved.package.price_inr)}· checked {dateLabel(saved.package.checked_on)}</p>{saved.budget != null && <p className="mt-2 text-sm">Your budget: {inr(saved.budget)}</p>}<a
           className="mt-3 inline-block text-sm underline"

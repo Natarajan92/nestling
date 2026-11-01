@@ -48,7 +48,9 @@ def clone(name: str, sample: bytes, filename: str) -> str:
 
 
 def delete(voice_id: str) -> None:
-    requests.delete(f"{API}/voices/{voice_id}", headers=_headers(), timeout=30).raise_for_status()
+    response = requests.delete(f"{API}/voices/{voice_id}", headers=_headers(), timeout=30)
+    if response.status_code != 404:  # already absent is a successful, retryable deletion
+        response.raise_for_status()
 
 
 def transcribe(audio: bytes, content_type: str) -> str:

@@ -159,6 +159,8 @@ _NEGATION = re.compile(r"\b(no|not|without|never|nor|don'?t have|doesn'?t have|d
 _PERSON = re.compile(r"\b(i|i'?m|i'?ve|me|my|mine|we|we'?re|our|us|she|she'?s|her|he|he'?s|his|him|wife|husband|partner|baby|babies|newborn|son|daughter|mother|mom|amma)\b")
 _GENERAL = re.compile(r"^\s*(what|which|when|how|list|tell me|explain|are there|is there)\b[^?]*\b(signs?|symptoms?|warning|danger|should (i|we|someone) (go|call|worry)|reasons?)\b")
 _SPOKEN_WHO = re.compile(r"^\s*(what|which|when|list|tell me|explain)\b")
+_BREATHING_RULES = {"RF-ABSENT-BREATHING", "RF-BLUE-LIPS"}
+_CLAUSE_BREAK = re.compile(r"[.?!,;]|\b(?:but|however|yet)\b")
 
 
 @dataclass
@@ -184,7 +186,10 @@ def _norm(text: str) -> str:
 def _fires(rule: Rule, text: str) -> bool:
     for pattern in rule.patterns:
         for m in re.finditer(pattern, text):
-            if rule.negatable and _NEGATION.search(text[max(0, m.start() - 40):m.start()]):
+            if rule.id in _BREATHING_RULES:
+                if _breathing_ignored(rule, text, m.start(), m.end()):
+                    continue
+            elif rule.negatable and _NEGATION.search(text[max(0, m.start() - 40):m.start()]):
                 continue
             if rule.exclude and re.search(rule.exclude, text[max(0, m.start() - 30):m.end() + 30]):
                 continue
@@ -200,10 +205,35 @@ def _remote_resolved_breathing(rule: Rule, text: str, start: int, end: int) -> b
     Recent events still escalate, including when breathing has resumed. This narrow
     exception applies only to the two new breathing rules, not existing measured rules.
     """
-    if rule.id not in {"RF-ABSENT-BREATHING", "RF-BLUE-LIPS"}:
+    if rule.id not in _BREATHING_RULES:
         return False
-    nearby = text[max(0, start - 80):end + 120]
-    return bool(re.search(r"\b(last year|years ago|months ago)\b[^.?!]{0,80}\b(breathing normally|well|fine) now\b", nearby))
+    left, right = _breathing_clause(text, start, end)
+    event = text[left:right]
+    if not re.search(r"\b(last year|years ago|months ago)\b", event):
+        return False
+    if re.search(r"\b(breathing normally|well|fine) now\b", event):
+        return True
+    # A resolution may immediately follow this event's contrast boundary. Never
+    # borrow a remote time or a recovery from a different sentence/subject/event.
+    return bool(re.match(r"\s*(?:,\s*)?(?:but|however|yet)\s+(?:(?:is|are)\s+)?"
+                         r"(?:breathing normally|well|fine) now\b", text[right:]))
+
+
+def _breathing_clause(text: str, start: int, end: int) -> tuple[int, int]:
+    left = max((m.end() for m in _CLAUSE_BREAK.finditer(text, 0, start)), default=0)
+    following = _CLAUSE_BREAK.search(text, end)
+    return left, following.start() if following else len(text)
+
+
+def _breathing_ignored(rule: Rule, text: str, start: int, end: int) -> bool:
+    """Event-local exceptions for the two new rules; measured older rules stay unchanged."""
+    left, right = _breathing_clause(text, start, end)
+    prefix = text[left:start]
+    if _NEGATION.search(prefix) or re.search(r"\b(if|suppose|supposing)\b", prefix):
+        return True
+    if rule.id == "RF-BLUE-LIPS" and re.search(r"\b(lips|tongue)\b.{0,15}\b(not|never)\b", text[left:right]):
+        return True
+    return _remote_resolved_breathing(rule, text, start, end)
 
 
 def rule_flags(text: str) -> list[str]:
@@ -275,6 +305,11 @@ def accept_classifier_flags(text: str, proposals: list[dict]) -> list[str]:
         quote = _norm(p.get("quote", ""))
         rule = rules.get(p.get("sign"))
         if rule and quote and quote in norm and re.search(rule.family, quote):
+            if rule.id in _BREATHING_RULES:
+                if any(not _breathing_ignored(rule, norm, m.start(), m.end())
+                       for m in re.finditer(re.escape(quote), norm)):
+                    accepted.append(rule.id)
+                continue
             start = norm.find(quote)
             if _remote_resolved_breathing(rule, norm, start, start + len(quote)):
                 continue
