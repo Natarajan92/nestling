@@ -50,6 +50,14 @@ def test_invitation_is_template_text(client):
     assert response.status_code == 200 and "Family" in response.json()["body"] and "Sunday" in response.json()["body"]
 
 
+@pytest.mark.parametrize("tradition", ["tamil_nadu", "kerala", "karnataka"])
+def test_all_celebration_playbooks_have_the_public_list_fields(client, tradition):
+    result = client.get(f"/api/celebrate/{tradition}")
+    assert result.status_code == 200
+    for field in ("rituals", "checklist", "menu_ideas"):
+        assert isinstance(result.json()[field], list)
+
+
 def test_ask_selects_app_version_and_shared_lesson_payload(client, monkeypatch, lesson_root):
     def fake(message, context, version, can_save):
         assert version == "v7_vector_safe+lessons" and can_save is False

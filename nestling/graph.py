@@ -58,7 +58,7 @@ VERSIONS["v7_vector_safe+lessons"] = {**VERSIONS["v7_vector_safe"], "lessons": T
 VERSIONS["app_v7_vector"] = {**VERSIONS["v7_vector"], "lessons": True}
 PROMPT_VERSIONS.update({"v6+lessons": "app-v6-lessons-v1", "v7+lessons": "app-v7-lessons-v1",
                         "v7_vector": "improved-v4-vector", "v7_vector_safe": "improved-v4-vector-safe",
-                        "v7_vector_safe+lessons": "app-v7-vector-safe-lessons-v1",
+                        "v7_vector_safe+lessons": "app-v7-vector-safe-lessons-v2-prenatal",
                         "app_v7_vector": "app-v7-vector-lessons-v1"})
 APP_VERSION = "v7_vector_safe+lessons"  # owner-approved full104 gate, 2026-11-01; MAIN stays DeepSeek
 SPECIALISTS = {"care": care, "nourish": nourish, "money": money, "ready": ready, "celebrate": celebrate, "journal": journal}

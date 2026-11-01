@@ -3,7 +3,7 @@ import LessonDetail from "@/components/LessonDetail";
 
 async function Lesson({ params }: Pick<PageProps<"/lessons/[lessonId]">, "params">) {
   const { lessonId } = await params;
-  return <LessonDetail lessonId={lessonId} />;
+  return <LessonDetail key={lessonId} lessonId={lessonId} />;
 }
 
 export default function LessonPage({ params }: PageProps<"/lessons/[lessonId]">) {

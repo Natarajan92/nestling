@@ -1,0 +1,16 @@
+{
+  "source_id": "NHS-PRENATAL-YOGA",
+  "title": "Prenatal and postnatal yoga video",
+  "url": "https://www.nhs.uk/live-well/exercise/pilates-and-yoga/prenatal-and-postnatal-exercise/",
+  "publisher": "NHS; workout produced by InstructorLive",
+  "accessed_on": "2026-11-01",
+  "source_date_observed": "Page and media reviewed 2025-05-13",
+  "raw_source_sha256": "3de6b2d0c050ae7775aa222e0be3d812da595db32e74bd38ed301d183ee07e19",
+  "private_pdf_sha256": "2d911fe0715461f15492c94656a42a3682995b3b26cee0e186bd2729dfcbae5b",
+  "pages": 1,
+  "sections": "Exercise video safety information; About this video",
+  "private_pdf": "sources/pdfs/NHS-PRENATAL-YOGA.pdf",
+  "ingest_allowed": false,
+  "verbatim_public_quote_words": 0,
+  "method": "Official publisher read and private download; original PDFs retained or relevant HTML text printed privately. This tracked file contains metadata only."
+}

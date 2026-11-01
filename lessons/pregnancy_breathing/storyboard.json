@@ -1,0 +1,58 @@
+{
+  "lesson_id": "pregnancy_breathing",
+  "title": "Practising relaxed breathing before birth",
+  "version": 1,
+  "stage": "before_birth",
+  "language": "en",
+  "sources": [
+    "NHS-UHNM-ANTENATAL"
+  ],
+  "see_how": null,
+  "scenes": [
+    {
+      "caption": "Make time for regular practice",
+      "narration_line": "Practise simple relaxation regularly during pregnancy to become familiar with the technique.",
+      "icon": "timer",
+      "source_id": "NHS-UHNM-ANTENATAL",
+      "page_label": "1",
+      "safety_points": [],
+      "step_no": 1
+    },
+    {
+      "caption": "Place your hands around your lower ribs",
+      "narration_line": "Rest your hands along your lower ribcage, with your fingertips just touching.",
+      "icon": "hand-palm",
+      "source_id": "NHS-UHNM-ANTENATAL",
+      "page_label": "1",
+      "safety_points": [],
+      "step_no": 2
+    },
+    {
+      "caption": "Breathe in slowly through your nose",
+      "narration_line": "Take a slow breath in through your nose; notice your fingertips move slightly apart.",
+      "icon": "wind",
+      "source_id": "NHS-UHNM-ANTENATAL",
+      "page_label": "1",
+      "safety_points": [],
+      "step_no": 3
+    },
+    {
+      "caption": "Let your breath out slowly",
+      "narration_line": "Breathe out through your mouth just as slowly, noticing your fingertips come together again.",
+      "icon": "feather",
+      "source_id": "NHS-UHNM-ANTENATAL",
+      "page_label": "1",
+      "safety_points": [],
+      "step_no": 4
+    },
+    {
+      "caption": "Repeat the slow, steady pattern",
+      "narration_line": "Continue practising slow breathing in and out, keeping this a simple relaxation exercise.",
+      "icon": "cloud",
+      "source_id": "NHS-UHNM-ANTENATAL",
+      "page_label": "1",
+      "safety_points": [],
+      "step_no": 5
+    }
+  ]
+}

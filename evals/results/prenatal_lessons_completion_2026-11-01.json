@@ -1,0 +1,21 @@
+{
+  "frozen_cases": 104,
+  "existing_approved_videos": 6,
+  "prenatal_pending_videos": 0,
+  "current_fidelity_passes": 6,
+  "budget_parts_inr": {
+    "narration": 55.32,
+    "fidelity": 0.3609,
+    "live_qa": 1.8927
+  },
+  "total_accounted_inr": 57.5736,
+  "cap_inr": 80,
+  "note": "Narration is an estimate at saved character rate; source review/cached label repairs preserve original failed stairsv1 and original measurements.",
+  "prenatal_approved_videos": 6,
+  "total_approved_videos": 12,
+  "final_actual_http_checks": 43,
+  "status": "owner-approved exact versions published locally",
+  "live_api_cases_passed": 9,
+  "browser_core_scenarios_passed": 120,
+  "browser_publication_extension_passed": 22
+}

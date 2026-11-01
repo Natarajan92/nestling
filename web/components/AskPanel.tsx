@@ -95,7 +95,9 @@ export default function AskPanel({ msgs, setMsgs, initialText = "" }: { msgs: Ms
   const [busy, setBusy] = useState(false);
   const end = useRef<HTMLDivElement>(null);
 
-  useEffect(() => end.current?.scrollIntoView({ block: "end" }), [msgs, busy]);
+  useEffect(() => {
+    end.current?.scrollIntoView({ block: "end" });
+  }, [msgs, busy]);
 
   async function send(e: FormEvent) {
     e.preventDefault();

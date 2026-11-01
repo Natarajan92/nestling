@@ -8,15 +8,24 @@ import { dateLabel } from "@/lib/format";
 
 export default function LessonDetail({ lessonId }: { lessonId: string }) {
   const [lesson, setLesson] = useState<Lesson | null | undefined>(undefined);
+  const [failed, setFailed] = useState(false);
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     let alive = true;
-    getLesson(lessonId).then((l) => alive && setLesson(l));
+    getLesson(lessonId).then((l) => alive && setLesson(l)).catch(() => alive && setFailed(true));
     return () => {
       alive = false;
     };
-  }, [lessonId]);
+  }, [lessonId, attempt]);
 
+  if (failed) return (
+    <Card className="mt-10 text-center">
+      <p role="alert">We could not load this lesson. The service may be temporarily unavailable.</p>
+      <button type="button" className="mt-4 rounded-full bg-peach px-5 py-2.5 font-medium" onClick={() => { setFailed(false); setLesson(undefined); setAttempt(n => n + 1); }}>Retry</button>
+      <Link href="/lessons" className="mt-4 block underline">All lessons</Link>
+    </Card>
+  );
   if (lesson === undefined) return <p className="mt-20 text-center text-ink-soft">One moment…</p>;
   if (!lesson)
     return (

@@ -21,7 +21,7 @@ SEE_HOW_GHMP = {
     "publisher": "Global Health Media Project",
 }
 
-# The six first lessons. `queries` search the registered sources; `see_how` is hand-curated (never model-written).
+# Reviewed newborn care and prenatal preparation. `see_how` is hand-curated (never model-written).
 LESSONS: dict[str, dict] = {
     "holding": {"title": "Holding your newborn", "stage": "first_weeks", "see_how": None,
                 "sources": ["NHS-RWT-HOLDING"],
@@ -47,6 +47,26 @@ LESSONS: dict[str, dict] = {
                   "sources": ["WHO-POSTNATAL", "MOHFW-IYCF", "MOHFW-MAA"],
                   "queries": ["umbilical cord care of the newborn, keep clean and dry",
                               "cord stump care, do not apply anything, signs to see a health worker"]},
+    "labour_room_readiness": {"title": "Preparing together for the labour room", "stage": "before_birth", "see_how": None,
+                              "sources": ["MOHFW-ANC", "NHS-WALES-BIRTH-PARTNER"],
+                              "queries": ["preparing together for labour and birth; birth companion support", "birth preferences and hospital preparation"]},
+    "prenatal_yoga_preparation": {"title": "Preparing for a prenatal yoga class", "stage": "before_birth",
+                                 "see_how": {"label": "NHS prenatal yoga class and safety information",
+                                             "url": "https://www.nhs.uk/live-well/exercise/pilates-and-yoga/prenatal-and-postnatal-exercise/", "publisher": "NHS"},
+                                 "sources": ["NHS-PRENATAL-YOGA", "NHS-NNUH-PREGNANCY-PHYSIO", "NHS-RB-PREGNANCY-BODY"],
+                                 "queries": ["preparing for a qualified prenatal yoga class", "pregnancy exercise suitability equipment and stopping for pain"]},
+    "pregnancy_breathing": {"title": "Practising relaxed breathing before birth", "stage": "before_birth", "see_how": None,
+                            "sources": ["NHS-UHNM-ANTENATAL"],
+                            "queries": ["antenatal breathing and relaxation practice lower ribcage", "slow nasal inhalation and oral exhalation during pregnancy practice"]},
+    "pregnancy_bed_movement": {"title": "Getting into and out of bed", "stage": "before_birth", "see_how": None,
+                               "sources": ["NHS-RB-PREGNANCY-BODY", "NHS-NNUH-PREGNANCY-PHYSIO"],
+                               "queries": ["pregnancy roll shoulders hips knees together getting out of bed", "side resting and reversing movement to enter bed during pregnancy"]},
+    "pregnancy_stair_comfort": {"title": "When stairs feel uncomfortable in pregnancy", "stage": "before_birth", "see_how": None,
+                                "sources": ["NHS-PREGNANCY-PELVIC-PAIN", "HSE-PREGNANCY-PGP-ACTIVITIES"],
+                                "queries": ["pregnancy stair discomfort seek midwife physiotherapist advice", "pelvic pain pace activities reduce repeated stairs bannister support"]},
+    "preparing_body_for_birth": {"title": "Gentle activity to prepare for birth", "stage": "before_birth", "see_how": None,
+                                 "sources": ["NHS-PREGNANCY-EXERCISE"],
+                                 "queries": ["gentle activity gradual start prepare for birth", "pregnancy exercise talk test comfort hydration stop unwell"]},
 }
 
 

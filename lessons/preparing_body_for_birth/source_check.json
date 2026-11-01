@@ -1,0 +1,66 @@
+{
+  "lesson_id": "preparing_body_for_birth",
+  "version": 1,
+  "status": "source_checked",
+  "storyboard_sha256": "ed7bfb568787cf1b80a31fc85fb2279fb5a4768bd1c0ff91f129b6688ef3e3cc",
+  "scope": "Comfort, mobility and fitness preparation. No claim that exercise induces labour, guarantees vaginal birth, or avoids clinical interventions.",
+  "checks": [
+    {
+      "step_no": 1,
+      "source_id": "NHS-PREGNANCY-EXERCISE",
+      "page_label": "1",
+      "section": "Getting started with exercise in pregnancy",
+      "evidence_method": "Source action and context read on exact private PDF page; no public verbatim excerpt.",
+      "source_pdf_sha256": "5328ebaa8f2e889bb9bdaca33f099ec07a1293e3c8f7c3c669fc124ef63946e5",
+      "source_page_text_sha256": "98ce187ed9289712cff7ac8d3a5571fb428b3522d5cc4bde8bba0ce7a253cdc7"
+    },
+    {
+      "step_no": 2,
+      "source_id": "NHS-PREGNANCY-EXERCISE",
+      "page_label": "1",
+      "section": "Getting started with exercise in pregnancy",
+      "evidence_method": "Source action and context read on exact private PDF page; no public verbatim excerpt.",
+      "source_pdf_sha256": "5328ebaa8f2e889bb9bdaca33f099ec07a1293e3c8f7c3c669fc124ef63946e5",
+      "source_page_text_sha256": "98ce187ed9289712cff7ac8d3a5571fb428b3522d5cc4bde8bba0ce7a253cdc7"
+    },
+    {
+      "step_no": 3,
+      "source_id": "NHS-PREGNANCY-EXERCISE",
+      "page_label": "1",
+      "section": "How much exercise to do in pregnancy",
+      "evidence_method": "Source action and context read on exact private PDF page; no public verbatim excerpt.",
+      "source_pdf_sha256": "5328ebaa8f2e889bb9bdaca33f099ec07a1293e3c8f7c3c669fc124ef63946e5",
+      "source_page_text_sha256": "98ce187ed9289712cff7ac8d3a5571fb428b3522d5cc4bde8bba0ce7a253cdc7"
+    },
+    {
+      "step_no": 4,
+      "source_id": "NHS-PREGNANCY-EXERCISE",
+      "page_label": "1",
+      "section": "Exercise in later pregnancy",
+      "evidence_method": "Source action and context read on exact private PDF page; no public verbatim excerpt.",
+      "source_pdf_sha256": "5328ebaa8f2e889bb9bdaca33f099ec07a1293e3c8f7c3c669fc124ef63946e5",
+      "source_page_text_sha256": "98ce187ed9289712cff7ac8d3a5571fb428b3522d5cc4bde8bba0ce7a253cdc7"
+    },
+    {
+      "step_no": 5,
+      "source_id": "NHS-PREGNANCY-EXERCISE",
+      "page_label": "1",
+      "section": "How to exercise safely in pregnancy",
+      "evidence_method": "Source action and context read on exact private PDF page; no public verbatim excerpt.",
+      "source_pdf_sha256": "5328ebaa8f2e889bb9bdaca33f099ec07a1293e3c8f7c3c669fc124ef63946e5",
+      "source_page_text_sha256": "98ce187ed9289712cff7ac8d3a5571fb428b3522d5cc4bde8bba0ce7a253cdc7"
+    }
+  ],
+  "verbatim_quote_words": 0,
+  "ingestion": "New sources are citation-only ingest_allowed:false. No Pinecone writes.",
+  "human_review": "approved",
+  "clinical_review": "pending",
+  "mechanical_validation": [],
+  "independent_fidelity": {
+    "faithful": true,
+    "results_file": "evals/results/prenatal_lessons_fidelity_2026-11-01.json",
+    "storyboard_sha256": "ed7bfb568787cf1b80a31fc85fb2279fb5a4768bd1c0ff91f129b6688ef3e3cc"
+  },
+  "reviewer": "S Anand Natarajan",
+  "review_date": "2026-11-01"
+}

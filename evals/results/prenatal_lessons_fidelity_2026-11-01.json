@@ -1,0 +1,563 @@
+{
+  "lessons": [
+    {
+      "lesson_id": "labour_room_readiness",
+      "version": 1,
+      "storyboard_sha256": "5426bca027d508f4b8df599a0938a2f79aa4c55df34267b2f42b8cfaf5c457ba",
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All narration lines and safety points in the storyboard are supported by the cited source passages. Scene 1 (choosing a support person) and Scene 4 (offering comfort) are supported by MOHFW-ANC p.53. Scenes 2, 3, and 5 are supported by NHS-WALES-BIRTH-PARTNER p.1, which discusses reviewing birth preferences, knowing what to pack and expect at the hospital, and the partner’s role in communication and decision support. The safety point about changing preferences during labour is explicitly mentioned in the source. No steps contradict or go beyond the sources.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 2363,
+          "tokens_out": 154
+        },
+        "cost_inr": 0.0536,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "labour_room_readiness:v1",
+          "dataset_version": "prenatal_lessons_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "prenatal-lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "labour_room_readiness",
+          "predicted_route": "labour_room_readiness",
+          "refused": null,
+          "sources_cited": [
+            "MOHFW-ANC",
+            "NHS-WALES-BIRTH-PARTNER"
+          ],
+          "correct": true,
+          "latency_ms": 32566,
+          "tokens_in": 2363,
+          "tokens_out": 154,
+          "cost_inr": 0.0536,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "metadata_correction_run_id": "01a1982c-795c-741b-8ef9-c8e0191f73a0",
+        "original_trace_metadata": {
+          "case_id": "labour_room_readiness:v1",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "labour_room_readiness",
+          "predicted_route": "labour_room_readiness",
+          "refused": null,
+          "sources_cited": [
+            "MOHFW-ANC",
+            "NHS-WALES-BIRTH-PARTNER"
+          ],
+          "correct": true,
+          "latency_ms": 32566,
+          "tokens_in": 2363,
+          "tokens_out": 154,
+          "cost_inr": 0.0536,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "original_langsmith_run_id": "01a19822-db9b-7992-91cd-1da007e68c82",
+        "metadata_correction_note": "Original completed runs immutable (409); cached zero-cost roots correct prenatal labels while preserving verdicts and original usage."
+      }
+    },
+    {
+      "lesson_id": "prenatal_yoga_preparation",
+      "version": 1,
+      "storyboard_sha256": "590fe40f7e9ff8afe0aa7ac4de8152496bc9313f917feb1ecec24749f2f1046f",
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All steps and safety points in the storyboard are supported by the cited source passages. Each narration line and safety point aligns with the relevant page content, including checking with a healthcare professional, choosing a qualified teacher, preparing equipment, staying hydrated, working within limits, and stopping if unwell. No unsupported or missing safety-critical steps were identified for the lesson's scope.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 2987,
+          "tokens_out": 103
+        },
+        "cost_inr": 0.0626,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "prenatal_yoga_preparation:v1",
+          "dataset_version": "prenatal_lessons_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "prenatal-lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "prenatal_yoga_preparation",
+          "predicted_route": "prenatal_yoga_preparation",
+          "refused": null,
+          "sources_cited": [
+            "NHS-PRENATAL-YOGA",
+            "NHS-NNUH-PREGNANCY-PHYSIO",
+            "NHS-RB-PREGNANCY-BODY"
+          ],
+          "correct": true,
+          "latency_ms": 1693,
+          "tokens_in": 2987,
+          "tokens_out": 103,
+          "cost_inr": 0.0626,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "metadata_correction_run_id": "01a1982c-7d33-7e35-b540-5985c5cdd8d0",
+        "original_trace_metadata": {
+          "case_id": "prenatal_yoga_preparation:v1",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "prenatal_yoga_preparation",
+          "predicted_route": "prenatal_yoga_preparation",
+          "refused": null,
+          "sources_cited": [
+            "NHS-PRENATAL-YOGA",
+            "NHS-NNUH-PREGNANCY-PHYSIO",
+            "NHS-RB-PREGNANCY-BODY"
+          ],
+          "correct": true,
+          "latency_ms": 1693,
+          "tokens_in": 2987,
+          "tokens_out": 103,
+          "cost_inr": 0.0626,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "original_langsmith_run_id": "01a19823-5b98-7805-a21c-83dae63ada5a",
+        "metadata_correction_note": "Original completed runs immutable (409); cached zero-cost roots correct prenatal labels while preserving verdicts and original usage."
+      }
+    },
+    {
+      "lesson_id": "pregnancy_breathing",
+      "version": 1,
+      "storyboard_sha256": "8bc94ae55fc90e7eb67b8dc75b4f773733c9b4b2af5a8b8d1449967a1784afd2",
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All steps in the storyboard are supported by the source passage on page 1. The instructions for hand placement, slow nasal inhalation, slow oral exhalation, and repeated practice for relaxation are directly described. No safety-critical steps are missing, and no unsupported advice is present.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 1243,
+          "tokens_out": 86
+        },
+        "cost_inr": 0.0285,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "pregnancy_breathing:v1",
+          "dataset_version": "prenatal_lessons_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "prenatal-lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "pregnancy_breathing",
+          "predicted_route": "pregnancy_breathing",
+          "refused": null,
+          "sources_cited": [
+            "NHS-UHNM-ANTENATAL"
+          ],
+          "correct": true,
+          "latency_ms": 1211,
+          "tokens_in": 1243,
+          "tokens_out": 86,
+          "cost_inr": 0.0285,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "metadata_correction_run_id": "01a1982c-7fda-7ce0-94b3-fda0dce3e954",
+        "original_trace_metadata": {
+          "case_id": "pregnancy_breathing:v1",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "pregnancy_breathing",
+          "predicted_route": "pregnancy_breathing",
+          "refused": null,
+          "sources_cited": [
+            "NHS-UHNM-ANTENATAL"
+          ],
+          "correct": true,
+          "latency_ms": 1211,
+          "tokens_in": 1243,
+          "tokens_out": 86,
+          "cost_inr": 0.0285,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "original_langsmith_run_id": "01a19823-6242-79c2-a013-87d725c8113b",
+        "metadata_correction_note": "Original completed runs immutable (409); cached zero-cost roots correct prenatal labels while preserving verdicts and original usage."
+      }
+    },
+    {
+      "lesson_id": "pregnancy_bed_movement",
+      "version": 1,
+      "storyboard_sha256": "2227b8f3674ddebb51d5ffe5f2bf3b4e8db40e23b5ad42c3598e8f67b11ca54d",
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All steps and safety points in the storyboard are supported by the cited source passages. Step 1 is supported by NHS-RB-PREGNANCY-BODY p.1 advising to consult a midwife or physiotherapist if unsure about an activity. Steps 2–5 and the safety point about avoiding lying flat on the back are directly supported by NHS-NNUH-PREGNANCY-PHYSIO p.1, which describes side-lying with pillow support, rolling shoulders/hips/knees together, using arms to push up while lowering legs, and reversing the movement to get into bed. No unsupported or invented instructions are present.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 2367,
+          "tokens_out": 161
+        },
+        "cost_inr": 0.0541,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "pregnancy_bed_movement:v1",
+          "dataset_version": "prenatal_lessons_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "prenatal-lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "pregnancy_bed_movement",
+          "predicted_route": "pregnancy_bed_movement",
+          "refused": null,
+          "sources_cited": [
+            "NHS-RB-PREGNANCY-BODY",
+            "NHS-NNUH-PREGNANCY-PHYSIO"
+          ],
+          "correct": true,
+          "latency_ms": 2061,
+          "tokens_in": 2367,
+          "tokens_out": 161,
+          "cost_inr": 0.0541,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "metadata_correction_run_id": "01a1982c-8281-7ef0-92c3-68e945ae4f97",
+        "original_trace_metadata": {
+          "case_id": "pregnancy_bed_movement:v1",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "pregnancy_bed_movement",
+          "predicted_route": "pregnancy_bed_movement",
+          "refused": null,
+          "sources_cited": [
+            "NHS-RB-PREGNANCY-BODY",
+            "NHS-NNUH-PREGNANCY-PHYSIO"
+          ],
+          "correct": true,
+          "latency_ms": 2061,
+          "tokens_in": 2367,
+          "tokens_out": 161,
+          "cost_inr": 0.0541,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "original_langsmith_run_id": "01a19823-6a48-7a07-8de2-482526a41d48",
+        "metadata_correction_note": "Original completed runs immutable (409); cached zero-cost roots correct prenatal labels while preserving verdicts and original usage."
+      }
+    },
+    {
+      "lesson_id": "pregnancy_stair_comfort",
+      "version": 1,
+      "storyboard_sha256": "435f85d7ce358aa31f50baf0f24f0566af371e3c032e906e2c483f84186bbde6",
+      "fidelity": {
+        "status": "judged",
+        "faithful": false,
+        "missing_steps": [
+          "When going upstairs, lead with the less painful leg.",
+          "When going downstairs, lead with the more painful leg."
+        ],
+        "invented_steps": [
+          "Use the bannister for support going down [stairs]."
+        ],
+        "explanation": "The narration in scene 4 states to 'use the bannister for support going down,' but the source (HSE-PREGNANCY-PGP-ACTIVITIES, page 1) specifies using the bannister for support when going downstairs *and* instructs to lead with the more painful leg when descending and the less painful leg when ascending. The lesson omits these key technique steps, which are critical for safe stair navigation with PGP. While using the bannister is implied in the source for going downstairs, stating it only for 'going down' without the full context of step-leading technique risks incomplete or incorrect application. Thus, the step is partially invented due to incomplete citation, and essential safety steps are missing.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 2543,
+          "tokens_out": 224
+        },
+        "cost_inr": 0.061,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "pregnancy_stair_comfort:v1",
+          "dataset_version": "prenatal_lessons_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "prenatal-lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "pregnancy_stair_comfort",
+          "predicted_route": "pregnancy_stair_comfort",
+          "refused": null,
+          "sources_cited": [
+            "NHS-PREGNANCY-PELVIC-PAIN",
+            "HSE-PREGNANCY-PGP-ACTIVITIES"
+          ],
+          "correct": false,
+          "latency_ms": 2513,
+          "tokens_in": 2543,
+          "tokens_out": 224,
+          "cost_inr": 0.061,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "metadata_correction_run_id": "01a1982c-851f-7bf3-9737-afbb7687ea99",
+        "original_trace_metadata": {
+          "case_id": "pregnancy_stair_comfort:v1",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "pregnancy_stair_comfort",
+          "predicted_route": "pregnancy_stair_comfort",
+          "refused": null,
+          "sources_cited": [
+            "NHS-PREGNANCY-PELVIC-PAIN",
+            "HSE-PREGNANCY-PGP-ACTIVITIES"
+          ],
+          "correct": false,
+          "latency_ms": 2513,
+          "tokens_in": 2543,
+          "tokens_out": 224,
+          "cost_inr": 0.061,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "original_langsmith_run_id": "01a19823-7260-7b38-a82d-38f229ab2c24",
+        "metadata_correction_note": "Original completed runs immutable (409); cached zero-cost roots correct prenatal labels while preserving verdicts and original usage."
+      }
+    },
+    {
+      "lesson_id": "preparing_body_for_birth",
+      "version": 1,
+      "storyboard_sha256": "ed7bfb568787cf1b80a31fc85fb2279fb5a4768bd1c0ff91f129b6688ef3e3cc",
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All narration lines and safety points in the storyboard are supported by the cited source (NHS-PREGNANCY-EXERCISE, page 1). Each step aligns with the source content: checking with a midwife for health conditions, starting gradually with 10 minutes a day, maintaining a conversational pace, adapting activity as pregnancy progresses, and staying hydrated while avoiding overheating and high-risk activities. Safety points such as avoiding vigorous new activities, flat-back exercise in later pregnancy, and activities with fall or tummy-impact risks are explicitly mentioned in the source.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 1917,
+          "tokens_out": 146
+        },
+        "cost_inr": 0.0447,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "preparing_body_for_birth:v1",
+          "dataset_version": "prenatal_lessons_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "prenatal-lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "preparing_body_for_birth",
+          "predicted_route": "preparing_body_for_birth",
+          "refused": null,
+          "sources_cited": [
+            "NHS-PREGNANCY-EXERCISE"
+          ],
+          "correct": true,
+          "latency_ms": 2954,
+          "tokens_in": 1917,
+          "tokens_out": 146,
+          "cost_inr": 0.0447,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "metadata_correction_run_id": "01a1982c-87b9-733e-9a8e-3d99f75ab747",
+        "original_trace_metadata": {
+          "case_id": "preparing_body_for_birth:v1",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "preparing_body_for_birth",
+          "predicted_route": "preparing_body_for_birth",
+          "refused": null,
+          "sources_cited": [
+            "NHS-PREGNANCY-EXERCISE"
+          ],
+          "correct": true,
+          "latency_ms": 2954,
+          "tokens_in": 1917,
+          "tokens_out": 146,
+          "cost_inr": 0.0447,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "original_langsmith_run_id": "01a19823-7d27-7129-a00f-f7a39a839bc4",
+        "metadata_correction_note": "Original completed runs immutable (409); cached zero-cost roots correct prenatal labels while preserving verdicts and original usage."
+      }
+    },
+    {
+      "lesson_id": "pregnancy_stair_comfort",
+      "version": 2,
+      "storyboard_sha256": "a18164118e23ce0b4191a793d74584a9769d23553f345a6e0fd154543884e095",
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All captions, narration lines, and safety points are supported by the cited source pages. Scene 1 correctly advises contacting a midwife or doctor if stairs are painful, per NHS page 1. Scene 2 aligns with NHS advice to avoid repeated stair use. Scene 3 reflects HSE's recommendation to pace activities and accept help, and includes the supported safety point about footwear. Scene 4 accurately describes stair technique and bannister use from HSE page 1, and includes a valid safety point about seeking medical advice if pain persists.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 2553,
+          "tokens_out": 139
+        },
+        "cost_inr": 0.0564,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "pregnancy_stair_comfort:v2",
+          "dataset_version": "prenatal_lessons_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "prenatal-lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "pregnancy_stair_comfort",
+          "predicted_route": "pregnancy_stair_comfort",
+          "refused": null,
+          "sources_cited": [
+            "NHS-PREGNANCY-PELVIC-PAIN",
+            "HSE-PREGNANCY-PGP-ACTIVITIES"
+          ],
+          "correct": true,
+          "latency_ms": 4542,
+          "tokens_in": 2553,
+          "tokens_out": 139,
+          "cost_inr": 0.0564,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "original_trace_metadata": {
+          "case_id": "pregnancy_stair_comfort:v2",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "pregnancy_stair_comfort",
+          "predicted_route": "pregnancy_stair_comfort",
+          "refused": null,
+          "sources_cited": [
+            "NHS-PREGNANCY-PELVIC-PAIN",
+            "HSE-PREGNANCY-PGP-ACTIVITIES"
+          ],
+          "correct": true,
+          "latency_ms": 4542,
+          "tokens_in": 2553,
+          "tokens_out": 139,
+          "cost_inr": 0.0564,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "original_langsmith_run_id": "01a19825-bca2-793a-b010-92e33cb8bf40",
+        "metadata_correction_run_id": "01a19828-e6e9-7887-82e3-07475e521015",
+        "metadata_correction_note": "Original completed runs immutable (409); cached zero-cost roots correct prenatal labels while preserving verdicts and original usage."
+      }
+    }
+  ],
+  "budget_accounted_inr": 0.3609,
+  "cap_inr": 5,
+  "trace_readback": {
+    "status": "verified",
+    "cached_metadata_corrections": [
+      "labour_room_readiness:v1",
+      "prenatal_yoga_preparation:v1",
+      "pregnancy_breathing:v1",
+      "pregnancy_bed_movement:v1",
+      "pregnancy_stair_comfort:v1",
+      "preparing_body_for_birth:v1",
+      "pregnancy_stair_comfort:v2"
+    ],
+    "original_measurements_preserved": true,
+    "new_inference_calls": 0,
+    "note": "Original completed roots reject updates. Corrected zero-cost cached roots use the separate prenatal labels; original false stairsv1 remains preserved."
+  }
+}

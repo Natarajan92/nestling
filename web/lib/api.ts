@@ -109,6 +109,12 @@ export type AskResponse = {
   lesson?: Lesson | null;
 };
 
+class HttpError extends Error {
+  constructor(path: string, readonly status: number) {
+    super(`Nestling API ${path} failed (${status})`);
+  }
+}
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${API_URL}${path}`, {
     ...init,
@@ -119,7 +125,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     return {} as T;
 
   if (!res.ok)
-    throw new Error(`Nestling API ${path} failed (${res.status})`);
+    throw new HttpError(path, res.status);
 
   return (await res.json()) as T;
 }
@@ -148,23 +154,53 @@ export const deleteVoice = (voiceId: string) => request<{
   method: "DELETE"
 });
 
-export const askNestling = (message: string, profile: ProfileBody | null, canSave: boolean) => request<AskResponse>("/api/ask", post({
-  message,
+const isRecord = (value: unknown): value is Record<string, unknown> => value !== null && typeof value === "object" && !Array.isArray(value);
+const isStrings = (value: unknown): value is string[] => Array.isArray(value) && value.every(item => typeof item === "string");
+const isSource = (value: unknown) => isRecord(value) && typeof value.id === "string"
+  && [value.title, value.publisher, value.url, value.page].every(item => item === null || typeof item === "string")
+  && (value.year === null || typeof value.year === "string" || typeof value.year === "number");
 
-  ...(profile ? {
-    profile
-  } : {}),
+/** Network JSON is untrusted at runtime; malformed answers use Ask's inline retry state. */
+function isAskResponse(value: unknown): value is AskResponse {
+  if (!isRecord(value) || typeof value.answer !== "string" || typeof value.escalate !== "boolean"
+    || typeof value.refused !== "boolean" || typeof value.save !== "boolean" || typeof value.error !== "boolean"
+    || !(value.route === null || typeof value.route === "string") || !isStrings(value.how_i_answered)
+    || !Array.isArray(value.sources) || !value.sources.every(isSource)) return false;
+  const guardian = value.guardian;
+  if (!isRecord(guardian) || typeof guardian.level !== "string" || !["calm", "amber", "red"].includes(guardian.level)
+    || !isStrings(guardian.rules_fired) || !isStrings(guardian.unsafe)) return false;
+  const verification = value.verification;
+  if (verification !== null && (!isRecord(verification) || typeof verification.verdict !== "string"
+    || !isStrings(verification.unsupported))) return false;
+  const lesson = value.lesson;
+  if (lesson !== undefined && lesson !== null) {
+    if (!isRecord(lesson) || ![lesson.lesson_id, lesson.title, lesson.stage, lesson.video_url, lesson.thumbnail_url].every(item => typeof item === "string")
+      || typeof lesson.version !== "number" || !(lesson.reviewed_on === null || typeof lesson.reviewed_on === "string")
+      || !Array.isArray(lesson.sources) || !lesson.sources.every(isSource)
+      || !Array.isArray(lesson.steps) || !lesson.steps.every(step => isRecord(step) && typeof step.step_no === "number"
+        && [step.caption, step.narration_line, step.icon].every(item => typeof item === "string") && isStrings(step.safety_points))
+      || !(lesson.see_how === null || (isRecord(lesson.see_how)
+        && [lesson.see_how.label, lesson.see_how.url, lesson.see_how.publisher].every(item => typeof item === "string")))) return false;
+  }
+  return true;
+}
 
-  can_save: canSave
-}));
+export async function askNestling(message: string, profile: ProfileBody | null, canSave: boolean): Promise<AskResponse> {
+  const answer = await request<unknown>("/api/ask", post({ message, ...(profile ? { profile } : {}), can_save: canSave }));
+  if (!isAskResponse(answer)) throw new Error("Nestling returned an invalid answer. Please try again.");
+  return answer;
+}
 
 /** Lesson media paths come back relative (/media/lessons/...); make them absolute for the browser. */
 export const mediaUrl = (u: string) => (/^https?:/.test(u) ? u : `${API_URL}${u}`);
 
-/** A missing or failing lessons endpoint means "no approved lessons yet": an empty library. */
-export const getLessons = () => request<Lesson[]>("/api/lessons").catch(() => [] as Lesson[]);
+/** A real empty library stays empty; unavailable services remain retryable errors. */
+export const getLessons = () => request<Lesson[]>("/api/lessons");
 
-export const getLesson = (id: string) => request<Lesson>(`/api/lessons/${encodeURIComponent(id)}`).catch(() => null);
+export const getLesson = (id: string) => request<Lesson>(`/api/lessons/${encodeURIComponent(id)}`).catch(error => {
+  if (error instanceof HttpError && error.status === 404) return null;
+  throw error;
+});
 
 export type Playbook = {
   tradition: string;

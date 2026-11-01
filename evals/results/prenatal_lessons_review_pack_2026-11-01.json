@@ -1,0 +1,1166 @@
+{
+  "status": "6/6 owner-approved prenatal lessons published with verified review-date media",
+  "lessons": [
+    {
+      "lesson_id": "labour_room_readiness",
+      "title": "Preparing together for the labour room",
+      "version": 1,
+      "storyboard_path": "E:\\maai-projects\\nestling\\lessons\\labour_room_readiness\\storyboard.json",
+      "storyboard_sha256": "5426bca027d508f4b8df599a0938a2f79aa4c55df34267b2f42b8cfaf5c457ba",
+      "video_path": "E:\\maai-projects\\nestling\\lessons\\labour_room_readiness\\renders\\lesson.mp4",
+      "video_sha256": "06f082ee32483e1302239ef117b44a9dcc28cf03ac6d0dd80ec99bde78b9611a",
+      "review_path": "E:\\maai-projects\\nestling\\lessons\\labour_room_readiness\\review.yaml",
+      "checklist_path": "E:\\maai-projects\\nestling\\lessons\\labour_room_readiness\\checklist.yaml",
+      "sources": [
+        "MOHFW-ANC",
+        "NHS-WALES-BIRTH-PARTNER"
+      ],
+      "render_log": {
+        "storyboard_version": 1,
+        "storyboard_sha256": "5426bca027d508f4b8df599a0938a2f79aa4c55df34267b2f42b8cfaf5c457ba",
+        "rendered_at": "2026-11-01T17:42:17+00:00",
+        "cost_inr": 0.0,
+        "seconds": 31.6,
+        "actual_seconds": 31.647007,
+        "characters_billed": 0,
+        "current_version_narration_characters": 527,
+        "ffprobe_verified": true,
+        "human_review": "approved",
+        "video_sha256": "06f082ee32483e1302239ef117b44a9dcc28cf03ac6d0dd80ec99bde78b9611a",
+        "thumbnail_sha256": "f9e251842a43a7c3c4362cd5efc960c714ab4c6f7f97aaff2c4ae4bc31b525f4",
+        "narration_ledger": "evals\\results\\prenatal_lessons_narration_spend.json",
+        "layout_correction": {
+          "reason": "Closing card preserves full citations above reserved caption space",
+          "previous_video_sha256": "05bd84893bcc757f2d400b8e9a08528b48429ee50c77867616f23a199e229478",
+          "new_paid_calls": 0,
+          "new_narration_cost_inr": 0,
+          "storyboard_unchanged": true
+        },
+        "cost_basis": "Review-date badge refresh; all audio cached; prior narration costs preserved in render_history and original ledger",
+        "render_history": [
+          {
+            "storyboard_version": 1,
+            "storyboard_sha256": "5426bca027d508f4b8df599a0938a2f79aa4c55df34267b2f42b8cfaf5c457ba",
+            "rendered_at": "2026-11-01T17:38:02+00:00",
+            "cost_inr": 9.7,
+            "seconds": 31.6,
+            "actual_seconds": 31.647007,
+            "characters_billed": 485,
+            "current_version_narration_characters": 527,
+            "ffprobe_verified": true,
+            "human_review": "pending",
+            "video_sha256": "ff6e266f51dcf27451fa389ab82700249c71cf247bf3b6e75868f1385c8dedbd",
+            "thumbnail_sha256": "f9e251842a43a7c3c4362cd5efc960c714ab4c6f7f97aaff2c4ae4bc31b525f4",
+            "narration_ledger": "evals\\results\\prenatal_lessons_narration_spend.json",
+            "layout_correction": {
+              "reason": "Closing card preserves full citations above reserved caption space",
+              "previous_video_sha256": "05bd84893bcc757f2d400b8e9a08528b48429ee50c77867616f23a199e229478",
+              "new_paid_calls": 0,
+              "new_narration_cost_inr": 0,
+              "storyboard_unchanged": true
+            }
+          }
+        ],
+        "reviewed_on": "2026-11-01",
+        "incremental_narration_inr": 0
+      },
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All narration lines and safety points in the storyboard are supported by the cited source passages. Scene 1 (choosing a support person) and Scene 4 (offering comfort) are supported by MOHFW-ANC p.53. Scenes 2, 3, and 5 are supported by NHS-WALES-BIRTH-PARTNER p.1, which discusses reviewing birth preferences, knowing what to pack and expect at the hospital, and the partner’s role in communication and decision support. The safety point about changing preferences during labour is explicitly mentioned in the source. No steps contradict or go beyond the sources.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 2363,
+          "tokens_out": 154
+        },
+        "cost_inr": 0.0536,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "labour_room_readiness:v1",
+          "dataset_version": "prenatal_lessons_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "prenatal-lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "labour_room_readiness",
+          "predicted_route": "labour_room_readiness",
+          "refused": null,
+          "sources_cited": [
+            "MOHFW-ANC",
+            "NHS-WALES-BIRTH-PARTNER"
+          ],
+          "correct": true,
+          "latency_ms": 32566,
+          "tokens_in": 2363,
+          "tokens_out": 154,
+          "cost_inr": 0.0536,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "metadata_correction_run_id": "01a1982c-795c-741b-8ef9-c8e0191f73a0",
+        "original_trace_metadata": {
+          "case_id": "labour_room_readiness:v1",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "labour_room_readiness",
+          "predicted_route": "labour_room_readiness",
+          "refused": null,
+          "sources_cited": [
+            "MOHFW-ANC",
+            "NHS-WALES-BIRTH-PARTNER"
+          ],
+          "correct": true,
+          "latency_ms": 32566,
+          "tokens_in": 2363,
+          "tokens_out": 154,
+          "cost_inr": 0.0536,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "original_langsmith_run_id": "01a19822-db9b-7992-91cd-1da007e68c82",
+        "metadata_correction_note": "Original completed runs immutable (409); cached zero-cost roots correct prenatal labels while preserving verdicts and original usage."
+      },
+      "human_review": {
+        "lesson_id": "labour_room_readiness",
+        "version": 1,
+        "approved": true,
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 2,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 3,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 4,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 5,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          }
+        ]
+      },
+      "independent_source_review": "PASS; source/page/context checks, not a clinical credential or owner approval",
+      "human_approved_video_sha256": "ff6e266f51dcf27451fa389ab82700249c71cf247bf3b6e75868f1385c8dedbd",
+      "owner_approval_received": {
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "version": 1,
+        "storyboard_sha256": "5426bca027d508f4b8df599a0938a2f79aa4c55df34267b2f42b8cfaf5c457ba",
+        "all_scenes_passed": true,
+        "original_video_sha256": "ff6e266f51dcf27451fa389ab82700249c71cf247bf3b6e75868f1385c8dedbd"
+      },
+      "approval_status": "owner-approved; verified review-date media installed",
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1080,
+            "height": 1920
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "44100"
+          }
+        ],
+        "format": {
+          "duration": "31.647007",
+          "size": "4380319"
+        }
+      },
+      "approval_refresh_note": "Same exact storyboard and cached narration. Original human-approved video hash retained separately; only reviewed-date presentation refreshed.",
+      "actual_review_date_frame_checked": true
+    },
+    {
+      "lesson_id": "prenatal_yoga_preparation",
+      "title": "Preparing for a prenatal yoga class",
+      "version": 1,
+      "storyboard_path": "E:\\maai-projects\\nestling\\lessons\\prenatal_yoga_preparation\\storyboard.json",
+      "storyboard_sha256": "590fe40f7e9ff8afe0aa7ac4de8152496bc9313f917feb1ecec24749f2f1046f",
+      "video_path": "E:\\maai-projects\\nestling\\lessons\\prenatal_yoga_preparation\\renders\\lesson.mp4",
+      "video_sha256": "d287156065037bd961e24d3cff347acc0bbb62e25c46095c264caea4f3eeb4ee",
+      "review_path": "E:\\maai-projects\\nestling\\lessons\\prenatal_yoga_preparation\\review.yaml",
+      "checklist_path": "E:\\maai-projects\\nestling\\lessons\\prenatal_yoga_preparation\\checklist.yaml",
+      "sources": [
+        "NHS-PRENATAL-YOGA",
+        "NHS-NNUH-PREGNANCY-PHYSIO",
+        "NHS-RB-PREGNANCY-BODY"
+      ],
+      "render_log": {
+        "storyboard_version": 1,
+        "storyboard_sha256": "590fe40f7e9ff8afe0aa7ac4de8152496bc9313f917feb1ecec24749f2f1046f",
+        "rendered_at": "2026-11-01T17:42:46+00:00",
+        "cost_inr": 0.0,
+        "seconds": 32.7,
+        "actual_seconds": 32.713991,
+        "characters_billed": 0,
+        "current_version_narration_characters": 512,
+        "ffprobe_verified": true,
+        "human_review": "approved",
+        "video_sha256": "d287156065037bd961e24d3cff347acc0bbb62e25c46095c264caea4f3eeb4ee",
+        "thumbnail_sha256": "ea7ce4afb4dd0cdc1d64c7bdf2e3d2631f3d13cc1a137e2beedaeac481c2d51a",
+        "narration_ledger": "evals\\results\\prenatal_lessons_narration_spend.json",
+        "layout_correction": {
+          "reason": "Three-source closing card now reserves caption space; full citations preserved",
+          "previous_video_sha256": "f1a7f8c146ca5930c1f6ae9a996255971486663f66026512f58a768dc5da0391",
+          "new_paid_calls": 0,
+          "new_narration_cost_inr": 0,
+          "storyboard_unchanged": true
+        },
+        "cost_basis": "Review-date badge refresh; all audio cached; prior narration costs preserved in render_history and original ledger",
+        "render_history": [
+          {
+            "storyboard_version": 1,
+            "storyboard_sha256": "590fe40f7e9ff8afe0aa7ac4de8152496bc9313f917feb1ecec24749f2f1046f",
+            "rendered_at": "2026-11-01T17:35:26+00:00",
+            "cost_inr": 9.4,
+            "seconds": 32.7,
+            "actual_seconds": 32.713991,
+            "characters_billed": 470,
+            "current_version_narration_characters": 512,
+            "ffprobe_verified": true,
+            "human_review": "pending",
+            "video_sha256": "06f344dfbbf648c0b72f3cadd5a66aaf84c0a4751802a26390cb429794bde1de",
+            "thumbnail_sha256": "ea7ce4afb4dd0cdc1d64c7bdf2e3d2631f3d13cc1a137e2beedaeac481c2d51a",
+            "narration_ledger": "evals\\results\\prenatal_lessons_narration_spend.json",
+            "layout_correction": {
+              "reason": "Three-source closing card now reserves caption space; full citations preserved",
+              "previous_video_sha256": "f1a7f8c146ca5930c1f6ae9a996255971486663f66026512f58a768dc5da0391",
+              "new_paid_calls": 0,
+              "new_narration_cost_inr": 0,
+              "storyboard_unchanged": true
+            }
+          }
+        ],
+        "reviewed_on": "2026-11-01",
+        "incremental_narration_inr": 0
+      },
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All steps and safety points in the storyboard are supported by the cited source passages. Each narration line and safety point aligns with the relevant page content, including checking with a healthcare professional, choosing a qualified teacher, preparing equipment, staying hydrated, working within limits, and stopping if unwell. No unsupported or missing safety-critical steps were identified for the lesson's scope.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 2987,
+          "tokens_out": 103
+        },
+        "cost_inr": 0.0626,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "prenatal_yoga_preparation:v1",
+          "dataset_version": "prenatal_lessons_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "prenatal-lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "prenatal_yoga_preparation",
+          "predicted_route": "prenatal_yoga_preparation",
+          "refused": null,
+          "sources_cited": [
+            "NHS-PRENATAL-YOGA",
+            "NHS-NNUH-PREGNANCY-PHYSIO",
+            "NHS-RB-PREGNANCY-BODY"
+          ],
+          "correct": true,
+          "latency_ms": 1693,
+          "tokens_in": 2987,
+          "tokens_out": 103,
+          "cost_inr": 0.0626,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "metadata_correction_run_id": "01a1982c-7d33-7e35-b540-5985c5cdd8d0",
+        "original_trace_metadata": {
+          "case_id": "prenatal_yoga_preparation:v1",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "prenatal_yoga_preparation",
+          "predicted_route": "prenatal_yoga_preparation",
+          "refused": null,
+          "sources_cited": [
+            "NHS-PRENATAL-YOGA",
+            "NHS-NNUH-PREGNANCY-PHYSIO",
+            "NHS-RB-PREGNANCY-BODY"
+          ],
+          "correct": true,
+          "latency_ms": 1693,
+          "tokens_in": 2987,
+          "tokens_out": 103,
+          "cost_inr": 0.0626,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "original_langsmith_run_id": "01a19823-5b98-7805-a21c-83dae63ada5a",
+        "metadata_correction_note": "Original completed runs immutable (409); cached zero-cost roots correct prenatal labels while preserving verdicts and original usage."
+      },
+      "human_review": {
+        "lesson_id": "prenatal_yoga_preparation",
+        "version": 1,
+        "approved": true,
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 2,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 3,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 4,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 5,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          }
+        ]
+      },
+      "independent_source_review": "PASS; source/page/context checks, not a clinical credential or owner approval",
+      "human_approved_video_sha256": "06f344dfbbf648c0b72f3cadd5a66aaf84c0a4751802a26390cb429794bde1de",
+      "owner_approval_received": {
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "version": 1,
+        "storyboard_sha256": "590fe40f7e9ff8afe0aa7ac4de8152496bc9313f917feb1ecec24749f2f1046f",
+        "all_scenes_passed": true,
+        "original_video_sha256": "06f344dfbbf648c0b72f3cadd5a66aaf84c0a4751802a26390cb429794bde1de"
+      },
+      "approval_status": "owner-approved; verified review-date media installed",
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1080,
+            "height": 1920
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "44100"
+          }
+        ],
+        "format": {
+          "duration": "32.713991",
+          "size": "4733385"
+        }
+      },
+      "approval_refresh_note": "Same exact storyboard and cached narration. Original human-approved video hash retained separately; only reviewed-date presentation refreshed.",
+      "actual_review_date_frame_checked": true
+    },
+    {
+      "lesson_id": "pregnancy_breathing",
+      "title": "Practising relaxed breathing before birth",
+      "version": 1,
+      "storyboard_path": "E:\\maai-projects\\nestling\\lessons\\pregnancy_breathing\\storyboard.json",
+      "storyboard_sha256": "8bc94ae55fc90e7eb67b8dc75b4f773733c9b4b2af5a8b8d1449967a1784afd2",
+      "video_path": "E:\\maai-projects\\nestling\\lessons\\pregnancy_breathing\\renders\\lesson.mp4",
+      "video_sha256": "c219c0becaffe16b894457c046d7c0dbf11487d608bc97c36be62dca526a696e",
+      "review_path": "E:\\maai-projects\\nestling\\lessons\\pregnancy_breathing\\review.yaml",
+      "checklist_path": "E:\\maai-projects\\nestling\\lessons\\pregnancy_breathing\\checklist.yaml",
+      "sources": [
+        "NHS-UHNM-ANTENATAL"
+      ],
+      "render_log": {
+        "storyboard_version": 1,
+        "storyboard_sha256": "8bc94ae55fc90e7eb67b8dc75b4f773733c9b4b2af5a8b8d1449967a1784afd2",
+        "rendered_at": "2026-11-01T17:43:17+00:00",
+        "cost_inr": 0.0,
+        "seconds": 32.3,
+        "actual_seconds": 32.341995,
+        "characters_billed": 0,
+        "current_version_narration_characters": 518,
+        "ffprobe_verified": true,
+        "human_review": "approved",
+        "video_sha256": "c219c0becaffe16b894457c046d7c0dbf11487d608bc97c36be62dca526a696e",
+        "thumbnail_sha256": "f6b52046cf3abf647fb60e35e4d0e36f95dc74e82784ae9eb6dd63e15db5cd53",
+        "narration_ledger": "evals\\results\\prenatal_lessons_narration_spend.json",
+        "cost_basis": "Review-date badge refresh; all audio cached; prior narration costs preserved in render_history and original ledger",
+        "render_history": [
+          {
+            "storyboard_version": 1,
+            "storyboard_sha256": "8bc94ae55fc90e7eb67b8dc75b4f773733c9b4b2af5a8b8d1449967a1784afd2",
+            "rendered_at": "2026-11-01T17:30:37+00:00",
+            "cost_inr": 9.52,
+            "seconds": 32.3,
+            "actual_seconds": 32.341995,
+            "characters_billed": 476,
+            "current_version_narration_characters": 518,
+            "ffprobe_verified": true,
+            "human_review": "pending",
+            "video_sha256": "96af935e73006cf8bebdc1646dc393531a4dba2242de725b56fba2b37c07baed",
+            "thumbnail_sha256": "f6b52046cf3abf647fb60e35e4d0e36f95dc74e82784ae9eb6dd63e15db5cd53",
+            "narration_ledger": "evals\\results\\prenatal_lessons_narration_spend.json"
+          }
+        ],
+        "reviewed_on": "2026-11-01",
+        "incremental_narration_inr": 0
+      },
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All steps in the storyboard are supported by the source passage on page 1. The instructions for hand placement, slow nasal inhalation, slow oral exhalation, and repeated practice for relaxation are directly described. No safety-critical steps are missing, and no unsupported advice is present.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 1243,
+          "tokens_out": 86
+        },
+        "cost_inr": 0.0285,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "pregnancy_breathing:v1",
+          "dataset_version": "prenatal_lessons_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "prenatal-lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "pregnancy_breathing",
+          "predicted_route": "pregnancy_breathing",
+          "refused": null,
+          "sources_cited": [
+            "NHS-UHNM-ANTENATAL"
+          ],
+          "correct": true,
+          "latency_ms": 1211,
+          "tokens_in": 1243,
+          "tokens_out": 86,
+          "cost_inr": 0.0285,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "metadata_correction_run_id": "01a1982c-7fda-7ce0-94b3-fda0dce3e954",
+        "original_trace_metadata": {
+          "case_id": "pregnancy_breathing:v1",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "pregnancy_breathing",
+          "predicted_route": "pregnancy_breathing",
+          "refused": null,
+          "sources_cited": [
+            "NHS-UHNM-ANTENATAL"
+          ],
+          "correct": true,
+          "latency_ms": 1211,
+          "tokens_in": 1243,
+          "tokens_out": 86,
+          "cost_inr": 0.0285,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "original_langsmith_run_id": "01a19823-6242-79c2-a013-87d725c8113b",
+        "metadata_correction_note": "Original completed runs immutable (409); cached zero-cost roots correct prenatal labels while preserving verdicts and original usage."
+      },
+      "human_review": {
+        "lesson_id": "pregnancy_breathing",
+        "version": 1,
+        "approved": true,
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 2,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 3,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 4,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 5,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          }
+        ]
+      },
+      "independent_source_review": "PASS; source/page/context checks, not a clinical credential or owner approval",
+      "human_approved_video_sha256": "96af935e73006cf8bebdc1646dc393531a4dba2242de725b56fba2b37c07baed",
+      "owner_approval_received": {
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "version": 1,
+        "storyboard_sha256": "8bc94ae55fc90e7eb67b8dc75b4f773733c9b4b2af5a8b8d1449967a1784afd2",
+        "all_scenes_passed": true,
+        "original_video_sha256": "96af935e73006cf8bebdc1646dc393531a4dba2242de725b56fba2b37c07baed"
+      },
+      "approval_status": "owner-approved; verified review-date media installed",
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1080,
+            "height": 1920
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "44100"
+          }
+        ],
+        "format": {
+          "duration": "32.341995",
+          "size": "3979500"
+        }
+      },
+      "approval_refresh_note": "Same exact storyboard and cached narration. Original human-approved video hash retained separately; only reviewed-date presentation refreshed.",
+      "actual_review_date_frame_checked": true
+    },
+    {
+      "lesson_id": "pregnancy_bed_movement",
+      "title": "Getting into and out of bed",
+      "version": 1,
+      "storyboard_path": "E:\\maai-projects\\nestling\\lessons\\pregnancy_bed_movement\\storyboard.json",
+      "storyboard_sha256": "2227b8f3674ddebb51d5ffe5f2bf3b4e8db40e23b5ad42c3598e8f67b11ca54d",
+      "video_path": "E:\\maai-projects\\nestling\\lessons\\pregnancy_bed_movement\\renders\\lesson.mp4",
+      "video_sha256": "436315d18f9e2e761e701c3c04023040d9852c3dbbfda27ce6f606575d96797b",
+      "review_path": "E:\\maai-projects\\nestling\\lessons\\pregnancy_bed_movement\\review.yaml",
+      "checklist_path": "E:\\maai-projects\\nestling\\lessons\\pregnancy_bed_movement\\checklist.yaml",
+      "sources": [
+        "NHS-RB-PREGNANCY-BODY",
+        "NHS-NNUH-PREGNANCY-PHYSIO"
+      ],
+      "render_log": {
+        "storyboard_version": 1,
+        "storyboard_sha256": "2227b8f3674ddebb51d5ffe5f2bf3b4e8db40e23b5ad42c3598e8f67b11ca54d",
+        "rendered_at": "2026-11-01T17:43:49+00:00",
+        "cost_inr": 0.0,
+        "seconds": 31.6,
+        "actual_seconds": 31.6,
+        "characters_billed": 0,
+        "current_version_narration_characters": 516,
+        "ffprobe_verified": true,
+        "human_review": "approved",
+        "video_sha256": "436315d18f9e2e761e701c3c04023040d9852c3dbbfda27ce6f606575d96797b",
+        "thumbnail_sha256": "f50a5d5808cd35a5cf09635faaceeff55e1ccbe5b3c346bb46b3bfc2a29d05fd",
+        "narration_ledger": "evals\\results\\prenatal_lessons_narration_spend.json",
+        "cost_basis": "Review-date badge refresh; all audio cached; prior narration costs preserved in render_history and original ledger",
+        "render_history": [
+          {
+            "storyboard_version": 1,
+            "storyboard_sha256": "2227b8f3674ddebb51d5ffe5f2bf3b4e8db40e23b5ad42c3598e8f67b11ca54d",
+            "rendered_at": "2026-11-01T17:29:55+00:00",
+            "cost_inr": 9.48,
+            "seconds": 31.6,
+            "actual_seconds": 31.6,
+            "characters_billed": 474,
+            "current_version_narration_characters": 516,
+            "ffprobe_verified": true,
+            "human_review": "pending",
+            "video_sha256": "b2a0e486903b765d599c58cb1f6b3e333e84de1bf140ff19f4030b933f740e13",
+            "thumbnail_sha256": "f50a5d5808cd35a5cf09635faaceeff55e1ccbe5b3c346bb46b3bfc2a29d05fd",
+            "narration_ledger": "evals\\results\\prenatal_lessons_narration_spend.json"
+          }
+        ],
+        "reviewed_on": "2026-11-01",
+        "incremental_narration_inr": 0
+      },
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All steps and safety points in the storyboard are supported by the cited source passages. Step 1 is supported by NHS-RB-PREGNANCY-BODY p.1 advising to consult a midwife or physiotherapist if unsure about an activity. Steps 2–5 and the safety point about avoiding lying flat on the back are directly supported by NHS-NNUH-PREGNANCY-PHYSIO p.1, which describes side-lying with pillow support, rolling shoulders/hips/knees together, using arms to push up while lowering legs, and reversing the movement to get into bed. No unsupported or invented instructions are present.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 2367,
+          "tokens_out": 161
+        },
+        "cost_inr": 0.0541,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "pregnancy_bed_movement:v1",
+          "dataset_version": "prenatal_lessons_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "prenatal-lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "pregnancy_bed_movement",
+          "predicted_route": "pregnancy_bed_movement",
+          "refused": null,
+          "sources_cited": [
+            "NHS-RB-PREGNANCY-BODY",
+            "NHS-NNUH-PREGNANCY-PHYSIO"
+          ],
+          "correct": true,
+          "latency_ms": 2061,
+          "tokens_in": 2367,
+          "tokens_out": 161,
+          "cost_inr": 0.0541,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "metadata_correction_run_id": "01a1982c-8281-7ef0-92c3-68e945ae4f97",
+        "original_trace_metadata": {
+          "case_id": "pregnancy_bed_movement:v1",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "pregnancy_bed_movement",
+          "predicted_route": "pregnancy_bed_movement",
+          "refused": null,
+          "sources_cited": [
+            "NHS-RB-PREGNANCY-BODY",
+            "NHS-NNUH-PREGNANCY-PHYSIO"
+          ],
+          "correct": true,
+          "latency_ms": 2061,
+          "tokens_in": 2367,
+          "tokens_out": 161,
+          "cost_inr": 0.0541,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "original_langsmith_run_id": "01a19823-6a48-7a07-8de2-482526a41d48",
+        "metadata_correction_note": "Original completed runs immutable (409); cached zero-cost roots correct prenatal labels while preserving verdicts and original usage."
+      },
+      "human_review": {
+        "lesson_id": "pregnancy_bed_movement",
+        "version": 1,
+        "approved": true,
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 2,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 3,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 4,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 5,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          }
+        ]
+      },
+      "independent_source_review": "PASS; source/page/context checks, not a clinical credential or owner approval",
+      "human_approved_video_sha256": "b2a0e486903b765d599c58cb1f6b3e333e84de1bf140ff19f4030b933f740e13",
+      "owner_approval_received": {
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "version": 1,
+        "storyboard_sha256": "2227b8f3674ddebb51d5ffe5f2bf3b4e8db40e23b5ad42c3598e8f67b11ca54d",
+        "all_scenes_passed": true,
+        "original_video_sha256": "b2a0e486903b765d599c58cb1f6b3e333e84de1bf140ff19f4030b933f740e13"
+      },
+      "approval_status": "owner-approved; verified review-date media installed",
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1080,
+            "height": 1920
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "44100"
+          }
+        ],
+        "format": {
+          "duration": "31.600000",
+          "size": "4197453"
+        }
+      },
+      "approval_refresh_note": "Same exact storyboard and cached narration. Original human-approved video hash retained separately; only reviewed-date presentation refreshed.",
+      "actual_review_date_frame_checked": true
+    },
+    {
+      "lesson_id": "pregnancy_stair_comfort",
+      "title": "When stairs feel uncomfortable in pregnancy",
+      "version": 2,
+      "storyboard_path": "E:\\maai-projects\\nestling\\lessons\\pregnancy_stair_comfort\\storyboard.json",
+      "storyboard_sha256": "a18164118e23ce0b4191a793d74584a9769d23553f345a6e0fd154543884e095",
+      "video_path": "E:\\maai-projects\\nestling\\lessons\\pregnancy_stair_comfort\\renders\\lesson.mp4",
+      "video_sha256": "d0d8084234484d7d310c1e13430d8a74139b5925148fcede164c39c09416e3f7",
+      "review_path": "E:\\maai-projects\\nestling\\lessons\\pregnancy_stair_comfort\\review.yaml",
+      "checklist_path": "E:\\maai-projects\\nestling\\lessons\\pregnancy_stair_comfort\\checklist.yaml",
+      "sources": [
+        "NHS-PREGNANCY-PELVIC-PAIN",
+        "HSE-PREGNANCY-PGP-ACTIVITIES"
+      ],
+      "render_log": {
+        "storyboard_version": 2,
+        "storyboard_sha256": "a18164118e23ce0b4191a793d74584a9769d23553f345a6e0fd154543884e095",
+        "rendered_at": "2026-11-01T17:44:19+00:00",
+        "cost_inr": 0.0,
+        "seconds": 29.4,
+        "actual_seconds": 29.373991,
+        "characters_billed": 0,
+        "current_version_narration_characters": 445,
+        "ffprobe_verified": true,
+        "human_review": "approved",
+        "video_sha256": "d0d8084234484d7d310c1e13430d8a74139b5925148fcede164c39c09416e3f7",
+        "thumbnail_sha256": "03066254d733952c7f930928ccdd6645ee99eda2468c332667f989b62d7594cb",
+        "narration_ledger": "evals\\results\\prenatal_lessons_narration_spend.json",
+        "cost_basis": "Review-date badge refresh; all audio cached; prior narration costs preserved in render_history and original ledger",
+        "render_history": [
+          {
+            "storyboard_version": 2,
+            "storyboard_sha256": "a18164118e23ce0b4191a793d74584a9769d23553f345a6e0fd154543884e095",
+            "rendered_at": "2026-11-01T17:31:05+00:00",
+            "cost_inr": 8.06,
+            "seconds": 29.4,
+            "actual_seconds": 29.373991,
+            "characters_billed": 403,
+            "current_version_narration_characters": 445,
+            "ffprobe_verified": true,
+            "human_review": "pending",
+            "video_sha256": "a7ed87d4319ccb41f379f4bada21cbb1c0015cda8c3cedd31036811223b08e6b",
+            "thumbnail_sha256": "03066254d733952c7f930928ccdd6645ee99eda2468c332667f989b62d7594cb",
+            "narration_ledger": "evals\\results\\prenatal_lessons_narration_spend.json"
+          }
+        ],
+        "reviewed_on": "2026-11-01",
+        "incremental_narration_inr": 0
+      },
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All captions, narration lines, and safety points are supported by the cited source pages. Scene 1 correctly advises contacting a midwife or doctor if stairs are painful, per NHS page 1. Scene 2 aligns with NHS advice to avoid repeated stair use. Scene 3 reflects HSE's recommendation to pace activities and accept help, and includes the supported safety point about footwear. Scene 4 accurately describes stair technique and bannister use from HSE page 1, and includes a valid safety point about seeking medical advice if pain persists.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 2553,
+          "tokens_out": 139
+        },
+        "cost_inr": 0.0564,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "pregnancy_stair_comfort:v2",
+          "dataset_version": "prenatal_lessons_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "prenatal-lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "pregnancy_stair_comfort",
+          "predicted_route": "pregnancy_stair_comfort",
+          "refused": null,
+          "sources_cited": [
+            "NHS-PREGNANCY-PELVIC-PAIN",
+            "HSE-PREGNANCY-PGP-ACTIVITIES"
+          ],
+          "correct": true,
+          "latency_ms": 4542,
+          "tokens_in": 2553,
+          "tokens_out": 139,
+          "cost_inr": 0.0564,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "original_trace_metadata": {
+          "case_id": "pregnancy_stair_comfort:v2",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "pregnancy_stair_comfort",
+          "predicted_route": "pregnancy_stair_comfort",
+          "refused": null,
+          "sources_cited": [
+            "NHS-PREGNANCY-PELVIC-PAIN",
+            "HSE-PREGNANCY-PGP-ACTIVITIES"
+          ],
+          "correct": true,
+          "latency_ms": 4542,
+          "tokens_in": 2553,
+          "tokens_out": 139,
+          "cost_inr": 0.0564,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "original_langsmith_run_id": "01a19825-bca2-793a-b010-92e33cb8bf40",
+        "metadata_correction_run_id": "01a19828-e6e9-7887-82e3-07475e521015",
+        "metadata_correction_note": "Original completed runs immutable (409); cached zero-cost roots correct prenatal labels while preserving verdicts and original usage."
+      },
+      "human_review": {
+        "lesson_id": "pregnancy_stair_comfort",
+        "version": 2,
+        "approved": true,
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 2,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 3,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 4,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          }
+        ]
+      },
+      "independent_source_review": "PASS; source/page/context checks, not a clinical credential or owner approval",
+      "human_approved_video_sha256": "a7ed87d4319ccb41f379f4bada21cbb1c0015cda8c3cedd31036811223b08e6b",
+      "owner_approval_received": {
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "version": 2,
+        "storyboard_sha256": "a18164118e23ce0b4191a793d74584a9769d23553f345a6e0fd154543884e095",
+        "all_scenes_passed": true,
+        "original_video_sha256": "a7ed87d4319ccb41f379f4bada21cbb1c0015cda8c3cedd31036811223b08e6b"
+      },
+      "approval_status": "owner-approved; verified review-date media installed",
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1080,
+            "height": 1920
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "44100"
+          }
+        ],
+        "format": {
+          "duration": "29.373991",
+          "size": "4397216"
+        }
+      },
+      "approval_refresh_note": "Same exact storyboard and cached narration. Original human-approved video hash retained separately; only reviewed-date presentation refreshed.",
+      "actual_review_date_frame_checked": true
+    },
+    {
+      "lesson_id": "preparing_body_for_birth",
+      "title": "Gentle activity to prepare for birth",
+      "version": 1,
+      "storyboard_path": "E:\\maai-projects\\nestling\\lessons\\preparing_body_for_birth\\storyboard.json",
+      "storyboard_sha256": "ed7bfb568787cf1b80a31fc85fb2279fb5a4768bd1c0ff91f129b6688ef3e3cc",
+      "video_path": "E:\\maai-projects\\nestling\\lessons\\preparing_body_for_birth\\renders\\lesson.mp4",
+      "video_sha256": "12e9b4fd643d9c471bb68770de46c6771487a41a6cf23d2b10725e9ddf2b47c0",
+      "review_path": "E:\\maai-projects\\nestling\\lessons\\preparing_body_for_birth\\review.yaml",
+      "checklist_path": "E:\\maai-projects\\nestling\\lessons\\preparing_body_for_birth\\checklist.yaml",
+      "sources": [
+        "NHS-PREGNANCY-EXERCISE"
+      ],
+      "render_log": {
+        "storyboard_version": 1,
+        "storyboard_sha256": "ed7bfb568787cf1b80a31fc85fb2279fb5a4768bd1c0ff91f129b6688ef3e3cc",
+        "rendered_at": "2026-11-01T17:44:51+00:00",
+        "cost_inr": 0.0,
+        "seconds": 30.6,
+        "actual_seconds": 30.578005,
+        "characters_billed": 0,
+        "current_version_narration_characters": 500,
+        "ffprobe_verified": true,
+        "human_review": "approved",
+        "video_sha256": "12e9b4fd643d9c471bb68770de46c6771487a41a6cf23d2b10725e9ddf2b47c0",
+        "thumbnail_sha256": "c09dd8bb335af5030e5223fe8916d3a04bcb8e0386f1371ad2881b85b1b82411",
+        "narration_ledger": "evals\\results\\prenatal_lessons_narration_spend.json",
+        "cost_basis": "Review-date badge refresh; all audio cached; prior narration costs preserved in render_history and original ledger",
+        "render_history": [
+          {
+            "storyboard_version": 1,
+            "storyboard_sha256": "ed7bfb568787cf1b80a31fc85fb2279fb5a4768bd1c0ff91f129b6688ef3e3cc",
+            "rendered_at": "2026-11-01T17:32:03+00:00",
+            "cost_inr": 9.16,
+            "seconds": 30.6,
+            "actual_seconds": 30.578005,
+            "characters_billed": 458,
+            "current_version_narration_characters": 500,
+            "ffprobe_verified": true,
+            "human_review": "pending",
+            "video_sha256": "0844fc0edfe7e4f5474e1aede8c4a4459356d884fe156c0b323928d6a851a618",
+            "thumbnail_sha256": "c09dd8bb335af5030e5223fe8916d3a04bcb8e0386f1371ad2881b85b1b82411",
+            "narration_ledger": "evals\\results\\prenatal_lessons_narration_spend.json"
+          }
+        ],
+        "reviewed_on": "2026-11-01",
+        "incremental_narration_inr": 0
+      },
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All narration lines and safety points in the storyboard are supported by the cited source (NHS-PREGNANCY-EXERCISE, page 1). Each step aligns with the source content: checking with a midwife for health conditions, starting gradually with 10 minutes a day, maintaining a conversational pace, adapting activity as pregnancy progresses, and staying hydrated while avoiding overheating and high-risk activities. Safety points such as avoiding vigorous new activities, flat-back exercise in later pregnancy, and activities with fall or tummy-impact risks are explicitly mentioned in the source.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 1917,
+          "tokens_out": 146
+        },
+        "cost_inr": 0.0447,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "preparing_body_for_birth:v1",
+          "dataset_version": "prenatal_lessons_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "prenatal-lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "preparing_body_for_birth",
+          "predicted_route": "preparing_body_for_birth",
+          "refused": null,
+          "sources_cited": [
+            "NHS-PREGNANCY-EXERCISE"
+          ],
+          "correct": true,
+          "latency_ms": 2954,
+          "tokens_in": 1917,
+          "tokens_out": 146,
+          "cost_inr": 0.0447,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "metadata_correction_run_id": "01a1982c-87b9-733e-9a8e-3d99f75ab747",
+        "original_trace_metadata": {
+          "case_id": "preparing_body_for_birth:v1",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "preparing_body_for_birth",
+          "predicted_route": "preparing_body_for_birth",
+          "refused": null,
+          "sources_cited": [
+            "NHS-PREGNANCY-EXERCISE"
+          ],
+          "correct": true,
+          "latency_ms": 2954,
+          "tokens_in": 1917,
+          "tokens_out": 146,
+          "cost_inr": 0.0447,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        },
+        "original_langsmith_run_id": "01a19823-7d27-7129-a00f-f7a39a839bc4",
+        "metadata_correction_note": "Original completed runs immutable (409); cached zero-cost roots correct prenatal labels while preserving verdicts and original usage."
+      },
+      "human_review": {
+        "lesson_id": "preparing_body_for_birth",
+        "version": 1,
+        "approved": true,
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 2,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 3,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 4,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          },
+          {
+            "step_no": 5,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact version on 2026-11-01; publication follows dated-media verification."
+          }
+        ]
+      },
+      "independent_source_review": "PASS; source/page/context checks, not a clinical credential or owner approval",
+      "human_approved_video_sha256": "0844fc0edfe7e4f5474e1aede8c4a4459356d884fe156c0b323928d6a851a618",
+      "owner_approval_received": {
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "version": 1,
+        "storyboard_sha256": "ed7bfb568787cf1b80a31fc85fb2279fb5a4768bd1c0ff91f129b6688ef3e3cc",
+        "all_scenes_passed": true,
+        "original_video_sha256": "0844fc0edfe7e4f5474e1aede8c4a4459356d884fe156c0b323928d6a851a618"
+      },
+      "approval_status": "owner-approved; verified review-date media installed",
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1080,
+            "height": 1920
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "44100"
+          }
+        ],
+        "format": {
+          "duration": "30.578005",
+          "size": "4295393"
+        }
+      },
+      "approval_refresh_note": "Same exact storyboard and cached narration. Original human-approved video hash retained separately; only reviewed-date presentation refreshed.",
+      "actual_review_date_frame_checked": true
+    }
+  ],
+  "incremental_approval_narration_inr": 0
+}

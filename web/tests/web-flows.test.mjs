@@ -31,6 +31,7 @@ function harness(fetch = async () => ({ ok: true, json: async () => ({}) })) {
     removeItem: key => data.delete(key),
   };
   const window = new EventTarget();
+  window.location = { origin: "http://localhost:3000", href: "http://localhost:3000/lessons/swaddling" };
   const document = { body: { style: { overflow: "" } }, activeElement: null };
   const globals = { localStorage, window, document, DOMException, fetch, URL, AbortSignal, FormData, Blob, crypto, setTimeout, clearTimeout, process: { env: {} } };
   const cache = new Map();
@@ -42,11 +43,13 @@ function harness(fetch = async () => ({ ok: true, json: async () => ({}) })) {
     }).outputText;
     vm.runInNewContext(source, { ...globals, exports, require(name) {
       if (name === "react") return react;
+      if (name === "next/navigation") return { useRouter: () => ({ replace() {} }) };
       if (name === "react/jsx-runtime") return require(name);
       if (name === "@/lib/store") return load("lib/store.ts");
       if (name === "@/lib/api" || name === "./api") return load("lib/api.ts");
       if (name === "@/lib/format") return load("lib/format.ts");
       if (name === "@/lib/cards") return load("lib/cards.ts");
+      if (name === "@/components/JourneyCard") return load("components/JourneyCard.tsx");
       return { default: function Placeholder() {} };
     } });
     return exports;
@@ -68,6 +71,105 @@ function button(tree, label) { const found = nodes(tree).find(n => n.type === "b
 const event = { preventDefault() {} };
 const response = body => ({ ok: true, status: 200, json: async () => body });
 const pkg = name => ({ studio_name: name, package_name: "Basic", shoot_type: "maternity", city: "Bengaluru", price_inr: 10000, price_text: null, price_assumptions: [], inclusions: [], extras: [], duration_hours: 1, photos_taken: 50, edited_photos: 10, delivery_days: 7, album: { offered: false, price_inr: null, type: null, size: null, pages: null, photos: null }, frames: [], casting: { offered: true, price_inr: null, type: null }, rating_summary: null, location: null, contact_url: null, source_url: `https://${name}.example/`, checked_on: "2026-11-01", total_cost: 10000, cost_per_edited_photo: 1000 });
+const askAnswer = { answer: "Please ask your antenatal care team.", escalate: false, refused: false, route: "care", guardian: { level: "calm", rules_fired: [], unsafe: [] }, sources: [], how_i_answered: ["Guardian checked"], verification: { verdict: "passed", unsupported: [] }, save: false, error: false, lesson: null };
+
+test("Lesson library distinguishes an outage from an empty library and retries", async () => {
+  let calls = 0;
+  const h = harness(async () => ++calls === 1 ? { ok: false, status: 503 } : response([]));
+  h.mount("app/lessons/page.tsx");
+  await new Promise(r => setTimeout(r, 0));
+  let tree = h.render();
+  assert.match(content(tree), /could not load the lessons/i);
+  assert.doesNotMatch(content(tree), /No lessons to show yet/);
+  button(tree, "Retry").props.onClick(); h.render();
+  await new Promise(r => setTimeout(r, 0)); tree = h.render();
+  assert.match(content(tree), /No lessons to show yet/);
+  assert.equal(calls, 2);
+});
+
+test("Lesson detail retries a connection failure without claiming review is missing", async () => {
+  let calls = 0;
+  const h = harness(async () => ++calls === 1 ? { ok: false, status: 503 } : response({ title: "Swaddling safely", reviewed_on: "2026-11-01" }));
+  h.mount("components/LessonDetail.tsx", { lessonId: "swaddling" });
+  await new Promise(r => setTimeout(r, 0));
+  let tree = h.render();
+  assert.match(content(tree), /could not load this lesson/i);
+  assert.doesNotMatch(content(tree), /Lessons are published only after review/);
+  button(tree, "Retry").props.onClick(); h.render();
+  await new Promise(r => setTimeout(r, 0)); tree = h.render();
+  assert.match(content(tree), /Swaddling safely/);
+  assert.equal(calls, 2);
+});
+
+test("Journey lesson row offers recovery after an unavailable service", async () => {
+  let calls = 0;
+  const h = harness(async () => ++calls === 1 ? { ok: false, status: 503 } : response([]));
+  const parent = h.mount("components/JourneyContent.tsx", {}, "BodyJourney");
+  h.mountElement(nodes(parent).find(n => typeof n.type === "function" && n.type.name === "LessonsRow"));
+  await new Promise(r => setTimeout(r, 0));
+  let tree = h.render();
+  assert.match(content(tree), /could not load the lessons/i);
+  button(tree, "Retry").props.onClick(); h.render();
+  await new Promise(r => setTimeout(r, 0)); tree = h.render();
+  assert.match(content(tree), /No approved lessons for this stage yet/);
+  assert.equal(calls, 2);
+});
+
+test("Today can retry after the API becomes reachable again", async () => {
+  let fail = true;
+  const h = harness(async url => {
+    if (fail) return { ok: false, status: 503 };
+    return response(url.endsWith("/api/checklist") ? { sections: [] } : { stage: { life_stage: "general" }, tip: null, cards: [] });
+  });
+  h.mount("app/page.tsx");
+  await new Promise(r => setTimeout(r, 0));
+  let tree = h.render();
+  assert.match(content(tree), /could not reach/i);
+  fail = false; button(tree, "Retry").props.onClick(); h.render();
+  await new Promise(r => setTimeout(r, 0)); tree = h.render();
+  assert.match(content(tree), /One little moment/);
+});
+
+test("Celebrate renders an older playbook with no optional menu ideas", async () => {
+  const h = harness(async () => response({ tradition: "Family tradition", also_called: ["Family tradition"], note: "Customs vary", timing: "With family", rituals: [], checklist: [] }));
+  h.mount("components/JourneyContent.tsx", {}, "CelebrateJourney");
+  await new Promise(r => setTimeout(r, 0));
+  let tree;
+  assert.doesNotThrow(() => { tree = h.render(); });
+  assert.match(content(tree), /Family tradition/);
+});
+
+test("Ask scroll effect never registers the browser scroll Promise as cleanup", async () => {
+  const reply = deferred(); const h = harness(async () => reply.promise);
+  const props = { msgs: [], setMsgs(value) { props.msgs = typeof value === "function" ? value(props.msgs) : value; } };
+  let tree = h.mount("components/AskPanel.tsx", props);
+  const scrollRef = nodes(tree).find(n => n.type === "div" && n.props.ref)?.props.ref;
+  assert.ok(scrollRef);
+  scrollRef.current = { scrollIntoView: () => Promise.resolve() };
+  nodes(tree).find(n => n.type === "input").props.onChange({ target: { value: "What should I ask at my next antenatal visit?" } });
+  const pending = nodes(h.render()).find(n => n.type === "form").props.onSubmit(event);
+  h.render(); // busy/message update runs the scroll effect with the real browser return type
+  reply.resolve(response(askAnswer)); await pending;
+  assert.doesNotThrow(() => h.render()); // next effect commit invokes its prior cleanup
+  assert.equal(props.msgs.at(-1).role, "nestling");
+});
+
+for (const [name, bad] of [
+  ["missing Guardian", { ...askAnswer, guardian: undefined }],
+  ["unknown Guardian level", { ...askAnswer, guardian: { ...askAnswer.guardian, level: "unknown" } }],
+  ["missing verification claims", { ...askAnswer, verification: { verdict: "passed" } }],
+  ["answer object", { ...askAnswer, answer: { text: "Wrong shape" } }],
+  ["missing answer steps", { ...askAnswer, how_i_answered: null }],
+  ["null source chip", { ...askAnswer, sources: [null] }],
+]) test(`Ask shows its inline retry state for malformed successful JSON: ${name}`, async () => {
+  const h = harness(async () => response(bad));
+  const props = { msgs: [], setMsgs(value) { props.msgs = typeof value === "function" ? value(props.msgs) : value; } };
+  const tree = h.mount("components/AskPanel.tsx", props);
+  nodes(tree).find(n => n.type === "input").props.onChange({ target: { value: "A care question" } });
+  await nodes(h.render()).find(n => n.type === "form").props.onSubmit(event);
+  assert.equal(props.msgs.at(-1).role, "error");
+  assert.match(content(h.render()), /could not answer just now/);
+});
 
 test("late clone is deleted after leaving Memory and wiping browser state", async () => {
   const clone = deferred(); const deleted = [];

@@ -148,8 +148,10 @@ def traced_fidelity(item: dict, project: str) -> dict:
         result = judge_steps(board, source_passages(board))
         usage = result.get("usage") or {}
         rt = get_current_run_tree()
-        metadata = trace_metadata(case_id=f"{board['lesson_id']}:v{board['version']}", dataset_version="lessons_golden_v1-draft",
-                scenario_type="source_fidelity", pipeline_version="lessons-v1", prompt_version=JUDGE_PROMPT_VERSION,
+        prenatal = board.get("stage") == "before_birth"
+        metadata = trace_metadata(case_id=f"{board['lesson_id']}:v{board['version']}",
+                dataset_version="prenatal_lessons_v1-draft" if prenatal else "lessons_golden_v1-draft",
+                scenario_type="source_fidelity", pipeline_version="prenatal-lessons-v1" if prenatal else "lessons-v1", prompt_version=JUDGE_PROMPT_VERSION,
                 model=judge.JUDGE_MODEL, expected_route=board["lesson_id"], predicted_route=board["lesson_id"],
                 sources_cited=board["sources"], correct=result.get("faithful"),
                 latency_ms=round((time.perf_counter() - started) * 1000), tokens_in=usage.get("tokens_in"),
@@ -191,7 +193,7 @@ def _run(live=False, upload=False, meter=None) -> dict:
                 if run_tree:
                     run_tree.add_metadata(trace_metadata(case_id=case["case_id"], dataset_version="lessons_golden_v1-draft",
                         scenario_type="danger" if case["expected_escalate"] == "Y" else "how_to", pipeline_version="lessons-v1",
-                        prompt_version="lesson-match-v1", model=llm.FAST, expected_escalate=case["expected_escalate"] == "Y",
+                        prompt_version=library.MATCH_PROMPT_VERSION, model=llm.FAST, expected_escalate=case["expected_escalate"] == "Y",
                         predicted_escalate=row["escalate"], expected_route=case["expected_lesson_id"], predicted_route=row["lesson_id"] or "none",
                         refused=False, sources_cited=[], correct=row["route_match"] and row["escalation_match"],
                         latency_ms=None, tokens_in=row["tokens_in"], tokens_out=row["tokens_out"], cost_inr=row["cost_inr"], error=row["error"]))
