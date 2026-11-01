@@ -1,4 +1,5 @@
 import ast
+import importlib
 import pathlib
 from types import SimpleNamespace
 
@@ -62,6 +63,33 @@ def test_chat_json_other_errors_raise(monkeypatch):
     monkeypatch.setattr(llm, "client", lambda: FakeClient([err]))
     with pytest.raises(Exception, match="boom"):
         llm.chat_json(llm.FAST, "s", "u", SCHEMA)
+
+
+def test_transport_error_without_status_is_not_retried_as_schema_rejection(monkeypatch):
+    error = RuntimeError("transport unavailable")
+    fake = FakeClient([error, reply('{"route": "a"}')])
+    monkeypatch.setattr(llm, "client", lambda: fake)
+    with pytest.raises(RuntimeError) as caught:
+        llm.chat_json(llm.FAST, "s", "u", SCHEMA)
+    assert caught.value is error
+
+
+def test_unrelated_bad_request_is_not_retried_in_json_mode(monkeypatch):
+    error = Rejected("invalid max_tokens")
+    fake = FakeClient([error, reply('{"route": "a"}')])
+    monkeypatch.setattr(llm, "client", lambda: fake)
+    with pytest.raises(Rejected) as caught:
+        llm.chat_json(llm.FAST, "s", "u", SCHEMA)
+    assert caught.value is error
+
+
+@pytest.mark.parametrize("override,expected", [("", "deepseek-ai/DeepSeek-V4-Pro"), ("zai-org/GLM-5.3", "zai-org/GLM-5.3")])
+def test_model_override_allows_blank_template_and_keeps_explicit_choice(monkeypatch, override, expected):
+    with monkeypatch.context() as patch:
+        patch.setenv("NESTLING_MAIN_MODEL", override)
+        importlib.reload(llm)
+        assert llm.MAIN == expected
+    importlib.reload(llm)
 
 
 def test_policy_quotes_must_appear_verbatim_on_their_page():
