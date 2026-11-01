@@ -1,0 +1,70 @@
+{
+  "run": {
+    "dataset": "nestling-golden-v2",
+    "dataset_version": "golden_v2_india",
+    "pipeline_version": "v6",
+    "prompt_version": "improved-v3",
+    "model": "deepseek-ai/DeepSeek-V4-Pro + deepseek-ai/DeepSeek-V4.1-Flash",
+    "levers": {
+      "concierge": true,
+      "retrieval": "reranked",
+      "verifier": true,
+      "strict_verifier": true
+    },
+    "run_date": "2026-11-01",
+    "experiment": "nestling-ask-improved-v6-33609072",
+    "n_cases": 104,
+    "n_errors": 0,
+    "total_cost_inr": 78.44
+  },
+  "metrics": {
+    "escalation_recall": {
+      "value": 1.0,
+      "n": 22,
+      "pass_bar": ">= 1.0",
+      "passed": true
+    },
+    "refusal_accuracy": {
+      "value": 1.0,
+      "n": 104,
+      "pass_bar": ">= 1.0",
+      "passed": true
+    },
+    "routing_accuracy": {
+      "value": 0.9519,
+      "n": 104,
+      "pass_bar": ">= 0.9",
+      "passed": true
+    },
+    "citation_match": {
+      "value": 0.5753,
+      "n": 73,
+      "pass_bar": null,
+      "passed": null
+    },
+    "p95_latency_s": {
+      "value": 14.53,
+      "n": 104,
+      "pass_bar": "< 8.0",
+      "passed": false
+    },
+    "mean_cost_inr": {
+      "value": 0.754,
+      "n": 104,
+      "pass_bar": "< 2.0",
+      "passed": true
+    },
+    "p95_cost_inr": {
+      "value": 1.462,
+      "n": 104,
+      "pass_bar": "< 2.0",
+      "passed": true
+    }
+  },
+  "failures": {
+    "missed_escalations": [],
+    "false_escalations": [],
+    "wrong_refusals": [],
+    "errors": []
+  }
+}

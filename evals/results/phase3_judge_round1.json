@@ -52,5 +52,14 @@
   "pass_bar": ">= 0.9",
   "judge": "Qwen/Qwen3-235B-A22B-Instruct-2507",
   "judge_version": "judge-v1"
+ },
+ "v6": {
+  "faithfulness": 0.803,
+  "mean_claim_support": 0.887,
+  "n_judged": 66,
+  "n_judge_errors": 3,
+  "pass_bar": ">= 0.9",
+  "judge": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+  "judge_version": "judge-v1"
  }
 }
