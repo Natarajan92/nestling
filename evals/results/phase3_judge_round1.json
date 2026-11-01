@@ -1,4 +1,13 @@
 {
+ "baseline": {
+  "faithfulness": 0.8933,
+  "mean_claim_support": 0.9588,
+  "n_judged": 75,
+  "n_judge_errors": 1,
+  "pass_bar": ">= 0.9",
+  "judge": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+  "judge_version": "judge-v1"
+ },
  "v1": {
   "faithfulness": 0.8571,
   "mean_claim_support": 0.9699,
@@ -31,6 +40,15 @@
   "mean_claim_support": 0.9868,
   "n_judged": 68,
   "n_judge_errors": 0,
+  "pass_bar": ">= 0.9",
+  "judge": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+  "judge_version": "judge-v1"
+ },
+ "v5": {
+  "faithfulness": 0.8406,
+  "mean_claim_support": 0.9563,
+  "n_judged": 69,
+  "n_judge_errors": 2,
   "pass_bar": ">= 0.9",
   "judge": "Qwen/Qwen3-235B-A22B-Instruct-2507",
   "judge_version": "judge-v1"
