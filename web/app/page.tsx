@@ -1,69 +1,123 @@
-import Image from "next/image";
+"use client";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
+import Card from "@/components/Card";
+import JourneyCard, { JOURNEYS } from "@/components/JourneyCard";
+import SourceChip from "@/components/SourceChip";
+import WeekRing from "@/components/WeekRing";
+import { getChecklist, getToday, type Today } from "@/lib/api";
+import { profileBody, useProfile, useTicks } from "@/lib/store";
 
-export default function Home() {
+type Load = { today: Today | null; ids: string[]; failed: boolean };
+
+export default function TodayPage() {
+  const router = useRouter();
+  const { profile, ready } = useProfile();
+  const { ticks } = useTicks();
+  const [load, setLoad] = useState<Load>({ today: null, ids: [], failed: false });
+  const body = useMemo(() => (profile ? JSON.stringify(profileBody(profile)) : null), [profile]);
+
+  useEffect(() => {
+    if (ready && !profile) router.replace("/welcome");
+  }, [ready, profile, router]);
+
+  useEffect(() => {
+    if (!body) return;
+    let alive = true;
+    Promise.all([getToday(JSON.parse(body)), getChecklist().catch(() => null)])
+      .then(([today, list]) => {
+        if (alive) setLoad({ today, ids: list?.sections.flatMap((s) => s.items.map((i) => i.id)) ?? [], failed: false });
+      })
+      .catch(() => alive && setLoad({ today: null, ids: [], failed: true }));
+    return () => {
+      alive = false;
+    };
+  }, [body]);
+
+  if (!ready || !profile) return <p className="mt-20 text-center text-ink-soft">One moment…</p>;
+  if (load.failed)
+    return (
+      <Card className="mt-10 text-center">
+        <p>Nestling could not reach its server just now. Please check your connection and try again in a moment.</p>
+      </Card>
+    );
+  if (!load.today) return <p className="mt-20 text-center text-ink-soft">Getting today ready…</p>;
+
+  const { stage, tip } = load.today;
+  const done = load.ids.filter((id) => ticks.has(id)).length;
+  const pct = load.ids.length ? Math.round((done / load.ids.length) * 100) : 0;
+
+  let ring;
+  if (stage.life_stage === "pregnancy") {
+    ring = (
+      <WeekRing
+        progress={stage.progress ?? 0}
+        emoji={stage.baby_emoji ?? "🌱"}
+        title={`Week ${stage.week}`}
+        subtitle={`Your baby is about the size of ${stage.baby_size} ${stage.baby_emoji}`}
+      />
+    );
+  } else if (stage.life_stage === "postpartum") {
+    const w = stage.baby_age_weeks ?? 0;
+    ring = (
+      <WeekRing
+        progress={Math.min((stage.baby_age_days ?? 0) / 365, 1)}
+        emoji="👶"
+        title={w < 1 ? `Day ${stage.baby_age_days ?? 0}` : `Week ${w}`}
+        subtitle="Your little one is here. You are doing beautifully."
+      />
+    );
+  } else {
+    ring = <WeekRing progress={0} emoji="🌱" title="Welcome" subtitle="Add a date in Settings to see your week." />;
+  }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="space-y-6">
+      <div className="flex justify-end">
+        <Link href="/settings" aria-label="Settings" className="rounded-full bg-white px-3 py-1.5 text-sm shadow-soft">
+          ⚙️ Settings
+        </Link>
+      </div>
+      {ring}
+
+      <Card tone="peach">
+        <h2 className="text-lg font-semibold">One little moment</h2>
+        {tip ? (
+          <>
+            <p className="mt-2 leading-relaxed">{tip.text}</p>
+            <div className="mt-3">
+              <SourceChip source={tip.source_chip} />
+            </div>
+          </>
+        ) : (
+          <p className="mt-2 text-ink-soft">I don&apos;t have a trusted source for a tip today. Please ask your doctor if you wonder about anything.</p>
+        )}
+      </Card>
+
+      <Link href="/journeys/ready" className="block">
+        <Card>
+          <div className="flex items-baseline justify-between">
+            <h2 className="text-lg font-semibold">Ready meter</h2>
+            <span className="text-sm text-ink-soft">
+              {done} of {load.ids.length}
+            </span>
+          </div>
+          <p className="mt-1 text-sm text-ink-soft">Hospital bag {pct}% ready</p>
+          <div
+            className="mt-3 h-3 overflow-hidden rounded-full bg-sage/25"
+            role="progressbar" aria-label="Hospital bag readiness" aria-valuemin={0} aria-valuemax={100} aria-valuenow={pct}
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+            <div className="h-full rounded-full bg-sage transition-all duration-700" style={{ width: `${pct}%` }} />
+          </div>
+        </Card>
+      </Link>
+
+      <div className="grid grid-cols-2 gap-4">
+        {JOURNEYS.filter((j) => load.today?.cards.includes(j.slug)).map((j) => (
+          <JourneyCard key={j.slug} journey={j} />
+        ))}
+      </div>
     </div>
   );
 }
