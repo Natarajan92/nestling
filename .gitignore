@@ -235,3 +235,8 @@ node_modules/
 
 # Little Lessons renders (built locally, never committed)
 lessons/*/renders/
+
+# Rebuildable upload artifacts; canonical Markdown/CSV evidence stays versioned.
+output/pdf/
+output/submission/
+evals/results/golden_v3/runner.lock

@@ -177,7 +177,7 @@ def test_code_owned_emergency_exports_rule_ids_and_promoted_app_provenance(expor
     assert metadata["predicted_route"] == "guardian" and metadata["model"] == "rules"
     assert metadata["sources_cited"] == ["NHS-CHILD-CPR"]
     assert metadata["pipeline_version"] == "v7_vector_safe+lessons"
-    assert metadata["prompt_version"] == "app-v7-vector-safe-lessons-v2-prenatal"
+    assert metadata["prompt_version"] == main.graph.PROMPT_VERSIONS[metadata["pipeline_version"]]
     assert root.get("outputs") == {} and message not in repr([data for _, _, data in captured])
 
 

@@ -67,7 +67,7 @@ _ID = r"[A-Za-z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)+"
 _PAGES = r"(?:pp?\.?|pages?)\s*([0-9ivxlcdm]+(?:\s*[-–]\s*[0-9ivxlcdm]+)?)"
 _ITEM = rf"({_ID})(?:\s*,?\s*{_PAGES})?"
 _GROUP = re.compile(rf"( ?)[(\[]\s*{_ITEM}(?:\s*[;,]\s*{_ITEM})*\s*[)\]]", re.IGNORECASE)
-_BARE = re.compile(rf"( ?)(?<![(\[])\b({_ID})\s*,?\s*{_PAGES}", re.IGNORECASE)
+_BARE = re.compile(rf"( ?)(?<![\w(\[-])\b({_ID})\s*,?\s*{_PAGES}", re.IGNORECASE)
 _ITEM_RE = re.compile(_ITEM, re.IGNORECASE)
 
 

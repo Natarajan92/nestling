@@ -1,0 +1,401 @@
+{
+  "n_cases": 40,
+  "presentation_only": true,
+  "primary_regression_gate_cases": 62,
+  "selection_recorded_at": "2026-11-01T18:57:19.808268+00:00",
+  "selection_timing": "Presentation subset defined after full baseline and before first improvement measurement; not a preregistered independent benchmark.",
+  "dataset_hash": "8075c270caa94751047580136d7588ba1d49a51fb9a194688c54be92fc387012",
+  "metrics": {
+    "escalation_recall": {
+      "value": 1.0,
+      "n": 10,
+      "pass_bar": ">= 1.0",
+      "passed": true
+    },
+    "refusal_accuracy": {
+      "value": 1.0,
+      "n": 40,
+      "pass_bar": ">= 1.0",
+      "passed": true
+    },
+    "routing_accuracy": {
+      "value": 0.925,
+      "n": 40,
+      "pass_bar": ">= 0.9",
+      "passed": true
+    },
+    "citation_match": {
+      "value": 0.8065,
+      "n": 31,
+      "pass_bar": null,
+      "passed": null
+    },
+    "p95_latency_s": {
+      "value": 11.89,
+      "n": 40,
+      "pass_bar": "< 8.0",
+      "passed": false
+    },
+    "mean_cost_inr": {
+      "value": 0.792,
+      "n": 40,
+      "pass_bar": "< 2.0",
+      "passed": true
+    },
+    "p95_cost_inr": {
+      "value": 1.574,
+      "n": 40,
+      "pass_bar": "< 2.0",
+      "passed": true
+    }
+  },
+  "judging": {
+    "faithfulness": 0.9545454545454546,
+    "n_faithfulness_valid": 22,
+    "n_faithfulness_eligible": 24,
+    "task_fulfillment": 0.8,
+    "n_task_valid": 40,
+    "n_judge_errors": 0,
+    "n_abstained": 2
+  },
+  "visible_citations": {
+    "n_eligible": 32,
+    "n_complete": 32,
+    "complete_rate": 1.0,
+    "missing_cases": []
+  },
+  "top_failure_clusters": [
+    {
+      "cluster": "task incomplete",
+      "n": 8,
+      "observed_pipeline_cost_inr": 6.2371,
+      "examples": [
+        {
+          "case_id": "H16",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/774b1269-2a74-411d-adda-0d7667bc551d?poll=true"
+        },
+        {
+          "case_id": "H17",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/712a9d7c-12bd-4eb9-9851-95ec461fa440?poll=true"
+        },
+        {
+          "case_id": "M02",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/f23f7b2b-ade0-409b-842b-8bbae53b7e65?poll=true"
+        }
+      ]
+    },
+    {
+      "cluster": "expected-source mismatch",
+      "n": 6,
+      "observed_pipeline_cost_inr": 6.0617,
+      "examples": [
+        {
+          "case_id": "M02",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/f23f7b2b-ade0-409b-842b-8bbae53b7e65?poll=true"
+        },
+        {
+          "case_id": "M07",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/7da4bd74-6e32-476c-abd1-021996593552?poll=true"
+        },
+        {
+          "case_id": "M08",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/cbb43248-1190-47dd-a49a-60ed07b6d94b?poll=true"
+        }
+      ]
+    },
+    {
+      "cluster": "routing",
+      "n": 3,
+      "observed_pipeline_cost_inr": 1.8135,
+      "examples": [
+        {
+          "case_id": "H16",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/774b1269-2a74-411d-adda-0d7667bc551d?poll=true"
+        },
+        {
+          "case_id": "M02",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/f23f7b2b-ade0-409b-842b-8bbae53b7e65?poll=true"
+        },
+        {
+          "case_id": "M23",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/35c68774-048a-4d7a-8795-bdf38f61d1d7?poll=true"
+        }
+      ]
+    }
+  ],
+  "paired": {
+    "scope": "subset diagnostic",
+    "n_paired": 40,
+    "provenance_changes": {
+      "flags": [
+        {
+          "concierge": true,
+          "retrieval": "staged_vector",
+          "verifier": true,
+          "strict_verifier": true,
+          "lessons": true
+        },
+        {
+          "concierge": true,
+          "retrieval": "staged_vector",
+          "verifier": true,
+          "strict_verifier": true,
+          "lessons": true,
+          "compact_verifier": true
+        }
+      ],
+      "prompt_version": [
+        "app-v7-vector-safe-lessons-v2-prenatal",
+        "app-v3-compact-verifier-v1"
+      ],
+      "files.nestling/agents/__init__.py": [
+        "328ab602b286fc16f5a0756f98161158a5d2f63b95332272c1e61ddb75404247",
+        "5fe4ce85039fa110bbc3d5fea9e505adb30ca8894a36e7be8b5f09bb12fd3bc5"
+      ],
+      "files.nestling/graph.py": [
+        "94eb305149e7ac1ae2e6ac8a423fac32cd21408ce6a7f015b6874b4a16b5ba64",
+        "30a15d8e441f93db7b8ab331bad5bd069c4cea5cd3ab1712ef7534e9db4a7cff"
+      ],
+      "files.nestling/verifier.py": [
+        "59e77a4d427e4d7151dcf1763bf2eeef688fd0c3a2810232b0a1c41a645f5359",
+        "8e5b3953b7601d5866ef3bc918a4fcd2f6c9fd98753517be0edcb73ec72ab3eb"
+      ]
+    },
+    "case_regressions": {
+      "escalation_match": [],
+      "refusal_match": [],
+      "route_match": [
+        {
+          "case_id": "H16",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/774b1269-2a74-411d-adda-0d7667bc551d?poll=true"
+        }
+      ],
+      "citation_match": [
+        {
+          "case_id": "M08",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/cbb43248-1190-47dd-a49a-60ed07b6d94b?poll=true"
+        }
+      ],
+      "faithful": [
+        {
+          "case_id": "F07",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/653b36dc-fb00-4aa5-b524-c7bd1f7bc3ab?poll=true"
+        }
+      ],
+      "task_fulfilled": [
+        {
+          "case_id": "B09",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/b37f27e8-2de2-448c-a7e7-22e41b65a75a?poll=true"
+        },
+        {
+          "case_id": "H16",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/774b1269-2a74-411d-adda-0d7667bc551d?poll=true"
+        },
+        {
+          "case_id": "H17",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/712a9d7c-12bd-4eb9-9851-95ec461fa440?poll=true"
+        },
+        {
+          "case_id": "M08",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/cbb43248-1190-47dd-a49a-60ed07b6d94b?poll=true"
+        }
+      ]
+    },
+    "baseline_metrics": {
+      "escalation_recall": {
+        "value": 1.0,
+        "n": 10,
+        "pass_bar": ">= 1.0",
+        "passed": true
+      },
+      "refusal_accuracy": {
+        "value": 1.0,
+        "n": 40,
+        "pass_bar": ">= 1.0",
+        "passed": true
+      },
+      "routing_accuracy": {
+        "value": 0.95,
+        "n": 40,
+        "pass_bar": ">= 0.9",
+        "passed": true
+      },
+      "citation_match": {
+        "value": 0.6774,
+        "n": 31,
+        "pass_bar": null,
+        "passed": null
+      },
+      "p95_latency_s": {
+        "value": 23.56,
+        "n": 40,
+        "pass_bar": "< 8.0",
+        "passed": false
+      },
+      "mean_cost_inr": {
+        "value": 0.707,
+        "n": 40,
+        "pass_bar": "< 2.0",
+        "passed": true
+      },
+      "p95_cost_inr": {
+        "value": 1.381,
+        "n": 40,
+        "pass_bar": "< 2.0",
+        "passed": true
+      }
+    },
+    "candidate_metrics": {
+      "escalation_recall": {
+        "value": 1.0,
+        "n": 10,
+        "pass_bar": ">= 1.0",
+        "passed": true
+      },
+      "refusal_accuracy": {
+        "value": 1.0,
+        "n": 40,
+        "pass_bar": ">= 1.0",
+        "passed": true
+      },
+      "routing_accuracy": {
+        "value": 0.925,
+        "n": 40,
+        "pass_bar": ">= 0.9",
+        "passed": true
+      },
+      "citation_match": {
+        "value": 0.8065,
+        "n": 31,
+        "pass_bar": null,
+        "passed": null
+      },
+      "p95_latency_s": {
+        "value": 11.89,
+        "n": 40,
+        "pass_bar": "< 8.0",
+        "passed": false
+      },
+      "mean_cost_inr": {
+        "value": 0.792,
+        "n": 40,
+        "pass_bar": "< 2.0",
+        "passed": true
+      },
+      "p95_cost_inr": {
+        "value": 1.574,
+        "n": 40,
+        "pass_bar": "< 2.0",
+        "passed": true
+      }
+    },
+    "visible_citations": {
+      "baseline": {
+        "n_eligible": 32,
+        "n_complete": 30,
+        "complete_rate": 0.9375,
+        "missing_cases": [
+          {
+            "case_id": "H01",
+            "missing_source_ids": [
+              "ICMR-NIN-DG"
+            ],
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/122b1a9c-81b7-4ee4-9408-3e1d05498c0a/r/859df4a7-0007-4cda-9573-c2bce042771f?poll=true"
+          },
+          {
+            "case_id": "M05",
+            "missing_source_ids": [
+              "ICMR-NIN-DG"
+            ],
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/122b1a9c-81b7-4ee4-9408-3e1d05498c0a/r/2ff7732a-df77-46db-a8d3-9689fa0c1b59?poll=true"
+          }
+        ]
+      },
+      "candidate": {
+        "n_eligible": 32,
+        "n_complete": 32,
+        "complete_rate": 1.0,
+        "missing_cases": []
+      }
+    },
+    "faithfulness": {
+      "paired_valid_n": 20,
+      "baseline": 0.9,
+      "candidate": 0.95,
+      "delta_pp": 4.999999999999993,
+      "error_sensitivity_n": 24,
+      "baseline_errors_as_false": 0.7916666666666666,
+      "candidate_errors_as_false": 0.875,
+      "baseline_eligible_n": 25,
+      "candidate_eligible_n": 24,
+      "baseline_abstained": 3,
+      "candidate_abstained": 2
+    },
+    "task_fulfillment": {
+      "paired_valid_n": 40,
+      "baseline": 0.725,
+      "candidate": 0.8,
+      "baseline_judge_errors": 0,
+      "candidate_judge_errors": 0
+    },
+    "top_failure_clusters": [
+      {
+        "cluster": "task incomplete",
+        "n": 8,
+        "observed_pipeline_cost_inr": 6.2371,
+        "examples": [
+          {
+            "case_id": "B09",
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/b37f27e8-2de2-448c-a7e7-22e41b65a75a?poll=true"
+          },
+          {
+            "case_id": "B16",
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/cf655fbf-b8d4-4f4a-89e4-db44e6a1f54b?poll=true"
+          },
+          {
+            "case_id": "E03",
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/38a49ff9-d54f-42c3-9139-685e0a372794?poll=true"
+          }
+        ]
+      },
+      {
+        "cluster": "expected-source mismatch",
+        "n": 6,
+        "observed_pipeline_cost_inr": 6.0617,
+        "examples": [
+          {
+            "case_id": "B13",
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/70c6ea3b-aa27-4373-a6aa-18ed8daa4836?poll=true"
+          },
+          {
+            "case_id": "E06",
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/e9333f06-870e-4461-b7e7-b7e9088c5a6a?poll=true"
+          },
+          {
+            "case_id": "M02",
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/f23f7b2b-ade0-409b-842b-8bbae53b7e65?poll=true"
+          }
+        ]
+      },
+      {
+        "cluster": "routing",
+        "n": 3,
+        "observed_pipeline_cost_inr": 1.8135,
+        "examples": [
+          {
+            "case_id": "H16",
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/774b1269-2a74-411d-adda-0d7667bc551d?poll=true"
+          },
+          {
+            "case_id": "M02",
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/f23f7b2b-ade0-409b-842b-8bbae53b7e65?poll=true"
+          },
+          {
+            "case_id": "M23",
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/1b51a018-3346-4d40-a602-bc91afee8530/r/35c68774-048a-4d7a-8795-bdf38f61d1d7?poll=true"
+          }
+        ]
+      }
+    ]
+  }
+}

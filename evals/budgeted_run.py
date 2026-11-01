@@ -30,6 +30,11 @@ PRICES = {**PRICE_USD_PER_MTOK, judge.JUDGE_MODEL: (0.20, 0.60)}
 ASK_CAP_INR = 249.99  # below saved 250 cap and owner's precise +226.16 continuation limit
 
 
+def require_legacy_dataset():
+    if golden.DATASET_VERSION != 'golden_v2_india':
+        raise RuntimeError('Historical v2 runner retired for active v3; use python -m evals.v3_run. Old ledger is unchanged.')
+
+
 def write_json(path: Path, value: dict):
     """Replace a complete JSON file, so interruption cannot truncate the ledger."""
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -48,6 +53,7 @@ def code_provenance() -> dict:
 
 def prepare_safe() -> dict:
     """Seed only unaffected nonclinical outputs; never relabel old clinical answers."""
+    require_legacy_dataset()
     if CHECKPOINT.exists():
         raise RuntimeError("Safe checkpoint already exists; inspect it and use --resume")
     prior_path = evaluators.RESULTS_DIR / "phase3_v7_vector_checkpoint.json"
@@ -70,6 +76,7 @@ def prepare_safe() -> dict:
 
 
 def prepare_default() -> dict:
+    require_legacy_dataset()
     if llm.MAIN != "deepseek-ai/DeepSeek-V4-Pro":
         raise RuntimeError("Default-model preparation requires owner MAIN DeepSeek-V4-Pro")
     prior = json.loads(CHECKPOINT.read_text(encoding="utf-8"))
@@ -110,6 +117,7 @@ def needs_judge(out: dict) -> bool:
 
 def readiness() -> dict:
     """Inspect local progress without credentials, network requests or paid calls."""
+    require_legacy_dataset()
     cases = golden.load()
     checkpoint = json.loads(CHECKPOINT.read_text(encoding="utf-8")) if CHECKPOINT.exists() else {"cases": {}}
     meter = Meter(LEDGER, cap=ASK_CAP_INR)
@@ -211,6 +219,7 @@ def checkpoint_judge_rows(checkpoint: dict, examples) -> list[dict]:
 
 def run_local(resume=False):
     """Same pipeline/scoring, with local metadata and exports while LangSmith quota is blocked."""
+    require_legacy_dataset()
     from langsmith import tracing_context
     checkpoint = json.loads(CHECKPOINT.read_text(encoding="utf-8"))
     if checkpoint["model"] != llm.MAIN or checkpoint["code_provenance"] != code_provenance():
@@ -296,6 +305,7 @@ def run_local(resume=False):
 
 def export_local(checkpoint: dict, frozen: list[dict]):
     """Adapt saved cases to the existing scorers; trace links stay blank until uploaded."""
+    require_legacy_dataset()
     examples = [SimpleNamespace(**{k: golden.to_example(case)[k] for k in ("inputs", "outputs", "metadata")}) for case in frozen]
     class Results(list):
         experiment_name = checkpoint["local_run_id"]
@@ -319,6 +329,7 @@ def export_local(checkpoint: dict, frozen: list[dict]):
 
 
 def run(resume=False, only=None, final_judge_attempt=False):
+    require_legacy_dataset()
     from langsmith import Client, evaluate, get_current_run_tree, traceable
     client = Client()
     meter = Meter(LEDGER, cap=ASK_CAP_INR)

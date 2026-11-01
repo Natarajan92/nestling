@@ -189,12 +189,12 @@ def test_breathing_context_excludes_negated_hypothetical_and_resolved_remote_eve
     assert not guardian.accept_classifier_flags(text, [{"sign": rule, "quote": quote}])
 
 
-def test_frozen_104_code_decisions_remain_identical():
+def test_frozen_v3_code_decisions_remain_identical():
     import hashlib
     import json
     from nestling import golden
 
     decisions = [(row["case_id"], guardian.decide(row["input"]).as_dict()) for row in golden.load()]
-    assert len(decisions) == 104
-    # Captured before the event-local fix; includes rules, sources, reply, and refusal.
-    assert hashlib.sha256(json.dumps(decisions, sort_keys=True).encode()).hexdigest() == "49c1ced9e0bab15c14c91ccf7869e257bc4563d98ca84d56a948c3d1928ab046"
+    assert len(decisions) == 62
+    # Captured before v3 evaluation changes; includes rules, sources, reply and refusal.
+    assert hashlib.sha256(json.dumps(decisions, sort_keys=True).encode()).hexdigest() == "1dcf9a346037cb9bc6c5eb0cd841c08c5669a9c0c790766f1bb077a6bf2c2dfb"

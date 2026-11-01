@@ -1,0 +1,6 @@
+{
+  "approved_on": "2026-11-02",
+  "cap_inr": 350.0,
+  "scope": "fresh golden_v3 baseline and up to three improvement rounds; synthetic LangSmith traces",
+  "historical_quality_ledger": "closed; never reused"
+}

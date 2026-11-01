@@ -1,0 +1,5936 @@
+{
+  "cap_inr": 350.0,
+  "accounted_inr": 183.9041,
+  "pending": {},
+  "actual_response_cost_inr": 183.9041,
+  "calls": [
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 29,
+      "cost_inr": 0.034879
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 81,
+      "cost_inr": 0.038524
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3110,
+      "tokens_out": 257,
+      "cost_inr": 0.601919
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2360,
+      "tokens_out": 227,
+      "cost_inr": 0.467384
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3845,
+      "tokens_out": 403,
+      "cost_inr": 0.095935
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 87,
+      "cost_inr": 0.039207
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1030,
+      "tokens_out": 116,
+      "cost_inr": 0.042539
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 41,
+      "cost_inr": 0.036246
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 838,
+      "tokens_out": 105,
+      "cost_inr": 0.174065
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 645,
+      "tokens_out": 86,
+      "cost_inr": 0.017141
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 121,
+      "cost_inr": 0.04308
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 32,
+      "cost_inr": 0.035221
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1110,
+      "tokens_out": 37,
+      "cost_inr": 0.035819
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3137,
+      "tokens_out": 357,
+      "cost_inr": 0.639622
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1903,
+      "tokens_out": 457,
+      "cost_inr": 0.467883
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 886,
+      "tokens_out": 256,
+      "cost_inr": 0.232197
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1046,
+      "tokens_out": 54,
+      "cost_inr": 0.191671
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1576,
+      "tokens_out": 469,
+      "cost_inr": 0.417557
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3660,
+      "tokens_out": 141,
+      "cost_inr": 0.077504
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2661,
+      "tokens_out": 692,
+      "cost_inr": 0.089918
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 52,
+      "cost_inr": 0.037499
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 86,
+      "cost_inr": 0.039093
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1105,
+      "tokens_out": 43,
+      "cost_inr": 0.03636
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1025,
+      "tokens_out": 71,
+      "cost_inr": 0.037271
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2683,
+      "tokens_out": 224,
+      "cost_inr": 0.520036
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 722,
+      "tokens_out": 246,
+      "cost_inr": 0.201636
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 834,
+      "tokens_out": 51,
+      "cost_inr": 0.155463
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3186,
+      "tokens_out": 197,
+      "cost_inr": 0.071695
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3103,
+      "tokens_out": 384,
+      "cost_inr": 0.642944
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1446,
+      "tokens_out": 317,
+      "cost_inr": 0.345472
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1565,
+      "tokens_out": 176,
+      "cost_inr": 0.318399
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3664,
+      "tokens_out": 374,
+      "cost_inr": 0.090848
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 158,
+      "cost_inr": 0.047351
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1111,
+      "tokens_out": 131,
+      "cost_inr": 0.046553
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2749,
+      "tokens_out": 241,
+      "cost_inr": 0.536645
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1107,
+      "tokens_out": 20,
+      "cost_inr": 0.033797
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1027,
+      "tokens_out": 102,
+      "cost_inr": 0.040859
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1729,
+      "tokens_out": 260,
+      "cost_inr": 0.373542
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2989,
+      "tokens_out": 216,
+      "cost_inr": 0.568202
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1745,
+      "tokens_out": 227,
+      "cost_inr": 0.365237
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1254,
+      "tokens_out": 197,
+      "cost_inr": 0.27372
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3428,
+      "tokens_out": 407,
+      "cost_inr": 0.088247
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1299,
+      "tokens_out": 158,
+      "cost_inr": 0.268239
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3579,
+      "tokens_out": 289,
+      "cost_inr": 0.084394
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 117,
+      "cost_inr": 0.042795
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1115,
+      "tokens_out": 358,
+      "cost_inr": 0.072521
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1110,
+      "tokens_out": 40,
+      "cost_inr": 0.036161
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1030,
+      "tokens_out": 78,
+      "cost_inr": 0.038211
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3646,
+      "tokens_out": 404,
+      "cost_inr": 0.739776
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3149,
+      "tokens_out": 496,
+      "cost_inr": 0.687789
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 4403,
+      "tokens_out": 588,
+      "cost_inr": 0.117062
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2395,
+      "tokens_out": 483,
+      "cost_inr": 0.558237
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2447,
+      "tokens_out": 472,
+      "cost_inr": 0.56322
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 664,
+      "tokens_out": 103,
+      "cost_inr": 0.018469
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3923,
+      "tokens_out": 698,
+      "cost_inr": 0.114215
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 42,
+      "cost_inr": 0.03636
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1028,
+      "tokens_out": 97,
+      "cost_inr": 0.040318
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1024,
+      "tokens_out": 97,
+      "cost_inr": 0.040204
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1104,
+      "tokens_out": 294,
+      "cost_inr": 0.064918
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3163,
+      "tokens_out": 289,
+      "cost_inr": 0.621352
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1935,
+      "tokens_out": 244,
+      "cost_inr": 0.402442
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1311,
+      "tokens_out": 321,
+      "cost_inr": 0.324379
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 745,
+      "tokens_out": 186,
+      "cost_inr": 0.185525
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1432,
+      "tokens_out": 149,
+      "cost_inr": 0.28734
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 818,
+      "tokens_out": 91,
+      "cost_inr": 0.166093
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3816,
+      "tokens_out": 254,
+      "cost_inr": 0.0869
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2393,
+      "tokens_out": 201,
+      "cost_inr": 0.05687
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 121,
+      "cost_inr": 0.043137
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 139,
+      "cost_inr": 0.047493
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1111,
+      "tokens_out": 58,
+      "cost_inr": 0.038239
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 129,
+      "cost_inr": 0.044048
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 608,
+      "tokens_out": 81,
+      "cost_inr": 0.016154
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3044,
+      "tokens_out": 201,
+      "cost_inr": 0.572355
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 845,
+      "tokens_out": 149,
+      "cost_inr": 0.189844
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3675,
+      "tokens_out": 312,
+      "cost_inr": 0.087526
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 21,
+      "cost_inr": 0.034168
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 164,
+      "cost_inr": 0.048176
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1027,
+      "tokens_out": 115,
+      "cost_inr": 0.042339
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1598,
+      "tokens_out": 152,
+      "cost_inr": 0.315908
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1107,
+      "tokens_out": 329,
+      "cost_inr": 0.06899
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2041,
+      "tokens_out": 106,
+      "cost_inr": 0.044779
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3053,
+      "tokens_out": 232,
+      "cost_inr": 0.584147
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1328,
+      "tokens_out": 235,
+      "cost_inr": 0.298634
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1396,
+      "tokens_out": 133,
+      "cost_inr": 0.276046
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3666,
+      "tokens_out": 208,
+      "cost_inr": 0.081433
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1022,
+      "tokens_out": 78,
+      "cost_inr": 0.037983
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1102,
+      "tokens_out": 25,
+      "cost_inr": 0.034225
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 597,
+      "tokens_out": 81,
+      "cost_inr": 0.015945
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1114,
+      "tokens_out": 60,
+      "cost_inr": 0.038552
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1034,
+      "tokens_out": 96,
+      "cost_inr": 0.040375
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2927,
+      "tokens_out": 356,
+      "cost_inr": 0.604411
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1766,
+      "tokens_out": 401,
+      "cost_inr": 0.426526
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1110,
+      "tokens_out": 51,
+      "cost_inr": 0.037414
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1030,
+      "tokens_out": 159,
+      "cost_inr": 0.047436
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1893,
+      "tokens_out": 231,
+      "cost_inr": 0.391148
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3660,
+      "tokens_out": 324,
+      "cost_inr": 0.087925
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2970,
+      "tokens_out": 179,
+      "cost_inr": 0.552756
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 774,
+      "tokens_out": 183,
+      "cost_inr": 0.189345
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 855,
+      "tokens_out": 89,
+      "cost_inr": 0.171574
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3416,
+      "tokens_out": 175,
+      "cost_inr": 0.074808
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 688,
+      "tokens_out": 94,
+      "cost_inr": 0.018413
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 89,
+      "cost_inr": 0.039606
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 49,
+      "cost_inr": 0.037357
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2390,
+      "tokens_out": 424,
+      "cost_inr": 0.537808
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 644,
+      "tokens_out": 133,
+      "cost_inr": 0.019798
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3044,
+      "tokens_out": 581,
+      "cost_inr": 0.090867
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 651,
+      "tokens_out": 135,
+      "cost_inr": 0.020045
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1032,
+      "tokens_out": 85,
+      "cost_inr": 0.039065
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 54,
+      "cost_inr": 0.037812
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1921,
+      "tokens_out": 264,
+      "cost_inr": 0.406761
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 992,
+      "tokens_out": 195,
+      "cost_inr": 0.22954
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1014,
+      "tokens_out": 228,
+      "cost_inr": 0.244156
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2547,
+      "tokens_out": 348,
+      "cost_inr": 0.068164
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 649,
+      "tokens_out": 103,
+      "cost_inr": 0.018185
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 670,
+      "tokens_out": 176,
+      "cost_inr": 0.02274
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 680,
+      "tokens_out": 98,
+      "cost_inr": 0.018488
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 150,
+      "cost_inr": 0.046439
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 500,
+      "cost_inr": 0.088608
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 602,
+      "tokens_out": 92,
+      "cost_inr": 0.016666
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 694,
+      "tokens_out": 94,
+      "cost_inr": 0.018526
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1041,
+      "tokens_out": 124,
+      "cost_inr": 0.043763
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1121,
+      "tokens_out": 36,
+      "cost_inr": 0.036018
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1556,
+      "tokens_out": 353,
+      "cost_inr": 0.375701
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1638,
+      "tokens_out": 363,
+      "cost_inr": 0.392643
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1028,
+      "tokens_out": 85,
+      "cost_inr": 0.038951
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1752,
+      "tokens_out": 300,
+      "cost_inr": 0.39065
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1108,
+      "tokens_out": 500,
+      "cost_inr": 0.088494
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 1932,
+      "tokens_out": 106,
+      "cost_inr": 0.042709
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 605,
+      "tokens_out": 111,
+      "cost_inr": 0.017805
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 49,
+      "cost_inr": 0.037357
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1108,
+      "tokens_out": 111,
+      "cost_inr": 0.04419
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1028,
+      "tokens_out": 120,
+      "cost_inr": 0.042937
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 169,
+      "cost_inr": 0.048746
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2881,
+      "tokens_out": 168,
+      "cost_inr": 0.53432
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3175,
+      "tokens_out": 192,
+      "cost_inr": 0.591123
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1304,
+      "tokens_out": 108,
+      "cost_inr": 0.252461
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1311,
+      "tokens_out": 113,
+      "cost_inr": 0.255284
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1316,
+      "tokens_out": 154,
+      "cost_inr": 0.269734
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1323,
+      "tokens_out": 189,
+      "cost_inr": 0.282523
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3431,
+      "tokens_out": 175,
+      "cost_inr": 0.075093
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3720,
+      "tokens_out": 197,
+      "cost_inr": 0.081831
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1115,
+      "tokens_out": 41,
+      "cost_inr": 0.036417
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1114,
+      "tokens_out": 48,
+      "cost_inr": 0.037186
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 127,
+      "cost_inr": 0.043934
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1034,
+      "tokens_out": 447,
+      "cost_inr": 0.080351
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2972,
+      "tokens_out": 174,
+      "cost_inr": 0.551427
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1162,
+      "tokens_out": 134,
+      "cost_inr": 0.237512
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1688,
+      "tokens_out": 389,
+      "cost_inr": 0.409584
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1199,
+      "tokens_out": 145,
+      "cost_inr": 0.247312
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1774,
+      "tokens_out": 302,
+      "cost_inr": 0.394968
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3618,
+      "tokens_out": 180,
+      "cost_inr": 0.078927
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2377,
+      "tokens_out": 450,
+      "cost_inr": 0.070746
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1108,
+      "tokens_out": 42,
+      "cost_inr": 0.036332
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1028,
+      "tokens_out": 140,
+      "cost_inr": 0.045215
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 27,
+      "cost_inr": 0.034652
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 616,
+      "cost_inr": 0.099456
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2603,
+      "tokens_out": 318,
+      "cost_inr": 0.537974
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3158,
+      "tokens_out": 269,
+      "cost_inr": 0.613878
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1090,
+      "tokens_out": 243,
+      "cost_inr": 0.261762
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1936,
+      "tokens_out": 329,
+      "cost_inr": 0.430844
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1206,
+      "tokens_out": 107,
+      "cost_inr": 0.235851
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1987,
+      "tokens_out": 200,
+      "cost_inr": 0.396463
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3097,
+      "tokens_out": 148,
+      "cost_inr": 0.067215
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3836,
+      "tokens_out": 328,
+      "cost_inr": 0.091493
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1115,
+      "tokens_out": 284,
+      "cost_inr": 0.064093
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 338,
+      "cost_inr": 0.067965
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3034,
+      "tokens_out": 205,
+      "cost_inr": 0.572023
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1117,
+      "tokens_out": 29,
+      "cost_inr": 0.035107
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1037,
+      "tokens_out": 131,
+      "cost_inr": 0.044446
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1809,
+      "tokens_out": 170,
+      "cost_inr": 0.356933
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1839,
+      "tokens_out": 184,
+      "cost_inr": 0.366566
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1896,
+      "tokens_out": 210,
+      "cost_inr": 0.38467
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1078,
+      "tokens_out": 162,
+      "cost_inr": 0.232862
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3678,
+      "tokens_out": 282,
+      "cost_inr": 0.085875
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2487,
+      "tokens_out": 330,
+      "cost_inr": 0.066
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1032,
+      "tokens_out": 96,
+      "cost_inr": 0.040318
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1037,
+      "tokens_out": 98,
+      "cost_inr": 0.040688
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 52,
+      "cost_inr": 0.037584
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1117,
+      "tokens_out": 318,
+      "cost_inr": 0.068022
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3376,
+      "tokens_out": 228,
+      "cost_inr": 0.636466
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2559,
+      "tokens_out": 263,
+      "cost_inr": 0.512395
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1902,
+      "tokens_out": 139,
+      "cost_inr": 0.362082
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 644,
+      "tokens_out": 227,
+      "cost_inr": 0.18237
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 743,
+      "tokens_out": 93,
+      "cost_inr": 0.1543
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 4057,
+      "tokens_out": 298,
+      "cost_inr": 0.09398
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2988,
+      "tokens_out": 242,
+      "cost_inr": 0.070499
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 665,
+      "tokens_out": 93,
+      "cost_inr": 0.017919
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 658,
+      "tokens_out": 92,
+      "cost_inr": 0.017729
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 201,
+      "cost_inr": 0.054668
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 134,
+      "cost_inr": 0.04476
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 15,
+      "cost_inr": 0.03337
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1032,
+      "tokens_out": 102,
+      "cost_inr": 0.041001
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2772,
+      "tokens_out": 276,
+      "cost_inr": 0.552091
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1125,
+      "tokens_out": 232,
+      "cost_inr": 0.263921
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3153,
+      "tokens_out": 322,
+      "cost_inr": 0.630653
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3265,
+      "tokens_out": 245,
+      "cost_inr": 0.623677
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3398,
+      "tokens_out": 329,
+      "cost_inr": 0.083236
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3771,
+      "tokens_out": 437,
+      "cost_inr": 0.096467
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 131,
+      "cost_inr": 0.044418
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 54,
+      "cost_inr": 0.037926
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1114,
+      "tokens_out": 78,
+      "cost_inr": 0.040602
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1034,
+      "tokens_out": 217,
+      "cost_inr": 0.054156
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3026,
+      "tokens_out": 377,
+      "cost_inr": 0.62783
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2940,
+      "tokens_out": 316,
+      "cost_inr": 0.593282
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3755,
+      "tokens_out": 356,
+      "cost_inr": 0.09155
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2654,
+      "tokens_out": 292,
+      "cost_inr": 0.537808
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3659,
+      "tokens_out": 397,
+      "cost_inr": 0.092063
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1038,
+      "tokens_out": 148,
+      "cost_inr": 0.046411
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1118,
+      "tokens_out": 219,
+      "cost_inr": 0.056775
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1801,
+      "tokens_out": 225,
+      "cost_inr": 0.373874
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1083,
+      "tokens_out": 97,
+      "cost_inr": 0.2121
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2313,
+      "tokens_out": 301,
+      "cost_inr": 0.061046
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 121,
+      "cost_inr": 0.043137
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1111,
+      "tokens_out": 153,
+      "cost_inr": 0.049059
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2940,
+      "tokens_out": 285,
+      "cost_inr": 0.582985
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1574,
+      "tokens_out": 196,
+      "cost_inr": 0.326538
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1649,
+      "tokens_out": 196,
+      "cost_inr": 0.338995
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3469,
+      "tokens_out": 405,
+      "cost_inr": 0.088912
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 663,
+      "tokens_out": 95,
+      "cost_inr": 0.017995
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 664,
+      "tokens_out": 93,
+      "cost_inr": 0.0179
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 712,
+      "tokens_out": 104,
+      "cost_inr": 0.019438
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 680,
+      "tokens_out": 120,
+      "cost_inr": 0.019741
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 71,
+      "cost_inr": 0.039862
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 189,
+      "cost_inr": 0.051024
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2747,
+      "tokens_out": 363,
+      "cost_inr": 0.576839
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 906,
+      "tokens_out": 321,
+      "cost_inr": 0.257111
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 692,
+      "tokens_out": 95,
+      "cost_inr": 0.018545
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 988,
+      "tokens_out": 228,
+      "cost_inr": 0.239838
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3354,
+      "tokens_out": 349,
+      "cost_inr": 0.08354
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1120,
+      "tokens_out": 96,
+      "cost_inr": 0.042823
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1040,
+      "tokens_out": 739,
+      "cost_inr": 0.113778
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2724,
+      "tokens_out": 242,
+      "cost_inr": 0.532825
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 728,
+      "tokens_out": 122,
+      "cost_inr": 0.161442
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 738,
+      "tokens_out": 199,
+      "cost_inr": 0.188681
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 660,
+      "tokens_out": 112,
+      "cost_inr": 0.018906
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3259,
+      "tokens_out": 214,
+      "cost_inr": 0.074049
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1115,
+      "tokens_out": 41,
+      "cost_inr": 0.036417
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 364,
+      "cost_inr": 0.070926
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 667,
+      "tokens_out": 106,
+      "cost_inr": 0.018697
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2560,
+      "tokens_out": 155,
+      "cost_inr": 0.476685
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 754,
+      "tokens_out": 182,
+      "cost_inr": 0.185691
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 813,
+      "tokens_out": 93,
+      "cost_inr": 0.165926
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3056,
+      "tokens_out": 205,
+      "cost_inr": 0.069683
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1030,
+      "tokens_out": 62,
+      "cost_inr": 0.036388
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1110,
+      "tokens_out": 27,
+      "cost_inr": 0.03468
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 608,
+      "tokens_out": 109,
+      "cost_inr": 0.017748
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 714,
+      "tokens_out": 103,
+      "cost_inr": 0.019419
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1110,
+      "tokens_out": 35,
+      "cost_inr": 0.035591
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1030,
+      "tokens_out": 106,
+      "cost_inr": 0.0414
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 30,
+      "cost_inr": 0.034993
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 68,
+      "cost_inr": 0.037043
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3110,
+      "tokens_out": 225,
+      "cost_inr": 0.591289
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1903,
+      "tokens_out": 434,
+      "cost_inr": 0.460242
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1825,
+      "tokens_out": 224,
+      "cost_inr": 0.377528
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1857,
+      "tokens_out": 185,
+      "cost_inr": 0.369888
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1595,
+      "tokens_out": 421,
+      "cost_inr": 0.404767
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3759,
+      "tokens_out": 276,
+      "cost_inr": 0.08707
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2685,
+      "tokens_out": 406,
+      "cost_inr": 0.074087
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 45,
+      "cost_inr": 0.036702
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 87,
+      "cost_inr": 0.039207
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 37,
+      "cost_inr": 0.035791
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 838,
+      "tokens_out": 105,
+      "cost_inr": 0.174065
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 121,
+      "cost_inr": 0.04308
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 645,
+      "tokens_out": 86,
+      "cost_inr": 0.017141
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3137,
+      "tokens_out": 297,
+      "cost_inr": 0.619691
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1816,
+      "tokens_out": 227,
+      "cost_inr": 0.37703
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3902,
+      "tokens_out": 483,
+      "cost_inr": 0.101573
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 86,
+      "cost_inr": 0.039093
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 52,
+      "cost_inr": 0.037499
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2683,
+      "tokens_out": 232,
+      "cost_inr": 0.522693
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2311,
+      "tokens_out": 239,
+      "cost_inr": 0.463232
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2335,
+      "tokens_out": 232,
+      "cost_inr": 0.464893
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3341,
+      "tokens_out": 332,
+      "cost_inr": 0.082325
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1025,
+      "tokens_out": 94,
+      "cost_inr": 0.039891
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1105,
+      "tokens_out": 65,
+      "cost_inr": 0.038866
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3103,
+      "tokens_out": 322,
+      "cost_inr": 0.622349
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1725,
+      "tokens_out": 289,
+      "cost_inr": 0.382511
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3823,
+      "tokens_out": 613,
+      "cost_inr": 0.107476
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 148,
+      "cost_inr": 0.046212
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1111,
+      "tokens_out": 163,
+      "cost_inr": 0.050198
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2749,
+      "tokens_out": 271,
+      "cost_inr": 0.54661
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1996,
+      "tokens_out": 392,
+      "cost_inr": 0.461737
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2012,
+      "tokens_out": 288,
+      "cost_inr": 0.429847
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3458,
+      "tokens_out": 473,
+      "cost_inr": 0.092575
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1027,
+      "tokens_out": 64,
+      "cost_inr": 0.036531
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1107,
+      "tokens_out": 20,
+      "cost_inr": 0.033797
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2989,
+      "tokens_out": 249,
+      "cost_inr": 0.579165
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1286,
+      "tokens_out": 283,
+      "cost_inr": 0.307603
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1338,
+      "tokens_out": 199,
+      "cost_inr": 0.288337
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3614,
+      "tokens_out": 358,
+      "cost_inr": 0.088988
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 128,
+      "cost_inr": 0.044048
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1115,
+      "tokens_out": 445,
+      "cost_inr": 0.082429
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3646,
+      "tokens_out": 421,
+      "cost_inr": 0.745423
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1110,
+      "tokens_out": 40,
+      "cost_inr": 0.036161
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1030,
+      "tokens_out": 92,
+      "cost_inr": 0.039805
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 4425,
+      "tokens_out": 460,
+      "cost_inr": 0.110191
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3149,
+      "tokens_out": 419,
+      "cost_inr": 0.662211
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2365,
+      "tokens_out": 348,
+      "cost_inr": 0.508409
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2377,
+      "tokens_out": 446,
+      "cost_inr": 0.542956
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3896,
+      "tokens_out": 581,
+      "cost_inr": 0.107039
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 664,
+      "tokens_out": 112,
+      "cost_inr": 0.018982
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1028,
+      "tokens_out": 98,
+      "cost_inr": 0.040432
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 42,
+      "cost_inr": 0.03636
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1024,
+      "tokens_out": 90,
+      "cost_inr": 0.039407
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1104,
+      "tokens_out": 500,
+      "cost_inr": 0.08838
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3163,
+      "tokens_out": 239,
+      "cost_inr": 0.604743
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 604,
+      "tokens_out": 97,
+      "cost_inr": 0.016989
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1715,
+      "tokens_out": 258,
+      "cost_inr": 0.370552
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1835,
+      "tokens_out": 103,
+      "cost_inr": 0.338995
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3765,
+      "tokens_out": 190,
+      "cost_inr": 0.082287
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 93,
+      "cost_inr": 0.039948
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 113,
+      "cost_inr": 0.044532
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3044,
+      "tokens_out": 309,
+      "cost_inr": 0.608231
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1951,
+      "tokens_out": 212,
+      "cost_inr": 0.39447
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1111,
+      "tokens_out": 58,
+      "cost_inr": 0.038239
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 95,
+      "cost_inr": 0.040175
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 608,
+      "tokens_out": 79,
+      "cost_inr": 0.01604
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3759,
+      "tokens_out": 372,
+      "cost_inr": 0.092537
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 32,
+      "cost_inr": 0.03542
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 160,
+      "cost_inr": 0.047721
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1598,
+      "tokens_out": 139,
+      "cost_inr": 0.31159
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2041,
+      "tokens_out": 110,
+      "cost_inr": 0.045006
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1027,
+      "tokens_out": 121,
+      "cost_inr": 0.043023
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1107,
+      "tokens_out": 290,
+      "cost_inr": 0.064548
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3053,
+      "tokens_out": 240,
+      "cost_inr": 0.586805
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1872,
+      "tokens_out": 283,
+      "cost_inr": 0.404934
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1913,
+      "tokens_out": 201,
+      "cost_inr": 0.384504
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1102,
+      "tokens_out": 25,
+      "cost_inr": 0.034225
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1022,
+      "tokens_out": 89,
+      "cost_inr": 0.039236
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 597,
+      "tokens_out": 81,
+      "cost_inr": 0.015945
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3736,
+      "tokens_out": 285,
+      "cost_inr": 0.087146
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1034,
+      "tokens_out": 98,
+      "cost_inr": 0.040602
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1114,
+      "tokens_out": 56,
+      "cost_inr": 0.038097
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1110,
+      "tokens_out": 62,
+      "cost_inr": 0.038666
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1030,
+      "tokens_out": 168,
+      "cost_inr": 0.048461
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2970,
+      "tokens_out": 190,
+      "cost_inr": 0.55641
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2927,
+      "tokens_out": 371,
+      "cost_inr": 0.609393
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1067,
+      "tokens_out": 158,
+      "cost_inr": 0.229706
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1094,
+      "tokens_out": 147,
+      "cost_inr": 0.230536
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1792,
+      "tokens_out": 383,
+      "cost_inr": 0.424865
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1866,
+      "tokens_out": 299,
+      "cost_inr": 0.409252
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3473,
+      "tokens_out": 182,
+      "cost_inr": 0.076289
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3744,
+      "tokens_out": 498,
+      "cost_inr": 0.099428
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 688,
+      "tokens_out": 115,
+      "cost_inr": 0.019608
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 122,
+      "cost_inr": 0.043364
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 49,
+      "cost_inr": 0.037357
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2390,
+      "tokens_out": 373,
+      "cost_inr": 0.520866
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 644,
+      "tokens_out": 102,
+      "cost_inr": 0.018033
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3005,
+      "tokens_out": 561,
+      "cost_inr": 0.088988
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 651,
+      "tokens_out": 132,
+      "cost_inr": 0.019874
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 56,
+      "cost_inr": 0.03804
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1032,
+      "tokens_out": 122,
+      "cost_inr": 0.043279
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1921,
+      "tokens_out": 191,
+      "cost_inr": 0.382511
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 840,
+      "tokens_out": 80,
+      "cost_inr": 0.166093
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2507,
+      "tokens_out": 267,
+      "cost_inr": 0.062792
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 649,
+      "tokens_out": 102,
+      "cost_inr": 0.018128
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 670,
+      "tokens_out": 123,
+      "cost_inr": 0.019722
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 680,
+      "tokens_out": 96,
+      "cost_inr": 0.018375
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 195,
+      "cost_inr": 0.051565
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 198,
+      "cost_inr": 0.054213
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 694,
+      "tokens_out": 94,
+      "cost_inr": 0.018526
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 602,
+      "tokens_out": 84,
+      "cost_inr": 0.016211
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1121,
+      "tokens_out": 34,
+      "cost_inr": 0.035791
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1041,
+      "tokens_out": 152,
+      "cost_inr": 0.046952
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1556,
+      "tokens_out": 317,
+      "cost_inr": 0.363743
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1028,
+      "tokens_out": 109,
+      "cost_inr": 0.041684
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1639,
+      "tokens_out": 298,
+      "cost_inr": 0.371217
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1108,
+      "tokens_out": 500,
+      "cost_inr": 0.088494
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1662,
+      "tokens_out": 292,
+      "cost_inr": 0.373044
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 605,
+      "tokens_out": 131,
+      "cost_inr": 0.018944
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2182,
+      "tokens_out": 428,
+      "cost_inr": 0.065792
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 49,
+      "cost_inr": 0.037357
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 147,
+      "cost_inr": 0.04624
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1108,
+      "tokens_out": 111,
+      "cost_inr": 0.04419
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1028,
+      "tokens_out": 154,
+      "cost_inr": 0.04681
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3175,
+      "tokens_out": 211,
+      "cost_inr": 0.597435
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1356,
+      "tokens_out": 135,
+      "cost_inr": 0.270066
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2881,
+      "tokens_out": 214,
+      "cost_inr": 0.5496
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1361,
+      "tokens_out": 198,
+      "cost_inr": 0.291825
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1364,
+      "tokens_out": 215,
+      "cost_inr": 0.29797
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1405,
+      "tokens_out": 30,
+      "cost_inr": 0.243326
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3739,
+      "tokens_out": 248,
+      "cost_inr": 0.085096
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3316,
+      "tokens_out": 125,
+      "cost_inr": 0.070063
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1115,
+      "tokens_out": 41,
+      "cost_inr": 0.036417
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 124,
+      "cost_inr": 0.043592
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1114,
+      "tokens_out": 69,
+      "cost_inr": 0.039577
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1688,
+      "tokens_out": 429,
+      "cost_inr": 0.422872
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1861,
+      "tokens_out": 278,
+      "cost_inr": 0.401446
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1034,
+      "tokens_out": 568,
+      "cost_inr": 0.094132
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2473,
+      "tokens_out": 390,
+      "cost_inr": 0.069151
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2972,
+      "tokens_out": 127,
+      "cost_inr": 0.535814
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1110,
+      "tokens_out": 75,
+      "cost_inr": 0.209277
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1126,
+      "tokens_out": 110,
+      "cost_inr": 0.223561
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3585,
+      "tokens_out": 234,
+      "cost_inr": 0.081376
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1108,
+      "tokens_out": 43,
+      "cost_inr": 0.036445
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1028,
+      "tokens_out": 112,
+      "cost_inr": 0.042026
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2603,
+      "tokens_out": 312,
+      "cost_inr": 0.53598
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1657,
+      "tokens_out": 311,
+      "cost_inr": 0.378525
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 21,
+      "cost_inr": 0.033968
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1675,
+      "tokens_out": 290,
+      "cost_inr": 0.374539
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 273,
+      "cost_inr": 0.060391
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3158,
+      "tokens_out": 316,
+      "cost_inr": 0.629491
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3275,
+      "tokens_out": 372,
+      "cost_inr": 0.08335
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2516,
+      "tokens_out": 383,
+      "cost_inr": 0.545116
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2533,
+      "tokens_out": 326,
+      "cost_inr": 0.529005
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3937,
+      "tokens_out": 490,
+      "cost_inr": 0.102636
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1115,
+      "tokens_out": 214,
+      "cost_inr": 0.05612
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 307,
+      "cost_inr": 0.064434
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3034,
+      "tokens_out": 208,
+      "cost_inr": 0.573019
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1812,
+      "tokens_out": 208,
+      "cost_inr": 0.370054
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1856,
+      "tokens_out": 174,
+      "cost_inr": 0.366068
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1117,
+      "tokens_out": 29,
+      "cost_inr": 0.035107
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1037,
+      "tokens_out": 139,
+      "cost_inr": 0.045357
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1896,
+      "tokens_out": 187,
+      "cost_inr": 0.37703
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 525,
+      "tokens_out": 185,
+      "cost_inr": 0.148653
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 584,
+      "tokens_out": 129,
+      "cost_inr": 0.13985
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3668,
+      "tokens_out": 255,
+      "cost_inr": 0.084147
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2398,
+      "tokens_out": 245,
+      "cost_inr": 0.059471
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1037,
+      "tokens_out": 242,
+      "cost_inr": 0.057088
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1117,
+      "tokens_out": 350,
+      "cost_inr": 0.071667
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2559,
+      "tokens_out": 222,
+      "cost_inr": 0.498776
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1097,
+      "tokens_out": 221,
+      "cost_inr": 0.255616
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1032,
+      "tokens_out": 107,
+      "cost_inr": 0.041571
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1192,
+      "tokens_out": 106,
+      "cost_inr": 0.233194
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 52,
+      "cost_inr": 0.037584
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3376,
+      "tokens_out": 256,
+      "cost_inr": 0.645768
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2996,
+      "tokens_out": 224,
+      "cost_inr": 0.069626
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1405,
+      "tokens_out": 189,
+      "cost_inr": 0.296143
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1413,
+      "tokens_out": 252,
+      "cost_inr": 0.318399
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 4070,
+      "tokens_out": 270,
+      "cost_inr": 0.092632
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 665,
+      "tokens_out": 93,
+      "cost_inr": 0.017919
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 658,
+      "tokens_out": 95,
+      "cost_inr": 0.0179
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 18,
+      "cost_inr": 0.033712
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 107,
+      "cost_inr": 0.041684
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 212,
+      "cost_inr": 0.055921
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1032,
+      "tokens_out": 175,
+      "cost_inr": 0.049315
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3153,
+      "tokens_out": 242,
+      "cost_inr": 0.604078
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2772,
+      "tokens_out": 272,
+      "cost_inr": 0.550763
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2259,
+      "tokens_out": 174,
+      "cost_inr": 0.433003
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1129,
+      "tokens_out": 231,
+      "cost_inr": 0.264253
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2287,
+      "tokens_out": 235,
+      "cost_inr": 0.457917
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1142,
+      "tokens_out": 267,
+      "cost_inr": 0.278371
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3709,
+      "tokens_out": 306,
+      "cost_inr": 0.08783
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3395,
+      "tokens_out": 354,
+      "cost_inr": 0.084603
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 54,
+      "cost_inr": 0.037926
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 112,
+      "cost_inr": 0.042254
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1034,
+      "tokens_out": 178,
+      "cost_inr": 0.049714
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1114,
+      "tokens_out": 78,
+      "cost_inr": 0.040602
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2940,
+      "tokens_out": 248,
+      "cost_inr": 0.570694
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3026,
+      "tokens_out": 470,
+      "cost_inr": 0.658723
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2114,
+      "tokens_out": 264,
+      "cost_inr": 0.438816
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2126,
+      "tokens_out": 235,
+      "cost_inr": 0.431176
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3835,
+      "tokens_out": 441,
+      "cost_inr": 0.097909
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3612,
+      "tokens_out": 349,
+      "cost_inr": 0.088437
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1038,
+      "tokens_out": 102,
+      "cost_inr": 0.041172
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 105,
+      "cost_inr": 0.041314
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1118,
+      "tokens_out": 302,
+      "cost_inr": 0.066228
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1111,
+      "tokens_out": 146,
+      "cost_inr": 0.048262
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1801,
+      "tokens_out": 247,
+      "cost_inr": 0.381182
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1094,
+      "tokens_out": 103,
+      "cost_inr": 0.21592
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2940,
+      "tokens_out": 311,
+      "cost_inr": 0.591621
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1566,
+      "tokens_out": 178,
+      "cost_inr": 0.31923
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1605,
+      "tokens_out": 280,
+      "cost_inr": 0.35959
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2321,
+      "tokens_out": 372,
+      "cost_inr": 0.065241
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3559,
+      "tokens_out": 612,
+      "cost_inr": 0.102408
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 663,
+      "tokens_out": 97,
+      "cost_inr": 0.018109
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 664,
+      "tokens_out": 93,
+      "cost_inr": 0.0179
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 712,
+      "tokens_out": 103,
+      "cost_inr": 0.019381
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 680,
+      "tokens_out": 114,
+      "cost_inr": 0.0194
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 54,
+      "cost_inr": 0.037926
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 192,
+      "cost_inr": 0.051365
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2747,
+      "tokens_out": 322,
+      "cost_inr": 0.56322
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1559,
+      "tokens_out": 363,
+      "cost_inr": 0.379521
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1618,
+      "tokens_out": 262,
+      "cost_inr": 0.35577
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 692,
+      "tokens_out": 95,
+      "cost_inr": 0.018545
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3368,
+      "tokens_out": 476,
+      "cost_inr": 0.091038
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1120,
+      "tokens_out": 102,
+      "cost_inr": 0.043507
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1040,
+      "tokens_out": 687,
+      "cost_inr": 0.107856
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2724,
+      "tokens_out": 251,
+      "cost_inr": 0.535814
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1236,
+      "tokens_out": 138,
+      "cost_inr": 0.251132
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1274,
+      "tokens_out": 191,
+      "cost_inr": 0.275049
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3247,
+      "tokens_out": 194,
+      "cost_inr": 0.072682
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 660,
+      "tokens_out": 109,
+      "cost_inr": 0.018735
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1115,
+      "tokens_out": 29,
+      "cost_inr": 0.03505
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 316,
+      "cost_inr": 0.065459
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 667,
+      "tokens_out": 117,
+      "cost_inr": 0.019324
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2560,
+      "tokens_out": 155,
+      "cost_inr": 0.476685
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 754,
+      "tokens_out": 182,
+      "cost_inr": 0.185691
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 813,
+      "tokens_out": 93,
+      "cost_inr": 0.165926
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3056,
+      "tokens_out": 193,
+      "cost_inr": 0.069
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1110,
+      "tokens_out": 27,
+      "cost_inr": 0.03468
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1030,
+      "tokens_out": 87,
+      "cost_inr": 0.039236
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 608,
+      "tokens_out": 117,
+      "cost_inr": 0.018204
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 714,
+      "tokens_out": 95,
+      "cost_inr": 0.018963
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1110,
+      "tokens_out": 37,
+      "cost_inr": 0.035819
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 30,
+      "cost_inr": 0.034993
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 82,
+      "cost_inr": 0.038638
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1030,
+      "tokens_out": 113,
+      "cost_inr": 0.042197
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3169,
+      "tokens_out": 168,
+      "cost_inr": 0.582154
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1962,
+      "tokens_out": 198,
+      "cost_inr": 0.391646
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1756,
+      "tokens_out": 206,
+      "cost_inr": 0.360089
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1104,
+      "tokens_out": 205,
+      "cost_inr": 0.251464
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1807,
+      "tokens_out": 90,
+      "cost_inr": 0.330026
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3664,
+      "tokens_out": 211,
+      "cost_inr": 0.081566
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2461,
+      "tokens_out": 655,
+      "cost_inr": 0.084014
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 43,
+      "cost_inr": 0.036474
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 83,
+      "cost_inr": 0.038752
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 897,
+      "tokens_out": 85,
+      "cost_inr": 0.177221
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 629,
+      "tokens_out": 96,
+      "cost_inr": 0.017406
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 32,
+      "cost_inr": 0.035221
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 119,
+      "cost_inr": 0.042852
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3196,
+      "tokens_out": 143,
+      "cost_inr": 0.578334
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 654,
+      "tokens_out": 146,
+      "cost_inr": 0.157124
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3766,
+      "tokens_out": 268,
+      "cost_inr": 0.086748
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 91,
+      "cost_inr": 0.039663
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 52,
+      "cost_inr": 0.037499
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2742,
+      "tokens_out": 126,
+      "cost_inr": 0.497281
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1797,
+      "tokens_out": 98,
+      "cost_inr": 0.331022
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3255,
+      "tokens_out": 282,
+      "cost_inr": 0.077845
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1105,
+      "tokens_out": 65,
+      "cost_inr": 0.038866
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1025,
+      "tokens_out": 119,
+      "cost_inr": 0.042738
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3162,
+      "tokens_out": 141,
+      "cost_inr": 0.572023
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 774,
+      "tokens_out": 148,
+      "cost_inr": 0.177719
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 796,
+      "tokens_out": 103,
+      "cost_inr": 0.166425
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3598,
+      "tokens_out": 223,
+      "cost_inr": 0.080996
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1111,
+      "tokens_out": 148,
+      "cost_inr": 0.04849
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 173,
+      "cost_inr": 0.049059
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2808,
+      "tokens_out": 112,
+      "cost_inr": 0.503592
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1176,
+      "tokens_out": 115,
+      "cost_inr": 0.233526
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3303,
+      "tokens_out": 214,
+      "cost_inr": 0.074884
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1027,
+      "tokens_out": 91,
+      "cost_inr": 0.039606
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1107,
+      "tokens_out": 20,
+      "cost_inr": 0.033797
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3048,
+      "tokens_out": 98,
+      "cost_inr": 0.538804
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 622,
+      "tokens_out": 117,
+      "cost_inr": 0.142175
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 123,
+      "cost_inr": 0.043478
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3516,
+      "tokens_out": 249,
+      "cost_inr": 0.08092
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1115,
+      "tokens_out": 389,
+      "cost_inr": 0.076051
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3705,
+      "tokens_out": 183,
+      "cost_inr": 0.676163
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 4211,
+      "tokens_out": 365,
+      "cost_inr": 0.100718
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1110,
+      "tokens_out": 40,
+      "cost_inr": 0.036161
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1030,
+      "tokens_out": 70,
+      "cost_inr": 0.0373
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3208,
+      "tokens_out": 341,
+      "cost_inr": 0.6461
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2290,
+      "tokens_out": 362,
+      "cost_inr": 0.500603
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2351,
+      "tokens_out": 310,
+      "cost_inr": 0.493461
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 664,
+      "tokens_out": 110,
+      "cost_inr": 0.018868
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3781,
+      "tokens_out": 509,
+      "cost_inr": 0.100756
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 42,
+      "cost_inr": 0.03636
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1028,
+      "tokens_out": 95,
+      "cost_inr": 0.04009
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3222,
+      "tokens_out": 132,
+      "cost_inr": 0.578998
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1197,
+      "tokens_out": 178,
+      "cost_inr": 0.257942
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1219,
+      "tokens_out": 114,
+      "cost_inr": 0.240336
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1024,
+      "tokens_out": 90,
+      "cost_inr": 0.039407
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1104,
+      "tokens_out": 279,
+      "cost_inr": 0.06321
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3775,
+      "tokens_out": 180,
+      "cost_inr": 0.081907
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1994,
+      "tokens_out": 129,
+      "cost_inr": 0.37404
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1147,
+      "tokens_out": 106,
+      "cost_inr": 0.22572
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1153,
+      "tokens_out": 117,
+      "cost_inr": 0.23037
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2407,
+      "tokens_out": 266,
+      "cost_inr": 0.060837
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 94,
+      "cost_inr": 0.040062
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 172,
+      "cost_inr": 0.051251
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3103,
+      "tokens_out": 129,
+      "cost_inr": 0.558237
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 774,
+      "tokens_out": 70,
+      "cost_inr": 0.151809
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3600,
+      "tokens_out": 234,
+      "cost_inr": 0.081661
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 94,
+      "cost_inr": 0.040062
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1111,
+      "tokens_out": 58,
+      "cost_inr": 0.038239
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 608,
+      "tokens_out": 85,
+      "cost_inr": 0.016381
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 21,
+      "cost_inr": 0.034168
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 184,
+      "cost_inr": 0.050454
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1657,
+      "tokens_out": 65,
+      "cost_inr": 0.296807
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1027,
+      "tokens_out": 110,
+      "cost_inr": 0.04177
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1107,
+      "tokens_out": 346,
+      "cost_inr": 0.070926
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2041,
+      "tokens_out": 108,
+      "cost_inr": 0.044892
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3112,
+      "tokens_out": 148,
+      "cost_inr": 0.566043
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1779,
+      "tokens_out": 140,
+      "cost_inr": 0.341984
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3683,
+      "tokens_out": 276,
+      "cost_inr": 0.085628
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1102,
+      "tokens_out": 25,
+      "cost_inr": 0.034225
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1022,
+      "tokens_out": 99,
+      "cost_inr": 0.040375
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 597,
+      "tokens_out": 83,
+      "cost_inr": 0.016059
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1114,
+      "tokens_out": 56,
+      "cost_inr": 0.038097
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1034,
+      "tokens_out": 83,
+      "cost_inr": 0.038894
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2986,
+      "tokens_out": 177,
+      "cost_inr": 0.554749
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1225,
+      "tokens_out": 173,
+      "cost_inr": 0.260931
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1258,
+      "tokens_out": 145,
+      "cost_inr": 0.257111
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1110,
+      "tokens_out": 24,
+      "cost_inr": 0.034338
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1030,
+      "tokens_out": 150,
+      "cost_inr": 0.046411
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3029,
+      "tokens_out": 114,
+      "cost_inr": 0.540963
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3587,
+      "tokens_out": 311,
+      "cost_inr": 0.085799
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 709,
+      "tokens_out": 100,
+      "cost_inr": 0.150978
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 735,
+      "tokens_out": 77,
+      "cost_inr": 0.147656
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3409,
+      "tokens_out": 138,
+      "cost_inr": 0.072568
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 688,
+      "tokens_out": 100,
+      "cost_inr": 0.018754
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 120,
+      "cost_inr": 0.043137
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 49,
+      "cost_inr": 0.037357
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2449,
+      "tokens_out": 217,
+      "cost_inr": 0.478845
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2887,
+      "tokens_out": 302,
+      "cost_inr": 0.071999
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 644,
+      "tokens_out": 131,
+      "cost_inr": 0.019684
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 56,
+      "cost_inr": 0.03804
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1032,
+      "tokens_out": 63,
+      "cost_inr": 0.036559
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 651,
+      "tokens_out": 118,
+      "cost_inr": 0.019077
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1980,
+      "tokens_out": 153,
+      "cost_inr": 0.379687
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 797,
+      "tokens_out": 79,
+      "cost_inr": 0.158618
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2471,
+      "tokens_out": 173,
+      "cost_inr": 0.056756
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 649,
+      "tokens_out": 104,
+      "cost_inr": 0.018242
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 670,
+      "tokens_out": 117,
+      "cost_inr": 0.019381
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 680,
+      "tokens_out": 93,
+      "cost_inr": 0.018204
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 195,
+      "cost_inr": 0.051565
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 138,
+      "cost_inr": 0.047379
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 602,
+      "tokens_out": 90,
+      "cost_inr": 0.016552
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 694,
+      "tokens_out": 114,
+      "cost_inr": 0.019665
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1121,
+      "tokens_out": 34,
+      "cost_inr": 0.035791
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1041,
+      "tokens_out": 114,
+      "cost_inr": 0.042624
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1028,
+      "tokens_out": 122,
+      "cost_inr": 0.043165
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1108,
+      "tokens_out": 382,
+      "cost_inr": 0.075055
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1615,
+      "tokens_out": 255,
+      "cost_inr": 0.352947
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3137,
+      "tokens_out": 113,
+      "cost_inr": 0.558569
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1238,
+      "tokens_out": 125,
+      "cost_inr": 0.247146
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1586,
+      "tokens_out": 221,
+      "cost_inr": 0.336836
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1596,
+      "tokens_out": 254,
+      "cost_inr": 0.349459
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3670,
+      "tokens_out": 241,
+      "cost_inr": 0.083388
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2136,
+      "tokens_out": 405,
+      "cost_inr": 0.063609
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 49,
+      "cost_inr": 0.037357
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 170,
+      "cost_inr": 0.04886
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3234,
+      "tokens_out": 110,
+      "cost_inr": 0.573683
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 733,
+      "tokens_out": 100,
+      "cost_inr": 0.154964
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1108,
+      "tokens_out": 108,
+      "cost_inr": 0.043848
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1028,
+      "tokens_out": 148,
+      "cost_inr": 0.046126
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2940,
+      "tokens_out": 135,
+      "cost_inr": 0.533157
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3657,
+      "tokens_out": 192,
+      "cost_inr": 0.080351
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 779,
+      "tokens_out": 71,
+      "cost_inr": 0.152971
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3414,
+      "tokens_out": 220,
+      "cost_inr": 0.077333
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 127,
+      "cost_inr": 0.043934
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1115,
+      "tokens_out": 41,
+      "cost_inr": 0.036417
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1747,
+      "tokens_out": 139,
+      "cost_inr": 0.336337
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1167,
+      "tokens_out": 118,
+      "cost_inr": 0.233028
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1114,
+      "tokens_out": 48,
+      "cost_inr": 0.037186
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1034,
+      "tokens_out": 286,
+      "cost_inr": 0.062014
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2194,
+      "tokens_out": 248,
+      "cost_inr": 0.055769
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3031,
+      "tokens_out": 124,
+      "cost_inr": 0.544617
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1112,
+      "tokens_out": 77,
+      "cost_inr": 0.210273
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1127,
+      "tokens_out": 115,
+      "cost_inr": 0.225388
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3588,
+      "tokens_out": 226,
+      "cost_inr": 0.080977
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1028,
+      "tokens_out": 121,
+      "cost_inr": 0.043051
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1108,
+      "tokens_out": 42,
+      "cost_inr": 0.036332
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2662,
+      "tokens_out": 241,
+      "cost_inr": 0.522195
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 27,
+      "cost_inr": 0.034652
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1594,
+      "tokens_out": 188,
+      "cost_inr": 0.327202
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 234,
+      "cost_inr": 0.055949
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3217,
+      "tokens_out": 109,
+      "cost_inr": 0.570528
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 763,
+      "tokens_out": 106,
+      "cost_inr": 0.16194
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3231,
+      "tokens_out": 309,
+      "cost_inr": 0.078927
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 800,
+      "tokens_out": 69,
+      "cost_inr": 0.155795
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3707,
+      "tokens_out": 363,
+      "cost_inr": 0.091038
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 210,
+      "cost_inr": 0.053387
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1115,
+      "tokens_out": 164,
+      "cost_inr": 0.050426
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3093,
+      "tokens_out": 130,
+      "cost_inr": 0.556908
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1233,
+      "tokens_out": 123,
+      "cost_inr": 0.245651
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1259,
+      "tokens_out": 110,
+      "cost_inr": 0.245651
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1117,
+      "tokens_out": 29,
+      "cost_inr": 0.035107
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1037,
+      "tokens_out": 133,
+      "cost_inr": 0.044674
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3617,
+      "tokens_out": 328,
+      "cost_inr": 0.087336
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1955,
+      "tokens_out": 130,
+      "cost_inr": 0.367895
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 464,
+      "tokens_out": 101,
+      "cost_inr": 0.110618
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 497,
+      "tokens_out": 81,
+      "cost_inr": 0.109455
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2307,
+      "tokens_out": 128,
+      "cost_inr": 0.051081
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1037,
+      "tokens_out": 111,
+      "cost_inr": 0.042169
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1117,
+      "tokens_out": 113,
+      "cost_inr": 0.044674
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2618,
+      "tokens_out": 176,
+      "cost_inr": 0.493295
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1032,
+      "tokens_out": 74,
+      "cost_inr": 0.037812
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1119,
+      "tokens_out": 180,
+      "cost_inr": 0.245651
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 53,
+      "cost_inr": 0.037698
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1200,
+      "tokens_out": 76,
+      "cost_inr": 0.224557
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3435,
+      "tokens_out": 67,
+      "cost_inr": 0.592784
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2967,
+      "tokens_out": 133,
+      "cost_inr": 0.063893
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3866,
+      "tokens_out": 114,
+      "cost_inr": 0.079876
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 665,
+      "tokens_out": 93,
+      "cost_inr": 0.017919
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 658,
+      "tokens_out": 92,
+      "cost_inr": 0.017729
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 110,
+      "cost_inr": 0.042026
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 15,
+      "cost_inr": 0.03337
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 373,
+      "cost_inr": 0.074258
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1032,
+      "tokens_out": 147,
+      "cost_inr": 0.046126
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3212,
+      "tokens_out": 106,
+      "cost_inr": 0.568701
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2831,
+      "tokens_out": 160,
+      "cost_inr": 0.523357
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1592,
+      "tokens_out": 96,
+      "cost_inr": 0.296309
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1600,
+      "tokens_out": 65,
+      "cost_inr": 0.28734
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1484,
+      "tokens_out": 191,
+      "cost_inr": 0.309929
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3565,
+      "tokens_out": 213,
+      "cost_inr": 0.0798
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3281,
+      "tokens_out": 292,
+      "cost_inr": 0.078908
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 54,
+      "cost_inr": 0.037926
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 130,
+      "cost_inr": 0.044304
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1114,
+      "tokens_out": 77,
+      "cost_inr": 0.040489
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1034,
+      "tokens_out": 158,
+      "cost_inr": 0.047436
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2999,
+      "tokens_out": 240,
+      "cost_inr": 0.577836
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3085,
+      "tokens_out": 354,
+      "cost_inr": 0.629989
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2083,
+      "tokens_out": 216,
+      "cost_inr": 0.417723
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3706,
+      "tokens_out": 394,
+      "cost_inr": 0.092784
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3595,
+      "tokens_out": 346,
+      "cost_inr": 0.087944
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 119,
+      "cost_inr": 0.042909
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1038,
+      "tokens_out": 102,
+      "cost_inr": 0.041172
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1111,
+      "tokens_out": 96,
+      "cost_inr": 0.042567
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1118,
+      "tokens_out": 284,
+      "cost_inr": 0.064178
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1860,
+      "tokens_out": 226,
+      "cost_inr": 0.384006
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2999,
+      "tokens_out": 238,
+      "cost_inr": 0.577171
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1580,
+      "tokens_out": 150,
+      "cost_inr": 0.312254
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2022,
+      "tokens_out": 252,
+      "cost_inr": 0.41955
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2100,
+      "tokens_out": 31,
+      "cost_inr": 0.359092
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3323,
+      "tokens_out": 102,
+      "cost_inr": 0.068886
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2295,
+      "tokens_out": 387,
+      "cost_inr": 0.065602
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 663,
+      "tokens_out": 106,
+      "cost_inr": 0.018621
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 664,
+      "tokens_out": 93,
+      "cost_inr": 0.0179
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 712,
+      "tokens_out": 89,
+      "cost_inr": 0.018583
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 680,
+      "tokens_out": 137,
+      "cost_inr": 0.020709
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 56,
+      "cost_inr": 0.038154
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 168,
+      "cost_inr": 0.048632
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 692,
+      "tokens_out": 95,
+      "cost_inr": 0.018545
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2806,
+      "tokens_out": 277,
+      "cost_inr": 0.558071
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1512,
+      "tokens_out": 326,
+      "cost_inr": 0.359424
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1526,
+      "tokens_out": 258,
+      "cost_inr": 0.339161
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3367,
+      "tokens_out": 430,
+      "cost_inr": 0.088399
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1120,
+      "tokens_out": 113,
+      "cost_inr": 0.04476
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1040,
+      "tokens_out": 311,
+      "cost_inr": 0.065032
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2783,
+      "tokens_out": 90,
+      "cost_inr": 0.492132
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3095,
+      "tokens_out": 110,
+      "cost_inr": 0.065013
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 660,
+      "tokens_out": 110,
+      "cost_inr": 0.018792
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1115,
+      "tokens_out": 41,
+      "cost_inr": 0.036417
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 387,
+      "cost_inr": 0.073546
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2619,
+      "tokens_out": 127,
+      "cost_inr": 0.477184
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 667,
+      "tokens_out": 111,
+      "cost_inr": 0.018982
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2998,
+      "tokens_out": 97,
+      "cost_inr": 0.062432
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1110,
+      "tokens_out": 47,
+      "cost_inr": 0.036958
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1030,
+      "tokens_out": 70,
+      "cost_inr": 0.0373
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 714,
+      "tokens_out": 103,
+      "cost_inr": 0.019419
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 608,
+      "tokens_out": 123,
+      "cost_inr": 0.018545
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 29,
+      "cost_inr": 0.034879
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1110,
+      "tokens_out": 35,
+      "cost_inr": 0.035591
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 92,
+      "cost_inr": 0.039777
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1030,
+      "tokens_out": 105,
+      "cost_inr": 0.041286
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3110,
+      "tokens_out": 231,
+      "cost_inr": 0.593282
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1927,
+      "tokens_out": 79,
+      "cost_inr": 0.346303
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1903,
+      "tokens_out": 402,
+      "cost_inr": 0.449612
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1659,
+      "tokens_out": 163,
+      "cost_inr": 0.329694
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1884,
+      "tokens_out": 225,
+      "cost_inr": 0.38766
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1694,
+      "tokens_out": 253,
+      "cost_inr": 0.365403
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3792,
+      "tokens_out": 303,
+      "cost_inr": 0.089234
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2505,
+      "tokens_out": 369,
+      "cost_inr": 0.068563
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 43,
+      "cost_inr": 0.036474
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 87,
+      "cost_inr": 0.039207
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 838,
+      "tokens_out": 105,
+      "cost_inr": 0.174065
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 645,
+      "tokens_out": 86,
+      "cost_inr": 0.017141
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 37,
+      "cost_inr": 0.035791
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 125,
+      "cost_inr": 0.043535
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3137,
+      "tokens_out": 295,
+      "cost_inr": 0.619027
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1891,
+      "tokens_out": 92,
+      "cost_inr": 0.344642
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1859,
+      "tokens_out": 183,
+      "cost_inr": 0.369556
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 87,
+      "cost_inr": 0.039207
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3803,
+      "tokens_out": 281,
+      "cost_inr": 0.08819
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 22,
+      "cost_inr": 0.034082
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2683,
+      "tokens_out": 189,
+      "cost_inr": 0.508409
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1522,
+      "tokens_out": 49,
+      "cost_inr": 0.26907
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1450,
+      "tokens_out": 184,
+      "cost_inr": 0.301956
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1105,
+      "tokens_out": 43,
+      "cost_inr": 0.03636
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1025,
+      "tokens_out": 117,
+      "cost_inr": 0.04251
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3300,
+      "tokens_out": 310,
+      "cost_inr": 0.080294
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3103,
+      "tokens_out": 378,
+      "cost_inr": 0.640951
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2013,
+      "tokens_out": 129,
+      "cost_inr": 0.377196
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2014,
+      "tokens_out": 208,
+      "cost_inr": 0.403605
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3698,
+      "tokens_out": 302,
+      "cost_inr": 0.087393
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 152,
+      "cost_inr": 0.046667
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1111,
+      "tokens_out": 142,
+      "cost_inr": 0.047806
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2749,
+      "tokens_out": 271,
+      "cost_inr": 0.54661
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2092,
+      "tokens_out": 76,
+      "cost_inr": 0.372712
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2046,
+      "tokens_out": 201,
+      "cost_inr": 0.406594
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1107,
+      "tokens_out": 20,
+      "cost_inr": 0.033797
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1027,
+      "tokens_out": 69,
+      "cost_inr": 0.0371
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3396,
+      "tokens_out": 449,
+      "cost_inr": 0.090032
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2989,
+      "tokens_out": 249,
+      "cost_inr": 0.579165
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1382,
+      "tokens_out": 148,
+      "cost_inr": 0.278703
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1405,
+      "tokens_out": 107,
+      "cost_inr": 0.268904
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3526,
+      "tokens_out": 201,
+      "cost_inr": 0.078377
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 122,
+      "cost_inr": 0.043364
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1115,
+      "tokens_out": 500,
+      "cost_inr": 0.088693
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 615,
+      "tokens_out": 92,
+      "cost_inr": 0.016913
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1110,
+      "tokens_out": 40,
+      "cost_inr": 0.036161
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1030,
+      "tokens_out": 97,
+      "cost_inr": 0.040375
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3149,
+      "tokens_out": 344,
+      "cost_inr": 0.637297
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1519,
+      "tokens_out": 63,
+      "cost_inr": 0.273222
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1460,
+      "tokens_out": 307,
+      "cost_inr": 0.344476
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 664,
+      "tokens_out": 124,
+      "cost_inr": 0.019665
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3781,
+      "tokens_out": 580,
+      "cost_inr": 0.1048
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1028,
+      "tokens_out": 94,
+      "cost_inr": 0.039976
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 42,
+      "cost_inr": 0.03636
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3163,
+      "tokens_out": 239,
+      "cost_inr": 0.604743
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1811,
+      "tokens_out": 97,
+      "cost_inr": 0.333015
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1784,
+      "tokens_out": 103,
+      "cost_inr": 0.330524
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1024,
+      "tokens_out": 82,
+      "cost_inr": 0.038495
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3765,
+      "tokens_out": 219,
+      "cost_inr": 0.083938
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1104,
+      "tokens_out": 384,
+      "cost_inr": 0.075169
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1935,
+      "tokens_out": 205,
+      "cost_inr": 0.389487
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1313,
+      "tokens_out": 111,
+      "cost_inr": 0.254952
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1299,
+      "tokens_out": 101,
+      "cost_inr": 0.249305
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2407,
+      "tokens_out": 231,
+      "cost_inr": 0.058844
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 83,
+      "cost_inr": 0.038809
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 111,
+      "cost_inr": 0.044304
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3044,
+      "tokens_out": 305,
+      "cost_inr": 0.606902
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2043,
+      "tokens_out": 60,
+      "cost_inr": 0.359258
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1981,
+      "tokens_out": 249,
+      "cost_inr": 0.411743
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1111,
+      "tokens_out": 58,
+      "cost_inr": 0.038239
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 125,
+      "cost_inr": 0.043592
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 608,
+      "tokens_out": 81,
+      "cost_inr": 0.016154
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3701,
+      "tokens_out": 379,
+      "cost_inr": 0.091835
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 21,
+      "cost_inr": 0.034168
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 206,
+      "cost_inr": 0.05296
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1027,
+      "tokens_out": 110,
+      "cost_inr": 0.04177
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1107,
+      "tokens_out": 190,
+      "cost_inr": 0.053159
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1598,
+      "tokens_out": 152,
+      "cost_inr": 0.315908
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2041,
+      "tokens_out": 108,
+      "cost_inr": 0.044892
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3053,
+      "tokens_out": 258,
+      "cost_inr": 0.592784
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2374,
+      "tokens_out": 168,
+      "cost_inr": 0.450111
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2416,
+      "tokens_out": 104,
+      "cost_inr": 0.435827
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3638,
+      "tokens_out": 280,
+      "cost_inr": 0.085001
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1102,
+      "tokens_out": 25,
+      "cost_inr": 0.034225
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1022,
+      "tokens_out": 133,
+      "cost_inr": 0.044247
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 597,
+      "tokens_out": 84,
+      "cost_inr": 0.016116
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1114,
+      "tokens_out": 56,
+      "cost_inr": 0.038097
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1034,
+      "tokens_out": 130,
+      "cost_inr": 0.044247
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2927,
+      "tokens_out": 262,
+      "cost_inr": 0.573185
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1788,
+      "tokens_out": 68,
+      "cost_inr": 0.319562
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1733,
+      "tokens_out": 231,
+      "cost_inr": 0.364573
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3666,
+      "tokens_out": 374,
+      "cost_inr": 0.090886
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1110,
+      "tokens_out": 51,
+      "cost_inr": 0.037414
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1030,
+      "tokens_out": 124,
+      "cost_inr": 0.04345
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2970,
+      "tokens_out": 179,
+      "cost_inr": 0.552756
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 870,
+      "tokens_out": 82,
+      "cost_inr": 0.17174
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 829,
+      "tokens_out": 84,
+      "cost_inr": 0.165594
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3416,
+      "tokens_out": 165,
+      "cost_inr": 0.074239
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 688,
+      "tokens_out": 94,
+      "cost_inr": 0.018413
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 49,
+      "cost_inr": 0.037357
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 93,
+      "cost_inr": 0.040062
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2390,
+      "tokens_out": 364,
+      "cost_inr": 0.517876
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 644,
+      "tokens_out": 88,
+      "cost_inr": 0.017236
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2999,
+      "tokens_out": 529,
+      "cost_inr": 0.087051
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 651,
+      "tokens_out": 115,
+      "cost_inr": 0.018906
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 56,
+      "cost_inr": 0.03804
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1032,
+      "tokens_out": 97,
+      "cost_inr": 0.040432
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1921,
+      "tokens_out": 193,
+      "cost_inr": 0.383175
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 938,
+      "tokens_out": 67,
+      "cost_inr": 0.178051
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 649,
+      "tokens_out": 127,
+      "cost_inr": 0.019551
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 883,
+      "tokens_out": 204,
+      "cost_inr": 0.214425
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2522,
+      "tokens_out": 225,
+      "cost_inr": 0.060685
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 670,
+      "tokens_out": 123,
+      "cost_inr": 0.019722
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 680,
+      "tokens_out": 154,
+      "cost_inr": 0.021677
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 116,
+      "cost_inr": 0.042567
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 500,
+      "cost_inr": 0.088608
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 602,
+      "tokens_out": 82,
+      "cost_inr": 0.016097
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 694,
+      "tokens_out": 85,
+      "cost_inr": 0.018014
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1121,
+      "tokens_out": 36,
+      "cost_inr": 0.036018
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1041,
+      "tokens_out": 128,
+      "cost_inr": 0.044219
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1028,
+      "tokens_out": 89,
+      "cost_inr": 0.039407
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1556,
+      "tokens_out": 396,
+      "cost_inr": 0.389985
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1108,
+      "tokens_out": 500,
+      "cost_inr": 0.088494
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1806,
+      "tokens_out": 176,
+      "cost_inr": 0.358428
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 605,
+      "tokens_out": 111,
+      "cost_inr": 0.017805
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1857,
+      "tokens_out": 203,
+      "cost_inr": 0.375867
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2097,
+      "tokens_out": 471,
+      "cost_inr": 0.066627
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 157,
+      "cost_inr": 0.047379
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 49,
+      "cost_inr": 0.037357
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3175,
+      "tokens_out": 211,
+      "cost_inr": 0.597435
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1452,
+      "tokens_out": 78,
+      "cost_inr": 0.267077
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1407,
+      "tokens_out": 131,
+      "cost_inr": 0.277208
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3579,
+      "tokens_out": 107,
+      "cost_inr": 0.07403
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1108,
+      "tokens_out": 70,
+      "cost_inr": 0.039521
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1028,
+      "tokens_out": 114,
+      "cost_inr": 0.042254
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2881,
+      "tokens_out": 203,
+      "cost_inr": 0.545946
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1439,
+      "tokens_out": 66,
+      "cost_inr": 0.260931
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1380,
+      "tokens_out": 30,
+      "cost_inr": 0.239173
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3316,
+      "tokens_out": 121,
+      "cost_inr": 0.069835
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1115,
+      "tokens_out": 41,
+      "cost_inr": 0.036417
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 123,
+      "cost_inr": 0.043478
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1688,
+      "tokens_out": 411,
+      "cost_inr": 0.416892
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1944,
+      "tokens_out": 49,
+      "cost_inr": 0.339161
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1871,
+      "tokens_out": 376,
+      "cost_inr": 0.435661
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1114,
+      "tokens_out": 48,
+      "cost_inr": 0.037186
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2431,
+      "tokens_out": 473,
+      "cost_inr": 0.073081
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1034,
+      "tokens_out": 1000,
+      "cost_inr": 0.143333
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2972,
+      "tokens_out": 145,
+      "cost_inr": 0.541794
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1228,
+      "tokens_out": 89,
+      "cost_inr": 0.233526
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1193,
+      "tokens_out": 27,
+      "cost_inr": 0.207117
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3513,
+      "tokens_out": 98,
+      "cost_inr": 0.072264
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1028,
+      "tokens_out": 116,
+      "cost_inr": 0.042482
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1108,
+      "tokens_out": 43,
+      "cost_inr": 0.036445
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2603,
+      "tokens_out": 327,
+      "cost_inr": 0.540963
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1768,
+      "tokens_out": 182,
+      "cost_inr": 0.354109
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 27,
+      "cost_inr": 0.034652
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1823,
+      "tokens_out": 159,
+      "cost_inr": 0.355604
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 444,
+      "cost_inr": 0.079867
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3149,
+      "tokens_out": 253,
+      "cost_inr": 0.074182
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3158,
+      "tokens_out": 318,
+      "cost_inr": 0.630155
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2614,
+      "tokens_out": 251,
+      "cost_inr": 0.517544
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2736,
+      "tokens_out": 31,
+      "cost_inr": 0.464727
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3673,
+      "tokens_out": 109,
+      "cost_inr": 0.075928
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1115,
+      "tokens_out": 76,
+      "cost_inr": 0.040403
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 373,
+      "cost_inr": 0.071951
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3034,
+      "tokens_out": 208,
+      "cost_inr": 0.573019
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1037,
+      "tokens_out": 133,
+      "cost_inr": 0.044674
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1117,
+      "tokens_out": 29,
+      "cost_inr": 0.035107
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1908,
+      "tokens_out": 111,
+      "cost_inr": 0.353777
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1894,
+      "tokens_out": 106,
+      "cost_inr": 0.349791
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1896,
+      "tokens_out": 220,
+      "cost_inr": 0.387992
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1184,
+      "tokens_out": 103,
+      "cost_inr": 0.230869
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1164,
+      "tokens_out": 148,
+      "cost_inr": 0.242495
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3611,
+      "tokens_out": 215,
+      "cost_inr": 0.080787
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2410,
+      "tokens_out": 251,
+      "cost_inr": 0.06004
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1037,
+      "tokens_out": 176,
+      "cost_inr": 0.049571
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 49,
+      "cost_inr": 0.037243
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1032,
+      "tokens_out": 107,
+      "cost_inr": 0.041571
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1117,
+      "tokens_out": 327,
+      "cost_inr": 0.069047
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2559,
+      "tokens_out": 240,
+      "cost_inr": 0.504755
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3376,
+      "tokens_out": 250,
+      "cost_inr": 0.643775
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1368,
+      "tokens_out": 56,
+      "cost_inr": 0.245817
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1987,
+      "tokens_out": 71,
+      "cost_inr": 0.353611
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1302,
+      "tokens_out": 203,
+      "cost_inr": 0.283686
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1935,
+      "tokens_out": 202,
+      "cost_inr": 0.38849
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3088,
+      "tokens_out": 251,
+      "cost_inr": 0.07291
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 4029,
+      "tokens_out": 344,
+      "cost_inr": 0.096068
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 665,
+      "tokens_out": 90,
+      "cost_inr": 0.017748
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 658,
+      "tokens_out": 95,
+      "cost_inr": 0.0179
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 131,
+      "cost_inr": 0.044418
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 220,
+      "cost_inr": 0.056832
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2772,
+      "tokens_out": 261,
+      "cost_inr": 0.547109
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2449,
+      "tokens_out": 56,
+      "cost_inr": 0.425363
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1112,
+      "tokens_out": 16,
+      "cost_inr": 0.033484
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1032,
+      "tokens_out": 141,
+      "cost_inr": 0.045443
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2383,
+      "tokens_out": 253,
+      "cost_inr": 0.479841
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3153,
+      "tokens_out": 279,
+      "cost_inr": 0.616369
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2819,
+      "tokens_out": 183,
+      "cost_inr": 0.529005
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2873,
+      "tokens_out": 123,
+      "cost_inr": 0.518043
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3619,
+      "tokens_out": 208,
+      "cost_inr": 0.080541
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3364,
+      "tokens_out": 427,
+      "cost_inr": 0.088171
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 54,
+      "cost_inr": 0.037926
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1034,
+      "tokens_out": 219,
+      "cost_inr": 0.054383
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1114,
+      "tokens_out": 81,
+      "cost_inr": 0.040944
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 135,
+      "cost_inr": 0.044873
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 3026,
+      "tokens_out": 309,
+      "cost_inr": 0.605241
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2940,
+      "tokens_out": 342,
+      "cost_inr": 0.601919
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2777,
+      "tokens_out": 161,
+      "cost_inr": 0.514721
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2812,
+      "tokens_out": 211,
+      "cost_inr": 0.537143
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3680,
+      "tokens_out": 396,
+      "cost_inr": 0.092404
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3585,
+      "tokens_out": 398,
+      "cost_inr": 0.090715
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1038,
+      "tokens_out": 135,
+      "cost_inr": 0.04493
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1118,
+      "tokens_out": 127,
+      "cost_inr": 0.046297
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1031,
+      "tokens_out": 148,
+      "cost_inr": 0.046212
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1111,
+      "tokens_out": 107,
+      "cost_inr": 0.04382
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1801,
+      "tokens_out": 268,
+      "cost_inr": 0.388158
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1215,
+      "tokens_out": 105,
+      "cost_inr": 0.236682
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1196,
+      "tokens_out": 105,
+      "cost_inr": 0.233526
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2940,
+      "tokens_out": 365,
+      "cost_inr": 0.609559
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1706,
+      "tokens_out": 122,
+      "cost_inr": 0.32388
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2194,
+      "tokens_out": 181,
+      "cost_inr": 0.051954
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1703,
+      "tokens_out": 359,
+      "cost_inr": 0.40211
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3633,
+      "tokens_out": 545,
+      "cost_inr": 0.099997
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 663,
+      "tokens_out": 94,
+      "cost_inr": 0.017938
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 664,
+      "tokens_out": 111,
+      "cost_inr": 0.018925
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 712,
+      "tokens_out": 89,
+      "cost_inr": 0.018583
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 680,
+      "tokens_out": 113,
+      "cost_inr": 0.019343
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1116,
+      "tokens_out": 110,
+      "cost_inr": 0.044304
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1036,
+      "tokens_out": 151,
+      "cost_inr": 0.046696
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2747,
+      "tokens_out": 439,
+      "cost_inr": 0.602085
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1764,
+      "tokens_out": 139,
+      "cost_inr": 0.339161
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1777,
+      "tokens_out": 300,
+      "cost_inr": 0.394802
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 692,
+      "tokens_out": 95,
+      "cost_inr": 0.018545
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3419,
+      "tokens_out": 435,
+      "cost_inr": 0.089671
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1120,
+      "tokens_out": 96,
+      "cost_inr": 0.042823
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1040,
+      "tokens_out": 353,
+      "cost_inr": 0.069816
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2724,
+      "tokens_out": 223,
+      "cost_inr": 0.526513
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 660,
+      "tokens_out": 108,
+      "cost_inr": 0.018678
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1314,
+      "tokens_out": 151,
+      "cost_inr": 0.268405
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 1339,
+      "tokens_out": 87,
+      "cost_inr": 0.251298
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3095,
+      "tokens_out": 101,
+      "cost_inr": 0.064501
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1115,
+      "tokens_out": 41,
+      "cost_inr": 0.036417
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 404,
+      "cost_inr": 0.075482
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 2560,
+      "tokens_out": 155,
+      "cost_inr": 0.476685
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 850,
+      "tokens_out": 59,
+      "cost_inr": 0.160778
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 667,
+      "tokens_out": 115,
+      "cost_inr": 0.01921
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "tokens_in": 787,
+      "tokens_out": 122,
+      "cost_inr": 0.171241
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 3080,
+      "tokens_out": 266,
+      "cost_inr": 0.073612
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1030,
+      "tokens_out": 127,
+      "cost_inr": 0.043791
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1110,
+      "tokens_out": 47,
+      "cost_inr": 0.036958
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 608,
+      "tokens_out": 116,
+      "cost_inr": 0.018147
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 714,
+      "tokens_out": 94,
+      "cost_inr": 0.018906
+    }
+  ]
+}

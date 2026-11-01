@@ -1,0 +1,45 @@
+{
+  "recorded_at": "2026-11-02",
+  "python": {
+    "command": "python -m pytest -q -p no:cacheprovider --basetemp=.superpowers/sdd/plan/v3-final-pytest --junitxml=evals/results/golden_v3/qa/pytest.xml",
+    "exit_code": 0,
+    "tests": 373,
+    "failures": 0,
+    "errors": 0,
+    "warnings": "One existing LangSmith wrapper deprecation"
+  },
+  "web_tests": {
+    "command": "node --test tests/*.test.mjs",
+    "exit_code": 0,
+    "passed": 39,
+    "failed": 0
+  },
+  "web_lint": {
+    "command": "npm run lint",
+    "exit_code": 0
+  },
+  "web_build": {
+    "command": "NEXT_PUBLIC_API_URL=http://127.0.0.1:8010 npm run build",
+    "exit_code": 0
+  },
+  "dataset_sha256": "8075c270caa94751047580136d7588ba1d49a51fb9a194688c54be92fc387012",
+  "selected_round": "round1",
+  "flags": {
+    "concierge": true,
+    "retrieval": "staged_vector",
+    "verifier": true,
+    "strict_verifier": true,
+    "lessons": true
+  },
+  "unverified": [
+    "Physical devices",
+    "Real microphone and native sharing",
+    "Owner actual-output calibration",
+    "Public deployment"
+  ],
+  "local_smoke": {
+    "web_home_http": 200,
+    "api_health": true,
+    "approved_lessons": 12
+  }
+}

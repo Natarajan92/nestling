@@ -80,6 +80,7 @@ def test_persistent_judge_errors_stop_after_existing_three_attempt_policy():
 def test_default_model_preparation_reuses_only_guardian_and_concierge(tmp_path, monkeypatch):
     import json
     from evals import budgeted_run
+    monkeypatch.setattr(budgeted_run.golden, 'DATASET_VERSION', 'golden_v2_india')
 
     path = tmp_path / "phase3_v7_vector_safe_checkpoint.json"
     original = {"model": "zai-org/GLM-5.3", "experiment": "partial-glm", "cases": {
@@ -104,6 +105,7 @@ def test_local_export_uses_existing_scorers_and_leaves_trace_links_empty(tmp_pat
     import json
     from evals import budgeted_run
     from nestling import golden
+    monkeypatch.setattr(golden, 'DATASET_VERSION', 'golden_v2_india')
 
     case = golden.load()[0]
     expected = golden.to_example(case)["outputs"]
@@ -123,3 +125,10 @@ def test_local_export_uses_existing_scorers_and_leaves_trace_links_empty(tmp_pat
     assert summary["run"]["experiment"] == "local-test" and summary["metrics"]["routing_accuracy"]["value"] == 1
     with next(tmp_path.glob("improved_*_cases.csv")).open() as stream:
         assert list(csv.DictReader(stream))[0]["trace_url"] == ""
+
+
+@pytest.mark.parametrize('function', ['prepare_safe', 'prepare_default', 'readiness', 'run', 'run_local'])
+def test_legacy_runner_cannot_reuse_old_ledger_for_v3(function):
+    from evals import budgeted_run
+    with pytest.raises(RuntimeError, match='Historical v2 runner retired'):
+        getattr(budgeted_run, function)()

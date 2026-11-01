@@ -198,7 +198,8 @@ def after_specialist(state: AskState) -> str:
 
 def verifier_node(state: AskState) -> dict:
     r = state["result"]
-    v = verifier.verify(r["answer"], r["sources_cited"], r["hits"], strict=state["flags"].get("strict_verifier", False))
+    v = verifier.verify(r["answer"], r["sources_cited"], r["hits"], strict=state["flags"].get("strict_verifier", False),
+                        **({"compact": True} if state["flags"].get("compact_verifier") else {}))
     step = {"passed": "Verifier: every claim matches its source",
             "rewritten": f"Verifier: removed {len(v['unsupported'])} unsupported claim(s)",
             "replaced": "Verifier: claims not supported; answered that there is no trusted source"}[v["verdict"]]
@@ -331,6 +332,8 @@ def run_info(version: str) -> dict:
 
 def run_experiment(version: str, max_concurrency: int = 4):
     """Run every frozen case through `version` as one experiment (prefix nestling-ask-improved-<version>)."""
+    if golden.DATASET_VERSION == 'golden_v3':
+        raise RuntimeError('Use evals.v3_run for metered v3 measurements and isolated artifacts')
     from langsmith import evaluate
 
     from evals.evaluators import EVALUATORS
@@ -344,6 +347,8 @@ def run_experiment(version: str, max_concurrency: int = 4):
 
 
 def run_one(case_id: str, version: str = "v6") -> tuple[dict, uuid.UUID]:
+    if golden.DATASET_VERSION == 'golden_v3':
+        raise RuntimeError('Use evals.v3_run for metered v3 measurements and isolated artifacts')
     case = _golden_by_id()[case_id]
     run_id = uuid.uuid4()
     out = make_target(version)(golden.to_example(case)["inputs"], {"case_id": case_id},

@@ -1,0 +1,9 @@
+{
+  "recorded_at": "2026-11-01T19:11:46.167150+00:00",
+  "hypothesis": "The specialist over-generates tangential timelines, food quantities and background claims. A source-focused90-word/three-point answer budget should reduce unsupported material and verifier work while preserving required answers.",
+  "target_cluster": "Remaining12.11s p95 latency; ten task-incomplete answers and unnecessary factual claims after citation repair.",
+  "lever": "Specialist BASE_PROMPT only: exact-question focus, at most90 words and three concise points; omit unsolicited background. Bump app prompt tag only to identify this change.",
+  "expected_metric_direction": "Lower pipelinep95 and mean/p95cost; source faithfulness and task fulfillment stable or higher; no increase in abstention or safety/refusal errors.",
+  "success_criterion": "Full62 complete, safety/refusal100%, routing>=90%, visible citation integrity100%, paired faithfulness/task fulfillment no worse than R1 while p95latency or cost improves; still test90% faithfulness/8s latency bars.",
+  "revert_criterion": "Revert or revise if brevity removes required content, materially worsens paired task fulfillment/source support, increases abstention without a defensible source gap, or breaks safety/citation checks."
+}

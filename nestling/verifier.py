@@ -15,6 +15,7 @@ from nestling.agents import NO_SOURCE_LINE, enforce_citations, main_json, passag
 
 PROMPT_VERSION = "verifier-v2"
 STRICT_PROMPT_VERSION = "verifier-v3"
+COMPACT_STRICT_PROMPT_VERSION = "verifier-v4-compact"
 
 CHECK_SCHEMA = {
     "type": "object",
@@ -28,6 +29,17 @@ CHECK_SCHEMA = {
     "additionalProperties": False,
 }
 
+COMPACT_CHECK_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "claims_checked": {"type": "integer", "minimum": 1},
+        "unsupported_claims": {"type": "array", "uniqueItems": True,
+                               "items": {"type": "string", "minLength": 1}},
+    },
+    "required": ["claims_checked", "unsupported_claims"],
+    "additionalProperties": False,
+}
+
 CHECK_PROMPT = """You check a pregnancy companion's answer against the passages it was given.
 List every factual claim about health, the body, food, medicines, insurance, schemes or law in the answer. Skip empathy, encouragement, and advice to see or ask a doctor, pharmacist, insurer or family.
 Mark a claim supported only if the passages state it or directly imply it. Common sense is not support."""
@@ -35,6 +47,13 @@ Mark a claim supported only if the passages state it or directly imply it. Commo
 # week or trimester) and rewrites that rephrased a removed claim ("very common to worry about").
 STRICT_CHECK_PROMPT = CHECK_PROMPT + """
 Also list statements about the parent's own situation (their week or trimester) and practical advice (what to bring, ask, upload, check or do), unless it is only advice to see or ask a doctor, pharmacist, insurer or family. Mark them supported only if the passages state or directly imply them."""
+
+COMPACT_STRICT_CHECK_PROMPT = STRICT_CHECK_PROMPT + """
+Apply every check above to every claim internally, retaining the same scope and evidence rules.
+Return only claims_checked (the total number of claims actually checked) and unsupported_claims
+(a list of unique, nonempty unsupported claim texts). Do not echo supported claims or their text.
+An empty unsupported_claims list means all checked claims were supported. Never invent a positive
+claims_checked count when no claims were checked; an invalid or zero-count check cannot pass."""
 
 REWRITE_SCHEMA = {
     "type": "object",
@@ -75,20 +94,39 @@ def _check(answer: str, hits: list[dict], prompt: str = CHECK_PROMPT) -> tuple[l
     return data["claims"] if data is not None else None, usage
 
 
+def _compact_check(answer: str, hits: list[dict]) -> tuple[list[str] | None, dict]:
+    """Same strict MAIN check, returning only failed claims; invalid counts fail closed."""
+    user = f"Answer:\n{answer}\n\nPassages:{passages_text(hits) or ' (none)'}"
+    data, usage, _ = main_json(COMPACT_STRICT_CHECK_PROMPT, user, COMPACT_CHECK_SCHEMA, max_tokens=3000)
+    if not isinstance(data, dict) or set(data) != {"claims_checked", "unsupported_claims"}:
+        return None, usage
+    count, unsupported = data["claims_checked"], data["unsupported_claims"]
+    if type(count) is not int or count < 1 or not isinstance(unsupported, list) or len(unsupported) > count:
+        return None, usage
+    if any(not isinstance(claim, str) or not claim.strip() for claim in unsupported):
+        return None, usage
+    if len({claim.strip() for claim in unsupported}) != len(unsupported):
+        return None, usage
+    return unsupported, usage
+
+
 @traceable(name="verifier", run_type="chain")
-def verify(answer: str, sources_cited: list[str], hits: list[dict], strict: bool = False) -> dict:
+def verify(answer: str, sources_cited: list[str], hits: list[dict], strict: bool = False, compact: bool = False) -> dict:
     """{"answer", "sources_cited", "verdict": passed|rewritten|replaced, "unsupported": [...], "usage": [...]}"""
     usage = []
-    check_prompt, rewrite_prompt = prompts(strict)
+    check_prompt, rewrite_prompt = prompts(strict or compact)
     answer, sources_cited = enforce_citations(answer, sources_cited, hits)
     if not sources_cited:
         return {"answer": NO_SOURCE_LINE, "sources_cited": [], "verdict": "replaced", "unsupported": [], "usage": usage}
     hits = cited_passages(answer, sources_cited, hits)
-    claims, u = _check(answer, hits, check_prompt)
+    if compact:
+        unsupported, u = _compact_check(answer, hits)
+    else:
+        claims, u = _check(answer, hits, check_prompt)
+        unsupported = [c["claim"] for c in claims if not c["supported"]] if claims is not None else None
     usage.append(u)
-    if claims is None:
+    if unsupported is None:
         return {"answer": NO_SOURCE_LINE, "sources_cited": [], "verdict": "replaced", "unsupported": [], "usage": usage}
-    unsupported = [c["claim"] for c in claims if not c["supported"]]
     if not unsupported:
         return {"answer": answer, "sources_cited": sources_cited, "verdict": "passed", "unsupported": [], "usage": usage}
 

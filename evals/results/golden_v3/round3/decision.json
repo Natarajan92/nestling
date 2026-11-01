@@ -1,0 +1,32 @@
+{
+  "decision": "reject",
+  "comparison_base": "round1",
+  "reason": "The compact verifier candidate worsened paired faithfulness, task fulfillment and abstention. Its 0.22s p95 latency improvement did not offset lower quality and higher mean cost; reject under the recorded Round3 gates and retain Round1.",
+  "observed_vs_round1": {
+    "task_fulfilled": "52/62 -> 47/62",
+    "abstained": "5 -> 6",
+    "paired_faithful": "29/30 -> 27/30",
+    "p95_latency_s": "12.11 -> 11.89",
+    "mean_cost_inr": "0.719 -> 0.753"
+  },
+  "paired_faithfulness": {
+    "paired_valid_n": 30,
+    "baseline": 0.9666666666666667,
+    "candidate": 0.9,
+    "delta_pp": -6.666666666666665,
+    "error_sensitivity_n": 36,
+    "baseline_errors_as_false": 0.8611111111111112,
+    "candidate_errors_as_false": 0.75,
+    "baseline_eligible_n": 37,
+    "candidate_eligible_n": 37,
+    "baseline_abstained": 5,
+    "candidate_abstained": 6
+  },
+  "full62_complete": true,
+  "pipeline_errors": 0,
+  "judge_errors": 0,
+  "retained_runtime": "round1",
+  "remaining_failed_bar": "Retained Round1 p95 latency 12.11s still exceeds the 8s target; the target is not waived.",
+  "runtime_generation_sha256": "5fe4ce85039fa110bbc3d5fea9e505adb30ca8894a36e7be8b5f09bb12fd3bc5",
+  "note": "All 62 Round3 outputs, judgments, traces and measured source hashes remain preserved. Disable compact activation while keeping candidate implementation and regression tests."
+}

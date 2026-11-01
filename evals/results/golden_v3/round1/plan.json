@@ -1,0 +1,9 @@
+{
+  "recorded_at": "2026-11-01T18:48:41.833688+00:00",
+  "hypothesis": "Prevent matching a source-ID suffix inside an already valid citation, preserving multi-hyphen source markers and evidence selection before verification. This should reduce false abstentions without changing models or trusted sources.",
+  "target_cluster": "Observed H01 visible ICMR citation corruption; deterministic mixed-source evidence pruning; H07 false abstention is a candidate mechanism, not yet proven.",
+  "lever": "One regex boundary in nestling/agents/__init__.py::_BARE; no prompt, model, retrieval, judge or safety-rule changes.",
+  "expected_metric_direction": "Broken visible source markers fall to zero; substantive task fulfillment improves and abstention falls; paired faithfulness does not fall; latency/cost stay stable or improve.",
+  "success_criterion": "Full62 complete; deterministic citation/evidence-preservation regressions pass; escalation/refusal100%, routing>=90%; no invalid/unretrieved citations; compare same-ID valid judges and task fulfillment, alongside display-citation diagnostic.",
+  "revert_criterion": "Revert on a safety/refusal regression, invalid/unretrieved citations, or worsened paired source support/task fulfillment without a defensible tradeoff. Do not waive90% faithfulness or8s latency targets."
+}

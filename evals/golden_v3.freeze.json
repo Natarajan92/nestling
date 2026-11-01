@@ -1,0 +1,32 @@
+{
+  "dataset_version": "golden_v3",
+  "file": "evals/golden_v3.csv",
+  "normalized_sha256": "8075c270caa94751047580136d7588ba1d49a51fb9a194688c54be92fc387012",
+  "normalization": "UTF-8 without BOM; CRLF normalized to LF",
+  "frozen_on": "2026-11-02",
+  "n_cases": 62,
+  "scenario_mix": {
+    "happy": 20,
+    "edge": 26,
+    "known-fail": 12,
+    "adversarial": 4
+  },
+  "langsmith_dataset": "nestling-golden-v3",
+  "reviewer": "project owner",
+  "expected_label_review": "Owner confirms these62 questions were selected and reviewed before new evaluations; every row is marked reviewed. No row was altered during freezing.",
+  "owner_confirmation": "Yes—freeze these 62; I selected and reviewed them",
+  "provenance": "Owner clarification on2026-11-02: all62 shortlisted questions are their own. Record as owner-attested human-authored and owner-reviewed. They are unchanged from the earlier selected rows; no independent authorship audit is claimed.",
+  "limits": "Previously exposed regression set, not unseen holdout. Full62 stress mix is larger than handout30-50; transparent deterministic40-case submission view provided separately with all62 retained.46 source-verification fields still request registry/source checks; registered IDs do not prove clinical validation. B11 requires USER-POLICY despite no uploaded PDF: preserve this citation-diagnostic limitation.",
+  "paid_authorization": {
+    "approved_on": "2026-11-02",
+    "cap_inr": 350,
+    "scope": "fresh v3 baseline, cross-family judging, up to three improvement rounds and synthetic LangSmith traces; request-level accounting; earlier ledgers unchanged"
+  },
+  "authorship": {
+    "human_authored_owner_attested": 62,
+    "ai_generated_owner_attested": 0,
+    "evidence": "the questions which ever shortlisted is actually my own questions only.",
+    "attested_on": "2026-11-02",
+    "supersedes": "Earlier AI-origin interpretation for these62selectedcases; no reason for the correction is inferred."
+  }
+}

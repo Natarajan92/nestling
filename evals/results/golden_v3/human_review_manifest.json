@@ -1,0 +1,33 @@
+{
+  "dataset_version": "golden_v3",
+  "dataset_hash": "8075c270caa94751047580136d7588ba1d49a51fb9a194688c54be92fc387012",
+  "judge_version": "judge-v3-faithfulness-behavior-v1",
+  "round": "baseline",
+  "case_ids": [
+    "E10",
+    "H09",
+    "K03",
+    "M03",
+    "M06",
+    "M11",
+    "H01",
+    "E02",
+    "F07",
+    "E03",
+    "E12",
+    "E04",
+    "H17",
+    "E07",
+    "F01",
+    "F02",
+    "E09",
+    "H16",
+    "F06",
+    "H10"
+  ],
+  "n": 20,
+  "selection": "up to10judge-unfaithful cases plus valid passes across specialists; H01 included to audit visible-citation behavior false pass",
+  "sampling_limit": "purposive calibration sample; not unbiased overall judge accuracy",
+  "status": "pending actual human labels",
+  "local_context": ".superpowers/sdd/plan/v3-human-review.html"
+}

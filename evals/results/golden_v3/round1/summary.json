@@ -1,0 +1,269 @@
+{
+  "run": {
+    "dataset": "nestling-golden-v3",
+    "dataset_version": "golden_v3",
+    "dataset_hash": "8075c270caa94751047580136d7588ba1d49a51fb9a194688c54be92fc387012",
+    "pipeline_version": "v7_vector_safe+lessons",
+    "round_name": "round1",
+    "experiment": "nestling-ask-golden-v3-round1-fcf35fd5",
+    "judge_version": "judge-v3-faithfulness-behavior-v1",
+    "provenance": {
+      "files": {
+        "evals/budgeted_run.py": "1817b1d63b814e5e46e5d0e6384e282c3dddafbb31dd76763a802a902c5fbc42",
+        "evals/evaluators.py": "5dff4ed4c78f45d083177f5b61da14334c9b09487f19237eed279fe8a9586fab",
+        "evals/judge.py": "7330651576ce8cf0c3dbe53c430fba999635a39005929f1ee77cbdefa1d0243d",
+        "evals/judge_prompt.md": "a90c4d63df9a55ddf0aa02c5f48418b97c42c1c51f56460774d5e5cf5068fdfa",
+        "evals/v3_run.py": "34370085728e567708d592b4ddf7f47c0bd327f572d0d487c34cec391cde6eea",
+        "lessons/bathing/checklist.yaml": "c40bd14868e389a039030c2a81ed7db8976dd1ed740110e1e364faffaaefe3e6",
+        "lessons/bathing/phrasings.yaml": "0545917d159a3baabe639030531f4fad45c46eb4b7d1c6f69782f38d2eb03e09",
+        "lessons/bathing/renders/lesson.mp4": "c15e578483d0abf679b22cbc1ba4c439ef157cd815a58601757d02fecb274d16",
+        "lessons/bathing/review.yaml": "3624a950e481bc893b63f1cfb9650e4c083c73098c943525897a44f3f95df969",
+        "lessons/bathing/storyboard.json": "d323b10a678dc02883bba5bda108cfc1752762575dd5540f7f6eb5d6a3c2f910",
+        "lessons/burping/checklist.yaml": "5d6321eec8cc586e3e2c0f771a2e00dd4fe65895837ef4939b0dce24d3c7ba86",
+        "lessons/burping/phrasings.yaml": "33c68af69398ef8c91e9154f7b1c3408933588342f521a06e596ce7d94ae4143",
+        "lessons/burping/renders/lesson.mp4": "ddfb4f1998bef55ba43543197aeb65bc113258b99378ccd9b247f1f53b14aa6d",
+        "lessons/burping/review.yaml": "b11f34367b53357e9e7ae8eb8c46fe84274d5be8605ebb5ad32059acc6c1205e",
+        "lessons/burping/storyboard.json": "c6a28239ba70e60f787d14226c1b08bfdeec9b7395891b185ea7ef2b3e7f74ee",
+        "lessons/cord_care/checklist.yaml": "4f7a547c73e0f0530e87ba4bb1787e59c1b001bfff7a43cae9491493d59a1016",
+        "lessons/cord_care/phrasings.yaml": "dc9a7751f69297e0dffec3b8ba41ec6ec1c5b9d9d075180cd27da79797455674",
+        "lessons/cord_care/renders/lesson.mp4": "e16c3c24cfcc5cb0071201e51b9c4f97ca53fac82161149f8346b7dfdf3cd279",
+        "lessons/cord_care/review.yaml": "2489daed04f46fb9b75d24e5f4baf95ca2d674c786e3ca87d0e3fcaded89487c",
+        "lessons/cord_care/storyboard.json": "279e8a9ed947b02a34e4e6913189d4ef0d6022a75020277fd4df7ac9c6cff896",
+        "lessons/holding/checklist.yaml": "8c6a2980b73d4720822876b34dfbd5d1fad4c34e0252068e47f9b19c0e96988c",
+        "lessons/holding/phrasings.yaml": "af0996f3799669663a9eb1986fe9e752e2d5ca8d109e05ee6107cda345a77f81",
+        "lessons/holding/renders/lesson.mp4": "a94bc4e8f9dccf37c124a828a75f5a154d678f17567574accb1d2df4f9dbc522",
+        "lessons/holding/review.yaml": "dc4219a93ec8b928203ca217273dad5521819d6675d221a99ce109096d717252",
+        "lessons/holding/storyboard.json": "07028a5e36d121619a365ce4c1c7bdd6358e50c2bdf10614ff6522dab4e6688f",
+        "lessons/labour_room_readiness/checklist.yaml": "8c68ebae16b8ed4a932bebb078b5e2d77d43c6894329bdb3a016ee14b4cfe832",
+        "lessons/labour_room_readiness/phrasings.yaml": "63ec23fecb4bd34ff42ca05ad4eeb0d54132b76fc4dd2da153a6415994345edc",
+        "lessons/labour_room_readiness/renders/lesson.mp4": "06f082ee32483e1302239ef117b44a9dcc28cf03ac6d0dd80ec99bde78b9611a",
+        "lessons/labour_room_readiness/review.yaml": "51daf6cb3727ab1817fd46ccc2622b868080881aa32a6e209bbcff65a93b30be",
+        "lessons/labour_room_readiness/storyboard.json": "5426bca027d508f4b8df599a0938a2f79aa4c55df34267b2f42b8cfaf5c457ba",
+        "lessons/latching/checklist.yaml": "f5ba4dc8771a34256c2cd4c1f2025652f33eea280d825cb1638c5c886249affa",
+        "lessons/latching/phrasings.yaml": "03ba64b5b236f61e4e2ea255bbc51f4c40bc9c947fe35f672cd07e7a2f3ec917",
+        "lessons/latching/renders/lesson.mp4": "ccde2b51bafb15692bb8ed779fcf608a52207fd087887afe1670f8da5cb48719",
+        "lessons/latching/review.yaml": "1b9b16db3060fbc6bb23c73c6abd1722b378c62f790b8ee634647a8a357fa67d",
+        "lessons/latching/storyboard.json": "81a14ddc86efe3af3355cf6ec747acbad872dcb938a1615586e84c6be83ae28f",
+        "lessons/pregnancy_bed_movement/checklist.yaml": "c2abdaa4c238a754d7247d60fbb99c303f837f01f8748f846dd788d62d4bb500",
+        "lessons/pregnancy_bed_movement/phrasings.yaml": "f52e45519db81118461252f904b422f074852e6be316f008b5e965532d353eaf",
+        "lessons/pregnancy_bed_movement/renders/lesson.mp4": "436315d18f9e2e761e701c3c04023040d9852c3dbbfda27ce6f606575d96797b",
+        "lessons/pregnancy_bed_movement/review.yaml": "3b5ce812e3d8d3ff5fd892944bd23f4cb58e3c2b584c7ed7e58e91c84c7e0145",
+        "lessons/pregnancy_bed_movement/storyboard.json": "2227b8f3674ddebb51d5ffe5f2bf3b4e8db40e23b5ad42c3598e8f67b11ca54d",
+        "lessons/pregnancy_breathing/checklist.yaml": "b2648ef97ca001b24855f2587447ad10db9b4d0e7bc77a6945165e9c9d8c3fc6",
+        "lessons/pregnancy_breathing/phrasings.yaml": "da2e10b186f82bb69bc3b8bb19d6c2bb00e1cce970ff811f973abce31cd475fe",
+        "lessons/pregnancy_breathing/renders/lesson.mp4": "c219c0becaffe16b894457c046d7c0dbf11487d608bc97c36be62dca526a696e",
+        "lessons/pregnancy_breathing/review.yaml": "9320f85d7850a869c82c6533b7997a33be08adbfc63f6e5e6b469f3f6107c47c",
+        "lessons/pregnancy_breathing/storyboard.json": "8bc94ae55fc90e7eb67b8dc75b4f773733c9b4b2af5a8b8d1449967a1784afd2",
+        "lessons/pregnancy_stair_comfort/checklist.yaml": "84cdb578ac158747e4425793e957d5fbebcd77539303f25dcac832414f76ae24",
+        "lessons/pregnancy_stair_comfort/phrasings.yaml": "07caa92a9a89aad39e2f7c708b768a79e2a6a619e46c99203f40d022689cefbc",
+        "lessons/pregnancy_stair_comfort/renders/lesson.mp4": "d0d8084234484d7d310c1e13430d8a74139b5925148fcede164c39c09416e3f7",
+        "lessons/pregnancy_stair_comfort/review.yaml": "a5f5b8df0dd533ada7bcfad21c81beda920b2d5cecec009c9ba983565bd93d12",
+        "lessons/pregnancy_stair_comfort/storyboard.json": "a18164118e23ce0b4191a793d74584a9769d23553f345a6e0fd154543884e095",
+        "lessons/prenatal_yoga_preparation/checklist.yaml": "7ea7fc45a23a9cb6cc3d89045be5eff4809112fab53b5d82f9e3e6bca9faba7b",
+        "lessons/prenatal_yoga_preparation/phrasings.yaml": "bbcf3bebd9836f7a6f4c9952eadde6540cb573ad0f5139dc2101eeaab8aedffb",
+        "lessons/prenatal_yoga_preparation/renders/lesson.mp4": "d287156065037bd961e24d3cff347acc0bbb62e25c46095c264caea4f3eeb4ee",
+        "lessons/prenatal_yoga_preparation/review.yaml": "79722958a56bb15fa28a20f189c08fdf4fa6127e2f0bc1b210522806781e4c60",
+        "lessons/prenatal_yoga_preparation/storyboard.json": "590fe40f7e9ff8afe0aa7ac4de8152496bc9313f917feb1ecec24749f2f1046f",
+        "lessons/preparing_body_for_birth/checklist.yaml": "00c577c1d7d0ad792edca1cfb18b8b0d3f65f1e9657ff5d78adc6ea15f6e4c5f",
+        "lessons/preparing_body_for_birth/phrasings.yaml": "a133b40459a04163c6350703742739c9e33a2b47e172e0125364ea460616ef8a",
+        "lessons/preparing_body_for_birth/renders/lesson.mp4": "12e9b4fd643d9c471bb68770de46c6771487a41a6cf23d2b10725e9ddf2b47c0",
+        "lessons/preparing_body_for_birth/review.yaml": "7fe2b89b606790d5258a35f8cae75d5c4bf81b08e8eba2e0aa05f4f15b89fe13",
+        "lessons/preparing_body_for_birth/storyboard.json": "ed7bfb568787cf1b80a31fc85fb2279fb5a4768bd1c0ff91f129b6688ef3e3cc",
+        "lessons/swaddling/checklist.yaml": "c3e4094493f152df56870081cd5a21eb8deb7692c3e0a80e95f1f0f9fbc56750",
+        "lessons/swaddling/phrasings.yaml": "615dd6bca8527cdc885403b1c8c246ab65b2971475ef72d69dc9773922d06d53",
+        "lessons/swaddling/renders/lesson.mp4": "e59d1ef4a3cdc6a38df116d276404b26d48c12f2d5b0d599af30756ea5324e43",
+        "lessons/swaddling/review.yaml": "b36beec2e73c124a59dcdebf33b91b4821daa539f364d2edf2af2a5ed300d790",
+        "lessons/swaddling/storyboard.json": "f57fa4d131a823a8cf5261b4952ebbf18a416057f73659b3e3123f8b125aaab9",
+        "nestling/__init__.py": "d71052b8a6587bbceb3f4ccc3b27c9df1951b037a863e8aa1194135c9e241d4b",
+        "nestling/agents/__init__.py": "5fe4ce85039fa110bbc3d5fea9e505adb30ca8894a36e7be8b5f09bb12fd3bc5",
+        "nestling/agents/care.py": "2232f002da5640cd3a8057be1719334904e1911d14c8bdbe72904016aa3b5b4a",
+        "nestling/agents/celebrate.py": "3cf8355b89bbc697002e03da703330214830fc721b79a21494b8bf67fe37c5b2",
+        "nestling/agents/journal.py": "48985532305bc5b53ac4d6e4b7667201b8d495ebdbd195ee6f461b8820f1934f",
+        "nestling/agents/money.py": "73062735e5be5dbe5b41a55e28589a489fe18abae07927a662ea26b1601637e5",
+        "nestling/agents/nourish.py": "37597e78ea8c35242112acff15d48ce923a04b616e6fb4917b1822c954619401",
+        "nestling/agents/policy.py": "1d7a49f75dbcc9e7c564381afab02e3bd2a0cf6a885e838dcadb035604c793f1",
+        "nestling/agents/ready.py": "da22b6515c6b9127112e96c3fe2caf31aaf4adcd2258fc123c663bcda73765f1",
+        "nestling/baseline.py": "99df370b1ad718bd1f55852e2edeb2b87fbb5e13f98cbd2038d6939f6f81868f",
+        "nestling/capture/__init__.py": "b3aebd4f2228db1cefbb37836ad937b964afbaefecdb68fe54da00d888e20404",
+        "nestling/capture/estimate.py": "a16d86027a138c4de9ac6d23645912bed817b4491edad612a6f0c0d387a22293",
+        "nestling/capture/search.py": "cc043c64c613416880138434c7672916d6ba2259040a0706db9fdbf5b2c31607",
+        "nestling/concierge.py": "5358cf71e1e9e66372b443279369b31a4ac2b14e6212e97e0785f24f070346ed",
+        "nestling/golden.py": "47fa8942406e6dd2ab2942764c68b8b5327464293257f2f4b8825dc8bbe63ae8",
+        "nestling/graph.py": "94eb305149e7ac1ae2e6ac8a423fac32cd21408ce6a7f015b6874b4a16b5ba64",
+        "nestling/guardian.py": "79369e8b707f167715dda50c425096db148133c6ca87a7bc27c7a3460b40c5e8",
+        "nestling/lessons/__init__.py": "aef12e2f806c66212cd9315560224d1a20dedefbe6ca5bb8a18dfa34a7b30bc0",
+        "nestling/lessons/cards.py": "e0116d0001925e028aa32539b760b16bec52a52a2b3f3acedbb6b4b286d8d37a",
+        "nestling/lessons/library.py": "9aff7e6f71980e6595b79e557bf6c619dcfdf75b207266c55c8c19194363d28a",
+        "nestling/lessons/narrate.py": "020db2e5745908fef15291dc37a2bfa388044d467190c3b871a1c67f7a8ff719",
+        "nestling/lessons/render.py": "c5938703a253bbf7434f021c856916ad7c9567154970cb249fcaf2b8446d1afb",
+        "nestling/lessons/stitch.py": "0aeb5d891d0ba6edd5b4315d71056320eb7b5609feb2adad3cea1cd65a2afd5b",
+        "nestling/lessons/storyboard.py": "e6063a16e821b72a6b62470419b8bf551e22de3a512a46faa7808757afc0b207",
+        "nestling/llm.py": "1b1106bd19569d378751691393aa5124141e3a90e1719a0f57f7f0cbc435571b",
+        "nestling/profile.py": "00446d36ca4227f221420608c30348d63c9fa4845d2b7f8d658ca5b820c0ed6e",
+        "nestling/retrieval.py": "fb17cda78df770390d440a87992aca566bfaf5c2e6d3bff977463b6b9f8d1fed",
+        "nestling/schemas/__init__.py": "02121dee9dc3bcd1aa8d29c27ab80035f2b58916321864ff7ba7b7fb57322b77",
+        "nestling/schemas/studio_package.py": "d97115a5387a9bcfe4956c51954580b96d1563f91f9bf2854a60c2053fa7336f",
+        "nestling/tracing.py": "12d18fb83b033e4f12ab4020ab79944bb50eeae7711d9c268b102d480aec6fd1",
+        "nestling/verifier.py": "59e77a4d427e4d7151dcf1763bf2eeef688fd0c3a2810232b0a1c41a645f5359",
+        "nestling/voice.py": "1404c699bbfef0a9402a1bd34c09744b0b69625323f0baaa42e36a2f273618dc",
+        "playbooks/labour_bag.yaml": "4e9a3025c990a189ce6eeaf2933c8359bd8fcac95a263ea2c7373dd32626dc24",
+        "playbooks/seemantha_karnataka.yaml": "9e8569221789c6e9d1bbf6a45dd0787594b4ede7a1e59a16c5853ea660e42c74",
+        "playbooks/seemantham_tamilnadu.yaml": "39163143e4282a304b715055a4e4bc2dd039a7bb4b023491485d3b0d774b9ffb",
+        "playbooks/valaikappu_kerala.yaml": "437cb0ba507c92ac6b3f4334c0e0af059abe976665435f683796d0afdf59007e",
+        "playbooks/weekly_tips.yaml": "0f2e19381631e3e44a565e861e475056fb4c69d28a298246e43f6ce7903bab8f",
+        "sources/registry.yaml": "60bc483811593f443eca14cba0e95ec3217dfb8f4df792ce8fd3598c6387a68a"
+      },
+      "dataset_version": "golden_v3",
+      "dataset_hash": "8075c270caa94751047580136d7588ba1d49a51fb9a194688c54be92fc387012",
+      "pipeline_version": "v7_vector_safe+lessons",
+      "prompt_version": "app-v7-vector-safe-lessons-v2-prenatal",
+      "flags": {
+        "concierge": true,
+        "retrieval": "staged_vector",
+        "verifier": true,
+        "strict_verifier": true,
+        "lessons": true
+      },
+      "main_model": "deepseek-ai/DeepSeek-V4-Pro",
+      "fast_model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "judge_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "judge_version": "judge-v3-faithfulness-behavior-v1",
+      "prices_usd_per_mtok": {
+        "deepseek-ai/DeepSeek-V4-Pro": [
+          1.75,
+          3.5
+        ],
+        "deepseek-ai/DeepSeek-V4.1-Flash": [
+          0.3,
+          1.2
+        ],
+        "moonshotai/Kimi-K3": [
+          3.0,
+          15.0
+        ],
+        "zai-org/GLM-5.3": [
+          1.4,
+          4.4
+        ],
+        "claude-sonnet-5-5": [
+          2.0,
+          10.0
+        ],
+        "claude-haiku-5-5": [
+          0.1,
+          0.5
+        ],
+        "claude-opus-5-5": [
+          4.0,
+          20.0
+        ],
+        "claude-opus-5": [
+          5.0,
+          25.0
+        ],
+        "claude-opus-4-8": [
+          5.0,
+          25.0
+        ],
+        "claude-sonnet-5": [
+          2.0,
+          10.0
+        ],
+        "Qwen/Qwen3-235B-A22B-Instruct-2507": [
+          0.2,
+          0.6
+        ]
+      },
+      "usd_to_inr": 94.91,
+      "pinecone_index": "nestling-sources",
+      "max_concurrency": 2
+    },
+    "approval": {
+      "approved_on": "2026-11-02",
+      "cap_inr": 350.0,
+      "scope": "fresh golden_v3 baseline and up to three improvement rounds; synthetic LangSmith traces",
+      "historical_quality_ledger": "closed; never reused"
+    },
+    "shared_accounted_inr": 93.881,
+    "n_cases": 62,
+    "n_errors": 0,
+    "total_cost_inr": 44.59
+  },
+  "metrics": {
+    "escalation_recall": {
+      "value": 1.0,
+      "n": 18,
+      "pass_bar": ">= 1.0",
+      "passed": true
+    },
+    "refusal_accuracy": {
+      "value": 1.0,
+      "n": 62,
+      "pass_bar": ">= 1.0",
+      "passed": true
+    },
+    "routing_accuracy": {
+      "value": 0.9355,
+      "n": 62,
+      "pass_bar": ">= 0.9",
+      "passed": true
+    },
+    "citation_match": {
+      "value": 0.7609,
+      "n": 46,
+      "pass_bar": null,
+      "passed": null
+    },
+    "p95_latency_s": {
+      "value": 12.11,
+      "n": 62,
+      "pass_bar": "< 8.0",
+      "passed": false
+    },
+    "mean_cost_inr": {
+      "value": 0.719,
+      "n": 62,
+      "pass_bar": "< 2.0",
+      "passed": true
+    },
+    "p95_cost_inr": {
+      "value": 1.534,
+      "n": 62,
+      "pass_bar": "< 2.0",
+      "passed": true
+    }
+  },
+  "failures": {
+    "missed_escalations": [],
+    "false_escalations": [],
+    "wrong_refusals": [],
+    "errors": []
+  },
+  "progress": {
+    "n_expected": 62,
+    "n_done": 62,
+    "n_errors": 0,
+    "n_pending": 0,
+    "n_trace_verified": 62,
+    "complete": true
+  },
+  "judging": {
+    "judge": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+    "judge_version": "judge-v3-faithfulness-behavior-v1",
+    "n_eligible": 62,
+    "n_valid": 62,
+    "n_errors": 0,
+    "task_fulfillment": 0.8387,
+    "faithfulness": 0.9143,
+    "n_faithfulness_eligible": 37,
+    "n_faithfulness_valid": 35,
+    "n_faithfulness_errors": 0,
+    "n_zero_claim": 2,
+    "n_abstained": 5
+  },
+  "safety": {
+    "false_escalations": 0,
+    "invalid_citation_cases": 0,
+    "unretrieved_citation_cases": 0
+  }
+}

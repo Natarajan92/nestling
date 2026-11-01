@@ -16,11 +16,11 @@ import uuid
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DATASET_VERSION = "golden_v2_india"
-PATH = ROOT / "evals" / "golden_v2_india.csv"
-SHA256 = "366efb04e00cc8dd60098ffb79adc66c6d216a47aaaf68224b3cf05da4f67f20"  # normalized content
-FROZEN_ON = "2026-11-01"
-LANGSMITH_DATASET = "nestling-golden-v2"
+DATASET_VERSION = "golden_v3"
+PATH = ROOT / "evals" / "golden_v3.csv"
+SHA256 = "8075c270caa94751047580136d7588ba1d49a51fb9a194688c54be92fc387012"  # normalized content
+FROZEN_ON = "2026-11-02"
+LANGSMITH_DATASET = "nestling-golden-v3"
 _ID_NAMESPACE = uuid.UUID("7b0e8a52-3f0e-4c8e-9a51-6e57e1c0a2b4")  # stable example IDs
 
 
@@ -65,6 +65,7 @@ def to_example(case: dict) -> dict:
         "metadata": {
             "case_id": case["case_id"],
             "dataset_version": DATASET_VERSION,
+            "dataset_sha256": SHA256,
             "scenario_type": case["scenario_type"],
             "theme": case["theme"],
             "risk_level": case["risk_level"],
@@ -76,6 +77,25 @@ def to_example(case: dict) -> dict:
     }
 
 
+def validate_examples(examples, cases=None) -> None:
+    """Reject remote drift, including same-count edits, before any paid request."""
+    cases = load() if cases is None else cases
+    expected = {c['case_id']: to_example(c) for c in cases}
+    rows = list(examples)
+    actual = {}
+    for row in rows:
+        cid = (row.metadata or {}).get('case_id')
+        if cid not in expected or cid in actual:
+            raise ValueError(f'Remote dataset has missing/foreign/duplicate example: {cid}')
+        ref = expected[cid]
+        if (str(row.id) != str(ref['id']) or row.inputs != ref['inputs'] or row.outputs != ref['outputs']
+                or any((row.metadata or {}).get(k) != v for k, v in ref['metadata'].items())):
+            raise ValueError(f'Remote dataset example differs from frozen v3: {cid}')
+        actual[cid] = row
+    if actual.keys() != expected.keys():
+        raise ValueError('Remote dataset does not contain exactly the frozen examples')
+
+
 def upload(client=None) -> str:
     """Create the LangSmith dataset from the frozen file and tag that version 'frozen'."""
     from langsmith import Client
@@ -84,18 +104,23 @@ def upload(client=None) -> str:
     cases = load()
     if client.has_dataset(dataset_name=LANGSMITH_DATASET):
         dataset = client.read_dataset(dataset_name=LANGSMITH_DATASET)
-        existing = sum(1 for _ in client.list_examples(dataset_id=dataset.id))
-        if existing != len(cases):
-            raise RuntimeError(f"{LANGSMITH_DATASET} has {existing} examples, expected {len(cases)}")
+        expected_meta = {'dataset_version': DATASET_VERSION, 'dataset_sha256': SHA256, 'n_cases': len(cases)}
+        if any((dataset.metadata or {}).get(k) != v for k, v in expected_meta.items()):
+            raise ValueError('Remote dataset metadata does not match frozen v3')
+        validate_examples(client.list_examples(dataset_id=dataset.id), cases)
+        validate_examples(client.list_examples(dataset_id=dataset.id, as_of='frozen'), cases)
         return str(dataset.id)
 
     dataset = client.create_dataset(
         LANGSMITH_DATASET,
         description=f"Nestling golden set {DATASET_VERSION}: {len(cases)} cases, frozen {FROZEN_ON}, sha256 {SHA256[:12]}",
+        metadata={'dataset_version': DATASET_VERSION, 'dataset_sha256': SHA256, 'n_cases': len(cases)},
     )
     client.create_examples(dataset_id=dataset.id, examples=[to_example(c) for c in cases])
+    validate_examples(client.list_examples(dataset_id=dataset.id), cases)
     latest = max(client.list_dataset_versions(dataset_id=dataset.id), key=lambda v: v.as_of)
     client.update_dataset_tag(dataset_id=dataset.id, as_of=latest.as_of, tag="frozen")
+    validate_examples(client.list_examples(dataset_id=dataset.id, as_of='frozen'), cases)
     return str(dataset.id)
 
 

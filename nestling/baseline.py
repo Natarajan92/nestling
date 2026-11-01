@@ -192,6 +192,8 @@ def run_info() -> dict:
 
 def run_experiment(max_concurrency: int = 4):
     """Run every frozen case as one LangSmith experiment (prefix nestling-ask-baseline)."""
+    if golden.DATASET_VERSION == 'golden_v3':
+        raise RuntimeError('Historical Claude baseline is retired; use evals.v3_run for v3')
     from langsmith import evaluate
 
     from evals.evaluators import EVALUATORS
@@ -210,6 +212,8 @@ def run_experiment(max_concurrency: int = 4):
 
 def run_one(case_id: str, project_name: str = PROJECT) -> tuple[dict, uuid.UUID]:
     """Run one golden case outside an experiment (FR-011). Returns (output, run_id)."""
+    if golden.DATASET_VERSION == 'golden_v3':
+        raise RuntimeError('Historical Claude baseline is retired; use evals.v3_run for v3')
     case = _golden_by_id()[case_id]
     run_id = uuid.uuid4()
     out = target(

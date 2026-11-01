@@ -1,0 +1,10 @@
+{
+  "recorded_at": "2026-11-01T19:26:47.588584+00:00",
+  "hypothesis": "Repeating every supported claim in verifier output adds tokens and latency. Return only the total checked count and unsupported claims while preserving the same MAIN model, full strict scope and repair path.",
+  "target_cluster": "Remaining12.11s retainedR1p95 and checker output repetition: five slowestR1 checks repeated41claims,34supported,using1466outputtokens; other provider/retrieval tails remain.",
+  "lever": "Compact verifier response representation plus app activation/trace tag; generation prompt restored exactly to retainedR1. No model, judge, source, safety-rule or rewrite-policy change.",
+  "expected_metric_direction": "Lower checker/pipeline latency and mean token cost; paired faithfulness and task fulfillment stable or higher; no increase in abstention or safety errors. This does not guarantee the8s target because retrieval/classifier tails remain.",
+  "success_criterion": "Full62 complete; same-frame comparison versusR1; safety/refusal100%, routing>=90%, validvisiblecitations100%; source faithfulness/task completion not worse without defensible tradeoff; latency/cost improve. Validatepositivecounts and failclosed malformed/zero responses.",
+  "revert_criterion": "Reject compact activation if reduced output hides unsupported claims, worsens paired quality/coverage, increases abstention or breaks any safety/citation gate. Do not waive8s or90% bars; preserve raw rejected measurements.",
+  "comparison_base": "round1"
+}

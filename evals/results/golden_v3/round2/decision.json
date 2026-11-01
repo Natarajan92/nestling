@@ -1,0 +1,13 @@
+{
+  "decision": "reject",
+  "reason": "The90word/threepointprompt reduced latency/cost but worsened useful-answer coverage and paired faithfulness. Revert to the retainedRound1prompt beforeRound3.",
+  "observed_vs_round1": {
+    "task_fulfilled": "52/62→48/62",
+    "abstained": "5→10",
+    "paired_faithful": "28/30→27/30",
+    "p95_latency_s": "12.11→9.23",
+    "mean_cost_inr": "0.719→0.590"
+  },
+  "selected_base_for_next_round": "round1",
+  "note": "All62R2 outputs and raw judge results remain preserved; no metric or label was changed."
+}

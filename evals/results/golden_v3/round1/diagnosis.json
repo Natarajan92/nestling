@@ -1,0 +1,11 @@
+{
+  "observed_case": "H07",
+  "root_trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/122b1a9c-81b7-4ee4-9408-3e1d05498c0a/r/3cc681e6-6164-4eec-a2b3-4ca97d8669c8?poll=true",
+  "root_trace_id": "3cc681e6-6164-4eec-a2b3-4ca97d8669c8",
+  "specialist_child": "01a1986d-e820-7726-8c34-e4ac62856b33",
+  "verifier_child": "01a1986d-f313-7c7b-85ee-c012b840b5e1",
+  "evidence": "Read-only original LangSmith tree inspection: raw specialist cited ICMR-NIN-DG p36/p33/p32 plus WHO-ANC p23; processed answer had7 truncated ICMR markers and intact WHO marker; actual verifier input retained only WHO-ANC; verification replaced answer after6 unsupported claims. No inference repeated.",
+  "code_cause": "_BARE regex permits matching NIN-DG suffix inside canonical ICMR-NIN-DG because preceding hyphen is not excluded.",
+  "regression_before_fix": "6 citation-preservation tests:4failed/2passed.",
+  "constraint": "Only regex boundary may change in round1; keep trusted sources, models, judge, safety rules and frozen62 fixed."
+}

@@ -1,0 +1,42 @@
+{
+  "checked_on": "2026-11-02",
+  "source": "https://api.tokenfactory.nebius.com/v1/models?verbose=true",
+  "models": [
+    {
+      "id": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "pricing": {
+        "prompt": "0.0000002",
+        "input_cache_read": "0.00000005",
+        "completion": "0.0000006",
+        "image": "0",
+        "price_per_video_second": "0",
+        "request": "0",
+        "price_per_minute": "0"
+      }
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-V4-Pro",
+      "pricing": {
+        "prompt": "0.00000175",
+        "input_cache_read": "0.00000014",
+        "completion": "0.0000035",
+        "image": "0",
+        "price_per_video_second": "0",
+        "request": "0",
+        "price_per_minute": "0"
+      }
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "pricing": {
+        "prompt": "0.0000003",
+        "input_cache_read": "0.00000001",
+        "completion": "0.0000012",
+        "image": "0",
+        "price_per_video_second": "0",
+        "request": "0",
+        "price_per_minute": "0"
+      }
+    }
+  ]
+}
