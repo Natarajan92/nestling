@@ -147,10 +147,48 @@ def calibration_sheet(rows: list[dict], n: int = 20, prefix: str = "judge_calibr
 
 
 def agreement(path: str | Path) -> dict:
-    """Judge-vs-human agreement on a filled calibration sheet."""
-    rows = [r for r in csv.DictReader(open(path, encoding="utf-8")) if r["human_faithful"].strip().upper() in ("Y", "N")]
-    agree = sum(r["judge_faithful"] == r["human_faithful"].strip().upper() for r in rows)
-    return {"n_labelled": len(rows), "agreement": round(agree / len(rows), 3) if rows else None}
+    """Read-only calibration comparison; human labels are reference, faithful is positive.
+
+    Blank human labels remain pending. Invalid nonempty labels raise rather than
+    silently shrinking the sample. Rates use only labelled rows and are undefined
+    (None) when their denominator is zero; no labels never means successful agreement.
+    """
+    with open(path, encoding="utf-8-sig", newline="") as stream:
+        rows = list(csv.DictReader(stream))
+    counts = {"tp": 0, "tn": 0, "fp": 0, "fn": 0}
+    disagreements = []
+    for line, row in enumerate(rows, 2):
+        human = (row["human_faithful"] or "").strip().upper()
+        if not human:
+            continue
+        predicted = (row["judge_faithful"] or "").strip().upper()
+        for field, value in (("human_faithful", human), ("judge_faithful", predicted)):
+            if value not in ("Y", "N"):
+                raise ValueError(f"Row {line}, case {row['case_id']}: invalid {field} {row[field]!r}; expected Y or N")
+        outcome = {("Y", "Y"): "tp", ("N", "N"): "tn",
+                   ("Y", "N"): "fp", ("N", "Y"): "fn"}[(predicted, human)]
+        counts[outcome] += 1
+        if predicted != human:
+            disagreements.append({"case_id": row["case_id"], "judge_faithful": predicted,
+                                  "human_faithful": human, "human_note": row.get("human_note") or "",
+                                  "judge_unsupported": row.get("judge_unsupported") or ""})
+    n_labelled = sum(counts.values())
+    tp, tn, fp, fn = (counts[key] for key in ("tp", "tn", "fp", "fn"))
+
+    def rate(numerator: int, denominator: int, definition: str) -> dict:
+        return {"value": round(numerator / denominator, 3) if denominator else None,
+                "numerator": numerator, "denominator": denominator, "definition": definition}
+
+    rates = {
+        "agreement": rate(tp + tn, n_labelled, "(TP + TN) / all human-labelled rows"),
+        "judge_false_pass_rate": rate(fp, fp + tn, "FP / human-unfaithful rows (FP + TN)"),
+        "judge_false_fail_rate": rate(fn, fn + tp, "FN / human-faithful rows (FN + TP)"),
+        "judge_pass_error_rate": rate(fp, fp + tp, "FP / judge-faithful rows with human labels (FP + TP)"),
+    }
+    return {"n_labelled": n_labelled, "agreement": rates["agreement"]["value"],
+            "n_total": len(rows), "n_unlabelled": len(rows) - n_labelled,
+            "confusion_matrix": counts, "judge_false_pass_count": fp,
+            "disagreements": disagreements, "rates": rates}
 
 
 if __name__ == "__main__":
