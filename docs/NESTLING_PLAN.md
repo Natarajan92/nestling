@@ -30,6 +30,12 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
 5. **Privacy.** Pregnancy data is sensitive health data. Ask for explicit consent, collect the minimum, offer a "Delete everything" button, and put no personal data in traces (India's DPDP Act spirit).
 6. **Warmth.** Calm, kind, never alarming except when it must be. Inclusive: single parents, partners, all family shapes.
 7. **Light engineering.** One spec per journey, about 30–40 eval cases per agent, ship small, and post about it.
+8. **Little Lessons are reviewed, never improvised.** Safety-critical how-tos (holding, bathing, burping, swaddling, latching, cord care) are pre-generated and human-reviewed, never generated live per question.
+   - Every step comes from a registered source; no invented steps.
+   - Illustration style only, never photorealistic babies. The baby is appropriately covered (nappy, towel or clothes) in every scene.
+   - Each lesson has a safety checklist, e.g. bathing: head and neck supported, water temperature checked, baby never left alone in water, everything ready before starting; holding: head and neck supported at all times. Every checklist also checks that each image matches its narration. Unapproved videos are never shown.
+   - No approved video for a question → the written sourced steps only, and the gap is logged as a candidate lesson.
+   - Live image generation is allowed only for low-stakes, fun content (weekly fruit card, invitation cards).
 
 ---
 
@@ -50,11 +56,14 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
    - **Week ring** with an illustrated fruit: *"Week 28 · your baby is about the size of an eggplant 🍆"*
    - **One little moment:** a single tip for today, with a source chip.
    - **Ready meter:** "Hospital bag 40% ready."
-   - Journey cards: 🩺 Body · 🎒 Ready · 💰 Money · 🎉 Celebrate (includes 📸 Capture, the photoshoot planner).
+   - Journey cards: 🩺 Body · 🎒 Ready · 💰 Money · 🎉 Celebrate (includes 📸 Capture, the photoshoot planner). Body and Ready include 🎬 Little Lessons.
 3. **Ask Nestling:** a bottom sheet chat.
    - A small 🛡️ pulse shows the Guardian checking each message.
    - Answers carry **source chips** and a collapsible **"How I answered"** (agents used, sources, checks passed).
+   - **How-to answers (🎬 Little Lessons):** a 20–40 second illustrated video (narration + captions) on top, the written steps below, a source chip and **"Share on WhatsApp"**. With no approved video: the written sourced steps only.
 4. **Journeys:** focused pages per journey (checklists, plans, Q&A).
+   - 🩺 Body: the lessons for this stage (e.g. latching and cord care in the first weeks).
+   - 🎒 Ready: *"Watch before baby arrives"* (holding, bathing, burping, swaddling).
 5. **Memory book:** journal, voice notes, *letters to baby*, and the **shareable weekly card**.
 6. **Partner view:** *"What can I do this week?"*, bag duty, paperwork.
 7. **Photoshoot compare** (📸 Capture, inside 🎉 Celebrate):
@@ -64,6 +73,7 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
    - **"Estimate my budget":** a component picker (edited photos, album yes/no and pages, frames count and sizes, casting yes/no) → ranges per tier, e.g. *"Mid tier: ₹25,000–₹40,000 (based on 7 Bengaluru studios, checked on <date>) · Confidence: Medium"* → **"Request quotes from these studios"**. Every estimate has a **"How we estimated"** drawer (the studios and packages used, with links and dates) and the label *"Approximate estimate to help you plan. Final prices come from the studio's quote."*
    - **"Request quote"** opens an approval step with the drafted WhatsApp/email, listing exactly the components the parent picked so quotes are comparable; nothing is sent until the parent approves it.
    - **Estimate vs quote:** when the parent pastes or forwards a studio's reply, it appears next to the estimate; the chosen package can be saved to a **"Photoshoot budget"** card on Today and Celebrate.
+8. **Lessons library** (🎬 Little Lessons): a grid of approved lessons (thumbnail, title, duration, *"Reviewed on <date>"*), filtered by stage (before birth · first weeks). Each opens the player with the written steps, safety points, source chips and **"Share on WhatsApp"**.
 
 ### Signature, catchy features (the growth engine)
 - **Shareable weekly card:** an Instagram- and WhatsApp-ready image with the week, fruit and one fact, plus a small Nestling mark.
@@ -83,9 +93,9 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
                  └──────────────┬────────────────┘
                                 ▼
                  🧭 Concierge (router / supervisor, Haiku)
-     ┌────────┬─────────┬───────┴──┬──────────┬────────────┬────────────┐
-   🩺 Care  🥗 Nourish  🎒 Ready  💰 Money  🎉 Celebrate  📸 Capture  📔 Journal
-     └────────┴─────────┴───────┬──┴──────────┴────────────┴────────────┘
+     ┌────────┬─────────┬───────┴──┬──────────┬────────────┬────────────┬────────────┐
+   🩺 Care  🥗 Nourish  🎒 Ready  💰 Money  🎉 Celebrate  📸 Capture  🎬 Lessons  📔 Journal
+     └────────┴─────────┴───────┬──┴──────────┴────────────┴────────────┴────────────┘
                                 ▼
                  ✅ Verifier (each claim ↔ cited chunk; 1 rewrite, else "I don't know")
                                 ▼
@@ -95,6 +105,17 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
                → code compares (INR, total cost, cost per edited photo) → comparison
                → estimate_cost() in code (tier ranges + confidence) → optional enquiry draft
                → parent approves → sent
+
+  🎬 Little Lessons, build time (offline, never per question):
+               registry steps → Sonnet storyboard (5–6 scenes, JSON; each scene's narration_line
+               and image_prompt written together) → image per scene (one fixed style) + ElevenLabs
+               narration per scene → ffmpeg/Remotion stitch (audio length sets scene duration)
+               → MP4 + thumbnail → human review per scene → approved library
+               (a failed scene: fix it in storyboard.json, re-render only what changed, review again)
+  🎬 Little Lessons, runtime (reviewed content, skips the Verifier):
+               Concierge routes a how-to → match sample phrasings (Pinecone `lessons`) → approved lesson?
+               → yes: video + written steps + source
+               → no:  Care writes the sourced steps (→ Verifier) + gap logged as candidate lesson
 ```
 
 | Agent | Job | Mostly |
@@ -107,6 +128,7 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
 | Money | Maternity cover, claims, newborn add-on; exact clause quotes from the uploaded policy | RAG over policy PDF + rules |
 | Celebrate | Tradition playbooks, babymoon ideas (Tavily for live venues and stays) | YAML playbooks + Sonnet |
 | Capture | Plan and compare photoshoots (maternity, baby shower / seemantham, newborn, hand & foot casting): find studios for a city, budget, shoot type and date; compare packages side by side; draft quote requests | Tavily/Keenable search → page fetch → Haiku extraction to `StudioPackage` → code comparison → approved enquiry |
+| Little Lessons | Short illustrated how-to videos for new parents (holding, bathing, burping, swaddling, latching, cord care) | **Build time:** Sonnet storyboard → image model → ElevenLabs → ffmpeg/Remotion → human review. **Runtime:** retrieval of an approved video only; no live generation |
 | Journal | Voice and text entries → mood, notes, profile updates | Sonnet + ElevenLabs |
 | Verifier | Faithfulness check of every claim against its source | Sonnet or cross-family judge |
 
@@ -125,7 +147,15 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
 - Estimates always show their sample size, checked-on date and sources, and carry the label *"Approximate estimate to help you plan. Final prices come from the studio's quote."*
 - Nothing is sent, and the parent's contact details are never shared, without explicit approval.
 
-**Plain code (no agent):** week engine (due date ↔ week), red-flag rules, checklists, playbook loader, Capture package comparison, consent and deletion.
+**🎬 Little Lessons: how a lesson is made** (constitution rule 8 applies)
+1. **Storyboard (Sonnet):** sourced steps from the registry (WHO, MoHFW, other registered sources) → 5–6 scenes as JSON: `step_no, caption, image_prompt, narration_line, source_id, safety_points[]`. The storyboard is the single source of truth: each scene's narration and image prompt are written together from the same sourced step, so they match.
+2. **Images:** each scene's `image_prompt` plus one fixed illustration-style prompt → an image model on Fireworks or Nebius (e.g. FLUX), so all scenes look consistent.
+3. **Voice:** ElevenLabs narration per scene from its `narration_line`; English first, Tamil/Hindi as optional later variants.
+4. **Stitch:** ffmpeg (or Remotion) combines images, gentle pan/zoom, captions and voice into a 20–40 second MP4, plus a thumbnail. Each narration's length sets how long its scene stays on screen.
+5. **Review gate (human in the loop):** Anand (and ideally a nurse or doctor) checks every scene against the lesson's safety checklist, which always includes *"image matches narration"*; the result goes in `review.yaml`. A failed scene is fixed in `storyboard.json`, only what changed (image, narration or both) is re-rendered, and it is reviewed again. Unapproved videos are never shown.
+6. **Library:** approved videos are stored with `lesson_id, version, sources, reviewer, review_date, language`. Each lesson also has sample phrasings (`phrasings.yaml`, e.g. *"how do I give a bath"*, *"first bath at home"*), embedded in Pinecone namespace `lessons`. At runtime the Concierge routes a how-to question to Little Lessons, which matches it against the phrasings and returns that lesson's approved video. Same or related question → same `lesson_id` and version → the same reviewed video, narration and steps every time. Lesson content never lives in mem0; mem0 only remembers which lessons a parent has watched.
+
+**Plain code (no agent):** week engine (due date ↔ week), red-flag rules, checklists, playbook loader, Capture package comparison, Little Lessons approved-library lookup, consent and deletion.
 
 **Shared state:** `PregnancyProfile` (due date, week, tradition, diet, city, insurer, language, consent flags).
 
@@ -135,15 +165,17 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
 
 | Tool | Use |
 |---|---|
-| **Claude API** | `claude-sonnet-5-5` for specialists and the Verifier; `claude-haiku-5-5` for the Guardian classifier, Concierge and Capture's studio-page extraction |
+| **Claude API** | `claude-sonnet-5-5` for specialists, the Verifier and Little Lessons storyboards; `claude-haiku-5-5` for the Guardian classifier, Concierge and Capture's studio-page extraction |
 | **LangGraph** | Agent graph, routing, checkpoints |
 | **LangSmith** | Traces, datasets, evaluators, experiment comparison (**Week 4 core**) |
 | **LlamaIndex** | Ingest guideline and policy PDFs with page and section metadata |
-| **Pinecone** | Vector index for the source library (hybrid search + rerank in the improved run) |
+| **Pinecone** | Vector index for the source library (hybrid search + rerank in the improved run); namespace `lessons` holds Little Lessons sample phrasings for lesson matching |
 | **Fireworks or Nebius** | Cross-family LLM-as-judge (an open model judging Claude) |
+| **Image model (Fireworks or Nebius)** | e.g. FLUX, whichever our credits cover: Little Lessons scenes at build time (one fixed illustration style); live only for fun cards (weekly fruit, invitations) |
 | **Tavily** | Live **non-medical** lookups only (venues, stays, caterers, and photo studios for Capture); Keenable as fallback |
-| **ElevenLabs** | Voice journal, letters in own voice, narrated weekly update |
-| **mem0** | Soft memory (preferences, journal recall). The hard profile stays in the DB. |
+| **ElevenLabs** | Voice journal, letters in own voice, narrated weekly update, Little Lessons narration (English first; Tamil/Hindi later) |
+| **ffmpeg or Remotion** | Stitch Little Lessons: images + pan/zoom + captions + voice → MP4 + thumbnail |
+| **mem0** | Soft memory (preferences, journal recall, which Little Lessons a parent has watched). The hard profile stays in the DB; lesson content stays in the approved library. |
 | **Toloka** | Later: real moms and clinicians rate answers → human-validated golden set |
 | **Claude Code + Spec Kit** | Building; Codex as second PR reviewer |
 | Parked | Langfuse (duplicates LangSmith), Tandem (not a product fit) |
@@ -186,6 +218,12 @@ nestling/
 │   ├── seemantham_tamilnadu.yaml
 │   ├── valaikappu_kerala.yaml
 │   └── seemantha_karnataka.yaml
+├── lessons/
+│   └── <lesson_id>/               # one folder per Little Lesson
+│       ├── storyboard.json        # 5–6 scenes, each with source_id and safety_points
+│       ├── checklist.yaml         # per-lesson safety checklist
+│       ├── phrasings.yaml         # sample questions for lesson matching (Pinecone `lessons`)
+│       └── review.yaml            # reviewer, date, checklist result per scene, approved yes/no
 ├── nestling/                      # Python package
 │   ├── profile.py                 # PregnancyProfile + week engine
 │   ├── guardian.py                # red-flag rules + classifier
@@ -195,6 +233,12 @@ nestling/
 │   │   └── studio_package.py      # StudioPackage (Capture; also the future Partner API schema)
 │   ├── capture/
 │   │   └── estimate.py            # estimate_cost(): tier ranges + confidence, code only
+│   ├── lessons/                   # Little Lessons (build time, except library.py)
+│   │   ├── storyboard.py          # sourced steps → scene JSON (Sonnet)
+│   │   ├── render_images.py       # scenes → images (Fireworks/Nebius, fixed style)
+│   │   ├── narrate.py             # narration per scene (ElevenLabs)
+│   │   ├── stitch.py              # ffmpeg/Remotion → MP4 + thumbnail
+│   │   └── library.py             # approved videos + metadata; runtime lookup
 │   ├── verifier.py
 │   ├── retrieval.py               # LlamaIndex + Pinecone
 │   ├── graph.py                   # LangGraph wiring
@@ -207,10 +251,12 @@ nestling/
 │   ├── 04_retrieval_upgrade.ipynb
 │   ├── 05_verifier.ipynb
 │   ├── 06_eval_compare.ipynb
-│   └── 07_capture_agent.ipynb
+│   ├── 07_capture_agent.ipynb
+│   └── 08_little_lessons.ipynb
 ├── evals/
 │   ├── golden_v1.csv              # 40 labeled cases (versioned, never edited after baseline)
 │   ├── capture_golden_v1.csv      # ~10 Capture cases (separate dataset, §9.8)
+│   ├── lessons_golden_v1.csv      # first 6 Little Lessons (separate dataset, §9.9)
 │   ├── evaluators.py
 │   ├── judge_prompt.md
 │   └── results/                   # exported scores per run
@@ -344,6 +390,17 @@ Faithfulness drop >5% over 7 days · p95 cost >25% over budget in 24h · p95 lat
 
 **Proposed pass bars:** extraction ≥90% of fields · hallucinated fields 0% · source URL 100% · cost and estimate maths 100% · low-data guard 100% · provenance 100% · unapproved enquiries 0 · quote coverage ≥70%. Latency and cost budgets are set after the first run.
 
+### 9.9 Little Lessons evaluation (separate dataset)
+
+`evals/lessons_golden_v1.csv` covers the first 6 lessons (LangSmith `nestling-lessons-v1`, project `nestling-lessons`), never mixed into `golden_v2_india` (which stays frozen; it is not relabeled for the new route). Per lesson: the storyboard, the source pages behind it and its safety checklist, plus a few how-to phrasings for routing and some questions with no lesson (expect written steps only and a logged gap).
+
+| Metric | Method | Proposed pass bar |
+|---|---|---|
+| Step fidelity vs source: no missing or invented steps | LLM judge + Anand's review | 100% |
+| Safety checklist pass rate per scene | Human review | 100% before publish |
+| How-to question → right lesson (or "no lesson") | Exact match | ≥90% |
+| Cost and render time per lesson | From run metadata | Set after the first run |
+
 ---
 
 ## 10. Build phases (no deadlines, each one ships and gets a post)
@@ -360,8 +417,9 @@ Faithfulness drop >5% over 7 days · p95 cost >25% over budget in 24h · p95 lat
 | 7 | Celebrate: tradition playbooks + invitation card | 3 traditions live | "Seemantham, valaikappu, seemantha, in one planner." |
 | 8 | Capture: photoshoot compare + budget estimate + quote request (notebook 07, §9.8 evals) | 10 Bengaluru studios compared, every field sourced; tiered estimates with confidence; Capture evals pass | "Planning a maternity shoot? Nestling estimates your budget in 30 seconds." |
 | 9 | Voice: journal + letter in your own voice (ElevenLabs) | Working demo | "A letter to my baby, in my own voice." |
-| 10 | Money: policy PDF Q&A with exact clauses | Clause-level citations | "AI that reads your insurance policy so you don't have to." |
-| 11 | Trust: Toloka validation with real moms | Published human scores | "I asked real moms to grade my AI." |
+| 10 | Little Lessons: first 6 reviewed videos (notebook 08, §9.9 evals) | 6 lessons approved against their checklists and served from Ask; Lessons evals pass | "I built an AI that makes safe, sourced how-to videos for new parents — reviewed by a human before any parent sees them." |
+| 11 | Money: policy PDF Q&A with exact clauses | Clause-level citations | "AI that reads your insurance policy so you don't have to." |
+| 12 | Trust: Toloka validation with real moms | Published human scores | "I asked real moms to grade my AI." |
 
 ---
 
@@ -428,5 +486,8 @@ MEM0_API_KEY=
 - [ ] A clinician or nurse to review the red-flag rules and a sample of answers. *Deferred.* Until then, every red-flag rule is checked against the WHO/MoHFW page it cites. Web search (Tavily) is not a substitute: it is for non-medical lookups only (§5, constitution).
 - [x] Capture pilot city: **Bengaluru**, including studios' Instagram where it can be used properly (public pages, bio links, later the official Business Discovery API; no scraping, no copied images). *Decided 2026-11-01.*
 - [ ] Do we approach 3–5 studios to try the Partner API?
+- [ ] Little Lessons image model: Fireworks or Nebius?
+- [ ] Which 6 Little Lessons first? (Proposed: holding, bathing, burping, swaddling, latching positions, cord care.)
+- [ ] Who reviews Little Lessons medically? (Could be the same clinician or nurse as the red-flag review above.)
 
 *Disclaimer to show in the app:* Nestling offers general information from trusted sources and is not a substitute for medical advice. In an emergency, contact your doctor or the nearest hospital.
