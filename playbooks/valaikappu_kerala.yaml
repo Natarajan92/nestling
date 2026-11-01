@@ -1,1 +1,22 @@
-# valaikappu_kerala playbook: filled in a later phase. Every item must cite a source ID or be marked as family custom.
+# Celebrate playbook (family customs; customs vary). Owner check pending: many Kerala families
+# call their ceremony pulikudi or seemantham; valaikappu (the bangle ceremony) is mainly a
+# Tamil custom also kept by some Kerala families.
+tradition: Kerala pregnancy ceremonies
+also_called: [Pulikudi, Seemantham, Valaikappu]
+timing: Pulikudi is commonly held in the 7th month (some families choose the 5th or 9th); the date is usually fixed with family elders.
+source: family_custom
+note: Customs differ widely between communities in Kerala. Ask the elders in your family what they follow.
+rituals:
+  - name: Pulikudi
+    what: Elders prepare a special herbal and tamarind mixture that the mother-to-be drinks after rituals and prayers; the family then celebrates together.
+  - name: Seemantham
+    what: Some communities hold a seemantham ceremony with prayers for the wellbeing of mother and baby.
+  - name: Valaikappu
+    what: Some families hold the bangle ceremony, where women of the family put bangles on the mother-to-be and bless her.
+checklist:
+  - Fix the date with family elders
+  - Set mundu or saree for the mother
+  - Ingredients for the traditional preparation, made by the elders who know it
+  - Sadya (feast) on banana leaf for guests
+  - Return gifts for guests
+health_note: Before drinking any herbal preparation in pregnancy, check with your doctor (Nestling cannot judge herbal remedies).

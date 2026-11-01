@@ -20,7 +20,7 @@ sources:
     pdf: https://apps.who.int/iris/bitstream/10665/250796/1/9789241549912-eng.pdf
     file: WHO-ANC.pdf
     pages: 172
-    used_by: [care, guardian]
+    used_by: [care, guardian, nourish]  # nourish: chapter A, nutritional interventions
     licence: All rights reserved (WHO 2016)
     ingest_allowed: true  # owner decision 2026-11-01 (publicly downloadable); request WHO Press permission before public launch
     verified: true
@@ -75,7 +75,7 @@ sources:
     year: 2024
     url: https://www.nin.res.in/dietaryguidelines/
     pdf: https://www.nin.res.in/dietaryguidelines/pdfjs/locale/DGI24thJune2024fin.pdf
-    file: ICMR-NIN-DG.pdf  # ICMR_NIN-DGI-2024.pdf is an identical duplicate
+    file: ICMR-NIN-DG.pdf
     pages: 148
     sections: Guideline 2 (pregnancy and lactation), Guideline 3 (breastfeeding)
     used_by: [nourish]
@@ -307,6 +307,107 @@ sources:
     verified: true
     verified_on: 2026-11-01
 
+  - id: NHS-BABY-BATHING
+    title: Washing and bathing your baby
+    publisher: NHS
+    year: 2024
+    url: https://www.nhs.uk/baby/caring-for-a-newborn/washing-and-bathing-your-baby/
+    file: NHS-BABY-BATHING.pdf
+    snapshot_file: snapshots/NHS-BABY-BATHING.json
+    pages: 2
+    used_by: [care]
+    licence: Open Government Licence v3.0; NHS website terms apply; text only
+    licence_url: https://www.nhs.uk/our-policies/terms-and-conditions/
+    attribution: Information from the NHS website, as at 01 November 2026
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
+    source_reviewed_on: 2024-07-23
+    note: Dated text-only local PDF snapshot; page labels are local snapshot pages, not official NHS pagination. No images or video copied. Owner approved three source-namespace chunks on 2026-11-01; upsert completed without deletion. Lesson publication still requires human approval.
+
+  - id: NHS-BABY-BURPING
+    title: Burping your baby
+    publisher: NHS Best Start in Life
+    year: null
+    url: https://www.nhs.uk/best-start-in-life/baby/feeding-your-baby/breastfeeding/how-to-breastfeed/burping-your-baby/
+    file: NHS-BABY-BURPING.pdf
+    snapshot_file: snapshots/NHS-BABY-BURPING.json
+    pages: 2
+    used_by: [care]
+    licence: Open Government Licence v3.0; NHS website terms apply; text only
+    licence_url: https://www.nhs.uk/our-policies/terms-and-conditions/
+    attribution: Information from the NHS website, as at 01 November 2026
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
+    note: Dated text-only local PDF snapshot; page labels are local snapshot pages, not official NHS pagination. No images copied. Page has no visible review date. Owner approved three source-namespace chunks on 2026-11-01; upsert completed without deletion. Lesson publication still requires human approval.
+
+  - id: NHS-CHILD-URGENT
+    title: When to get urgent medical help for babies and children under 5
+    publisher: NHS
+    year: 2026
+    url: https://www.nhs.uk/baby/health/when-to-get-urgent-medical-help-for-babies-and-children-under-5/
+    file: NHS-CHILD-URGENT.pdf
+    snapshot_file: snapshots/NHS-CHILD-URGENT.json
+    used_by: [guardian]
+    licence: Open Government Licence v3.0; NHS website terms apply; text only
+    licence_url: https://www.nhs.uk/our-policies/terms-and-conditions/
+    attribution: Information from the NHS website, as at 01 November 2026
+    ingest_allowed: false
+    verified: true
+    verified_on: 2026-11-01
+    source_reviewed_on: 2026-08-06
+    note: "Code-owned urgent-sign citation only. Section: Immediate action required: Call 999 or go to A&E if. NHS emergency service numbers apply to England; Nestling uses its existing India emergency wording. No source-namespace write authorized."
+
+  - id: NHS-CHILD-CPR
+    title: How to resuscitate a child
+    publisher: NHS
+    year: 2026
+    url: https://www.nhs.uk/baby/first-aid-and-safety/first-aid/how-to-resuscitate-a-child/
+    file: NHS-CHILD-CPR.pdf
+    snapshot_file: snapshots/NHS-CHILD-CPR.json
+    used_by: [guardian]
+    licence: Open Government Licence v3.0; NHS website terms apply; text only
+    licence_url: https://www.nhs.uk/our-policies/terms-and-conditions/
+    attribution: Information from the NHS website, as at 01 November 2026
+    ingest_allowed: false
+    verified: true
+    verified_on: 2026-11-01
+    source_reviewed_on: 2026-05-21
+    note: "Introduction explicitly requires emergency help for an unresponsive baby or child who is not breathing normally. Section 5b covers absent/infrequent/irregular breathing. Registration supports emergency escalation only, not generated CPR instructions. No source-namespace write authorized."
+
+  - id: NSW-SCHN-SWADDLING
+    title: Swaddling newborns
+    publisher: Sydney Children's Hospitals Network (NSW Health)
+    year: 2026
+    url: https://www.schn.health.nsw.gov.au/kids-health-hub/healthy-sleep-children/newborn-sleep/swaddling-newborns
+    file: NSW-SCHN-SWADDLING.pdf
+    pages: 1
+    used_by: [care]
+    licence: Copyright NSW Government / Sydney Children's Hospitals Network; citation only, no public source-text or image reproduction
+    licence_url: https://www.schn.health.nsw.gov.au/copyright
+    attribution: Source guidance from Sydney Children's Hospitals Network, updated 7 October 2026; Nestling uses independently written factual instructions and its own icons. No endorsement implied.
+    ingest_allowed: false
+    verified: true
+    verified_on: 2026-11-01
+    source_reviewed_on: 2026-10-07
+    note: A private one-page research print under gitignored sources/pdfs contains the original method, safety and rolling sections together, so every cited local page supports its scene and safety points. This is local pagination, not official article pagination. No full text, illustrations or video are copied into the public repository or Pinecone. Do not enable ingestion without separate rights clearance and owner approval.
+
+  - id: NHS-RWT-HOLDING
+    title: Holding a new baby
+    publisher: Royal Wolverhampton NHS Trust (Healthy Child Wolves)
+    year: null
+    url: https://healthychild.royalwolverhampton.nhs.uk/0-4-years/my-new-baby/dads-and-new-babies
+    file: NHS-RWT-HOLDING.pdf
+    pages: 1
+    used_by: [care]
+    licence: Copyright Royal Wolverhampton NHS Trust; citation only, independently written factual instructions and original icons
+    attribution: General newborn-holding guidance from Royal Wolverhampton NHS Trust, accessed 1 November 2026. Nestling wording and icons are independently created; no endorsement implied.
+    ingest_allowed: false
+    verified: true
+    verified_on: 2026-11-01
+    note: Only the general holding sections are used, not bathing or breastfeeding. They support head and neck, lifting with head and bottom supported, cradling with the entire body supported, supporting the back and keeping close. Upper-body support includes the shoulders. A one-page personal research print under gitignored sources/pdfs retains these original passages for source checking; local pagination is not official pagination. No full text or media is distributed or indexed in Pinecone.
+
   - id: USER-POLICY
     title: The user's own uploaded insurance policy
     publisher: user's insurer
@@ -318,3 +419,142 @@ sources:
     licence: user's own document
     ingest_allowed: true  # per-user only, with consent
     verified: false
+
+  # Prenatal lesson sources; owner-authorized citation-only registration, 2026-11-01.
+  - id: NHS-NNUH-PREGNANCY-PHYSIO
+    title: Physiotherapy Advice in Pregnancy
+    publisher: Norfolk and Norwich University Hospitals NHS Foundation Trust
+    year: 2021
+    url: https://www.nnuh.nhs.uk/publication/download/physiotherapy-advice-in-pregnancy-v12/
+    file: NHS-NNUH-PREGNANCY-PHYSIO.pdf
+    pages: 2
+    used_by:
+    - care
+    licence: Citation only; independently authored factual instruction and licensed Nestling icons. Source expression/media
+      are not redistributed.
+    ingest_allowed: false
+    verified: true
+    verified_on: '2026-11-01'
+    snapshot_file: snapshots/NHS-NNUH-PREGNANCY-PHYSIO.json
+    note: Reviewed 2021-06-29; further one-year review given 2024-10-21; version 12. Original publisher PDF pagination. No source
+      text or media in public repository or Pinecone; original source remains linked. No clinical endorsement implied.
+  - id: NHS-RB-PREGNANCY-BODY
+    title: Caring for your body in pregnancy
+    publisher: Royal Berkshire NHS Foundation Trust
+    year: 2025
+    url: https://www.royalberkshire.nhs.uk/media/ypelspll/physio-caring-for-your-body-in-pregnancy.pdf
+    file: NHS-RB-PREGNANCY-BODY.pdf
+    pages: 4
+    used_by:
+    - care
+    licence: Citation only; independently authored factual instruction and licensed Nestling icons. Source expression/media
+      are not redistributed.
+    ingest_allowed: false
+    verified: true
+    verified_on: '2026-11-01'
+    snapshot_file: snapshots/NHS-RB-PREGNANCY-BODY.json
+    note: 2025-02. Original publisher PDF pagination. No source text or media in public repository or Pinecone; original source
+      remains linked. No clinical endorsement implied.
+  - id: NHS-UHNM-ANTENATAL
+    title: Antenatal
+    publisher: University Hospitals of North Midlands NHS Trust
+    year: null
+    url: https://www.uhnm.nhs.uk/hospitals-and-services/maternity/perinatal-pelvic-health-services-pphs/antenatal/
+    file: NHS-UHNM-ANTENATAL.pdf
+    pages: 1
+    used_by:
+    - care
+    licence: Citation only; independently authored factual instruction and licensed Nestling icons. Source expression/media
+      are not redistributed.
+    ingest_allowed: false
+    verified: true
+    verified_on: '2026-11-01'
+    snapshot_file: snapshots/NHS-UHNM-ANTENATAL.json
+    note: 'No article review date observed. Private text-only research print: local pagination, not official article pagination.
+      No source text or media in public repository or Pinecone; original source remains linked. No clinical endorsement implied.'
+  - id: NHS-PREGNANCY-EXERCISE
+    title: Exercise in pregnancy
+    publisher: NHS
+    year: 2026
+    url: https://www.nhs.uk/pregnancy/keeping-well/exercise/
+    file: NHS-PREGNANCY-EXERCISE.pdf
+    pages: 1
+    used_by:
+    - care
+    licence: Citation only; independently authored factual instruction and licensed Nestling icons. Source expression/media
+      are not redistributed.
+    ingest_allowed: false
+    verified: true
+    verified_on: '2026-11-01'
+    snapshot_file: snapshots/NHS-PREGNANCY-EXERCISE.json
+    note: 'Page reviewed 2026-09-24. Private text-only research print: local pagination, not official article pagination. No
+      source text or media in public repository or Pinecone; original source remains linked. No clinical endorsement implied.'
+  - id: NHS-PRENATAL-YOGA
+    title: Prenatal and postnatal yoga video
+    publisher: NHS; workout produced by InstructorLive
+    year: 2025
+    url: https://www.nhs.uk/live-well/exercise/pilates-and-yoga/prenatal-and-postnatal-exercise/
+    file: NHS-PRENATAL-YOGA.pdf
+    pages: 1
+    used_by:
+    - care
+    licence: Citation only; independently authored factual instruction and licensed Nestling icons. Source expression/media
+      are not redistributed.
+    ingest_allowed: false
+    verified: true
+    verified_on: '2026-11-01'
+    snapshot_file: snapshots/NHS-PRENATAL-YOGA.json
+    note: 'Page and media reviewed 2025-05-13. Private text-only research print: local pagination, not official article pagination.
+      No source text or media in public repository or Pinecone; original source remains linked. No clinical endorsement implied.'
+  - id: NHS-WALES-BIRTH-PARTNER
+    title: What your Birthing Partner can do
+    publisher: NHS 111 Wales; adapted from NHS.uk
+    year: 2023
+    url: https://111.wales.nhs.uk/doityourself/pregnancy/BirthingPartner/
+    file: NHS-WALES-BIRTH-PARTNER.pdf
+    pages: 1
+    used_by:
+    - care
+    licence: Citation only; independently authored factual instruction and licensed Nestling icons. Source expression/media
+      are not redistributed.
+    ingest_allowed: false
+    verified: true
+    verified_on: '2026-11-01'
+    snapshot_file: snapshots/NHS-WALES-BIRTH-PARTNER.json
+    note: 'Last updated 2023-07-25. Private text-only research print: local pagination, not official article pagination. No
+      source text or media in public repository or Pinecone; original source remains linked. No clinical endorsement implied.'
+  - id: HSE-PREGNANCY-PGP-ACTIVITIES
+    title: Managing pelvic girdle pain - Pelvic girdle pain in pregnancy
+    publisher: Health Service Executive, Ireland
+    year: 2026
+    url: https://www.hse.ie/conditions/pelvic-girdle-pain-pregnancy/managing-pain/
+    file: HSE-PREGNANCY-PGP-ACTIVITIES.pdf
+    pages: 1
+    used_by:
+    - care
+    licence: Citation only; independently authored factual instruction and licensed Nestling icons. Source expression/media
+      are not redistributed.
+    ingest_allowed: false
+    verified: true
+    verified_on: '2026-11-01'
+    snapshot_file: snapshots/HSE-PREGNANCY-PGP-ACTIVITIES.json
+    note: 'Page reviewed 2026-03-18. Private text-only research print: local pagination, not official article pagination. No
+      source text or media in public repository or Pinecone; original source remains linked. No clinical endorsement implied.'
+  - id: NHS-PREGNANCY-PELVIC-PAIN
+    title: Pelvic pain in pregnancy
+    publisher: NHS
+    year: 2022
+    url: https://www.nhs.uk/pregnancy/common-symptoms/pelvic-pain/
+    file: NHS-PREGNANCY-PELVIC-PAIN.pdf
+    pages: 1
+    used_by:
+    - care
+    licence: Citation only; independently authored factual instruction and licensed Nestling icons. Source expression/media
+      are not redistributed.
+    ingest_allowed: false
+    verified: true
+    verified_on: '2026-11-01'
+    snapshot_file: snapshots/NHS-PREGNANCY-PELVIC-PAIN.json
+    note: 'Page reviewed 2022-12-12; next review due 2025-12-12 (past due as accessed). Private text-only research print: local
+      pagination, not official article pagination. No source text or media in public repository or Pinecone; original source
+      remains linked. No clinical endorsement implied.'

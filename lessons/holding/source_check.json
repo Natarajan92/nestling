@@ -1,0 +1,45 @@
+{
+  "lesson_id": "holding",
+  "version": 3,
+  "status": "source_checked",
+  "source_id": "NHS-RWT-HOLDING",
+  "source_url": "https://healthychild.royalwolverhampton.nhs.uk/0-4-years/my-new-baby/dads-and-new-babies",
+  "section": "Dads: Holding a new baby / What do dads need to understand about holding a baby?",
+  "source_pdf_sha256": "d4e4ec7093100521dcf9b08d3ac02a1b4b532ea5b374f30c080b12e84b40cc8d",
+  "source_html_sha256": "6d708eb4e1dda8ee87c43d2e8daea07350598e7d1f53530cfd901eb6df66f8a1",
+  "local_pagination": "One private personal research-print page contains the original general holding passages. No public source-text snapshot.",
+  "checks": [
+    {
+      "step_no": 1,
+      "source_id": "NHS-RWT-HOLDING",
+      "page_label": "1",
+      "evidence": "head and neck"
+    },
+    {
+      "step_no": 2,
+      "source_id": "NHS-RWT-HOLDING",
+      "page_label": "1",
+      "evidence": "other under the baby's bottom"
+    },
+    {
+      "step_no": 3,
+      "source_id": "NHS-RWT-HOLDING",
+      "page_label": "1",
+      "evidence": "underneath of their body"
+    },
+    {
+      "step_no": 4,
+      "source_id": "NHS-RWT-HOLDING",
+      "page_label": "1",
+      "evidence": "never shake a baby"
+    }
+  ],
+  "verbatim_quote_words": 16,
+  "shoulder_support_basis": "General cradle method supports the entire underside of the body and the back; shoulders are included within this upper-body support. No bathing or breastfeeding instruction is used.",
+  "mechanical_validation": [],
+  "human_review": "approved",
+  "pinecone_writes": 0,
+  "storyboard_sha256": "07028a5e36d121619a365ce4c1c7bdd6358e50c2bdf10614ff6522dab4e6688f",
+  "reviewer": "S Anand Natarajan",
+  "review_date": "2026-11-01"
+}

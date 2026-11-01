@@ -1,0 +1,81 @@
+{
+  "lesson_id": "swaddling",
+  "version": 5,
+  "status": "source_checked",
+  "source_id": "NSW-SCHN-SWADDLING",
+  "source_pdf_sha256": "56164129f58321b2d058fa4ec6d45d52498974330296b850077103e95c95d901",
+  "source_html_sha256": "a07e1731684fa0b527909e30b59c86452b63cb376a8dee639203be8ad89e74be",
+  "local_pagination": "1 original method, safety tips and rolling sections on one private research-print page; no public article copy",
+  "checks": [
+    {
+      "step_no": 1,
+      "source_id": "NSW-SCHN-SWADDLING",
+      "page_label": "1",
+      "evidence": "neck just above",
+      "method_actions": "How to swaddle your baby: actions 1-3",
+      "safety_support_pages": [
+        "1"
+      ]
+    },
+    {
+      "step_no": 2,
+      "source_id": "NSW-SCHN-SWADDLING",
+      "page_label": "1",
+      "evidence": "on a downward diagonal",
+      "method_actions": "How to swaddle your baby: actions 4-5",
+      "safety_support_pages": [
+        "1"
+      ]
+    },
+    {
+      "step_no": 3,
+      "source_id": "NSW-SCHN-SWADDLING",
+      "page_label": "1",
+      "evidence": "tuck it loosely",
+      "method_actions": "How to swaddle your baby: action 6 (left-shoulder option)",
+      "safety_support_pages": [
+        "1"
+      ]
+    },
+    {
+      "step_no": 4,
+      "source_id": "NSW-SCHN-SWADDLING",
+      "page_label": "1",
+      "evidence": "with a slight bend",
+      "method_actions": "How to swaddle your baby: actions 7-9",
+      "safety_support_pages": [
+        "1"
+      ]
+    },
+    {
+      "step_no": 5,
+      "source_id": "NSW-SCHN-SWADDLING",
+      "page_label": "1",
+      "evidence": "signs of rolling",
+      "method_actions": "How to swaddle your baby: fit paragraph; Swaddle tips: back sleeping; When to transition out: first rolling signs",
+      "safety_support_pages": [
+        "1"
+      ]
+    }
+  ],
+  "verbatim_quote_words": 17,
+  "mechanical_validation": [],
+  "narration_limit_exception": "Build narration limit is20 words; all captions<=8 and safety points<=12.",
+  "human_review": "approved",
+  "pinecone_writes": 0,
+  "storyboard_sha256": "f57fa4d131a823a8cf5261b4952ebbf18a416057f73659b3e3123f8b125aaab9",
+  "precision_correction": "Scene3 explicitly places the loose tuck behind the left shoulder, matching method action6; prior by the shoulder wording replaced.",
+  "citation_correction": "Every scene cites the same unpaginated article research-print page, which actually contains all method and safety statements. No clinical prose or audio changed.",
+  "clarity_correction_v4": "Caption specifies folding top to middle; step2 safety names the right elbow. Narration and source citations unchanged; no new model or TTS requests.",
+  "change_history": [
+    {
+      "version": 5,
+      "changed_at": "2026-11-01T16:50:07+00:00",
+      "change": "Clarified left-arm position/body tuck and unrestricted leg movement; step2 leaves left arm free until step4; heavy/weighted-wrap warning is visible on step1.",
+      "previous_version": 4,
+      "storyboard_sha256": "f57fa4d131a823a8cf5261b4952ebbf18a416057f73659b3e3123f8b125aaab9"
+    }
+  ],
+  "reviewer": "S Anand Natarajan",
+  "review_date": "2026-11-01"
+}

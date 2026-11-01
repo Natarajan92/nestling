@@ -1,0 +1,57 @@
+{
+  "lesson_id": "holding",
+  "title": "Holding your newborn",
+  "version": 3,
+  "stage": "first_weeks",
+  "language": "en",
+  "sources": [
+    "NHS-RWT-HOLDING"
+  ],
+  "see_how": null,
+  "scenes": [
+    {
+      "step_no": 1,
+      "caption": "Support the head, neck and shoulders",
+      "narration_line": "Support their head, neck, and shoulders throughout the hold.",
+      "icon": "hand-heart",
+      "source_id": "NHS-RWT-HOLDING",
+      "page_label": "1",
+      "safety_points": [
+        "Support the head and neck at all times."
+      ]
+    },
+    {
+      "step_no": 2,
+      "caption": "Support their bottom; lift gently",
+      "narration_line": "Put one hand beneath their head, the other beneath their bottom.",
+      "icon": "hand-palm",
+      "source_id": "NHS-RWT-HOLDING",
+      "page_label": "1",
+      "safety_points": [
+        "Lift slowly and gently."
+      ]
+    },
+    {
+      "step_no": 3,
+      "caption": "Cradle the head and whole body",
+      "narration_line": "Rest their head in your arm's bend; support their body underneath.",
+      "icon": "baby",
+      "source_id": "NHS-RWT-HOLDING",
+      "page_label": "1",
+      "safety_points": [
+        "Support shoulders, back and bottom with your other arm."
+      ]
+    },
+    {
+      "step_no": 4,
+      "caption": "Hold close; handle gently",
+      "narration_line": "Keep them close, move gently, and never shake your baby.",
+      "icon": "heart",
+      "source_id": "NHS-RWT-HOLDING",
+      "page_label": "1",
+      "safety_points": [
+        "Never shake your baby."
+      ]
+    }
+  ]
+}

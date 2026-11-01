@@ -1,0 +1,241 @@
+import ast
+import importlib
+import pathlib
+from types import SimpleNamespace
+
+import pytest
+
+from nestling import llm
+from nestling.agents import policy
+
+SCHEMA = {"type": "object", "properties": {"route": {"type": "string", "enum": ["a", "b"]}},
+          "required": ["route"], "additionalProperties": False}
+
+
+def reply(text):
+    return SimpleNamespace(model="m", usage=SimpleNamespace(prompt_tokens=3, completion_tokens=2),
+                           choices=[SimpleNamespace(message=SimpleNamespace(content=text))])
+
+
+class FakeClient:
+    def __init__(self, replies):
+        self.replies, self.calls = list(replies), []
+        self.chat = SimpleNamespace(completions=SimpleNamespace(create=self.create))
+
+    def create(self, **kwargs):
+        self.calls.append(kwargs)
+        r = self.replies.pop(0)
+        if isinstance(r, Exception):
+            raise r
+        return r
+
+
+class Rejected(Exception):
+    status_code = 400
+
+
+def test_chat_json_schema_path(monkeypatch):
+    fake = FakeClient([reply('{"route": "b"}')])
+    monkeypatch.setattr(llm, "client", lambda: fake)
+    data, usage, raw = llm.chat_json(llm.FAST, "sys", "user", SCHEMA)
+    assert data == {"route": "b"} and raw == '{"route": "b"}'
+    assert usage == {"model": "m", "tokens_in": 3, "tokens_out": 2}
+    assert fake.calls[0]["response_format"]["type"] == "json_schema"
+
+
+def test_chat_json_falls_back_to_json_mode(monkeypatch):
+    fake = FakeClient([Rejected("no json_schema"), reply('{"route": "a"}')])
+    monkeypatch.setattr(llm, "client", lambda: fake)
+    data, _, _ = llm.chat_json(llm.MAIN, "sys", "user", SCHEMA)
+    assert data == {"route": "a"}
+    assert fake.calls[1]["response_format"] == {"type": "json_object"}
+    assert "JSON schema" in fake.calls[1]["messages"][0]["content"]
+
+
+def test_chat_json_invalid_reply_is_none(monkeypatch):
+    monkeypatch.setattr(llm, "client", lambda: FakeClient([reply('{"route": "zzz"}')]))
+    assert llm.chat_json(llm.FAST, "s", "u", SCHEMA)[0] is None
+
+
+def test_chat_json_other_errors_raise(monkeypatch):
+    err = Exception("boom")
+    err.status_code = 500
+    monkeypatch.setattr(llm, "client", lambda: FakeClient([err]))
+    with pytest.raises(Exception, match="boom"):
+        llm.chat_json(llm.FAST, "s", "u", SCHEMA)
+
+
+def test_transport_error_without_status_is_not_retried_as_schema_rejection(monkeypatch):
+    error = RuntimeError("transport unavailable")
+    fake = FakeClient([error, reply('{"route": "a"}')])
+    monkeypatch.setattr(llm, "client", lambda: fake)
+    with pytest.raises(RuntimeError) as caught:
+        llm.chat_json(llm.FAST, "s", "u", SCHEMA)
+    assert caught.value is error
+
+
+def test_unrelated_bad_request_is_not_retried_in_json_mode(monkeypatch):
+    error = Rejected("invalid max_tokens")
+    fake = FakeClient([error, reply('{"route": "a"}')])
+    monkeypatch.setattr(llm, "client", lambda: fake)
+    with pytest.raises(Rejected) as caught:
+        llm.chat_json(llm.FAST, "s", "u", SCHEMA)
+    assert caught.value is error
+
+
+@pytest.mark.parametrize("override,expected", [("", "deepseek-ai/DeepSeek-V4-Pro"), ("zai-org/GLM-5.3", "zai-org/GLM-5.3")])
+def test_model_override_allows_blank_template_and_keeps_explicit_choice(monkeypatch, override, expected):
+    with monkeypatch.context() as patch:
+        patch.setenv("NESTLING_MAIN_MODEL", override)
+        importlib.reload(llm)
+        assert llm.MAIN == expected
+    importlib.reload(llm)
+
+
+def test_policy_quotes_must_appear_verbatim_on_their_page():
+    pages = ["Maternity cover  starts after a\n24 month waiting period.", "Room rent is capped at 1% of the sum insured."]
+    quotes = [
+        {"text": "maternity cover starts after a 24 month waiting period", "page": 1},  # spacing and case differ: ok
+        {"text": "Room rent is capped at 1% of the sum insured.", "page": 1},  # wrong page
+        {"text": "NICU is fully covered", "page": 2},  # invented
+        {"text": "Room rent is capped at 1% of the sum insured.", "page": 2},
+        {"text": "x", "page": 9},
+    ]
+    kept = policy.verified_quotes(quotes, pages)
+    assert [(q["page_start"], q["text"][:4]) for q in kept] == [(1, "mate"), (2, "Room")]
+
+
+def test_policy_without_surviving_quote_says_none_found(monkeypatch):
+    monkeypatch.setattr(policy, "read_pages", lambda pdf: ["Waiting period is 24 months."])
+    monkeypatch.setattr(policy, "chat_json", lambda *a, **k: (
+        {"answer": "Covered fully", "quotes": [{"text": "fully covered", "page": 1}]}, {"model": "m", "tokens_in": 1, "tokens_out": 1}, ""))
+    out = policy.ask_policy("is NICU covered?", b"%PDF")
+    assert out["quotes"] == [] and out["answer"].startswith("I couldn't find this in your policy")
+
+
+def test_policy_rejects_answer_with_mixed_valid_and_invented_support(monkeypatch):
+    clause = "Maternity coverage begins after 24 continuous months."
+    monkeypatch.setattr(policy, "read_pages", lambda pdf: [clause + " NICU is excluded from this plan."])
+    monkeypatch.setattr(policy, "chat_json", lambda *a, **k: (
+        {"answer": clause + " NICU is covered without limits.", "quotes": [
+            {"text": clause, "page": 1}, {"text": "NICU is covered without limits.", "page": 1}]},
+        {"model": "m", "tokens_in": 1, "tokens_out": 1}, ""))
+    out = policy.ask_policy("What is covered?", b"%PDF")
+    assert out["answer"].startswith(policy.NOT_FOUND)
+    assert "covered without limits" not in out["answer"]
+    assert out["quotes"] == []
+
+
+def test_only_baseline_imports_anthropic():
+    root = pathlib.Path(__file__).resolve().parents[1]
+    offenders = []
+    for path in [*root.glob("nestling/**/*.py"), *root.glob("api/**/*.py")]:
+        for node in ast.walk(ast.parse(path.read_text(encoding="utf-8"))):
+            names = [a.name for a in node.names] if isinstance(node, ast.Import) else [node.module or ""] if isinstance(node, ast.ImportFrom) else []
+            if any(n.split(".")[0] == "anthropic" for n in names):
+                offenders.append(path.name)
+    assert set(offenders) <= {"baseline.py"}, offenders
+
+
+HITS = [{"source_id": "WHO-ANC", "page_label": "34", "chunk_text": "x"}, {"source_id": "MOHFW-ANC", "page_label": "28", "chunk_text": "y"}]
+
+
+def test_enforce_citations_normalises_and_keeps_real_ones():
+    from nestling.agents import enforce_citations
+
+    text, kept = enforce_citations("Rest well [who-anc page 34]. Pack the bag (MOHFW-ANC p. 28).", [], HITS)
+    assert text == "Rest well (WHO-ANC, p. 34). Pack the bag (MOHFW-ANC, p. 28)."
+    assert kept == ["WHO-ANC", "MOHFW-ANC"]
+
+
+def test_enforce_citations_drops_invented_sources_and_pages():
+    from nestling.agents import enforce_citations
+
+    text, kept = enforce_citations(
+        "Eat dal (ICMR-NIN-DG, p. 5). See a doctor (WHO-ANC, p. 99). Drink water (WHO-ANC, p. 34).",
+        ["ICMR-NIN-DG", "WHO-ANC", "FAKE-ID"], HITS)
+    assert text == "Eat dal. See a doctor. Drink water (WHO-ANC, p. 34)."
+    assert kept == ["WHO-ANC"]
+
+
+def test_enforce_citations_without_passages_cites_nothing():
+    from nestling.agents import enforce_citations
+
+    text, kept = enforce_citations("Fine (WHO-ANC, p. 34).", ["WHO-ANC"], [])
+    assert kept == [] and "WHO-ANC" not in text
+
+
+def test_answer_from_sources_enforces_citations(monkeypatch):
+    from nestling import agents
+
+    monkeypatch.setattr(agents, "main_json", lambda *a, **k: (
+        {"answer": "Yes (WHO-ANC, p. 34) and (BOGUS-ID, p. 1).", "sources_cited": ["WHO-ANC", "BOGUS-ID"]}, {"model": "m"}, ""))
+    out = agents.answer_from_sources("Care", "q", {}, HITS)
+    assert out["sources_cited"] == ["WHO-ANC"] and "BOGUS" not in out["answer"]
+
+
+@pytest.mark.parametrize("agent", ["Care", "nourish", "money"])
+@pytest.mark.parametrize("hits", [[], HITS, [{"source_id": "FAKE-SOURCE", "page_label": "99", "chunk_text": "untrusted"}]])
+def test_clinical_answer_without_a_registered_cited_source_is_replaced(monkeypatch, agent, hits):
+    from nestling import agents
+    monkeypatch.setattr(agents, "main_json", lambda *a, **kw: (
+        {"answer": "Drink this herb to treat your condition. [FAKE-SOURCE, p. 99]", "sources_cited": ["FAKE-SOURCE"]}, {"model": "m"}, ""))
+    out = agents.answer_from_sources(agent, "q", {}, hits)
+    assert out["answer"] == agents.NO_SOURCE_LINE and out["sources_cited"] == []
+
+
+@pytest.mark.parametrize("agent", ["Ready", "Celebrate", "journal"])
+def test_nonclinical_common_practice_text_does_not_require_medical_source(monkeypatch, agent):
+    from nestling import agents
+    monkeypatch.setattr(agents, "main_json", lambda *a, **kw: (
+        {"answer": "Pack your phone charger.", "sources_cited": []}, {"model": "m"}, ""))
+    assert agents.answer_from_sources(agent, "q", {}, [])["answer"] == "Pack your phone charger."
+
+
+def test_enforce_citations_keeps_punctuation_and_adds_no_control_characters():
+    from nestling.agents import enforce_citations
+
+    text = "Price 5 , ok . Fine ; yes (WHO-ANC, p. 34) , done"
+    out, _ = enforce_citations(text, [], HITS)
+    assert "" not in out and out == "Price 5 , ok . Fine ; yes (WHO-ANC, p. 34) , done"
+
+
+def test_enforce_citations_other_forms():
+    from nestling.agents import enforce_citations
+
+    hits = HITS + [{"source_id": "WHO-ANC", "page_label": "35", "chunk_text": "z"}]
+    cases = {
+        "A (WHO-ANC, pp. 34-35) B": ("A (WHO-ANC, p. 34) (WHO-ANC, p. 35) B", ["WHO-ANC"]),
+        "A (WHO-ANC, p. 34; ICMR-NIN-DG, p. 5) B": ("A (WHO-ANC, p. 34) B", ["WHO-ANC"]),
+        "A (WHO-ANC, p. 34; MOHFW-ANC, p. 28) B": ("A (WHO-ANC, p. 34) (MOHFW-ANC, p. 28) B", ["WHO-ANC", "MOHFW-ANC"]),
+        "A WHO-ANC p. 99 B": ("A B", []),
+        "A WHO-ANC p. 34 B": ("A (WHO-ANC, p. 34) B", ["WHO-ANC"]),
+        "A (FAKE-ID) B": ("A B", []),
+        "A (WHO-ANC) B": ("A B", []),
+        "A (WHO-ANC, page 34-36) B": ("A (WHO-ANC, p. 34) (WHO-ANC, p. 35) B", ["WHO-ANC"]),
+        "Mind your well-being (self-care) today": ("Mind your well-being (self-care) today", []),
+    }
+    for text, (expected, kept) in cases.items():
+        assert enforce_citations(text, [], hits) == (expected, kept), text
+
+
+def test_canonical_form_is_read_by_verifier_parser():
+    from nestling import verifier
+    from nestling.agents import enforce_citations
+
+    text, _ = enforce_citations("A [who-anc page 34] and (MOHFW-ANC pp. 28)", [], HITS)
+    assert verifier._CITE.findall(text) == [("WHO-ANC", "34"), ("MOHFW-ANC", "28")]
+
+
+def test_policy_short_fragment_does_not_verify():
+    pages = ["Maternity is not covered during the first year."]
+    quotes = [{"text": "covered", "page": 1}, {"text": "is not covered", "page": 1},
+              {"text": "Maternity is not covered during the first year.", "page": 1}]
+    assert [q["text"] for q in policy.verified_quotes(quotes, pages)] == ["Maternity is not covered during the first year."]
+
+
+def test_run_info_labels_recorded_claude_runs_honestly():
+    from nestling import graph
+
+    assert "claude" in graph.run_info("v5")["note"] and "Nebius" in graph.run_info("v5")["note"]
+    assert "note" not in graph.run_info("v6") and graph.run_info("v6")["model"] == f"{llm.MAIN} + {llm.FAST}"

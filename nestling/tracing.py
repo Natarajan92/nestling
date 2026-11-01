@@ -30,12 +30,26 @@ METADATA_KEYS = (
     "tokens_out",
     "cost_inr",
     "error",
+    "lesson_gap_topic",  # optional app extension: closed lesson label only, never the question
+    "retrieval_mode",
+    "retrieval_fallback",
+    "rules_fired",  # optional app extension: closed code-owned red-flag IDs, no symptom text
 )
 
-# USD per million tokens (input, output), Anthropic first-party pricing.
+# USD per million tokens (input, output). Runtime models are Nebius open models; prices from the Nebius
+# Token Factory model list (GET https://api.tokenfactory.nebius.com/v1/models?verbose=true, "pricing"),
+# read 2026-11-01. Claude prices are kept for the Phase 2 baseline and v1-v5 records (Anthropic first-party).
 PRICE_USD_PER_MTOK = {
+    "deepseek-ai/DeepSeek-V4-Pro": (1.75, 3.50),
+    "deepseek-ai/DeepSeek-V4.1-Flash": (0.30, 1.20),
+    "moonshotai/Kimi-K3": (3.00, 15.00),  # same source and date (Task 13 bake-off candidates)
+    "zai-org/GLM-5.3": (1.40, 4.40),
     "claude-sonnet-5-5": (2.00, 10.00),
     "claude-haiku-5-5": (0.10, 0.50),
+    "claude-opus-5-5": (4.00, 20.00),
+    "claude-opus-5": (5.00, 25.00),
+    "claude-opus-4-8": (5.00, 25.00),
+    "claude-sonnet-5": (2.00, 10.00),
 }
 USD_TO_INR = 94.91  # Rate as of 2026-11-01; update before reporting Week 4 costs.
 
@@ -48,12 +62,15 @@ def trace_metadata(**fields) -> dict:
     return {key: fields.get(key) for key in METADATA_KEYS}
 
 
-def cost_inr(model: str, tokens_in: int, tokens_out: int) -> float | None:
-    """Cost of one call in INR, or None if the model has no price on file."""
+def cost_inr(model: str, tokens_in: int, tokens_out: int, cache_write: int = 0, cache_read: int = 0) -> float | None:
+    """Cost of one call in INR, or None if the model has no price on file.
+
+    Cache writes cost 1.25x and cache reads 0.1x the input price.
+    """
     if model not in PRICE_USD_PER_MTOK:
         return None
     price_in, price_out = PRICE_USD_PER_MTOK[model]
-    usd = (tokens_in * price_in + tokens_out * price_out) / 1_000_000
+    usd = ((tokens_in + 1.25 * cache_write + 0.1 * cache_read) * price_in + tokens_out * price_out) / 1_000_000
     return round(usd * USD_TO_INR, 4)
 
 

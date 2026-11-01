@@ -1,0 +1,16 @@
+{
+  "source_id": "NHS-UHNM-ANTENATAL",
+  "title": "Antenatal",
+  "url": "https://www.uhnm.nhs.uk/hospitals-and-services/maternity/perinatal-pelvic-health-services-pphs/antenatal/",
+  "publisher": "University Hospitals of North Midlands NHS Trust",
+  "accessed_on": "2026-11-01",
+  "source_date_observed": "No article review date observed",
+  "raw_source_sha256": "c9b67859b7b60f13a001a0bb0a1c44125a9074862ae572022aa103eb82a32124",
+  "private_pdf_sha256": "2371199a97706411c8fe1c89b650db3d0f961d612308d3865c4a155d0e549026",
+  "pages": 1,
+  "sections": "Exercise; Breathing and relaxation exercises",
+  "private_pdf": "sources/pdfs/NHS-UHNM-ANTENATAL.pdf",
+  "ingest_allowed": false,
+  "verbatim_public_quote_words": 0,
+  "method": "Official publisher read and private download; original PDFs retained or relevant HTML text printed privately. This tracked file contains metadata only."
+}

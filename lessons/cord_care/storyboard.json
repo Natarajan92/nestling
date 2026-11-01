@@ -1,0 +1,54 @@
+{
+  "lesson_id": "cord_care",
+  "title": "Caring for the umbilical cord",
+  "version": 4,
+  "stage": "first_weeks",
+  "language": "en",
+  "sources": [
+    "MOHFW-ANC",
+    "WHO-POSTNATAL"
+  ],
+  "see_how": null,
+  "scenes": [
+    {
+      "step_no": 1,
+      "caption": "Keep the cord stump clean and dry",
+      "narration_line": "Keep your baby’s cord stump clean and dry every day.",
+      "icon": "sun",
+      "source_id": "WHO-POSTNATAL",
+      "page_label": "120",
+      "safety_points": []
+    },
+    {
+      "step_no": 2,
+      "caption": "Keep hygiene while handling your baby",
+      "narration_line": "Keep things hygienic whenever you handle your baby.",
+      "icon": "hand-soap",
+      "source_id": "MOHFW-ANC",
+      "page_label": "64",
+      "safety_points": []
+    },
+    {
+      "step_no": 3,
+      "caption": "Do not apply anything to the cord",
+      "narration_line": "Do not apply anything to your baby's cord.",
+      "icon": "shield-check",
+      "source_id": "MOHFW-ANC",
+      "page_label": "64",
+      "safety_points": [
+        "Keep the cord and umbilicus dry."
+      ]
+    },
+    {
+      "step_no": 4,
+      "caption": "Get help for redness, swelling or pus",
+      "narration_line": "For redness, swelling, or pus, contact your doctor immediately.",
+      "icon": "eye",
+      "source_id": "MOHFW-ANC",
+      "page_label": "65",
+      "safety_points": [
+        "Seek medical care immediately for these signs."
+      ]
+    }
+  ]
+}

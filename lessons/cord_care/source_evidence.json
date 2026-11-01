@@ -1,0 +1,55 @@
+{
+  "lesson_id": "cord_care",
+  "storyboard_version": 4,
+  "validation": "passed local code source-page/evidence/length/icon/prohibited-content checks; human re-review pending",
+  "source_pdf_sha256": {
+    "MOHFW-ANC": "806c46dc29af724a4cef531b194ff037ebef60c894d8eb65ec6f4fb7d0688897",
+    "WHO-POSTNATAL": "f4cbef197fdf40d33e1c53987ba6f4e099265fe0d867724c8c2e4fb91051a071"
+  },
+  "scenes": [
+    {
+      "step_no": 1,
+      "caption": "Keep the cord stump clean and dry",
+      "narration_line": "Keep your babyâ€™s cord stump clean and dry every day.",
+      "icon": "sun",
+      "source_id": "WHO-POSTNATAL",
+      "page_label": "120",
+      "safety_points": [],
+      "evidence": "Clean, dry umbilical cord care is recommended"
+    },
+    {
+      "step_no": 2,
+      "caption": "Keep hygiene while handling your baby",
+      "narration_line": "Keep things hygienic whenever you handle your baby.",
+      "icon": "hand-soap",
+      "source_id": "MOHFW-ANC",
+      "page_label": "64",
+      "safety_points": [],
+      "evidence": "while handling the baby"
+    },
+    {
+      "step_no": 3,
+      "caption": "Do not apply anything to the cord",
+      "narration_line": "Do not apply anything to your baby's cord.",
+      "icon": "shield-check",
+      "source_id": "MOHFW-ANC",
+      "page_label": "64",
+      "safety_points": [
+        "Keep the cord and umbilicus dry."
+      ],
+      "evidence": "She should not apply anything on the cord"
+    },
+    {
+      "step_no": 4,
+      "caption": "Get help for redness, swelling or pus",
+      "narration_line": "For redness, swelling, or pus, contact your doctor immediately.",
+      "icon": "eye",
+      "source_id": "MOHFW-ANC",
+      "page_label": "65",
+      "safety_points": [
+        "Seek medical care immediately for these signs."
+      ],
+      "evidence": "umbilicus is red, swollen or draining pus"
+    }
+  ]
+}

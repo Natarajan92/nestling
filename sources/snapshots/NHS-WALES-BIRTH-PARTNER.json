@@ -1,0 +1,16 @@
+{
+  "source_id": "NHS-WALES-BIRTH-PARTNER",
+  "title": "What your Birthing Partner can do",
+  "url": "https://111.wales.nhs.uk/doityourself/pregnancy/BirthingPartner/",
+  "publisher": "NHS 111 Wales; adapted from NHS.uk",
+  "accessed_on": "2026-11-01",
+  "source_date_observed": "Last updated 2023-07-25",
+  "raw_source_sha256": "3e50edc060fde1c2feeff99b95497cf57c8ffd3a8d46021c5fc27e8f2c8388d9",
+  "private_pdf_sha256": "e80cd1346750b705d4beaa514f32a4b1cb372144fd8b8ba87f3e0c01310705c2",
+  "pages": 1,
+  "sections": "Support during labour and birth; preparation and birth-partner bullet list",
+  "private_pdf": "sources/pdfs/NHS-WALES-BIRTH-PARTNER.pdf",
+  "ingest_allowed": false,
+  "verbatim_public_quote_words": 0,
+  "method": "Official publisher read and private download; original PDFs retained or relevant HTML text printed privately. This tracked file contains metadata only."
+}

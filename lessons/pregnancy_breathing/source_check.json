@@ -1,0 +1,66 @@
+{
+  "lesson_id": "pregnancy_breathing",
+  "version": 1,
+  "status": "source_checked",
+  "storyboard_sha256": "8bc94ae55fc90e7eb67b8dc75b4f773733c9b4b2af5a8b8d1449967a1784afd2",
+  "scope": "Prenatal relaxation practice; not breath-holding, pushing instruction, treatment of breathlessness, or emergency care.",
+  "checks": [
+    {
+      "step_no": 1,
+      "source_id": "NHS-UHNM-ANTENATAL",
+      "page_label": "1",
+      "section": "Breathing and relaxation exercises",
+      "evidence_method": "Source action and context read on exact private PDF page; no public verbatim excerpt.",
+      "source_pdf_sha256": "2371199a97706411c8fe1c89b650db3d0f961d612308d3865c4a155d0e549026",
+      "source_page_text_sha256": "84236464703d19f00e453aa7a45eb6e380db9cf76105744400e0cd5a8749c595"
+    },
+    {
+      "step_no": 2,
+      "source_id": "NHS-UHNM-ANTENATAL",
+      "page_label": "1",
+      "section": "Breathing and relaxation exercises",
+      "evidence_method": "Source action and context read on exact private PDF page; no public verbatim excerpt.",
+      "source_pdf_sha256": "2371199a97706411c8fe1c89b650db3d0f961d612308d3865c4a155d0e549026",
+      "source_page_text_sha256": "84236464703d19f00e453aa7a45eb6e380db9cf76105744400e0cd5a8749c595"
+    },
+    {
+      "step_no": 3,
+      "source_id": "NHS-UHNM-ANTENATAL",
+      "page_label": "1",
+      "section": "Breathing and relaxation exercises",
+      "evidence_method": "Source action and context read on exact private PDF page; no public verbatim excerpt.",
+      "source_pdf_sha256": "2371199a97706411c8fe1c89b650db3d0f961d612308d3865c4a155d0e549026",
+      "source_page_text_sha256": "84236464703d19f00e453aa7a45eb6e380db9cf76105744400e0cd5a8749c595"
+    },
+    {
+      "step_no": 4,
+      "source_id": "NHS-UHNM-ANTENATAL",
+      "page_label": "1",
+      "section": "Breathing and relaxation exercises",
+      "evidence_method": "Source action and context read on exact private PDF page; no public verbatim excerpt.",
+      "source_pdf_sha256": "2371199a97706411c8fe1c89b650db3d0f961d612308d3865c4a155d0e549026",
+      "source_page_text_sha256": "84236464703d19f00e453aa7a45eb6e380db9cf76105744400e0cd5a8749c595"
+    },
+    {
+      "step_no": 5,
+      "source_id": "NHS-UHNM-ANTENATAL",
+      "page_label": "1",
+      "section": "Breathing and relaxation exercises",
+      "evidence_method": "Source action and context read on exact private PDF page; no public verbatim excerpt.",
+      "source_pdf_sha256": "2371199a97706411c8fe1c89b650db3d0f961d612308d3865c4a155d0e549026",
+      "source_page_text_sha256": "84236464703d19f00e453aa7a45eb6e380db9cf76105744400e0cd5a8749c595"
+    }
+  ],
+  "verbatim_quote_words": 0,
+  "ingestion": "New sources are citation-only ingest_allowed:false. No Pinecone writes.",
+  "human_review": "approved",
+  "clinical_review": "pending",
+  "mechanical_validation": [],
+  "independent_fidelity": {
+    "faithful": true,
+    "results_file": "evals/results/prenatal_lessons_fidelity_2026-11-01.json",
+    "storyboard_sha256": "8bc94ae55fc90e7eb67b8dc75b4f773733c9b4b2af5a8b8d1449967a1784afd2"
+  },
+  "reviewer": "S Anand Natarajan",
+  "review_date": "2026-11-01"
+}

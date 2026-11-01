@@ -1,1 +1,26 @@
-# seemantham_tamilnadu playbook: filled in a later phase. Every item must cite a source ID or be marked as family custom.
+# Celebrate playbook. Ceremonies are family customs, not medical guidance: every item is
+# `source: family_custom` and customs vary by community and family. Health notes point to Care.
+tradition: Seemantham (Tamil Nadu)
+also_called: [Seemantham, Valaikappu (the bangle ceremony is often held with it)]
+timing: Commonly in the 7th month of pregnancy; some families choose the 5th or 9th month, and many prefer an odd month and an auspicious day chosen with family elders or a priest.
+source: family_custom
+note: Customs differ between communities and families. Ask the elders in your family what they follow.
+rituals:
+  - name: Valaikappu (bangle ceremony)
+    what: Married women of the family put glass bangles on the mother-to-be's wrists and bless her; the sound of the bangles is said to soothe the baby.
+  - name: Seemantham pooja
+    what: Some families, especially Brahmin families, hold a pooja with Vedic chants for the wellbeing of mother and baby.
+  - name: Blessings and nalangu
+    what: Elders apply sandalwood paste and kumkum, perform aarti and give blessings; light-hearted games are common.
+checklist:
+  - Fix the date with family elders (and a priest if you hold a pooja)
+  - Glass bangles in many colours for guests to put on the mother
+  - Silk saree for the mother; flowers (jasmine) for her hair
+  - Fruits, sweets, betel leaves and nuts for the elders' blessings
+  - Some families prefer decorated sets of 7, 11 or 21 plates with fruits, sweets, clothing, flowers and betel leaves; choose the number and contents with your family, as this is optional
+  - Return gifts for guests (bangles, kumkum, small gifts)
+  - Seating where the mother can rest; keep the event short if she tires easily
+menu_ideas:
+  - Variety rice (lemon, tamarind, coconut, curd rice), sweet pongal, payasam, vadai
+  - Some families prefer five varieties of rice with payasam, vadai and sweet pongal for guests; this is an optional family preference, not a requirement
+health_note: Plan the menu with foods that are freshly cooked and well cooked; for food safety in pregnancy, ask Nestling's Nourish or your doctor.

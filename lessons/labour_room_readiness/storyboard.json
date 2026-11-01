@@ -1,0 +1,61 @@
+{
+  "lesson_id": "labour_room_readiness",
+  "title": "Preparing together for the labour room",
+  "version": 1,
+  "stage": "before_birth",
+  "language": "en",
+  "sources": [
+    "MOHFW-ANC",
+    "NHS-WALES-BIRTH-PARTNER"
+  ],
+  "see_how": null,
+  "scenes": [
+    {
+      "caption": "Choose your support person",
+      "narration_line": "Choose someone you trust to accompany you and offer reassurance during labour.",
+      "icon": "hand-heart",
+      "source_id": "MOHFW-ANC",
+      "page_label": "53",
+      "safety_points": [],
+      "step_no": 1
+    },
+    {
+      "caption": "Talk through your birth preferences",
+      "narration_line": "Review your birth preferences together, including what support you want and what you would rather avoid.",
+      "icon": "heart",
+      "source_id": "NHS-WALES-BIRTH-PARTNER",
+      "page_label": "1",
+      "safety_points": [],
+      "step_no": 2
+    },
+    {
+      "caption": "Prepare together for the hospital",
+      "narration_line": "Check what to pack and what to expect at your maternity unit together.",
+      "icon": "check-circle",
+      "source_id": "NHS-WALES-BIRTH-PARTNER",
+      "page_label": "1",
+      "safety_points": [],
+      "step_no": 3
+    },
+    {
+      "caption": "Offer calm, practical comfort",
+      "narration_line": "Your partner can offer encouragement, hold your hand, or gently massage your back.",
+      "icon": "hand-palm",
+      "source_id": "MOHFW-ANC",
+      "page_label": "53",
+      "safety_points": [],
+      "step_no": 4
+    },
+    {
+      "caption": "Help communicate changing needs",
+      "narration_line": "Your partner can help explain your needs to staff and support your decisions, even when your preferences change.",
+      "icon": "hand-waving",
+      "source_id": "NHS-WALES-BIRTH-PARTNER",
+      "page_label": "1",
+      "safety_points": [
+        "Your preferences can change during labour."
+      ],
+      "step_no": 5
+    }
+  ]
+}

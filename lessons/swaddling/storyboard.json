@@ -1,0 +1,72 @@
+{
+  "lesson_id": "swaddling",
+  "title": "Swaddling safely",
+  "version": 5,
+  "stage": "first_weeks",
+  "language": "en",
+  "sources": [
+    "NSW-SCHN-SWADDLING"
+  ],
+  "see_how": null,
+  "scenes": [
+    {
+      "step_no": 1,
+      "caption": "Fold top to middle; place baby face-up",
+      "narration_line": "Make a diamond; fold top down. Baby face-up, neck above edge.",
+      "icon": "towel",
+      "source_id": "NSW-SCHN-SWADDLING",
+      "page_label": "1",
+      "safety_points": [
+        "Never use heavy or weighted wraps; keep head and face clear.",
+        "Use lightweight fabric; avoid overheating."
+      ]
+    },
+    {
+      "step_no": 2,
+      "caption": "Rest right arm; tuck left corner across",
+      "narration_line": "Right arm by side, elbow bent; tuck left corner diagonally beneath right side and bottom.",
+      "icon": "hand-heart",
+      "source_id": "NSW-SCHN-SWADDLING",
+      "page_label": "1",
+      "safety_points": [
+        "Right elbow slightly bent; leave left arm free until step four.",
+        "Secure fabric without restricting breathing."
+      ]
+    },
+    {
+      "step_no": 3,
+      "caption": "Bring the bottom up; tuck it loosely",
+      "narration_line": "Lift bottom corner; tuck loosely behind left shoulder.",
+      "icon": "feather",
+      "source_id": "NSW-SCHN-SWADDLING",
+      "page_label": "1",
+      "safety_points": [
+        "Leave the hips and legs space to move."
+      ]
+    },
+    {
+      "step_no": 4,
+      "caption": "Rest left arm; tuck right corner across",
+      "narration_line": "Left arm beside body, elbow bent; cross right corner over it and tuck under baby's body.",
+      "icon": "hand-heart",
+      "source_id": "NSW-SCHN-SWADDLING",
+      "page_label": "1",
+      "safety_points": [
+        "Keep the elbow slightly bent beside their body.",
+        "Secure loose cloth; keep the face clear."
+      ]
+    },
+    {
+      "step_no": 5,
+      "caption": "Check fit, back sleeping and rolling signs",
+      "narration_line": "Chest expands; legs straighten and bend freely. Sleep on back; stop at rolling attempts.",
+      "icon": "shield-check",
+      "source_id": "NSW-SCHN-SWADDLING",
+      "page_label": "1",
+      "safety_points": [
+        "Stop swaddling at the first signs of rolling.",
+        "Never use heavy or weighted wraps."
+      ]
+    }
+  ]
+}

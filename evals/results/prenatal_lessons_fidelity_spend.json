@@ -1,0 +1,50 @@
+{
+  "cap_inr": 5,
+  "accounted_inr": 0.3609,
+  "pending": {},
+  "actual_response_cost_inr": 0.3609,
+  "calls": [
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2363,
+      "tokens_out": 154,
+      "cost_inr": 0.053624
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2987,
+      "tokens_out": 103,
+      "cost_inr": 0.062565
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 1243,
+      "tokens_out": 86,
+      "cost_inr": 0.028492
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2367,
+      "tokens_out": 161,
+      "cost_inr": 0.054099
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2543,
+      "tokens_out": 224,
+      "cost_inr": 0.061027
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 1917,
+      "tokens_out": 146,
+      "cost_inr": 0.044703
+    },
+    {
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "tokens_in": 2553,
+      "tokens_out": 139,
+      "cost_inr": 0.056377
+    }
+  ]
+}

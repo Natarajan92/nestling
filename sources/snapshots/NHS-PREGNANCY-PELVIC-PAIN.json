@@ -1,0 +1,16 @@
+{
+  "source_id": "NHS-PREGNANCY-PELVIC-PAIN",
+  "title": "Pelvic pain in pregnancy",
+  "url": "https://www.nhs.uk/pregnancy/common-symptoms/pelvic-pain/",
+  "publisher": "NHS",
+  "accessed_on": "2026-11-01",
+  "source_date_observed": "Page reviewed 2022-12-12; next review due 2025-12-12 (past due as accessed)",
+  "raw_source_sha256": "b4ffd1c7a6879ba6bd6301e13b52e31dc1fd65f6115d211a37bd1d37fdedccd7",
+  "private_pdf_sha256": "382a9a6238821157deb955da21284379f2993549c985db8f69f024e1b8999034",
+  "pages": 1,
+  "sections": "Call your midwife or GP; Coping with pelvic pain in pregnancy",
+  "private_pdf": "sources/pdfs/NHS-PREGNANCY-PELVIC-PAIN.pdf",
+  "ingest_allowed": false,
+  "verbatim_public_quote_words": 0,
+  "method": "Official publisher read and private download; original PDFs retained or relevant HTML text printed privately. This tracked file contains metadata only."
+}
