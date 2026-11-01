@@ -17,6 +17,7 @@ from nestling.tracing import cost_inr
 
 NOT_FOUND = "I couldn't find this in your policy. Please ask your insurer or TPA."
 MAX_CHARS = 120_000
+MIN_QUOTE_WORDS, MIN_QUOTE_CHARS = 4, 20  # a fragment like "covered" must not verify from "not covered"
 
 SYSTEM = f"""You help a parent in India understand their own health insurance policy for pregnancy, delivery and the newborn.
 Answer only from the policy text, which is given page by page as [Page N]. Keep the policy's own numbers and waiting periods.
@@ -52,7 +53,7 @@ def verified_quotes(quotes: list[dict], pages: list[str]) -> list[dict]:
     kept, seen = [], set()
     for q in quotes:
         text, page = q.get("text", "").strip(), q.get("page")
-        if text and isinstance(page, int) and 1 <= page <= len(pages) and _squash(text) in squashed[page - 1] \
+        if len(text.split()) >= MIN_QUOTE_WORDS and len(text) >= MIN_QUOTE_CHARS and isinstance(page, int) and 1 <= page <= len(pages) and _squash(text) in squashed[page - 1] \
                 and (text, page) not in seen:
             seen.add((text, page))
             kept.append({"text": text, "page_start": page, "page_end": page})

@@ -7,6 +7,7 @@ Every call (Nebius open models, see nestling/llm.py) reports its token usage so 
 """
 
 import re
+from functools import cache
 
 from langsmith import traceable
 
@@ -60,26 +61,55 @@ def retrieve(question: str, context: dict, agent: str, mode: str) -> list[dict]:
     return retrieval.search_reranked(retrieval_query(question, context), source_ids=retrieval.sources_for(agent))
 
 
-_MARK = re.compile(r"[(\[]\s*([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+)\s*,?\s*(?:pp?\.|pages?)\s*([0-9ivxlcdm]+)\s*[)\]]", re.IGNORECASE)
+_ID = r"[A-Za-z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)+"
+_PAGES = r"(?:pp?\.?|pages?)\s*([0-9ivxlcdm]+(?:\s*[-–]\s*[0-9ivxlcdm]+)?)"
+_ITEM = rf"({_ID})(?:\s*,?\s*{_PAGES})?"
+_GROUP = re.compile(rf"( ?)[(\[]\s*{_ITEM}(?:\s*[;,]\s*{_ITEM})*\s*[)\]]", re.IGNORECASE)
+_BARE = re.compile(rf"( ?)(?<![(\[])\b({_ID})\s*,?\s*{_PAGES}", re.IGNORECASE)
+_ITEM_RE = re.compile(_ITEM, re.IGNORECASE)
+
+
+@cache
+def _registry_ids() -> frozenset[str]:
+    return frozenset(retrieval.load_registry())
+
+
+def _page_list(spec: str | None) -> list[str]:
+    """'34' -> ['34']; '34-36' -> ['34', '35', '36'] (numeric ranges, at most 30 pages)."""
+    if not spec:
+        return []
+    parts = [p.strip().lower() for p in re.split(r"[-–]", spec)]
+    if len(parts) == 2 and all(p.isdigit() for p in parts) and 0 <= int(parts[1]) - int(parts[0]) < 30:
+        return [str(n) for n in range(int(parts[0]), int(parts[1]) + 1)]
+    return parts
 
 
 def enforce_citations(answer: str, sources_cited: list[str], hits: list[dict]) -> tuple[str, list[str]]:
-    """Make the citations real, in code. Every "(SOURCE-ID, p. N)" is rewritten to that exact format and kept
-    only if that source and page are in the passages the model was given; any other marker is dropped from
-    the text. sources_cited keeps only IDs of given passages (those the model listed, plus those cited in text)."""
+    """Make the citations real, in code. Every source-ID citation in the text, in any common form
+    ("(WHO-ANC, p. 34)", "[who-anc page 34]", "(WHO-ANC, pp. 34-35)", "(A, p. 3; B, p. 5)", bare "WHO-ANC p. 99",
+    "(WHO-ANC)"), is replaced by canonical "(SOURCE-ID, p. N)" markers, one per (source, page) pair that is in the
+    passages the model was given; every other pair is dropped. sources_cited keeps only IDs of given passages
+    (those the model listed, plus those cited in text). The Verifier and the citation metric read this form."""
     given = {(h["source_id"], str(h.get("page_label") or h.get("page")).lower()) for h in hits}
+    label = {(h["source_id"], str(h.get("page_label") or h.get("page")).lower()): h.get("page_label") or h.get("page") for h in hits}
     ids = {sid for sid, _ in given}
     cited_in_text = []
 
-    def fix(m):
-        sid, page = m.group(2).upper(), m.group(3).lower()
-        if (sid, page) not in given:
-            return ""
-        cited_in_text.append(sid)
-        return f"{m.group(1)}({sid}, p. {m.group(3)})"
+    def canonical(m):
+        pairs = []
+        for item in _ITEM_RE.finditer(m.group(0)):
+            sid = item.group(1).upper()
+            if not (sid in _registry_ids() or item.group(1).isupper() or item.group(2)):
+                return m.group(0)  # not a source ID (e.g. a hyphenated word): leave the text alone
+            for page in _page_list(item.group(2)):
+                if (sid, page) in given and (sid, page) not in pairs:
+                    pairs.append((sid, page))
+        cited_in_text.extend(sid for sid, _ in pairs)
+        shown = " ".join(f"({sid}, p. {label[(sid, page)]})" for sid, page in pairs)
+        return (m.group(1) + shown) if shown else ""
 
-    cleaned = re.sub(r"( ?)" + _MARK.pattern, fix, answer, flags=re.IGNORECASE)
-    cleaned = re.sub(r" +([.,;])", r"", cleaned)
+    cleaned = _GROUP.sub(canonical, answer)
+    cleaned = _BARE.sub(canonical, cleaned)
     kept = [x for x in dict.fromkeys([*sources_cited, *cited_in_text]) if x in ids]
     return cleaned, kept
 

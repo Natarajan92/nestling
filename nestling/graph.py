@@ -268,9 +268,14 @@ def make_target(version: str):
     return target
 
 
+RECORDED_NOTE = ("v1-v5 published results were measured on claude-sonnet-5-5 + claude-haiku-5-5; the code now runs every "
+                 "version on the Nebius open models (v1 still uses the Claude baseline answerer), so a re-run is not comparable")
+
+
 def run_info(version: str) -> dict:
     return {"dataset": golden.LANGSMITH_DATASET, "dataset_version": golden.DATASET_VERSION, "pipeline_version": version,
-            "prompt_version": PROMPT_VERSIONS[version], "model": f"{llm.MAIN} + {llm.FAST}" if version == "v6" else "claude-sonnet-5-5 + claude-haiku-5-5", "levers": VERSIONS[version]}
+            "prompt_version": PROMPT_VERSIONS[version], "model": f"{llm.MAIN} + {llm.FAST}", "levers": VERSIONS[version],
+            **({} if version == "v6" else {"note": RECORDED_NOTE})}
 
 
 def run_experiment(version: str, max_concurrency: int = 4):
