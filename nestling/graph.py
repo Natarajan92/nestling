@@ -54,11 +54,13 @@ VERSIONS["v6+lessons"] = {**VERSIONS["v6"], "lessons": True}
 VERSIONS["v7+lessons"] = {**VERSIONS["v7"], "lessons": True}
 VERSIONS["v7_vector"] = {**VERSIONS["v7"], "retrieval": "staged_vector"}
 VERSIONS["v7_vector_safe"] = {**VERSIONS["v7_vector"]}  # fresh measurement after fail-closed source/checker fixes
+VERSIONS["v7_vector_safe+lessons"] = {**VERSIONS["v7_vector_safe"], "lessons": True}
 VERSIONS["app_v7_vector"] = {**VERSIONS["v7_vector"], "lessons": True}
 PROMPT_VERSIONS.update({"v6+lessons": "app-v6-lessons-v1", "v7+lessons": "app-v7-lessons-v1",
                         "v7_vector": "improved-v4-vector", "v7_vector_safe": "improved-v4-vector-safe",
+                        "v7_vector_safe+lessons": "app-v7-vector-safe-lessons-v1",
                         "app_v7_vector": "app-v7-vector-lessons-v1"})
-APP_VERSION = "v6+lessons"  # promote only after the full v7 quality gate is reviewed
+APP_VERSION = "v7_vector_safe+lessons"  # owner-approved full104 gate, 2026-11-01; MAIN stays DeepSeek
 SPECIALISTS = {"care": care, "nourish": nourish, "money": money, "ready": ready, "celebrate": celebrate, "journal": journal}
 VERIFIED = {"care", "nourish", "money"}  # medical, diet and insurance answers
 REDIRECT_KINDS = {"dose", "medicine", "scan_interpretation", "diagnosis"}
@@ -245,7 +247,7 @@ def ask(question: str, context: dict | None = None, version: str = "v6", can_sav
            "lesson": None, "lesson_gap_topic": None, "retrieval_fallback": None,
            "retrieval_mode": VERSIONS.get(version, {}).get("retrieval")}
     try:
-        with retrieval.app_rerank_fallback(enabled=version in {"v6+lessons", "v7+lessons", "app_v7_vector"}):
+        with retrieval.app_rerank_fallback(enabled=version in {"v6+lessons", "v7+lessons", "app_v7_vector", "v7_vector_safe+lessons"}):
             state = compiled().invoke({"question": question, "context": context, "flags": VERSIONS[version], "can_save": can_save})
         s, r = state["screening"], state["result"]
         usage = [u for u in state.get("usage", []) if u]

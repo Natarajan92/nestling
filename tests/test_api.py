@@ -52,7 +52,7 @@ def test_invitation_is_template_text(client):
 
 def test_ask_selects_app_version_and_shared_lesson_payload(client, monkeypatch, lesson_root):
     def fake(message, context, version, can_save):
-        assert version == "v6+lessons" and can_save is False
+        assert version == "v7_vector_safe+lessons" and can_save is False
         assert "city" not in context and "insurer" not in context
         return answer(route="lessons", agent="lessons", lesson=library.payload("cord_care"))
     monkeypatch.setattr(graph, "ask", fake)

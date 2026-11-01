@@ -33,6 +33,7 @@ METADATA_KEYS = (
     "lesson_gap_topic",  # optional app extension: closed lesson label only, never the question
     "retrieval_mode",
     "retrieval_fallback",
+    "rules_fired",  # optional app extension: closed code-owned red-flag IDs, no symptom text
 )
 
 # USD per million tokens (input, output). Runtime models are Nebius open models; prices from the Nebius

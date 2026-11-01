@@ -156,3 +156,40 @@ def test_capture_worker_preserves_app_client_metadata_and_error_redaction(export
     assert all(owner is main.app_trace_client() for owner, _ in workers)
     assert all(set(tracing.METADATA_KEYS) <= set(data.get("extra", {}).get("metadata", {})) for _, data in workers)
     assert any(data.get("error") == "pipeline_error" for _, _, data in captured)
+
+
+def test_code_owned_emergency_exports_rule_ids_and_promoted_app_provenance(exports, monkeypatch):
+    from nestling import concierge, guardian
+    captured, fallback_client = exports
+    message = "My newborn is not breathing"
+
+    def paid(*args, **kwargs):
+        pytest.fail("code-owned emergency must not call a provider")
+
+    monkeypatch.setattr(guardian, "chat_json", paid)
+    monkeypatch.setattr(concierge, "route", paid)
+    with tracing_context(enabled=True, client=fallback_client):
+        response = TestClient(main.app).post("/api/ask", json={"message": message})
+    assert response.status_code == 200 and response.json()["escalate"]
+    root = [data for _, op, data in captured if op == "update" and data.get("name") == "nestling_app_ask"][-1]
+    metadata = root["extra"]["metadata"]
+    assert metadata["rules_fired"] == ["RF-ABSENT-BREATHING"]
+    assert metadata["predicted_route"] == "guardian" and metadata["model"] == "rules"
+    assert metadata["sources_cited"] == ["NHS-CHILD-CPR"]
+    assert metadata["pipeline_version"] == "v7_vector_safe+lessons"
+    assert metadata["prompt_version"] == "app-v7-vector-safe-lessons-v1"
+    assert root.get("outputs") == {} and message not in repr([data for _, _, data in captured])
+
+
+@pytest.mark.parametrize("rules,want", [(["RF-BLUE-LIPS", PRIVATE, "RF-BLUE-LIPS"], ["RF-BLUE-LIPS"]), ([], [])])
+def test_app_rule_metadata_is_a_deduplicated_closed_id_list(exports, monkeypatch, rules, want):
+    from test_api import answer
+    captured, fallback_client = exports
+    monkeypatch.setattr(main.graph, "ask", lambda *a, **kw: answer(rules_fired=rules))
+    with tracing_context(enabled=True, client=fallback_client):
+        response = TestClient(main.app).post("/api/ask", json={"message": "A general question"})
+    assert response.status_code == 200
+    metadata = [data["extra"]["metadata"] for _, op, data in captured
+                if op == "update" and data.get("name") == "nestling_app_ask"][-1]
+    assert metadata["rules_fired"] == want
+    assert PRIVATE not in repr([data for _, _, data in captured])
