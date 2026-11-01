@@ -131,3 +131,52 @@ def test_answer_from_sources_enforces_citations(monkeypatch):
         {"answer": "Yes (WHO-ANC, p. 34) and (BOGUS-ID, p. 1).", "sources_cited": ["WHO-ANC", "BOGUS-ID"]}, {"model": "m"}, ""))
     out = agents.answer_from_sources("Care", "q", {}, HITS)
     assert out["sources_cited"] == ["WHO-ANC"] and "BOGUS" not in out["answer"]
+
+
+def test_enforce_citations_keeps_punctuation_and_adds_no_control_characters():
+    from nestling.agents import enforce_citations
+
+    text = "Price 5 , ok . Fine ; yes (WHO-ANC, p. 34) , done"
+    out, _ = enforce_citations(text, [], HITS)
+    assert "" not in out and out == "Price 5 , ok . Fine ; yes (WHO-ANC, p. 34) , done"
+
+
+def test_enforce_citations_other_forms():
+    from nestling.agents import enforce_citations
+
+    hits = HITS + [{"source_id": "WHO-ANC", "page_label": "35", "chunk_text": "z"}]
+    cases = {
+        "A (WHO-ANC, pp. 34-35) B": ("A (WHO-ANC, p. 34) (WHO-ANC, p. 35) B", ["WHO-ANC"]),
+        "A (WHO-ANC, p. 34; ICMR-NIN-DG, p. 5) B": ("A (WHO-ANC, p. 34) B", ["WHO-ANC"]),
+        "A (WHO-ANC, p. 34; MOHFW-ANC, p. 28) B": ("A (WHO-ANC, p. 34) (MOHFW-ANC, p. 28) B", ["WHO-ANC", "MOHFW-ANC"]),
+        "A WHO-ANC p. 99 B": ("A B", []),
+        "A WHO-ANC p. 34 B": ("A (WHO-ANC, p. 34) B", ["WHO-ANC"]),
+        "A (FAKE-ID) B": ("A B", []),
+        "A (WHO-ANC) B": ("A B", []),
+        "A (WHO-ANC, page 34-36) B": ("A (WHO-ANC, p. 34) (WHO-ANC, p. 35) B", ["WHO-ANC"]),
+        "Mind your well-being (self-care) today": ("Mind your well-being (self-care) today", []),
+    }
+    for text, (expected, kept) in cases.items():
+        assert enforce_citations(text, [], hits) == (expected, kept), text
+
+
+def test_canonical_form_is_read_by_verifier_parser():
+    from nestling import verifier
+    from nestling.agents import enforce_citations
+
+    text, _ = enforce_citations("A [who-anc page 34] and (MOHFW-ANC pp. 28)", [], HITS)
+    assert verifier._CITE.findall(text) == [("WHO-ANC", "34"), ("MOHFW-ANC", "28")]
+
+
+def test_policy_short_fragment_does_not_verify():
+    pages = ["Maternity is not covered during the first year."]
+    quotes = [{"text": "covered", "page": 1}, {"text": "is not covered", "page": 1},
+              {"text": "Maternity is not covered during the first year.", "page": 1}]
+    assert [q["text"] for q in policy.verified_quotes(quotes, pages)] == ["Maternity is not covered during the first year."]
+
+
+def test_run_info_labels_recorded_claude_runs_honestly():
+    from nestling import graph
+
+    assert "claude" in graph.run_info("v5")["note"] and "Nebius" in graph.run_info("v5")["note"]
+    assert "note" not in graph.run_info("v6") and graph.run_info("v6")["model"] == f"{llm.MAIN} + {llm.FAST}"
