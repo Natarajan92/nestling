@@ -307,6 +307,38 @@ sources:
     verified: true
     verified_on: 2026-11-01
 
+  - id: NHS-CHILD-URGENT
+    title: When to get urgent medical help for babies and children under 5
+    publisher: NHS
+    year: 2026
+    url: https://www.nhs.uk/baby/health/when-to-get-urgent-medical-help-for-babies-and-children-under-5/
+    file: null
+    used_by: [guardian]
+    licence: Open Government Licence v3.0; NHS website terms apply; text only
+    licence_url: https://www.nhs.uk/our-policies/terms-and-conditions/
+    attribution: Information from the NHS website, as at 01 November 2026
+    ingest_allowed: false
+    verified: true
+    verified_on: 2026-11-01
+    source_reviewed_on: 2026-08-06
+    note: "Code-owned urgent-sign citation only. Section: Immediate action required: Call 999 or go to A&E if. NHS emergency service numbers apply to England; Nestling uses its existing India emergency wording. No source-namespace write authorized."
+
+  - id: NHS-CHILD-CPR
+    title: How to resuscitate a child
+    publisher: NHS
+    year: 2026
+    url: https://www.nhs.uk/baby/first-aid-and-safety/first-aid/how-to-resuscitate-a-child/
+    file: null
+    used_by: [guardian]
+    licence: Open Government Licence v3.0; NHS website terms apply; text only
+    licence_url: https://www.nhs.uk/our-policies/terms-and-conditions/
+    attribution: Information from the NHS website, as at 01 November 2026
+    ingest_allowed: false
+    verified: true
+    verified_on: 2026-11-01
+    source_reviewed_on: 2026-05-21
+    note: "Introduction explicitly requires emergency help for an unresponsive baby or child who is not breathing normally. Section 5b covers absent/infrequent/irregular breathing. Registration supports emergency escalation only, not generated CPR instructions. No source-namespace write authorized."
+
   - id: USER-POLICY
     title: The user's own uploaded insurance policy
     publisher: user's insurer
