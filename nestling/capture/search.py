@@ -9,10 +9,10 @@ None ("Not listed — ask the studio").
 import json
 import os
 import urllib.request
-from concurrent.futures import ThreadPoolExecutor
 from datetime import date
 
 from langsmith import traceable
+from langsmith.utils import ContextThreadPoolExecutor
 
 from nestling.llm import FAST, chat_json
 from nestling.capture.estimate import parse_inr
@@ -111,7 +111,7 @@ def extract_package(page: dict, shoot_type: str, city: str) -> StudioPackage | N
 def find_packages(city: str, shoot_type: str, max_results: int = 8) -> list[StudioPackage]:
     """Search, then extract packages in parallel; pages that are not studio pages are dropped."""
     pages = search_studios(city, shoot_type, max_results)
-    with ThreadPoolExecutor(max_workers=4) as pool:
+    with ContextThreadPoolExecutor(max_workers=4) as pool:
         packages = list(pool.map(lambda p: _safe_extract(p, shoot_type, city), pages))
     return [p for p in packages if p is not None]
 

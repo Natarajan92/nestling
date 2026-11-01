@@ -128,3 +128,31 @@ def test_app_trace_client_isolated_from_concurrent_full_eval_trace(exports, monk
     eval_payloads = [data for owner, _, data in captured if owner is eval_client]
     assert any(data.get("inputs", {}).get("value") == "eval-visible-control" for data in eval_payloads)
     assert any(data.get("outputs", {}).get("output") == "eval-visible-control" for data in eval_payloads)
+
+
+def test_capture_worker_preserves_app_client_metadata_and_error_redaction(exports, monkeypatch):
+    import langsmith.run_trees as run_trees
+    from nestling.capture import search
+
+    captured, fallback_client = exports
+    # A lost context must remain visible as an unsafe default-client export,
+    # rather than disappear because the worker's environment disables tracing.
+    monkeypatch.setenv("LANGSMITH_TRACING", "true")
+    monkeypatch.setattr(run_trees, "get_cached_client", lambda **kw: fallback_client)
+    page = {"url": "https://example.test/package", "title": "Public studio",
+            "raw_content": "Public studio package description. " * 30}
+    monkeypatch.setattr(search, "search_studios", lambda *a, **kw: [page])
+
+    def provider(*args, **kwargs):
+        raise RuntimeError(PRIVATE)
+
+    monkeypatch.setattr(search, "chat_json", provider)
+    with tracing_context(enabled=True, client=fallback_client):
+        response = TestClient(main.app).post("/api/capture/search", json={"city": "Bengaluru", "shoot_type": "maternity"})
+    assert response.status_code == 200 and response.json()["packages"] == []
+    assert PRIVATE not in repr([data for _, _, data in captured])
+    workers = [(owner, data) for owner, _, data in captured if data.get("name") == "extract_package"]
+    assert workers, "actual extraction worker must remain traced"
+    assert all(owner is main.app_trace_client() for owner, _ in workers)
+    assert all(set(tracing.METADATA_KEYS) <= set(data.get("extra", {}).get("metadata", {})) for _, data in workers)
+    assert any(data.get("error") == "pipeline_error" for _, _, data in captured)
