@@ -14,8 +14,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
+/lib/
+/lib64/
 parts/
 sdist/
 var/
@@ -218,3 +218,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- Nestling ---
+# Secrets: only the template is committed
+.env.*
+!.env.example
+
+# Source PDFs stay local until each licence is checked
+sources/pdfs/*
+!sources/pdfs/.gitkeep
+
+# Web (Phase 5)
+node_modules/
+.next/
+.vercel/
