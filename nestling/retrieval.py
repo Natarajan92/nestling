@@ -114,12 +114,9 @@ def get_index(pc: Pinecone | None = None, create: bool = False):
     if not pc.has_index(name):
         if not create:
             raise LookupError(f"Pinecone index {name!r} does not exist; run `ingest` first")
-        schema = (
-            SchemaBuilder()
-            .add_string_field("chunk_text", embed=EMBED)
-            .add_string_field("source_id", filterable=True)
-            .build()
-        )
+        # Only searched fields go in the schema; metadata such as source_id is indexed
+        # for filtering automatically from the documents themselves.
+        schema = SchemaBuilder().add_string_field("chunk_text", embed=EMBED).build()
         pc.indexes.create(name=name, schema=schema, deployment=DEPLOYMENT, deletion_protection="disabled")
     return pc.index(host=pc.describe_index(name).host)
 
@@ -160,10 +157,14 @@ def search(query: str, top_k: int = 5, source_ids: list[str] | None = None) -> l
         include_fields=CITATION_FIELDS,
         filter={"source_id": {"$in": source_ids}} if source_ids else None,
     )
-    return [
-        {"id": doc.id, "score": doc.score, **{k: doc.get(k) for k in CITATION_FIELDS}}
-        for doc in response.matches
-    ]
+    hits = []
+    for doc in response.matches:
+        hit = {"id": doc.id, "score": doc.score, **{k: doc.get(k) for k in CITATION_FIELDS}}
+        for k in ("year", "page"):  # Pinecone returns numbers as floats
+            if hit[k] is not None:
+                hit[k] = int(hit[k])
+        hits.append(hit)
+    return hits
 
 
 def format_citation(hit: dict) -> str:
