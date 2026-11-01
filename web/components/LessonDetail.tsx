@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Card from "@/components/Card";
 import LessonCard from "@/components/LessonCard";
 import { getLesson, type Lesson } from "@/lib/api";
+import { dateLabel } from "@/lib/format";
 
 export default function LessonDetail({ lessonId }: { lessonId: string }) {
   const [lesson, setLesson] = useState<Lesson | null | undefined>(undefined);
@@ -32,7 +33,7 @@ export default function LessonDetail({ lessonId }: { lessonId: string }) {
         ← All lessons
       </Link>
       <h1 className="mt-2 text-3xl font-semibold">{lesson.title}</h1>
-      <p className="text-sm text-ink-soft">Reviewed{lesson.reviewed_on ? ` on ${lesson.reviewed_on}` : ""}</p>
+      <p className="text-sm text-ink-soft">Reviewed{lesson.reviewed_on ? ` on ${dateLabel(lesson.reviewed_on)}` : ""}</p>
       <div className="mt-4">
         <LessonCard lesson={lesson} pageUrl={window.location.href} />
       </div>

@@ -1,12 +1,18 @@
 "use client";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Card from "@/components/Card";
 import { useAskSheet } from "@/components/AskSheet";
 
 /** /ask opens the same Ask sheet used everywhere else. */
 export default function AskPage() {
+  return <Suspense fallback={<p>Opening Ask…</p>}><AskRoute /></Suspense>;
+}
+function AskRoute() {
   const { open, setOpen } = useAskSheet();
-  useEffect(() => setOpen(true), [setOpen]);
+  const { prefill } = useAskSheet();
+  const query = useSearchParams().get("q");
+  useEffect(() => { if (query) prefill(query); else setOpen(true); }, [query, setOpen, prefill]);
   return (
     <Card className="mt-6 text-center">
       <div className="text-5xl" aria-hidden>

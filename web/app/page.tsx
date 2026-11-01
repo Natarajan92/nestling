@@ -6,6 +6,7 @@ import Card from "@/components/Card";
 import JourneyCard, { JOURNEYS } from "@/components/JourneyCard";
 import SourceChip from "@/components/SourceChip";
 import WeekRing from "@/components/WeekRing";
+import CaptureBudget from "@/components/CaptureBudget";
 import { getChecklist, getToday, type Today } from "@/lib/api";
 import { profileBody, useProfile, useTicks } from "@/lib/store";
 
@@ -100,10 +101,10 @@ export default function TodayPage() {
           <div className="flex items-baseline justify-between">
             <h2 className="text-lg font-semibold">Ready meter</h2>
             <span className="text-sm text-ink-soft">
-              {done} of {load.ids.length}
+              {load.ids.length ? `${done} of ${load.ids.length}` : "Checklist unavailable"}
             </span>
           </div>
-          <p className="mt-1 text-sm text-ink-soft">Hospital bag {pct}% ready</p>
+          <p className="mt-1 text-sm text-ink-soft">{load.ids.length ? `Hospital bag ${pct}% ready` : "Open Ready to try loading your checklist."}</p>
           <div
             className="mt-3 h-3 overflow-hidden rounded-full bg-sage/25"
             role="progressbar" aria-label="Hospital bag readiness" aria-valuemin={0} aria-valuemax={100} aria-valuenow={pct}
@@ -113,6 +114,7 @@ export default function TodayPage() {
         </Card>
       </Link>
 
+      <CaptureBudget />
       <div className="grid grid-cols-2 gap-4">
         {JOURNEYS.filter((j) => load.today?.cards.includes(j.slug)).map((j) => (
           <JourneyCard key={j.slug} journey={j} />

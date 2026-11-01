@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import Card from "@/components/Card";
-import { saveProfile } from "@/lib/store";
+import { saveProfile, useProfile, type Profile } from "@/lib/store";
 
 type Draft = {
   stage: "expecting" | "born";
@@ -59,10 +59,16 @@ function Choices({ options, value, onPick }: { options: string[][]; value: strin
 const inputCls = "mt-6 w-full rounded-card border-2 border-peach/40 bg-white px-5 py-4 text-lg";
 
 export default function WelcomePage() {
+  const { profile, ready } = useProfile();
+  if (!ready) return <p>Loading your answers…</p>;
+  return <WelcomeForm profile={profile} />;
+}
+
+function WelcomeForm({ profile }: { profile: Profile | null }) {
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [d, setD] = useState<Draft>({
-    stage: "expecting", date: "", tradition: "", diet: "", city: "", insurer: "", parent_role: "", consent: false,
+    stage: profile?.birth_date ? "born" : "expecting", date: profile?.birth_date ?? profile?.due_date ?? "", tradition: profile?.tradition ?? "", diet: profile?.diet ?? "", city: profile?.city ?? "", insurer: profile?.insurer ?? "", parent_role: profile?.parent_role ?? "", consent: profile?.consent.store_profile ?? false,
   });
   const set = (patch: Partial<Draft>) => setD((p) => ({ ...p, ...patch }));
 
@@ -85,7 +91,7 @@ export default function WelcomePage() {
       city: d.city.trim(),
       insurer: d.insurer.trim() || null,
       parent_role: d.parent_role,
-      consent: { store_profile: true, save_journal: false, voice: false },
+      consent: { store_profile: true, save_journal: profile?.consent.save_journal ?? false, voice: profile?.consent.voice ?? false },
     });
     router.replace("/");
   }

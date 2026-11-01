@@ -1,7 +1,7 @@
 "use client";
 // All browser state for Nestling. Every localStorage access is wrapped in try/catch.
 import { useCallback, useMemo, useSyncExternalStore } from "react";
-import { deleteVoice, type ProfileBody } from "./api";
+import { deleteVoice, type ProfileBody, type StudioPackage } from "./api";
 
 // Every browser storage key MUST start with PREFIX: "Delete everything" clears by this prefix.
 const PREFIX = "nestling:";
@@ -10,6 +10,8 @@ const KEYS = {
   ticks: `${PREFIX}ticks`,
   voice: `${PREFIX}voice_id`,
   journal: `${PREFIX}journal`,
+  letters: `${PREFIX}letters`,
+  capture: `${PREFIX}capture`,
 } as const;
 const SSR = "\u0000ssr"; // server snapshot sentinel: "not read yet"
 
@@ -90,6 +92,17 @@ export function addJournalEntry(text: string) {
 
 export const getVoiceId = () => read(KEYS.voice) || null;
 export const setVoiceId = (id: string | null) => write(KEYS.voice, id);
+
+export function useVoiceId() { const raw = useRaw(KEYS.voice); return raw === SSR ? null : raw || null; }
+export function useJournal() { const raw = useRaw(KEYS.journal); return useMemo(() => parse<JournalEntry[]>(raw === SSR ? "" : raw, []), [raw]); }
+export function removeJournalEntry(id: string) { write(KEYS.journal, JSON.stringify(parse<JournalEntry[]>(read(KEYS.journal), []).filter(e => e.id !== id))); }
+export type Letter = JournalEntry & { title: string };
+export function useLetters() { const raw = useRaw(KEYS.letters); return useMemo(() => parse<Letter[]>(raw === SSR ? "" : raw, []), [raw]); }
+export function addLetter(title: string, text: string) { const all = parse<Letter[]>(read(KEYS.letters), []); all.push({ id: crypto.randomUUID(), title, text, saved_at: new Date().toISOString() }); write(KEYS.letters, JSON.stringify(all)); }
+export function removeLetter(id: string) { write(KEYS.letters, JSON.stringify(parse<Letter[]>(read(KEYS.letters), []).filter(e => e.id !== id))); }
+export type SavedCapture = { package: StudioPackage; quote: string; budget: number | null; saved_at: string };
+export function useCapture() { const raw = useRaw(KEYS.capture); return useMemo(() => parse<SavedCapture | null>(raw === SSR ? "" : raw, null), [raw]); }
+export const saveCapture = (value: SavedCapture | null) => write(KEYS.capture, value ? JSON.stringify(value) : null);
 
 /** Clears everything Nestling keeps in this browser, and deletes a cloned voice if one exists. */
 export async function deleteEverything(): Promise<{ voiceDeleted: boolean; voiceError: boolean }> {
