@@ -1,0 +1,132 @@
+case_id,agent,question,answer,judge_faithful,judge_unsupported,human_faithful,human_note
+B08,care,Is the traditional kajal or surma on a newborns eyes safe?,"I understand this is a cherished tradition in many Indian families. However, I don't have a trusted source that directly says kajal or surma is safe for a newborn's eyes. The passages I have focus on professional eye screening and general hygiene. For example, the guidelines recommend a trained health worker examine the baby's eyes for any abnormalities using a medical torch or ophthalmoscope (WHO-POSTNATAL, p. 100, 102). They also advise mothers to maintain hygiene while handling the baby and to examine the eyes for discharge or swelling (MOHFW-ANC, p. 64).",Y,,,
+B14,care,What is the difference between a paediatrician visit and an immunisation appointment?,"That's a very helpful question. Think of them as two different types of care that often happen at the same time, especially around the 6-week mark.
+
+A **paediatrician visit** is a full check-up on your baby's overall health and development. The doctor will examine your baby, check their weight gain, ask about breastfeeding, and look for any signs of illness (MOHFW-ANC, p. 68). It's a chance for you to ask any questions you have about caring for your baby.
+
+An **immunisation appointment** is specifically for giving vaccines, as per the Universal Immunisation Programme (MOHFW-ANC, p. 68). The focus is on protecting your baby from serious diseases.
+
+Often, these two happen together. The guidelines recommend a postnatal contact during week six after birth, which is when a transition to well-infant care and referrals for infant immunisation usually occur (WHO-POSTNATAL, p. 152). So, your baby's 6-week visit might include both a full check-up by the paediatrician and their scheduled vaccines. You can always ask your doctor what to expect at each appointment.",N,A paediatrician visit is a full check-up on your baby's overall health and development. | Your baby's 6-week visit might include both a full check-up by the paediatrician and their scheduled vaccines.,,
+E06,care,I had a glass of wine before I knew I was pregnant. Is my baby harmed?,I don't have a trusted source for that. Please ask your doctor.,Y,,,
+F01,ready,My wife is 8 weeks pregnant. What should I do as a first-time father?,"It’s wonderful that you’re looking for ways to support your wife so early on. At 8 weeks, your role is all about steady, practical support. First, make sure her pregnancy is registered and her first antenatal check-up is scheduled soon, as the guidelines recommend registration within the first 12 weeks (MOHFW-ANC, p. 7). Go with her to that visit—it’s a great way to understand the process and ask questions together.
+
+You can also start planning ahead. The guidelines remind us that every pregnancy is special and complications can be unpredictable, so it’s wise to prepare the family for any emergency (MOHFW-ANC, p. 7). This is a good time to gently discuss and plan for an institutional delivery, as advised (MOHFW-ANC, p. 7).
+
+At home, you can help by ensuring she takes any prescribed supplements like Iron Folic Acid, and by being mindful that no medication should be given in this first trimester unless a doctor advises it (MOHFW-ANC, p. 7). Your calm presence and shared involvement in these early steps will mean the world to her.",N,go with her to that visit,,
+F05,ready,How can I make a hospital emergency plan before my wife goes into labour?,"It's great that you're planning ahead. Here’s how to build your emergency plan, using Nestling’s checklist and trusted guidelines.
+
+**1. Know your facility and route**
+You should already know which facility you will go to—a 24-hour PHC or an FRU where blood and surgery are available (MOHFW-ANC, p. 29). Do a practice run of the route so you know the time and any road issues.
+
+**2. Arrange transport**
+Save the ambulance numbers: 108, or 102 for free transport to a government hospital. Have a backup vehicle and driver ready, with enough fuel.
+
+**3. Prepare your support team**
+Decide who will go with you and who will look after your home and any other children (MOHFW-ANC, p. 29). Make sure everyone knows their role.
+
+**4. Keep finances ready**
+Keep an emergency fund and know which schemes, like JSY, can help with costs (MOHFW-ANC, p. 29). Have your health insurance card and hospital pre-authorisation form handy.
+
+**5. Pack the hospital bag**
+Have it packed by 36 weeks. Include the MCP card, all reports, photo IDs, clean clothes for mother and baby, sanitary pads, food, water, and toiletries.
+
+**6. Learn the danger signs**
+Your wife and you must know the danger signs during pregnancy and labour. If any appear, go to the facility immediately, day or night, without waiting (MOHFW-ANC, p. 29).
+
+**Your role as a partner**
+During labour, you can be her calm, steady presence. The guidelines say never leave the woman alone, encourage her to empty her bladder, and help her stay hydrated (MOHFW-ANC, p. 44). You can time contractions, offer sips of water, and speak up if you notice anything worrying. You are her advocate and her anchor.",N,"Do a practice run of the route so you know the time and any road issues. | Have a backup vehicle and driver ready, with enough fuel. | You can time contractions, offer sips of water, and speak up if you notice anything worrying.",,
+F08,money,Will my employer group insurance cover my spouse delivery and newborn NICU?,"I can share what IRDAI rules say in general, but I cannot see your specific employer’s group policy, so I can’t confirm exactly what it covers.
+
+**What the rules say**
+Group health insurance policies must clearly list what they cover, including any sub-limits for maternity or newborn care (IRDAI-ANNEX, p. 2, 32). Maternity coverage and newborn care are not automatically included; they are specific benefits the employer chooses. The policy will also state waiting periods and exclusions (IRDAI-ANNEX, p. 2).
+
+**A helpful government scheme**
+Regardless of your insurance, your wife is entitled to free delivery and care for the sick newborn up to one year at public health institutions under the Janani Shishu Suraksha Karyakaram (JSSK) (INDIA-JSSK, p. 2). This includes C-section, medicines, and transport. It’s a valuable backup.
+
+I hope this helps you find the right information. Please check with your employer or insurer for the exact cover.",N,Maternity coverage and newborn care are not automatically included; they are specific benefits the employer chooses.,,
+F10,ready,Make a WhatsApp-ready checklist I can send my wife for our delivery day.,"Here's a simple WhatsApp checklist you can send your wife. It's based on Nestling's hospital bag guide, which follows India's antenatal care advice. You're doing a great thing by helping her get ready.
+
+---
+
+**🏥 Our Delivery Day Checklist (Week 36)**
+
+**📄 Documents (Keep in a folder)**
+- MCP card, all scan/test reports (MOHFW-ANC, p. 28)
+- Our photo IDs and address proof (common_practice)
+- Health insurance card/policy number (common_practice)
+
+**🤰 For You, Mama**
+- Loose, front-open tops and clean clothes (MOHFW-ANC, p. 28)
+- Maternity pads or clean cloth (MOHFW-ANC, p. 28)
+- Slippers, shawl/sweater, toiletries, phone charger (common_practice)
+- Snacks and water for you and me (MOHFW-ANC, p. 28)
+
+**👶 For Our Baby**
+- Soft towels/cloth to dry and wrap baby (MOHFW-ANC, p. 28)
+- Clean baby clothes, cap, and socks (MOHFW-ANC, p. 28)
+
+**🚗 Plan Ahead (My Job)**
+- I've saved the ambulance number (108/102) and know the route to the hospital (MOHFW-ANC, p. 28) (MOHFW-ANC, p. 29)
+- I've arranged transport and an emergency fund (MOHFW-ANC, p. 29)
+- I know who will stay with our other kids/home (MOHFW-ANC, p. 29)
+
+**📝 After Birth**
+- We'll register the birth at the hospital
+- We'll keep the baby's vaccination card safe from day one
+
+We've got this. I'm with you every step of the way. ❤️",N,"Photo IDs and address proof for the mother and the person going with her | Health insurance card/policy number | Slippers, shawl/sweater, toiletries, phone charger | Register the birth at the hospital | Keep the baby's vaccination card safe from day one",,
+F15,care,Everyone in our family wants to kiss the newborn and I worry about infections.,"I understand your worry—it’s natural to want to protect your newborn. The passages I have don’t give a direct rule about visitors kissing the baby, but they do offer strong guidance on protecting your baby from infection. The most powerful protection you can give right now is exclusive breastfeeding. Colostrum, the first milk, is especially rich in substances that guard against infections (MOHFW-ANC, p. 53). Continuing to breastfeed is the baby’s best defense, even if the mother feels unwell (MOHFW-IYCF, p. 81).
+
+To address your family’s wishes with care, you could gently explain that. You might ask them to show their love by kissing the baby’s feet or the back of the head instead of the face, and to always wash their hands first. Anyone who is feeling sick should wait until they are well. This is a time to be extra cautious, and your doctor can offer more personalized advice during your postnatal check-ups, which are most critical in these first few days and weeks (MOHFW-ANC, p. 59).",Y,,,
+F20,ready,What paperwork should I complete after our baby is born in India?,"Congratulations on your new arrival! Here is the key paperwork to focus on now.
+
+**1. Birth Registration**
+This is the most important legal document for your child's future, needed for school admission and more (MOHFW-ANC, p. 62). The hospital usually reports the birth, but you must follow up with your local registrar (often at the municipal or panchayat office) to get the official birth certificate. If you haven't chosen a name yet, you can add it later with the registrar (INDIA-CRS, p. 4).
+
+**2. Vaccination Card**
+Before your wife and baby are discharged, the hospital will give the baby's first vaccinations. Make sure you receive the vaccination card and keep it safe, as you'll need it for all future immunizations.
+
+**3. Discharge Summary**
+The hospital should provide a discharge slip with details of the delivery, the baby's condition, and advice for follow-up care (MOHFW-ANC, p. 119). Keep this for your records and for your next doctor's visit.
+
+As a new father, you can take the lead on registering the birth and safely filing all these documents. This is a practical and loving way to support your family right now.",Y,,,
+H03,care,Is it normal to feel tired in the first trimester?,"Your body is undergoing substantial hormonal and physical changes to support your growing baby, which can be exhausting (WHO-ANC, p. 74). While fatigue itself is common, it's important to ensure it's not a sign of something else. For example, severe anaemia can also cause fatigue and breathlessness. If you feel extremely tired, have palpitations, or notice unusual pallor, please see your doctor for a check-up (MOHFW-ANC, p. 37). To help manage this, try to eat a healthy, balanced diet with plenty of green vegetables, fruits, and whole grains to keep your energy up (WHO-ANC, p. 15). Gentle physical activity, like a walk, can also help, as long as it's comfortable for you (WHO-ANC, p. 15). Listen to your body and rest when you need to. This is a time of immense change, and taking care of yourself is the best thing you can do for both you and your baby.",Y,,,
+H06,money,Does my policy cover delivery?,"I can't verify what your specific policy covers without seeing your policy document. Every health insurance policy is different, and the coverage for delivery (maternity) depends on the terms your insurer has set.
+
+Here is what the general rules say you should look for in your own policy document:
+
+*   **Check the 'Policy Coverage' section.** Your policy document should have a clear list of what is covered. Look for a line item like ""OPD / Dental/ Maternity coverage"" (IRDAI-ANNEX, p. 2).
+*   **Check the 'Waiting Period' section.** This period starts from the beginning of your policy coverage (IRDAI-ANNEX, p. 2).
+*   **Check for 'Sub-limits'.** If maternity is covered, the policy will often have a sub-limit, which is a maximum amount the insurer will pay for delivery-related expenses, regardless of your total sum insured (IRDAI-ANNEX, p. 3).",N,"Every health insurance policy is different, and the coverage for delivery (maternity) depends on the terms your insurer has set.",,
+H13,care,When will I start feeling my baby move?,"It's such an exciting milestone to look forward to! You will likely start feeling your baby's first movements, often called 'quickening', between 18 and 22 weeks of pregnancy (MOHFW-ANC, p. 23). Since this is your first pregnancy, it might be closer to the 20-22 week mark. At your regular check-ups, your healthcare provider will ask you about your baby's movements as a reassuring sign of well-being (MOHFW-ANC, p. 23).",Y,,,
+H15,ready,Which documents should I carry to the hospital for delivery?,"At 36 weeks, it’s the perfect time to have your bag ready. Here’s what to pack for documents, based on Nestling’s checklist:
+
+*   **Your Mother and Child Protection (MCP) card and all antenatal records, scan and test reports** (MOHFW-ANC, p. 28). This gives your care team the full picture of your pregnancy.
+*   **Photo ID and address proof for you and the person going with you** [common_practice].
+*   **Your health insurance card or policy number, and the hospital’s pre-authorisation form if you have one** [common_practice].
+*   **If you’re using the Janani Suraksha Yojana (JSY) at an accredited private hospital, carry your BPL or SC/ST certificate** where your state requires it.
+
+Keep these in an easy-to-reach folder. You’re doing wonderfully getting everything organised now. Is there anything else you’re wondering about for the big day?",N,"Photo ID and address proof for the mother and the person going with her should be carried to the hospital for delivery. | Health insurance card or policy number, and the hospital's pre-authorisation form if applicable should be carried to the hospital for delivery.",,
+H17,money,How do I make a cashless claim for my delivery?,"I understand you're at 32 weeks and thinking about the delivery process. Let me explain how cashless claims work, based on what the rules say.
+
+First, it's important to know that the government schemes like Janani Shishu Suraksha Karyakaram (JSSK) and Janani Suraksha Yojana (JSY) work differently.
+
+**If you have a private health insurance policy:**
+Your insurer must decide on your cashless request within one hour of receiving it from the hospital (IRDAI, p. 9). They should also give the final discharge approval within three hours. If they delay, they have to pay any extra charges (IRDAI, p. 9). I cannot verify what your specific policy covers without seeing the document, so please check with your insurer or the hospital's insurance desk.
+
+**If you are using a government hospital:**
+You don't need a cashless claim. Under the JSSK scheme, your delivery, including a C-section, medicines, diet, and transport, is completely free at public health institutions (INDIA-JSSK, p. 2). You will also get a free diet for 3 days for a normal delivery or 7 days for a C-section (INDIA-JSSK, p. 2).
+
+Additionally, under the JSY scheme, you can get a cash benefit after delivery. For a rural area, it's Rs. 1400, and for an urban area, it's Rs. 1000 (INDIA-JSY, p. 6) (INDIA-JSY, p. 7). To get this, you need to bring your MCH-JSY card and a referral slip from your ANM or doctor to the hospital (INDIA-JSY, p. 6).
+
+I hope this helps you prepare. Please confirm these details with your hospital or local health worker.",Y,,,
+M03,care,My family insists I eat ghee daily for an easy normal delivery. Is it true?,"I hear your family's care for you, and it's wonderful they want a smooth delivery. However, I don't have a trusted source that says eating ghee daily leads to an easy normal delivery. The guidelines I have focus on a balanced diet with a variety of foods like vegetables, fruits, and proteins for your health and the baby's growth (WHO-ANC, p. 15). They also advise against heavy, oily foods if you have heartburn (MOHFW-ANC, p. 37). While a little ghee as part of a meal is fine, there's no evidence it directly helps with labour. For your energy during labour, light, easily digestible, low-fat food is actually recommended (MOHFW-ANC, p. 41). You can gently explain to your family that you're following your doctor's advice for a healthy, balanced diet. Please discuss any specific dietary changes with your doctor.",Y,,,
+M05,nourish,What are affordable iron-rich vegetarian foods for a pregnant woman in a small Indian town?,I don't have a trusted source for that. Please ask your doctor.,Y,,,
+M06,care,My mother says drinking saffron milk makes the baby fair. Is that true?,"It's a very common belief, and I understand why your mother suggests it. However, I don't have a trusted source that says drinking saffron milk can make a baby's skin fair. What the sources do emphasize is eating a healthy, balanced diet rich in iron, proteins, and vitamins for your well-being and your baby's growth (MOHFW-ANC, p. 31). Please remember to avoid any alcohol, tobacco, or medicines not prescribed by your doctor (MOHFW-ANC, p. 31). It's wonderful that your family is caring for you. You can gently explain that you're focusing on a nutritious diet for a strong, healthy baby, which is the most important thing.",N,drinking saffron milk can make a baby's skin fair,,
+M09,care,My glucose test was flagged high. Can I fix gestational diabetes by avoiding rice completely?,"I hear your worry, and it's good you're thinking about your diet. The WHO explains that managing gestational diabetes (GDM) usually involves a stepped approach starting with lifestyle changes, specifically nutritional counselling and exercise (WHO-ANC, p. 48). This means working with your doctor to create a balanced meal plan that manages your blood sugar, not just cutting out one food. Rice can be part of a healthy diet when eaten in the right portions and paired with proteins, fiber, and vegetables. Your care team can guide you on this. The goal of treatment is to reduce risks for you and your baby, and with proper management, these risks are effectively lowered (WHO-ANC, p. 48). Please don't make drastic diet changes on your own; your doctor will help you with the next steps, which may include monitoring and a personalized eating plan.",N,"Rice can be part of a healthy diet when eaten in the right portions and paired with proteins, fiber, and vegetables.",,
+M12,care,I feel anxious about labour and everyone says I should just be happy.,"It's completely normal to feel anxious about labour, and you don't have to just 'be happy.' The guidelines remind us that during labour, a woman goes through physical as well as mental trauma, and providing emotional support is a key part of care (MOHFW-ANC, p. 39). Your feelings are valid. What you're experiencing is part of a 'positive pregnancy experience,' which includes woman-centred advice and treatment for common concerns (WHO-ANC, p. 74).
+
+To help ease your mind, you can focus on what you can control. You have the right to choose the position you feel most comfortable in during labour (MOHFW-ANC, p. 39). Knowing the signs of true labour, like regular contractions that increase in intensity, can also help you feel more prepared (MOHFW-ANC, p. 43).
+
+Please talk to your doctor about your specific fears. They can walk you through what to expect and create a plan that respects your wishes. You are not alone in this.",Y,,,
+M21,care,I feel I have too little milk on day three. Should I switch to formula?,"I hear your worry, and it's so common to feel this way on day three. Please know, almost all mothers can produce more than enough milk for their baby (MOHFW-IYCF, p. 120). Switching to formula now can actually reduce your supply, because your baby would suckle less at the breast (MOHFW-IYCF, p. 123). Instead, let's focus on what your baby is getting. The only two reliable signs that a baby is not getting enough milk are poor weight gain and passing very little, dark urine (MOHFW-IYCF, p. 120). If you are seeing about six wet nappies a day, that's a wonderful sign (MOHFW-IYCF, p. 81). To build your confidence and supply, breastfeed very often, at least 8-12 times in 24 hours, including at night. Ensure your baby has a deep latch and let them finish the first breast to get the rich hindmilk before offering the second (MOHFW-ANC, p. 62). You are doing a great job. If you are still concerned, please see a doctor or a skilled lactation supporter to check the baby's weight and attachment.",Y,,,

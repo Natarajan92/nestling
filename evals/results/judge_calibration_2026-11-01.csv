@@ -1,0 +1,144 @@
+case_id,agent,question,answer,judge_faithful,judge_unsupported,human_faithful,human_note
+B04,money,Are we eligible for PMMVY for our first baby?,"Congratulations on your pregnancy! It's wonderful that you're planning ahead. Based on the information I have, here's what the Pradhan Mantri Matru Vandana Yojana (PMMVY) offers for a first child.
+
+Yes, you are likely eligible for the first-child benefit. The scheme provides **₹5,000 for the first child** (INDIA-PMMVY, p. 1). This is a maternity benefit for pregnant and lactating mothers, especially from disadvantaged backgrounds, to support health, nutrition, and wage loss (INDIA-PMMVY, p. 2).
+
+To apply, you will need your Mother and Child Protection (MCP) Card and proof of eligibility, such as a BPL card (INDIA-PMMVY, p. 5). You can enroll through the official PMMVY portal or the UMANG app. The benefit is also linked to the Janani Suraksha Yojana (JSY) for institutional delivery, which can provide additional cash assistance (INDIA-PMMVY, p. 1).
+
+Since I cannot see your specific documents, I'd suggest confirming your eligibility and the exact application process with your local Anganwadi Worker or ASHA worker. They will be your best guide for this scheme.",Y,,,
+B14,care,What is the difference between a paediatrician visit and an immunisation appointment?,"A paediatrician visit and an immunisation appointment serve different purposes, though they can sometimes happen together. An immunisation appointment is specifically for giving your baby vaccines according to the Universal Immunisation Programme (MOHFW-ANC, p. 68). It's a key part of protecting your baby's health.
+
+A visit to a paediatrician is a broader health check-up. It's a chance for a doctor to examine your baby's overall growth, weight gain, and development, and to address any concerns you might have, like feeding or minor illnesses. The World Health Organization notes that around six weeks after birth, care often transitions to these general well-infant check-ups, which can include a referral for immunisation (WHO-POSTNATAL, p. 152).
+
+So, the immunisation is a specific procedure, while a paediatrician visit is a full health review. Your baby's schedule of postnatal visits will guide you on when each is needed.",N,"It's a key part of protecting your baby's health. | A visit to a paediatrician is a broader health check-up. | It's a chance for a doctor to examine your baby's overall growth, weight gain, and development, and to address any concerns you might have, like feeding or minor illnesses. | The immunisation is a specific procedure, while a paediatrician visit is a full health review. | Your baby's schedule of postnatal visits will guide you on when each is needed.",,
+B17,ready,How do we register our babys birth in India if delivery happened in a private hospital?,"Congratulations on your new arrival! In a private hospital, the process is usually quite straightforward. The hospital itself is responsible for reporting the birth to the local registrar, and from there, you can get the official birth certificate.
+
+Here’s what you can do, step-by-step:
+
+1.  **Confirm with the hospital:** Before you are discharged, check with the hospital’s administrative desk. Ask them to confirm they have recorded the birth and will be sending the report to the local municipal or panchayat office.
+2.  **Get the certificate:** The birth certificate is issued by the local registrar. The hospital can guide you on which office to contact and when the certificate will be ready for collection. This is a crucial legal document for your child’s future, like school admission (MOHFW-ANC, p. 62).
+3.  **Add the name later:** If you haven't chosen a name yet, the birth can be registered without one. You can provide the name to the registrar later, within the prescribed time, and they will update the record (INDIA-CRS, p. 4).
+
+**A note for both of you:** While you’re managing these important tasks, remember that the first 48 hours after birth are a critical monitoring period for both mother and baby (MOHFW-ANC, p. 60). Please make sure you both get as much rest as possible. You’re doing a wonderful job.",Y,,,
+E06,care,I had a glass of wine before I knew I was pregnant. Is my baby harmed?,"I hear your worry, and it’s completely natural to feel this way. Many mothers have a drink before they know they are pregnant. The most important thing is that you’ve stopped now. The WHO recommends that health-care providers ask about past and present alcohol use to offer the best support, and to advise on potential risks (WHO-ANC, p. 50). This is not to cause alarm, but to ensure you and your baby get the right care going forward. Please be open with your doctor at your next visit; they can provide reassurance and personalized guidance based on your full health picture. You are already doing the best thing for your baby by seeking information and focusing on a healthy pregnancy from this point on.",N,Many mothers have a drink before they know they are pregnant.,,
+F01,ready,My wife is 8 weeks pregnant. What should I do as a first-time father?,"It is wonderful that you are looking for ways to support your wife so early on. At 8 weeks, your role is to be a steady, informed partner. First, make sure her pregnancy is registered at a health facility within the first 12 weeks to begin proper antenatal care (MOHFW-ANC, p. 7). Go with her to the first visit; the guidelines say every pregnancy needs special care and a plan for the unexpected (MOHFW-ANC, p. 7).
+
+You can also help by encouraging her to eat well and rest. Later, after the baby arrives, you will be a key person to talk to family members about ensuring she gets enough nutritious food and avoids heavy work (MOHFW-ANC, p. 61). For now, simply being present, listening, and learning about the process together is the most practical thing you can do.
+
+I don't have a trusted source for specific first-trimester diet or activity advice. Please ask your doctor.",Y,,,
+F08,money,Will my employer group insurance cover my spouse delivery and newborn NICU?,"Congratulations on reaching week 28! I understand you want to know if your employer’s group insurance will cover your spouse’s delivery and any newborn NICU stay. I cannot verify your specific cover without seeing your policy document, so please check with your employer’s HR or your insurer/TPA. However, here is what IRDAI rules say in general about group health insurance.
+
+The policy will have a Benefit Structure (IRDAI-ANNEX, p. 16) that lists what events are covered, such as hospitalization. Crucially, the policy may impose limits that affect your claim. These include a **Sub-limit** (a fixed cap on room/ICU charges or specific procedures), a **Co-payment** (a percentage of the bill you must pay), or a **Deductible** (an amount you pay before the insurer pays anything) (IRDAI-ANNEX, p. 3).
+
+The insurer will not pay beyond these pre-defined limits (IRDAI-ANNEX, p. 3).",Y,,,
+F10,ready,Make a WhatsApp-ready checklist I can send my wife for our delivery day.,"Here's a simple, WhatsApp-ready checklist you can send your wife. It's based on Nestling's own checklist and trusted guidelines. You're doing a great thing by getting this ready together.
+
+---
+
+**🏥 Our Delivery Day Checklist**
+
+**📄 Documents (Keep in a folder)**
+- MCP card & all scan/test reports
+- Our photo IDs (Aadhaar/voter ID) (common_practice)
+- Health insurance card & hospital form (common_practice)
+
+**🤰 For You, Mama**
+- Loose, front-open clothes & clean change
+- Maternity pads
+- Snacks & water bottle for you and me
+- Toiletries, slippers, shawl, phone charger (common_practice)
+
+**👶 For Baby**
+- Soft towels to dry & wrap baby
+- Clean clothes, cap & socks
+
+**🚗 Plan Ahead**
+- Hospital route & transport ready
+- Ambulance saved: 108 (or 102 for govt hospital)
+- Emergency cash kept
+
+**📝 After Birth**
+- Hospital will help register the birth
+- Keep baby's vaccination card safe
+
+---
+
+I'll double-check the bag is by the door. We've got this! ❤️",N,"Our photo IDs (Aadhaar/voter ID) | Health insurance card & hospital form | Toiletries, slippers, shawl, phone charger | Hospital will help register the birth",,
+F13,ready,How can I share night responsibilities while my wife is recovering from a C-section?,"It’s wonderful that you’re looking for ways to share the load while your wife recovers. A C-section is major surgery, so her rest is crucial. Here are some practical, kind things you can do, based on trusted postnatal guidance.
+
+**Bring the baby to her for feeds.** If she is breastfeeding, you can be the one to lift the baby from the cot, change the nappy, and settle the baby back to sleep. This lets her stay in bed and focus only on the feed. The WHO recommends exclusive breastfeeding, and your support makes this much easier (WHO-POSTNATAL, p. xiv).
+
+**Take over all nappy changes and burping.** After a feed, you can take the baby for winding and a nappy change. This gives your wife a chance to rest immediately.
+
+**Create a safe sleep space on your side.** If possible, have a cot or a safe floor bed on your side of the room. You can soothe the baby with your voice and touch, which helps the baby learn to be comforted by you too.
+
+**Watch for her recovery signs.** While you’re up, you can also help her stay comfortable. Notice if her sanitary pad needs changing, and help her count the pads to ensure bleeding is not heavy, as this is an important check (MOHFW-ANC, p. 51).
+
+**Guard her rest during the day.** Her body heals best with sleep. Take the baby for a walk in another room or a safe outdoor space so she can nap undisturbed. Your calm presence is the most powerful support you can give right now.",N,"A C-section is major surgery, so her rest is crucial. | If she is breastfeeding, you can be the one to lift the baby from the cot, change the nappy, and settle the baby back to sleep. | After a feed, you can take the baby for winding and a nappy change. | Have a cot or a safe floor bed on your side of the room. | You can soothe the baby with your voice and touch",,
+F14,care,How do I change a newborn diaper and know if the baby has enough wet diapers?,"Congratulations on your new baby! Here’s how to approach diaper changes and what to look for, based on trusted guidelines.
+
+**Changing the diaper**
+While the passages don't give a step-by-step guide, they stress hygiene. When bathing or cleaning the baby, pay special attention to the napkin (diaper) area and dry it properly with a soft cloth (MOHFW-ANC, p. 68). Always wash your hands before and after handling the baby to maintain hygiene (MOHFW-ANC, p. 64).
+
+**Checking for enough wet diapers**
+I don’t have a trusted source for the exact number of wet diapers to expect each day. This is a very important sign of good feeding, so please ask your doctor for a specific number to watch for.
+
+**General reassurance**
+It’s normal to have these questions. The first weeks are a key time for you and your partner to build confidence in caring for your newborn (WHO-POSTNATAL, p. xiv). You’re doing a great job by seeking information. If you ever notice the baby is not alert, has a poor cry, or is moving less than normal, seek help from a doctor immediately (MOHFW-ANC, p. 64).",N,Always wash your hands before and after handling the baby to maintain hygiene.,,
+F15,care,Everyone in our family wants to kiss the newborn and I worry about infections.,"It's completely natural to feel protective. Your worry about infections is valid. While the passages I have don't give a specific rule about kissing, they do offer strong, related guidance. The key is to keep the baby's immediate environment safe. For example, the first bath should be delayed for at least 24 hours to protect the baby [2]. This is a kind way to protect your baby while still including the family. Please speak to your doctor for more specific advice on managing visitors and infection risks.",N,The first bath should be delayed for at least 24 hours to protect the baby | The first bath should be delayed for at least 24 hours after birth,,
+H02,ready,What should I pack in my hospital bag?,"It’s a good idea to have your bag ready by about 36 weeks, so you’re starting at the right time. Here’s what to pack, based on Nestling’s checklist and trusted guidelines.
+
+**Documents**
+- Your Mother and Child Protection (MCP) card, all antenatal records, scan and test reports.
+- Photo ID and address proof for you and the person going with you (common_practice).
+- Health insurance card or policy number, and the hospital’s pre-authorisation form if you have one (common_practice).
+- If you’re using Janani Suraksha Yojana (JSY) at an accredited private hospital, carry your BPL or SC/ST certificate where your state requires it.
+
+**For you**
+- Clean, loose, front-opening clothes that have been washed and sun-dried; these make breastfeeding easier.
+- Sanitary pads (maternity pads) or clean cloth.
+- Food and water for yourself and your support person.
+- Toiletries, slippers, a shawl or sweater, and your phone charger (common_practice).
+
+**For your baby**
+- Clean towels or soft cloth to dry and wrap the baby.
+- Clean baby clothes, washed andus a cap and socks to keep the baby warm.
+
+**Plan ahead**
+- Know which facility you’ll go to and how to reach it.
+- Save the ambulance number (108; 102 for free transport to a government hospital) and arrange transport.
+- Keep an emergency fund and know which schemes like JSY or JSSK can help with costs.
+- Decide who will go with you and who will look after home and children.
+
+You’re doing wonderfully. Packing early brings peace of mind, and your partner or support person can help gather these items so you can rest.",Y,,,
+H03,care,Is it normal to feel tired in the first trimester?,"Yes, feeling tired in the first trimester is very common. Your body is going through substantial hormonal and physical changes to support your growing baby, which can naturally lead to fatigue (WHO-ANC, p. 74). However, it's important to know when tiredness might signal something else. If your fatigue is accompanied by severe breathlessness, palpitations, or you notice unusual paleness in your lower eyelids or palms, it could be a sign of anaemia (MOHFW-ANC, p. 37). Please mention how you're feeling at your next antenatal visit. You are doing important work growing your baby, so be kind to yourself.",N,feeling tired in the first trimester is very common,,
+H11,care,Why do doctors give iron and folic acid tablets in pregnancy?,"The supplements help prevent maternal anaemia, which can make you feel very tired and weak. They also lower the risk of serious problems like puerperal sepsis (a severe infection after birth), low birth weight, and preterm birth (WHO-ANC, p. 23).
+
+Folic acid is especially important early in pregnancy to help prevent neural tube defects in the baby's brain and spine (WHO-ANC, p. xi). The standard preventive dose is one tablet daily, starting after your first trimester, which is right around your 14th week (MOHFW-ANC, p. 25).
+
+It's common to experience mild side-effects like nausea or black stools. You can manage this by taking the tablet after a meal or at night (MOHFW-ANC, p. 25). Along with the tablets, try to include iron-rich foods in your diet like green leafy vegetables, lentils, jaggery, and meat (MOHFW-ANC, p. 24).",Y,,,
+H18,money,Can I add my newborn to my health insurance?,"Congratulations on your little one! Yes, you can typically add your newborn to your existing health insurance policy. However, I cannot verify the exact process or coverage for your specific policy without seeing your policy document. Please check your policy wording or contact your insurer or Third Party Administrator (TPA) directly to understand the exact deadline for adding your baby and any impact on your premium. If you upload your policy schedule, I can help you look for the relevant clause.
+
+Also, remember that under the government's Janani Shishu Suraksha Karyakaram (JSSK), your baby is entitled to free treatment for any sickness up to one year of age in public health institutions, which is a wonderful safety net (INDIA-JSSK, p. 2).",N,You can typically add your newborn to your existing health insurance policy.,,
+M03,care,My family insists I eat ghee daily for an easy normal delivery. Is it true?,"I hear how much your family cares for you and your baby. It’s a lovely tradition. What our guidelines do say is that a small amount of ghee or oil is a healthy part of a balanced pregnancy diet. For example, one source suggests adding 1 teaspoon of pure ghee to a mixed meal like khichari for extra energy and taste (MOHFW-IYCF, p. 177). The general recommendation is to increase your intake of fats and oils by about 10 grams per day during pregnancy (MOHFW-IYCF, p. 177).
+
+Instead of focusing on one food, the best support for you and your baby is a varied diet. This means eating more cereals, pulses, vegetables, fruits, and milk products to get all the necessary nutrients (MOHFW-ANC, p. 30). Please don’t feel pressured. You can gently share with your family that a balanced diet is the most loving way to nourish you both. If you have more questions about your diet, your doctor can offer the best personalized advice.",Y,,,
+M06,care,My mother says drinking saffron milk makes the baby fair. Is that true?,"That's a very common belief in many Indian families, and it's lovely that your mother is thinking of you and your baby. However, I don't have a trusted source that says saffron milk can make a baby's skin fair. What I can tell you is that a balanced, nutritious diet is wonderful for your baby's overall growth. Some sources of caffeine, like tea or coffee, can increase the risk of pregnancy loss if taken in high amounts (WHO-ANC, p. 39). Please don't worry about your baby's complexion. Focus on eating a variety of healthy foods, resting well, and enjoying this special time. If you have more questions about your diet, your doctor can give you the best personal advice.",N,saffron milk can make a baby's skin fair,,
+M11,care,My family says the baby must be a boy based on my bump shape. Is that possible?,"I hear you. It's a very common belief in many families that the shape of the bump can tell you the baby's sex. However, I don't have a trusted source that supports this idea. The most important thing is that your baby is growing well, which your doctor will check by measuring your belly at each visit (MOHFW-ANC, p. 20). Please ask your doctor if you have any concerns about your baby's growth.",N,the shape of the bump can tell you the baby's sex,,
+M16,ready,I had a C-section. How should I plan help at home in the first two weeks?,"Welcome, and congratulations on your baby. Recovering from a C-section is a big adjustment, and planning your support for the first two weeks is a wise and kind step for yourself. Here is how you can think about it, based on what we know helps mothers heal and transition home.
+
+First, know that the first two weeks are a key time for healing and support. Your body needs rest to recover from surgery, so you should not be lifting anything heavier than your baby. Plan for help with household tasks like cooking, cleaning, and laundry. If a family member or friend can stay with you, that is wonderful. Their main job is to care for *you* so you can care for your baby.
+
+Second, lean on the recommended postnatal care contacts. A home visit from a skilled health worker or trained community health worker (like an ASHA) in the first week is recommended to check on both you and your baby. This is a perfect time to ask questions about your C-section recovery, pain management, and breastfeeding. If a home visit isn't possible, plan for an outpatient visit between 7 and 14 days after birth.
+
+For your partner or a support person, their role is vital. They can:
+- Ensure you are comfortable, bring you water and food, and keep your phone charger handy.
+- Watch for any danger signs in you, like heavy bleeding, fever, or pain, and help you count soaked pads (MOHFW-ANC, p. 51).
+- Take over all nappy changes and burping so you can focus on feeding and resting.
+- Manage visitors so you are not overwhelmed.
+
+Rest, accept help, and let others care for you. You are doing a great job.",N,"Your body needs rest to recover from surgery, so you should not be lifting anything heavier than your baby. | Plan for help with household tasks like cooking, cleaning, and laundry. | This is a perfect time to ask questions about your C-section recovery, pain management, and breastfeeding. | They can ensure you are comfortable, bring you water and food, and keep your phone charger handy. | Take over all nappy changes and burping so you can focus on feeding and resting. | Manage visitors so you are not overwhelmed.",,
+M20,care,My mother-in-law suggests giving honey to my newborn before breastfeeding.,"I understand this is a common tradition, but giving honey to a newborn is not safe. More importantly, your baby needs only your breast milk right now. The guidelines are clear that babies should be exclusively breastfed from birth until 6 months of age, with no other food or drink, not even water (WHO-POSTNATAL, p. xiv) (MOHFW-ANC, p. 32). Giving anything before the first breast milk, like honey or 'ghutti', is called a prelacteal feed. These can be unhygienic and cause infections, and they replace the precious first milk, colostrum, which is rich in antibodies and exactly what your baby needs (MOHFW-IYCF, p. 19) (MOHFW-IYCF, p. 80). You can gently explain to your mother-in-law that your colostrum is the perfect first food and will protect the baby. Please see a doctor if your baby seems unwell or is not feeding well.",N,giving honey to a newborn is not safe,,
+M24,care,Can I give water to my two-month-old in Bengaluru summer?,"No, please don't give water to your two-month-old, even in the Bengaluru summer. Your breast milk is perfectly designed to meet all of your baby's needs. It contains enough water to quench her thirst and satisfy her hunger for the first six months (MOHFW-ANC, p. 32). This is a common myth, but giving extra water is not necessary and can even be harmful (MOHFW-IYCF, p. 80).
+
+To keep your baby comfortable and hydrated, simply breastfeed her whenever she shows signs of hunger, like crying or rooting. This is called demand feeding. You should aim to feed her at least 6-8 times during the day and 2-3 times at night (MOHFW-ANC, p. 62). This will ensure she gets all the fluids she needs. You are doing a wonderful job providing the very best for your baby.",N,"Breast milk contains enough water to quench a baby's thirst and satisfy her hunger for the first six months | Giving extra water to a two-month-old is not necessary and can be harmful | Exclusive breastfeeding provides all the nutrients and water a baby needs for the first six months | Babies should not be given any drinks or foods before they start breastfeeding | Demand feeding means breastfeeding whenever the baby shows signs of hunger, like crying or rooting | A baby should be breastfed at least 6-8 times during the day and 2-3 times at night",,

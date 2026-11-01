@@ -1,18 +1,26 @@
 lesson_id: latching
-version: 1
+version: 2
 approved: true
 reviewer: S Anand Natarajan
 review_date: '2026-11-01'
 scenes:
 - step_no: 1
   passed: true
-  notes: Approved by the owner in chat for this storyboard version.
+  notes: Owner explicitly approved every scene of this exact storyboard version in
+    chat on 2026-11-01.
 - step_no: 2
   passed: true
-  notes: Approved by the owner in chat for this storyboard version.
+  notes: Owner explicitly approved every scene of this exact storyboard version in
+    chat on 2026-11-01.
 - step_no: 3
   passed: true
-  notes: Approved by the owner in chat for this storyboard version.
+  notes: Owner explicitly approved every scene of this exact storyboard version in
+    chat on 2026-11-01.
 - step_no: 4
   passed: true
-  notes: Approved by the owner in chat for this storyboard version.
+  notes: Owner explicitly approved every scene of this exact storyboard version in
+    chat on 2026-11-01.
+- step_no: 5
+  passed: true
+  notes: Owner explicitly approved every scene of this exact storyboard version in
+    chat on 2026-11-01.

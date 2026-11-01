@@ -338,12 +338,13 @@ def render_title(board: dict) -> Image.Image:
     img, draw = _frame(tone["bg"])
     _wordmark(img, draw)
     used = {sc["icon"] for sc in board["scenes"]}
-    title_icon = next((i for i in ("hand-heart", "baby", "heart", "sparkle", "smiley") if i not in used), "sparkle")
+    # A valid board has at most five steps, so six choices always leave one unused.
+    title_icon = next(i for i in ("hand-heart", "baby", "heart", "sparkle", "smiley", "feather") if i not in used)
     _blob_with_icon(img, tone, title_icon, seed=7, cy=740, r=310, icon_size=360)
     pill(img, (W // 2 - 190, 1120, W // 2 + 190, 1196), INK)
     draw.text((W // 2, 1158), "LITTLE LESSONS", font=font("Inter", 30, 700), fill=CREAM, anchor="mm")
     y = text_block(draw, (W // 2, 1250), board["title"], font("Fraunces", 104, 700), INK, W - 160, 118, anchor="m", max_lines=3)
-    draw.text((W // 2, y + 24), f"{len(board['scenes'])} gentle steps · about 15 seconds", font=font("Inter", 36, 500), fill=tone["deep"], anchor="ma")
+    draw.text((W // 2, y + 24), f"{len(board['scenes'])} gentle steps", font=font("Inter", 36, 500), fill=tone["deep"], anchor="ma")
     _dots(img, len(board["scenes"]) + 2, 0, tone)
     return img
 

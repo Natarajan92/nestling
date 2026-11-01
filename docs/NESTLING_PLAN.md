@@ -338,6 +338,8 @@ nestling/
 >
 > **Baseline result 2026-11-01** (`nestling-ask-baseline-c7951af1`, notebook 01, `evals/results/baseline_2026-11-01_*`): escalation recall **100%** (22/22, self-reported), refusal 97.1%, routing 84.6%, citation match 78.1%, p95 latency 8.57 s, cost ₹1.31 mean / ₹1.50 p95 (₹136 for the run). Top failure modes: routing boundaries (care vs nourish, partner prep, postpartum mood), refusal calibration (E05, B11 over-refused; B18 under-refused), wrong source family (postpartum → antenatal guide).
 
+> **Improved result 2026-11-01** (`v7_vector_safe`, `nestling-ask-improved-v7_vector_safe-503653c5`, notebook 06): escalation **100.0%**, refusal **100.0%**, routing 94.2%, citation match 61.6%, faithfulness **86.4%** (66 valid judgments; 2 errors excluded and counted), p95 latency 10.46s, mean/p95 cost ₹0.743/₹1.508. The 90% faithfulness and 8s latency bars still fail. The measured variant forces vector retrieval with stage filters and safety fixes on default DeepSeek models; lessons are disabled. The app is promoted to derived `v7_vector_safe+lessons`; its exact lessons-enabled configuration is not full-set measured. Earlier GLM attempts are incomplete diagnostics. See `docs/week4_report.md` for deltas, coverage and failure IDs.
+
 ### 9.4 LangSmith setup
 
 - Project names: `nestling-ask-baseline`, `nestling-ask-improved`
@@ -362,13 +364,13 @@ Report regressions honestly, e.g. *"the Verifier added 1.6s p95."*
 Faithfulness drop >5% over 7 days · p95 cost >25% over budget in 24h · p95 latency over SLA on >5% of runs · **any** missed escalation in sampled reviews · Guardian trip rate >2× baseline · any tool failure rate >5% per hour.
 
 ### 9.7 Week 4 deliverables checklist
-- [ ] Evaluation report (one-liner, metrics, rubric, pass bars)
-- [ ] `golden_v1` (40 cases) with baseline and improved scores, failure category per case
-- [ ] Top 3 failure modes + example traces
-- [ ] 3–4 changes with before/after deltas and regressions
-- [ ] Judge prompt, judge outputs, human-vs-judge agreement
-- [ ] LangSmith links or screenshots (baseline + improved)
-- [ ] Executed notebooks
+- [x] Evaluation report (one-liner, metrics, rubric, pass bars)
+- [x] Active `golden_v2_india` (104 frozen cases) with baseline and improved scores; failure categories from `evals/compare.py`
+- [x] Top 3 failure modes + example traces
+- [x] 3–4 changes with before/after deltas and regressions
+- [ ] Judge prompt and outputs done; human-vs-judge agreement pending Anand?s labels
+- [x] LangSmith links (baseline + improved, saved cases CSVs)
+- [x] Executed notebooks (00?06; lesson notebook 08 reports separate draft labels)
 - [ ] Short Loom: use case → dataset → a failure → fixes → results
 
 ### 9.8 Capture evaluation (separate dataset)

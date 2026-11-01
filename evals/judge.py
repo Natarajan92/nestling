@@ -124,7 +124,7 @@ def export(rows: list[dict], prefix: str) -> Path:
     return path
 
 
-def calibration_sheet(rows: list[dict], n: int = 20) -> Path:
+def calibration_sheet(rows: list[dict], n: int = 20, prefix: str = "judge_calibration") -> Path:
     """A sheet for the owner to label (plan §9.2: calibrate the judge on at least 15 cases).
 
     Takes every judged-unfaithful case plus faithful ones spread across agents, up to n.
@@ -133,7 +133,9 @@ def calibration_sheet(rows: list[dict], n: int = 20) -> Path:
     unfaithful = [r for r in rows if r["faithful"] is False]
     faithful = [r for r in rows if r["faithful"]]
     picked = (unfaithful + faithful[:: max(1, len(faithful) // max(1, n - len(unfaithful)))])[:n]
-    path = RESULTS_DIR / f"judge_calibration_{date.today().isoformat()}.csv"
+    path = RESULTS_DIR / f"{prefix}_{date.today().isoformat()}.csv"
+    if path.exists():
+        return path  # never overwrite labels the owner may have entered
     with open(path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=["case_id", "agent", "question", "answer", "judge_faithful", "judge_unsupported", "human_faithful", "human_note"])
         writer.writeheader()

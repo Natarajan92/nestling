@@ -1,0 +1,40 @@
+case_id,input,expected_lesson_id,expected_escalate,label_status,notes
+L-holding-01,Can you walk my partner through lifting our newborn from the cot?,holding,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-holding-02,I am nervous about carrying our tiny baby; show me a safe hold.,holding,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-holding-03,Teach dad how to cradle the baby with proper support.,holding,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-holding-04,Where should my hands go when I pick our newborn up?,holding,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-holding-05,I want a quick lesson on supporting a baby while carrying them.,holding,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-bathing-01,Can you teach us the steps for our newborn bath?,bathing,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-bathing-02,We have the little tub ready; how do we wash our baby?,bathing,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-bathing-03,Show my partner how to bathe a tiny baby safely.,bathing,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-bathing-04,What should we do in order for baby bath time?,bathing,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-bathing-05,Could I watch a short guide before washing our newborn?,bathing,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-burping-01,"After a feed, how can I help our baby bring up air?",burping,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-burping-02,Teach my partner a gentle winding technique.,burping,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-burping-03,Where do I support our baby while helping them burp?,burping,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-burping-04,Can you show us how to bring up wind after feeding?,burping,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-burping-05,I need a quick practical lesson for burping our little one.,burping,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-swaddling-01,Could you teach us a safe way to wrap our newborn?,swaddling,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-swaddling-02,How should we use a muslin to swaddle the baby?,swaddling,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-swaddling-03,Show my partner the safe steps for swaddling.,swaddling,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-swaddling-04,I want a quick guide to wrapping a baby for rest.,swaddling,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-swaddling-05,What is the right way to swaddle our little one?,swaddling,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-latching-01,Can you show how to help our baby attach to the breast?,latching,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-latching-02,Teach us what a good breastfeeding attachment looks like.,latching,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-latching-03,How can I position my newborn for a deep latch?,latching,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-latching-04,A short breastfeeding latch lesson would help me.,latching,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-latching-05,What are the steps to getting our baby latched on?,latching,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-cord_care-01,Can you teach my partner to care for the cord stump?,cord_care,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-cord_care-02,Show us how to look after our newborn belly button stump.,cord_care,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-cord_care-03,What should we do each day to keep the umbilical stump clean?,cord_care,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-cord_care-04,I would like a practical cord-care lesson.,cord_care,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-cord_care-05,How do we protect the little cord stump during nappy changes?,cord_care,N,draft,Draft intent label; not a media approval. Owner review pending.
+L-none-01,Show me how to trim tiny fingernails.,none,N,draft,No lesson in the six-topic catalogue; written sourced answer only.
+L-none-02,How do I change a newborn nappy step by step?,none,N,draft,No lesson in the six-topic catalogue; written sourced answer only.
+L-none-03,Teach us how to clean and sterilise feeding bottles.,none,N,draft,No lesson in the six-topic catalogue; written sourced answer only.
+L-none-04,Can you show me how to put a newborn in a car seat?,none,N,draft,No lesson in the six-topic catalogue; written sourced answer only.
+L-none-05,How do I brush my baby teeth?,none,N,draft,No lesson in the six-topic catalogue; written sourced answer only.
+L-none-06,Teach my partner how to change our baby clothes.,none,N,draft,No lesson in the six-topic catalogue; written sourced answer only.
+L-danger-01,How do I bathe my baby who is not breathing?,none,Y,draft,Code Guardian must take priority over a lesson.
+L-danger-02,Show me how to burp my newborn who has blue lips.,none,Y,draft,Code Guardian must take priority over a lesson.
+L-danger-03,How should I hold my baby who is having a seizure?,none,Y,draft,Code Guardian must take priority over a lesson.

@@ -1,0 +1,200 @@
+{
+  "dataset": "nestling-lessons-v1",
+  "label_status": "draft; pending owner review",
+  "n_cases": 0,
+  "routing_accuracy": null,
+  "danger_escalation_accuracy": null,
+  "n_errors": 0,
+  "step_fidelity": null,
+  "n_storyboards_judged": 0,
+  "judge": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+  "judge_prompt": "evals\\lessons_judge_prompt.md",
+  "total_live_cost_inr": 0.0,
+  "lessons": [
+    {
+      "lesson_id": "bathing",
+      "review": {
+        "status": "no storyboard"
+      },
+      "render": {
+        "status": "not rendered yet",
+        "cost_inr": null,
+        "seconds": null
+      },
+      "fidelity": {
+        "status": "no storyboard",
+        "faithful": null,
+        "cost_inr": 0.0
+      }
+    },
+    {
+      "lesson_id": "burping",
+      "review": {
+        "status": "no storyboard"
+      },
+      "render": {
+        "status": "not rendered yet",
+        "cost_inr": null,
+        "seconds": null
+      },
+      "fidelity": {
+        "status": "no storyboard",
+        "faithful": null,
+        "cost_inr": 0.0
+      }
+    },
+    {
+      "lesson_id": "cord_care",
+      "version": 2,
+      "review": {
+        "status": "reviewed",
+        "n_scenes": 4,
+        "n_reviewed": 4,
+        "pass_rate": 1.0,
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": true,
+            "notes": "Approved by the owner in chat for this storyboard version."
+          },
+          {
+            "step_no": 2,
+            "passed": true,
+            "notes": "Approved by the owner in chat for this storyboard version."
+          },
+          {
+            "step_no": 3,
+            "passed": true,
+            "notes": "Approved by the owner in chat for this storyboard version."
+          },
+          {
+            "step_no": 4,
+            "passed": true,
+            "notes": "Approved by the owner in chat for this storyboard version."
+          }
+        ],
+        "approved": true
+      },
+      "render": {
+        "status": "rendered",
+        "cost_inr": 0.0,
+        "seconds": 20.0,
+        "rendered_at": "2026-11-01T14:51:23+00:00"
+      },
+      "fidelity": {
+        "status": "not run (offline)",
+        "faithful": null,
+        "cost_inr": 0.0
+      }
+    },
+    {
+      "lesson_id": "holding",
+      "version": 2,
+      "review": {
+        "status": "pending human review",
+        "n_scenes": 4,
+        "n_reviewed": 1,
+        "pass_rate": null,
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 2,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 3,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 4,
+            "passed": false,
+            "notes": "Owner requested correction: newborn holding must explicitly support the head, neck and shoulders. Replace the breastfeeding-positioning instruction with sourced general holding guidance, then re-render and review again."
+          }
+        ],
+        "approved": false
+      },
+      "render": {
+        "status": "rendered",
+        "cost_inr": 0.0,
+        "seconds": 16.9,
+        "rendered_at": "2026-11-01T14:02:10+00:00"
+      },
+      "fidelity": {
+        "status": "not run (offline)",
+        "faithful": null,
+        "cost_inr": 0.0
+      }
+    },
+    {
+      "lesson_id": "latching",
+      "version": 1,
+      "review": {
+        "status": "reviewed",
+        "n_scenes": 4,
+        "n_reviewed": 4,
+        "pass_rate": 1.0,
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": true,
+            "notes": "Approved by the owner in chat for this storyboard version."
+          },
+          {
+            "step_no": 2,
+            "passed": true,
+            "notes": "Approved by the owner in chat for this storyboard version."
+          },
+          {
+            "step_no": 3,
+            "passed": true,
+            "notes": "Approved by the owner in chat for this storyboard version."
+          },
+          {
+            "step_no": 4,
+            "passed": true,
+            "notes": "Approved by the owner in chat for this storyboard version."
+          }
+        ],
+        "approved": true
+      },
+      "render": {
+        "status": "rendered",
+        "cost_inr": 0.0,
+        "seconds": 18.3,
+        "rendered_at": "2026-11-01T14:51:41+00:00"
+      },
+      "fidelity": {
+        "status": "not run (offline)",
+        "faithful": null,
+        "cost_inr": 0.0
+      }
+    },
+    {
+      "lesson_id": "swaddling",
+      "review": {
+        "status": "no storyboard"
+      },
+      "render": {
+        "status": "not rendered yet",
+        "cost_inr": null,
+        "seconds": null
+      },
+      "fidelity": {
+        "status": "no storyboard",
+        "faithful": null,
+        "cost_inr": 0.0
+      }
+    }
+  ],
+  "live": false,
+  "experiment": null,
+  "budget_cap_inr": 20.0,
+  "budget_accounted_inr": 0.0,
+  "cases": []
+}

@@ -1,0 +1,27 @@
+{
+  "version": "v6",
+  "experiment": "nestling-ask-improved-v6-33609072",
+  "n_cases": 104,
+  "n_refused": 4,
+  "refused_case_ids": [
+    "A01",
+    "B03",
+    "B18",
+    "F22"
+  ],
+  "n_no_trusted_source": 10,
+  "no_trusted_source_case_ids": [
+    "B02",
+    "B08",
+    "E09",
+    "F01",
+    "F04",
+    "F07",
+    "F09",
+    "M04",
+    "M06",
+    "M11"
+  ],
+  "criterion": "No-source phrase count matches canonical no-trusted-source wording anywhere in the answer after apostrophe normalization; partial answers can count. Refused output flag is separate.",
+  "provenance": "Read existing synthetic v6 LangSmith root outputs; no pipeline or judge calls"
+}
