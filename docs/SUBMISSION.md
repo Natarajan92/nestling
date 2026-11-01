@@ -28,6 +28,8 @@ uv run python -m evals.v3_compare
 uv run python -m evals.label_calibration --report
 ```
 
-The owner labels saved answers using the exact source evidence and reviewed expectations, then records Y/N judgments, reasons and reviewer/date in `human_review.csv`. Golden-label review is separate from actual-output calibration; no agreement percentage is fabricated. Source passages remain in the local review packet rather than being republished.
+The owner labels saved answers using the exact source evidence and reviewed expectations, then records Y/N judgments, reasons and reviewer/date in `human_review.csv`. Golden-label review is separate from actual-output calibration; no agreement percentage is fabricated. The upload ZIP excludes full source passages; private checkpoints and local review tools retain the evidence.
+
+Local upload artifacts are `output/pdf/Nestling_Week4_Submission.pdf` and `output/submission/Nestling_Week4_Submission.zip`; they are rebuildable and are not stored in Git. Rebuild the ZIP with `uv run python scripts/package_submission.py` after human labels and the Loom link are updated. [GitHub cleanup record](github_cleanup.md).
 
 Live evaluations use the separate `evals.v3_run` commands and one owner-approved ₹350 shared cap; they are not part of report regeneration. Application startup, tests and deployment instructions remain in the [README](../README.md); no deployment is claimed by this submission.

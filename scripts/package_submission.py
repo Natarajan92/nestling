@@ -30,9 +30,10 @@ def build() -> Path:
     files += [ROOT / "docs" / name for name in (
         "week4_report.md", "v3_evaluation_report.md", "SUBMISSION.md",
         "engineering_notes.md", "loom_script.md", "deploy_checklist.md",
-        "submission_finish_prompt.md", "NESTLING_PLAN.md")]
+        "submission_finish_prompt.md", "NESTLING_PLAN.md", "github_cleanup.md")]
     files += sorted((ROOT / "docs/media").glob("*.png"))
     files += sorted((ROOT / "nestling").rglob("*.py"))
+    files += sorted((ROOT / "scripts").glob("*.py"))
     files += [ROOT / "evals" / name for name in (
         "v3_run.py", "v3_compare.py", "evaluators.py", "judge.py", "judge_prompt.md",
         "budgeted_run.py", "plot_tradeoff.py", "label_calibration.py")]
@@ -79,7 +80,9 @@ def build() -> Path:
             "All four complete runs are included; Round 1 is retained.\n"
             "Human calibration and the owner's Loom are pending; do not submit as complete yet.\n"
             "Case CSVs contain answers/scores/trace links. Private LangSmith access may be needed.\n"
-            "No secrets, personal data, source PDFs or private review checkpoints are included.\n"))
+            "No secrets, personal data, source PDFs or private review checkpoints are included.\n"
+            "This is an evidence pack with evaluation code, not a full application checkout.\n"
+            "Complete app source: https://github.com/Natarajan92/nestling (private access required).\n"))
     with ZipFile(target) as archive:
         if archive.testzip() is not None:
             raise ValueError("ZIP integrity check failed")
