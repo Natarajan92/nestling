@@ -19,7 +19,7 @@ def hit(source_id="WHO-POSTNATAL", page="120", text="Clean, dry umbilical cord c
 
 def scene(n, **over):
     base = {"step_no": n, "caption": "Keep the cord clean and dry", "narration_line": "Keep the cord clean and dry every day.",
-            "icon": "hand", "source_id": "WHO-POSTNATAL", "page_label": "120",
+            "icon": "drop", "source_id": "WHO-POSTNATAL", "page_label": "120",
             "evidence": "clean dry umbilical cord care is recommended", "safety_points": ["Wash your hands first."]}
     return {**base, **over}
 
@@ -102,15 +102,35 @@ def test_invalid_script_is_retried_with_the_problems_then_given_up(monkeypatch):
     assert "previous script had these problems" in calls[1]
 
 
-def test_write_keeps_an_approved_review(monkeypatch, tmp_path):
+def approve(folder, version):
+    (folder / "review.yaml").write_text(yaml.safe_dump({
+        "lesson_id": "cord_care", "version": version, "approved": True, "reviewer": "R", "review_date": "2026-11-02",
+        "scenes": [{"step_no": i, "passed": True, "notes": ""} for i in range(1, 5)]}), encoding="utf-8")
+
+
+def test_changed_content_bumps_version_and_resets_an_approval(monkeypatch, tmp_path):
+    monkeypatch.setattr(sb, "LESSONS_DIR", tmp_path)
+    board = {"version": 1, "scenes": four()}
+    assert sb.write("cord_care", board)["version"] == 1
+    review = tmp_path / "cord_care" / "review.yaml"
+    assert yaml.safe_load(review.read_text())["approved"] is False
+    approve(tmp_path / "cord_care", 1)
+    changed = {"version": 1, "scenes": four(icon="sun")}
+    assert sb.write("cord_care", changed)["version"] == 2
+    data = yaml.safe_load(review.read_text())
+    assert data["approved"] is False and data["version"] == 2 and data["reviewer"] is None
+    assert data["review_date"] is None and all(s["passed"] is None for s in data["scenes"])
+    assert json.loads((tmp_path / "cord_care" / "storyboard.json").read_text())["version"] == 2
+
+
+def test_identical_content_keeps_the_approval(monkeypatch, tmp_path):
     monkeypatch.setattr(sb, "LESSONS_DIR", tmp_path)
     board = {"version": 1, "scenes": four()}
     sb.write("cord_care", board)
-    review = tmp_path / "cord_care" / "review.yaml"
-    assert yaml.safe_load(review.read_text())["approved"] is False
-    review.write_text("approved: true\n")
-    sb.write("cord_care", board)
-    assert review.read_text() == "approved: true\n"
+    approve(tmp_path / "cord_care", 1)
+    before = (tmp_path / "cord_care" / "review.yaml").read_text()
+    assert sb.write("cord_care", board)["version"] == 1
+    assert (tmp_path / "cord_care" / "review.yaml").read_text() == before
 
 
 # ---------- cards ----------
