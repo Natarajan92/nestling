@@ -1,8 +1,9 @@
 """Golden dataset: the frozen eval set every experiment runs against.
 
 The file is frozen (plan §9.3, constitution): `load()` refuses to return cases if the
-file's bytes no longer match the recorded SHA-256. New cases go in a new version file
-with its own hash; never edit a frozen one.
+file's content no longer matches the recorded SHA-256. The hash is taken after dropping
+the BOM and normalizing line endings, so a Windows (CRLF) and a Linux (LF) checkout agree.
+New cases go in a new version file with its own hash; never edit a frozen one.
 
     uv run python -m nestling.golden upload   # create the LangSmith dataset (idempotent)
 """
@@ -17,7 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATASET_VERSION = "golden_v2_india"
 PATH = ROOT / "evals" / "golden_v2_india.csv"
-SHA256 = "af049c1afcf17248ff499f8f58cd1d731291464dd9778b221a5b58cfae7a4f70"
+SHA256 = "366efb04e00cc8dd60098ffb79adc66c6d216a47aaaf68224b3cf05da4f67f20"  # normalized content
 FROZEN_ON = "2026-11-01"
 LANGSMITH_DATASET = "nestling-golden-v2"
 _ID_NAMESPACE = uuid.UUID("7b0e8a52-3f0e-4c8e-9a51-6e57e1c0a2b4")  # stable example IDs
@@ -25,14 +26,14 @@ _ID_NAMESPACE = uuid.UUID("7b0e8a52-3f0e-4c8e-9a51-6e57e1c0a2b4")  # stable exam
 
 def load() -> list[dict]:
     """The frozen cases as dicts. Raises if the file has changed since it was frozen."""
-    data = PATH.read_bytes()
-    digest = hashlib.sha256(data).hexdigest()
+    text = PATH.read_bytes().decode("utf-8-sig").replace("\r\n", "\n")
+    digest = hashlib.sha256(text.encode("utf-8")).hexdigest()
     if digest != SHA256:
         raise RuntimeError(
             f"{PATH.name} changed after it was frozen on {FROZEN_ON} "
             f"(sha256 {digest[:12]}... != {SHA256[:12]}...). Put new cases in a new version."
         )
-    return list(csv.DictReader(io.StringIO(data.decode("utf-8-sig"))))
+    return list(csv.DictReader(io.StringIO(text)))
 
 
 def _split(value: str) -> list[str]:
