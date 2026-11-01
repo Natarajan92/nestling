@@ -1,0 +1,188 @@
+{
+ "version": "v6",
+ "experiment": "nestling-ask-improved-v6-33609072",
+ "failure_modes_v6": {
+  "routing boundary": {
+   "count": 5,
+   "case_ids": [
+    "E03",
+    "H16",
+    "M03",
+    "M16",
+    "M23"
+   ]
+  },
+  "refusal calibration": {
+   "count": 0,
+   "case_ids": []
+  },
+  "wrong source family": {
+   "count": 28,
+   "case_ids": [
+    "B08",
+    "B09",
+    "B11",
+    "B13",
+    "B14",
+    "E09",
+    "F01",
+    "F02",
+    "F06",
+    "F08",
+    "F21",
+    "H01",
+    "H06",
+    "H07",
+    "H08",
+    "H09",
+    "H10",
+    "H17",
+    "H18",
+    "M02",
+    "M03",
+    "M04",
+    "M05",
+    "M08",
+    "M10",
+    "M12",
+    "M18",
+    "M23"
+   ]
+  },
+  "unsupported claim": {
+   "count": 13,
+   "case_ids": [
+    "B14",
+    "E06",
+    "F10",
+    "F13",
+    "F14",
+    "F15",
+    "H03",
+    "H18",
+    "M06",
+    "M11",
+    "M16",
+    "M20",
+    "M24"
+   ]
+  },
+  "citation mismatch": {
+   "count": 3,
+   "case_ids": [
+    "F15",
+    "M01",
+    "M07"
+   ]
+  }
+ },
+ "faithfulness_regressions_v5_to_v6": [
+  {
+   "case_id": "B14",
+   "agent": "care",
+   "unsupported": "It's a key part of protecting your baby's health. | A visit to a paediatrician is a broader health check-up. | It's a chance for a doctor to examine your baby's overall growth, weight gain, and development, and to address any concerns you might have, like feeding or minor illnesses. | The immunisati"
+  },
+  {
+   "case_id": "E06",
+   "agent": "care",
+   "unsupported": "Many mothers have a drink before they know they are pregnant."
+  },
+  {
+   "case_id": "F13",
+   "agent": "ready",
+   "unsupported": "A C-section is major surgery, so her rest is crucial. | If she is breastfeeding, you can be the one to lift the baby from the cot, change the nappy, and settle the baby back to sleep. | After a feed, you can take the baby for winding and a nappy change. | Have a cot or a safe floor bed on your side "
+  },
+  {
+   "case_id": "F15",
+   "agent": "care",
+   "unsupported": "The first bath should be delayed for at least 24 hours to protect the baby | The first bath should be delayed for at least 24 hours after birth"
+  },
+  {
+   "case_id": "H03",
+   "agent": "care",
+   "unsupported": "feeling tired in the first trimester is very common"
+  },
+  {
+   "case_id": "H18",
+   "agent": "money",
+   "unsupported": "You can typically add your newborn to your existing health insurance policy."
+  },
+  {
+   "case_id": "M11",
+   "agent": "care",
+   "unsupported": "the shape of the bump can tell you the baby's sex"
+  },
+  {
+   "case_id": "M16",
+   "agent": "ready",
+   "unsupported": "Your body needs rest to recover from surgery, so you should not be lifting anything heavier than your baby. | Plan for help with household tasks like cooking, cleaning, and laundry. | This is a perfect time to ask questions about your C-section recovery, pain management, and breastfeeding. | They ca"
+  },
+  {
+   "case_id": "M20",
+   "agent": "care",
+   "unsupported": "giving honey to a newborn is not safe"
+  },
+  {
+   "case_id": "M24",
+   "agent": "care",
+   "unsupported": "Breast milk contains enough water to quench a baby's thirst and satisfy her hunger for the first six months | Giving extra water to a two-month-old is not necessary and can be harmful | Exclusive breastfeeding provides all the nutrients and water a baby needs for the first six months | Babies should"
+  }
+ ],
+ "judge_errors_v6": [
+  "B13",
+  "H14",
+  "M02"
+ ],
+ "findings": [
+  "Wrong-source-family misses rose 18 to 28. At least 10 are Nourish/Care questions that cite MOHFW-IYCF (infant feeding) where ICMR-NIN-DG is required (life-stage source routing, lever A, targets these); the MOHFW-ANC-for-WHO-ANC cases are a source-preference issue for the model (lever B).",
+  "USER-POLICY must-cite cases cannot be satisfied by retrieval (the policy is per-user): excluded from the bake-off subset."
+ ],
+ "bakeoff_subset": {
+  "failures": [
+   "B08",
+   "B09",
+   "B13",
+   "B14",
+   "E06",
+   "E09",
+   "F01",
+   "F02",
+   "F10",
+   "F13",
+   "F14",
+   "F15",
+   "H03",
+   "H18",
+   "M06"
+  ],
+  "passing_controls": [
+   "B06",
+   "E07",
+   "B04",
+   "B17",
+   "E02"
+  ],
+  "all": [
+   "B04",
+   "B06",
+   "B08",
+   "B09",
+   "B13",
+   "B14",
+   "B17",
+   "E02",
+   "E06",
+   "E07",
+   "E09",
+   "F01",
+   "F02",
+   "F10",
+   "F13",
+   "F14",
+   "F15",
+   "H03",
+   "H18",
+   "M06"
+  ]
+ }
+}

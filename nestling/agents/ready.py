@@ -42,7 +42,8 @@ def answer(question: str, context: dict, mode: str = "reranked") -> dict:
     if mode == "plain":
         hits = retrieval.search(question, top_k=6)
     else:
-        sources = retrieval.sources_for("ready") + retrieval.sources_for("care")
+        stage = context.get("life_stage") if mode == "staged" else None
+        sources = retrieval.sources_for("ready") + retrieval.sources_for("care", stage)
         hits = retrieval.search_reranked(retrieval_query(question, context), source_ids=sources)
     out = answer_from_sources("Ready", question, context, hits, INSTRUCTIONS, extra=checklist_text())
     return {**out, "hits": hits, "agent": "ready"}

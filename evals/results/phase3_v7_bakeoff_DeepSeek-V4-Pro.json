@@ -1,0 +1,274 @@
+{
+ "model": "deepseek-ai/DeepSeek-V4-Pro",
+ "version": "v7",
+ "n": 20,
+ "errors": 0,
+ "faithfulness": 0.737,
+ "n_judged": 19,
+ "citation_match": 0.471,
+ "routing": 1.0,
+ "cost_inr": 22.93,
+ "mean_latency_ms": 12252,
+ "cases": [
+  {
+   "case_id": "B04",
+   "agent": "money",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 0.8524,
+   "latency_ms": 19073,
+   "error": null,
+   "sources_cited": [
+    "INDIA-PMMVY"
+   ]
+  },
+  {
+   "case_id": "B06",
+   "agent": "care",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 0.904,
+   "latency_ms": 21243,
+   "error": null,
+   "sources_cited": [
+    "MOHFW-ANC"
+   ]
+  },
+  {
+   "case_id": "B08",
+   "agent": "care",
+   "citation_match": false,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 1.1292,
+   "latency_ms": 15678,
+   "error": null,
+   "sources_cited": []
+  },
+  {
+   "case_id": "B09",
+   "agent": "nourish",
+   "citation_match": false,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 1.3574,
+   "latency_ms": 21981,
+   "error": null,
+   "sources_cited": [
+    "MOHFW-IYCF"
+   ]
+  },
+  {
+   "case_id": "B13",
+   "agent": "care",
+   "citation_match": false,
+   "route_match": true,
+   "faithful": null,
+   "cost_inr": 1.1308,
+   "latency_ms": 12974,
+   "error": null,
+   "sources_cited": [
+    "WHO-POSTNATAL"
+   ]
+  },
+  {
+   "case_id": "B14",
+   "agent": "care",
+   "citation_match": false,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 1.0637,
+   "latency_ms": 10779,
+   "error": null,
+   "sources_cited": [
+    "MOHFW-ANC"
+   ]
+  },
+  {
+   "case_id": "B17",
+   "agent": "ready",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 0.7899,
+   "latency_ms": 5540,
+   "error": null,
+   "sources_cited": [
+    "INDIA-CRS",
+    "MOHFW-ANC"
+   ]
+  },
+  {
+   "case_id": "E02",
+   "agent": "care",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 1.4332,
+   "latency_ms": 9072,
+   "error": null,
+   "sources_cited": [
+    "WHO-ANC",
+    "MOHFW-ANC"
+   ]
+  },
+  {
+   "case_id": "E06",
+   "agent": "care",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": false,
+   "cost_inr": 0.5893,
+   "latency_ms": 6248,
+   "error": null,
+   "sources_cited": [
+    "WHO-ANC"
+   ]
+  },
+  {
+   "case_id": "E07",
+   "agent": "nourish",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 1.2956,
+   "latency_ms": 10526,
+   "error": null,
+   "sources_cited": [
+    "WHO-ANC"
+   ]
+  },
+  {
+   "case_id": "E09",
+   "agent": "nourish",
+   "citation_match": false,
+   "route_match": true,
+   "faithful": false,
+   "cost_inr": 1.2703,
+   "latency_ms": 11223,
+   "error": null,
+   "sources_cited": [
+    "WHO-ANC"
+   ]
+  },
+  {
+   "case_id": "F01",
+   "agent": "ready",
+   "citation_match": false,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 0.7219,
+   "latency_ms": 6464,
+   "error": null,
+   "sources_cited": [
+    "MOHFW-ANC"
+   ]
+  },
+  {
+   "case_id": "F02",
+   "agent": "care",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 1.4731,
+   "latency_ms": 8335,
+   "error": null,
+   "sources_cited": [
+    "MOHFW-ANC",
+    "WHO-ANC"
+   ]
+  },
+  {
+   "case_id": "F10",
+   "agent": "ready",
+   "citation_match": null,
+   "route_match": true,
+   "faithful": false,
+   "cost_inr": 0.8387,
+   "latency_ms": 10290,
+   "error": null,
+   "sources_cited": []
+  },
+  {
+   "case_id": "F13",
+   "agent": "ready",
+   "citation_match": null,
+   "route_match": true,
+   "faithful": false,
+   "cost_inr": 0.6628,
+   "latency_ms": 9014,
+   "error": null,
+   "sources_cited": [
+    "WHO-POSTNATAL",
+    "MOHFW-ANC"
+   ]
+  },
+  {
+   "case_id": "F14",
+   "agent": "care",
+   "citation_match": false,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 1.6449,
+   "latency_ms": 27500,
+   "error": null,
+   "sources_cited": [
+    "MOHFW-ANC"
+   ]
+  },
+  {
+   "case_id": "F15",
+   "agent": "care",
+   "citation_match": false,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 1.7955,
+   "latency_ms": 8583,
+   "error": null,
+   "sources_cited": []
+  },
+  {
+   "case_id": "H03",
+   "agent": "care",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": false,
+   "cost_inr": 1.3974,
+   "latency_ms": 9739,
+   "error": null,
+   "sources_cited": [
+    "WHO-ANC",
+    "MOHFW-ANC"
+   ]
+  },
+  {
+   "case_id": "H18",
+   "agent": "money",
+   "citation_match": false,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 1.3015,
+   "latency_ms": 10531,
+   "error": null,
+   "sources_cited": [
+    "INDIA-JSSK"
+   ]
+  },
+  {
+   "case_id": "M06",
+   "agent": "care",
+   "citation_match": null,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 1.2777,
+   "latency_ms": 10250,
+   "error": null,
+   "sources_cited": [
+    "MOHFW-ANC",
+    "WHO-ANC"
+   ]
+  }
+ ]
+}

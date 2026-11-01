@@ -12,7 +12,7 @@ from functools import cache
 from jsonschema import ValidationError, validate
 from langsmith.wrappers import wrap_openai
 
-MAIN = "deepseek-ai/DeepSeek-V4-Pro"
+MAIN = os.environ.get("NESTLING_MAIN_MODEL", "deepseek-ai/DeepSeek-V4-Pro")  # env override: Task 13 bake-off only
 FAST = "deepseek-ai/DeepSeek-V4.1-Flash"
 BASE_URL = "https://api.tokenfactory.nebius.com/v1/"
 

@@ -1,0 +1,280 @@
+{
+ "model": "zai-org/GLM-5.3",
+ "version": "v7",
+ "n": 20,
+ "errors": 3,
+ "faithfulness": 0.941,
+ "n_judged": 17,
+ "citation_match": 0.765,
+ "routing": 0.85,
+ "cost_inr": 36.63,
+ "mean_latency_ms": 21117,
+ "cases": [
+  {
+   "case_id": "B04",
+   "agent": "money",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 2.3474,
+   "latency_ms": 30338,
+   "error": null,
+   "sources_cited": [
+    "INDIA-PMMVY"
+   ]
+  },
+  {
+   "case_id": "B06",
+   "agent": "care",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 2.5026,
+   "latency_ms": 34972,
+   "error": null,
+   "sources_cited": [
+    "MOHFW-ANC"
+   ]
+  },
+  {
+   "case_id": "B08",
+   "agent": "care",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 2.5634,
+   "latency_ms": 32571,
+   "error": null,
+   "sources_cited": [
+    "WHO-POSTNATAL",
+    "MOHFW-ANC"
+   ]
+  },
+  {
+   "case_id": "B09",
+   "agent": "nourish",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 2.6557,
+   "latency_ms": 35090,
+   "error": null,
+   "sources_cited": [
+    "ICMR-NIN-DG",
+    "MOHFW-IYCF"
+   ]
+  },
+  {
+   "case_id": "B13",
+   "agent": "care",
+   "citation_match": false,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 2.5225,
+   "latency_ms": 26444,
+   "error": null,
+   "sources_cited": [
+    "WHO-POSTNATAL"
+   ]
+  },
+  {
+   "case_id": "B14",
+   "agent": "care",
+   "citation_match": false,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 2.4768,
+   "latency_ms": 22563,
+   "error": null,
+   "sources_cited": [
+    "WHO-POSTNATAL",
+    "MOHFW-ANC"
+   ]
+  },
+  {
+   "case_id": "B17",
+   "agent": "ready",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 1.2831,
+   "latency_ms": 11407,
+   "error": null,
+   "sources_cited": [
+    "INDIA-CRS",
+    "MOHFW-ANC"
+   ]
+  },
+  {
+   "case_id": "E02",
+   "agent": "care",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 2.4622,
+   "latency_ms": 23288,
+   "error": null,
+   "sources_cited": [
+    "MOHFW-ANC",
+    "WHO-ANC"
+   ]
+  },
+  {
+   "case_id": "E06",
+   "agent": "care",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 1.9749,
+   "latency_ms": 23778,
+   "error": null,
+   "sources_cited": [
+    "WHO-ANC"
+   ]
+  },
+  {
+   "case_id": "E07",
+   "agent": "nourish",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 2.2694,
+   "latency_ms": 23610,
+   "error": null,
+   "sources_cited": [
+    "WHO-ANC",
+    "ICMR-NIN-DG"
+   ]
+  },
+  {
+   "case_id": "E09",
+   "agent": "nourish",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 2.6676,
+   "latency_ms": 25795,
+   "error": null,
+   "sources_cited": [
+    "ICMR-NIN-DG",
+    "WHO-ANC"
+   ]
+  },
+  {
+   "case_id": "F01",
+   "agent": "ready",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 0.9585,
+   "latency_ms": 9048,
+   "error": null,
+   "sources_cited": [
+    "MOHFW-ANC",
+    "WHO-ANC"
+   ]
+  },
+  {
+   "case_id": "F02",
+   "agent": "care",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 2.5392,
+   "latency_ms": 22329,
+   "error": null,
+   "sources_cited": [
+    "MOHFW-ANC",
+    "WHO-ANC"
+   ]
+  },
+  {
+   "case_id": "F10",
+   "agent": "ready",
+   "citation_match": null,
+   "route_match": true,
+   "faithful": false,
+   "cost_inr": 0.9852,
+   "latency_ms": 9486,
+   "error": null,
+   "sources_cited": [
+    "MOHFW-ANC"
+   ]
+  },
+  {
+   "case_id": "F13",
+   "agent": "ready",
+   "citation_match": null,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 1.1617,
+   "latency_ms": 14755,
+   "error": null,
+   "sources_cited": [
+    "WHO-POSTNATAL",
+    "MOHFW-ANC"
+   ]
+  },
+  {
+   "case_id": "F14",
+   "agent": "care",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 2.6667,
+   "latency_ms": 23510,
+   "error": null,
+   "sources_cited": [
+    "MOHFW-ANC",
+    "WHO-POSTNATAL"
+   ]
+  },
+  {
+   "case_id": "F15",
+   "agent": "care",
+   "citation_match": true,
+   "route_match": true,
+   "faithful": true,
+   "cost_inr": 2.5889,
+   "latency_ms": 24353,
+   "error": null,
+   "sources_cited": [
+    "WHO-POSTNATAL",
+    "MOHFW-ANC"
+   ]
+  },
+  {
+   "case_id": "H03",
+   "agent": null,
+   "citation_match": false,
+   "route_match": false,
+   "faithful": null,
+   "cost_inr": null,
+   "latency_ms": 12169,
+   "error": "RateLimitError: [429 RESOURCE_EXHAUSTED] Request failed. You've reached the rerank request limit (500) for model bge-reranker-v2-m3 for the current month across your organization. To continue using this model, upgrad",
+   "sources_cited": []
+  },
+  {
+   "case_id": "H18",
+   "agent": null,
+   "citation_match": false,
+   "route_match": false,
+   "faithful": null,
+   "cost_inr": null,
+   "latency_ms": 7486,
+   "error": "RateLimitError: [429 RESOURCE_EXHAUSTED] Request failed. You've reached the rerank request limit (500) for model bge-reranker-v2-m3 for the current month across your organization. To continue using this model, upgrad",
+   "sources_cited": []
+  },
+  {
+   "case_id": "M06",
+   "agent": null,
+   "citation_match": null,
+   "route_match": false,
+   "faithful": null,
+   "cost_inr": null,
+   "latency_ms": 9351,
+   "error": "RateLimitError: [429 RESOURCE_EXHAUSTED] Request failed. You've reached the rerank request limit (500) for model bge-reranker-v2-m3 for the current month across your organization. To continue using this model, upgrad",
+   "sources_cited": []
+  }
+ ]
+}
