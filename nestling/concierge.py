@@ -59,16 +59,24 @@ SCHEMA = {
 }
 
 
-def _user(text: str) -> str:
-    shots = "\n".join(f'Message: "{q}" -> {r}' for q, r in EXAMPLES)
+def _user(text: str, lessons: bool = False) -> str:
+    examples = EXAMPLES + ([("How do I clean the umbilical cord?", "lessons"),
+                            ("Show me how to help my newborn latch", "lessons"),
+                            ("How can I hold my newborn safely?", "lessons")] if lessons else [])
+    shots = "\n".join(f'Message: "{q}" -> {r}' for q, r in examples)
     return f"Examples:\n{shots}\n\nMessage: \"{text}\""
 
 
 @traceable(name="concierge", run_type="chain")
-def route(text: str) -> dict:
+def route(text: str, lessons: bool = False) -> dict:
     """{"route": one of ROUTES, "usage": {...}}. Falls back to clarify if the call fails."""
     try:
-        data, usage, _ = chat_json(FAST, SYSTEM, _user(text), SCHEMA, max_tokens=500)
+        system, schema = SYSTEM, SCHEMA
+        if lessons:
+            system += ("\n- lessons: practical newborn-care how-tos: holding, bathing, burping, swaddling, "
+                       "latching or cord care. Route these to lessons rather than care. Symptoms and concerns stay care.")
+            schema = {**SCHEMA, "properties": {"route": {"type": "string", "enum": [*ROUTES, "lessons"]}}}
+        data, usage, _ = chat_json(FAST, system, _user(text, lessons), schema, max_tokens=500)
     except Exception as exc:
         return {"route": "clarify", "usage": None, "error": type(exc).__name__}
     return {"route": data["route"] if data else "clarify", "usage": usage}

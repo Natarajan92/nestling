@@ -118,3 +118,36 @@ def test_classifier_can_add_a_verified_flag():
 def test_classifier_cannot_veto_a_rule():
     d = guardian.decide("I think my water broke", {"red_flags": [], "unsafe": []})
     assert d.escalate
+
+
+@pytest.mark.parametrize("text,rule,source", [
+    ("How do I bathe my baby who is not breathing?", "RF-ABSENT-BREATHING", "NHS-CHILD-CPR"),
+    ("My newborn isn't breathing", "RF-ABSENT-BREATHING", "NHS-CHILD-CPR"),
+    ("Our baby has stopped breathing", "RF-ABSENT-BREATHING", "NHS-CHILD-CPR"),
+    ("Baby is not breathing normally", "RF-ABSENT-BREATHING", "NHS-CHILD-CPR"),
+    ("How do I latch my baby whose lips are blue?", "RF-BLUE-LIPS", "NHS-CHILD-URGENT"),
+    ("Our newborn has grey lips", "RF-BLUE-LIPS", "NHS-CHILD-URGENT"),
+])
+def test_absent_breathing_and_blue_lips_escalate_before_how_to(text, rule, source):
+    result = guardian.decide(text)
+    assert result.escalate and rule in result.red_flags
+    assert source in {s["source_id"] for s in result.sources}
+    assert "112" in result.reply and "999" not in result.reply
+
+
+@pytest.mark.parametrize("text", [
+    "My baby is breathing normally, no blue lips",
+    "My baby's lips are not blue",
+    "My baby has no signs of blue lips",
+    "What are the warning signs of not breathing?",
+    "My baby stopped breathing last year but is breathing normally now",
+    "My baby had blue lips months ago but is well now",
+])
+def test_negated_general_and_explicitly_resolved_remote_breathing_contexts(text):
+    assert not guardian.decide(text).escalate
+
+
+def test_classifier_cannot_reintroduce_resolved_remote_breathing():
+    text = "My baby stopped breathing last year but is breathing normally now"
+    proposal = {"red_flags": [{"sign": "RF-ABSENT-BREATHING", "quote": "stopped breathing"}], "unsafe": []}
+    assert not guardian.decide(text, proposal).escalate

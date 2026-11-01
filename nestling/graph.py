@@ -31,6 +31,7 @@ from langsmith.utils import ContextThreadPoolExecutor
 
 from nestling import baseline, concierge, golden, guardian, llm, retrieval, verifier
 from nestling.agents import care, celebrate, journal, money, nourish, ready
+from nestling.lessons import LESSONS, library
 from nestling.tracing import cost_inr, trace_metadata
 
 PROJECT = "nestling-ask-improved"
@@ -46,6 +47,16 @@ VERSIONS = {
     "v6": {"concierge": True, "retrieval": "reranked", "verifier": True, "strict_verifier": True},
     "v7": {"concierge": True, "retrieval": "staged", "verifier": True, "strict_verifier": True},
 }
+for _flags in VERSIONS.values():
+    _flags["lessons"] = False
+# App-only variants; measured versions and their prompts remain unchanged.
+VERSIONS["v6+lessons"] = {**VERSIONS["v6"], "lessons": True}
+VERSIONS["v7+lessons"] = {**VERSIONS["v7"], "lessons": True}
+VERSIONS["v7_vector"] = {**VERSIONS["v7"], "retrieval": "staged_vector"}
+VERSIONS["app_v7_vector"] = {**VERSIONS["v7_vector"], "lessons": True}
+PROMPT_VERSIONS.update({"v6+lessons": "app-v6-lessons-v1", "v7+lessons": "app-v7-lessons-v1",
+                        "v7_vector": "improved-v4-vector", "app_v7_vector": "app-v7-vector-lessons-v1"})
+APP_VERSION = "v6+lessons"  # promote only after the full v7 quality gate is reviewed
 SPECIALISTS = {"care": care, "nourish": nourish, "money": money, "ready": ready, "celebrate": celebrate, "journal": journal}
 VERIFIED = {"care", "nourish", "money"}  # medical, diet and insurance answers
 REDIRECT_KINDS = {"dose", "medicine", "scan_interpretation", "diagnosis"}
@@ -66,6 +77,7 @@ class AskState(TypedDict, total=False):
     route: str
     result: dict
     verification: dict
+    lesson_gap_topic: str
     steps: Annotated[list, operator.add]  # "How I answered", in order
     usage: Annotated[list, operator.add]  # one entry per LLM call
 
@@ -78,7 +90,7 @@ def guardian_node(state: AskState) -> dict:
     if state["flags"]["concierge"] and not guardian.decide(question).escalate:
         with ContextThreadPoolExecutor(max_workers=2) as pool:
             screening = pool.submit(guardian.screen, question)
-            routing = pool.submit(concierge.route, question)
+            routing = pool.submit(concierge.route, question, **({"lessons": True} if state["flags"].get("lessons") else {}))
             (decision, usage), proposed = screening.result(), routing.result()
     else:
         decision, usage = guardian.screen(question)
@@ -131,9 +143,31 @@ def concierge_node(state: AskState) -> dict:
     out = state.get("proposed_route")
     usage = []
     if out is None:  # not pre-computed alongside the Guardian
-        out = concierge.route(state["question"])
+        out = concierge.route(state["question"], **({"lessons": True} if state["flags"].get("lessons") else {}))
         usage = [out["usage"]] if out.get("usage") else []
     return {"route": out["route"], "usage": usage, "steps": [f"Concierge routed to {out['route']}"]}
+
+
+def after_concierge(state: AskState) -> str:
+    return "lessons" if state["flags"].get("lessons") and state["route"] == "lessons" else "specialist"
+
+
+def lessons_node(state: AskState) -> dict:
+    usage = []
+    matched = library.match(state["question"], usage=usage)
+    lesson_id = matched["lesson_id"]
+    lesson = library.payload(lesson_id) if lesson_id else None
+    if lesson:
+        board = library.get(lesson_id)["storyboard"]
+        answer = "\n\n".join(f"{s['step_no']}. {s['narration_line']} [{s['source_id']}, p. {s['page_label']}]" for s in board["scenes"])
+        return {"route": "lessons", "result": {"answer": answer, "sources_cited": [s["id"] for s in lesson["sources"]],
+                "retrieved_source_ids": [s["id"] for s in lesson["sources"]], "hits": [], "agent": "lessons", "lesson": lesson},
+                "usage": usage, "steps": ["Approved Little Lesson: reviewed steps and video"]}
+    out = specialist_node({**state, "route": "care"})
+    topic = matched.get("topic")
+    return {**out, "route": "care", "usage": usage + out.get("usage", []),
+            "lesson_gap_topic": topic if topic in LESSONS else "newborn_care",
+            "steps": ["No approved lesson available; Care answered from its sources", *out.get("steps", [])]}
 
 
 def specialist_node(state: AskState) -> dict:
@@ -177,13 +211,15 @@ def compiled():
     g.add_node("redirect", redirect_node)
     g.add_node("concierge", concierge_node)
     g.add_node("specialist", specialist_node)
+    g.add_node("lessons", lessons_node)
     g.add_node("verifier", verifier_node)
     g.add_edge(START, "guardian")
     g.add_conditional_edges("guardian", after_guardian, ["guardian_reply", "baseline", "redirect", "concierge"])
     g.add_edge("guardian_reply", END)
     g.add_edge("baseline", END)
     g.add_conditional_edges("redirect", after_specialist, ["verifier", END])
-    g.add_edge("concierge", "specialist")
+    g.add_conditional_edges("concierge", after_concierge, ["lessons", "specialist"])
+    g.add_conditional_edges("lessons", after_specialist, ["verifier", END])
     g.add_conditional_edges("specialist", after_specialist, ["verifier", END])
     g.add_edge("verifier", END)
     return g.compile()
@@ -203,9 +239,12 @@ def ask(question: str, context: dict | None = None, version: str = "v6", can_sav
     started = time.perf_counter()
     out = {"answer": "", "escalate": False, "route": None, "refused": False, "sources_cited": [], "retrieved_source_ids": [],
            "rules_fired": [], "unsafe": [], "classifier_flags": [], "agent": None, "verification": None, "steps": [],
-           "model": None, "latency_ms": None, "tokens_in": None, "tokens_out": None, "cost_inr": None, "error": None}
+           "model": None, "latency_ms": None, "tokens_in": None, "tokens_out": None, "cost_inr": None, "error": None,
+           "lesson": None, "lesson_gap_topic": None, "retrieval_fallback": None,
+           "retrieval_mode": VERSIONS.get(version, {}).get("retrieval")}
     try:
-        state = compiled().invoke({"question": question, "context": context, "flags": VERSIONS[version], "can_save": can_save})
+        with retrieval.app_rerank_fallback(enabled=version in {"v6+lessons", "v7+lessons", "app_v7_vector"}):
+            state = compiled().invoke({"question": question, "context": context, "flags": VERSIONS[version], "can_save": can_save})
         s, r = state["screening"], state["result"]
         usage = [u for u in state.get("usage", []) if u]
         retrieved = set(r.get("retrieved_source_ids") or [h["source_id"] for h in r.get("hits", [])])
@@ -215,11 +254,15 @@ def ask(question: str, context: dict | None = None, version: str = "v6", can_sav
             sources_cited=list(dict.fromkeys(r["sources_cited"])), retrieved_source_ids=sorted(retrieved),
             rules_fired=s["red_flags"], unsafe=s["unsafe"], classifier_flags=s["classifier_flags"], agent=r.get("agent"),
             verification=state.get("verification"), steps=state.get("steps", []), error=r.get("error"),
+            lesson=r.get("lesson"), lesson_gap_topic=state.get("lesson_gap_topic"),
             passages=[{"source_id": h["source_id"], "page_label": h.get("page_label"), "text": h["chunk_text"]} for h in r.get("hits", [])],
             model=next((u["model"] for u in reversed(usage) if u["model"] in (llm.MAIN, "claude-sonnet-5-5")), usage[-1]["model"] if usage else "rules"),
             tokens_in=sum(u.get("tokens_in", 0) + u.get("cache_write", 0) + u.get("cache_read", 0) for u in usage),
             tokens_out=sum(u.get("tokens_out", 0) for u in usage), cost_inr=_total_cost(usage),
         )
+        if any(h.get("retrieval_fallback") == "vector_order" for h in r.get("hits", [])):
+            out["retrieval_fallback"] = "vector_order"
+            out["steps"] = [*out["steps"], "Rerank unavailable; source passages kept in vector order"]
     except Exception as exc:
         out["error"] = f"{type(exc).__name__}: {str(exc)[:200]}"
         try:  # safety still decided in code even when the rest failed
@@ -263,6 +306,8 @@ def make_target(version: str):
                 refused=out["refused"], sources_cited=out["sources_cited"], correct=scores["correct"],
                 latency_ms=out["latency_ms"], tokens_in=out["tokens_in"], tokens_out=out["tokens_out"],
                 cost_inr=out["cost_inr"], error=out["error"],
+                lesson_gap_topic=out.get("lesson_gap_topic"), retrieval_mode=out.get("retrieval_mode"),
+                retrieval_fallback=out.get("retrieval_fallback"),
             ))
         return out
 
@@ -276,7 +321,8 @@ RECORDED_NOTE = ("v1-v5 published results were measured on claude-sonnet-5-5 + c
 def run_info(version: str) -> dict:
     return {"dataset": golden.LANGSMITH_DATASET, "dataset_version": golden.DATASET_VERSION, "pipeline_version": version,
             "prompt_version": PROMPT_VERSIONS[version], "model": f"{llm.MAIN} + {llm.FAST}", "levers": VERSIONS[version],
-            **({} if version == "v6" else {"note": RECORDED_NOTE})}
+            "retrieval_mode": VERSIONS[version]["retrieval"],
+            **({"note": RECORDED_NOTE} if version in {"v1", "v2", "v3", "v4", "v5"} else {})}
 
 
 def run_experiment(version: str, max_concurrency: int = 4):

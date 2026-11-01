@@ -44,6 +44,18 @@ def _extra_price(pkg: StudioPackage, name: str) -> int | None:
     return None
 
 
+def _frame_price(pkg: StudioPackage, count: int) -> int | None:
+    """Use the listed bundle counts and prices; never price an unknown frame as free."""
+    remaining, total = count, 0
+    for frame in pkg.frames:
+        if frame.price_inr is not None and frame.count is not None and 0 < frame.count <= remaining:
+            remaining -= frame.count
+            total += frame.price_inr
+        if remaining == 0:
+            return total
+    return None
+
+
 def total_cost(pkg: StudioPackage, album: bool = False, frames: int = 0, casting: bool = False) -> int | None:
     """Listed price plus the extras the parent picked. None if a needed price is not listed."""
     if pkg.price_inr is None:
@@ -54,12 +66,14 @@ def total_cost(pkg: StudioPackage, album: bool = False, frames: int = 0, casting
             return None
         total += pkg.album.price_inr or _extra_price(pkg, "album") or 0  # None with offered = included
     if frames:
-        priced = [f for f in pkg.frames if f.price_inr is not None]
-        total += sum(f.price_inr for f in priced[:frames])
-    if casting:
-        if pkg.casting.price_inr is None and not pkg.casting.offered:
+        price = _frame_price(pkg, frames)
+        if price is None:
             return None
-        total += pkg.casting.price_inr or 0
+        total += price
+    if casting:
+        if pkg.casting.price_inr is None:
+            return None
+        total += pkg.casting.price_inr
     return total
 
 
@@ -82,16 +96,24 @@ def confidence(n_studios: int) -> str | None:
 
 def estimate_tier(packages: list[StudioPackage], album: bool = False, frames: int = 0, casting: bool = False) -> dict:
     """Range for one tier's packages: base + each picked component, low/high/median summed."""
-    studios = {p.studio_name for p in packages if p.price_inr is not None}
+    # A complete requested price from at least three distinct studios is needed.
+    # Otherwise the range would silently omit unknown selected components.
+    requested = [("album", album), ("frames", bool(frames)), ("casting", casting)]
+    missing = [name for name, selected in requested if selected and len({p.studio_name for p in packages
+               if total_cost(p, album=name == "album", frames=frames if name == "frames" else 0,
+                             casting=name == "casting") is not None}) < 3]
+    priced = [p for p in packages if total_cost(p, album=album, frames=frames, casting=casting) is not None]
+    studios = {p.studio_name for p in priced}
     level = confidence(len(studios))
-    if level is None:
-        return {"estimate": None, "message": NOT_ENOUGH, "n_studios": len(studios)}
+    if missing or level is None:
+        return {"estimate": None, "message": NOT_ENOUGH, "n_studios": len(studios), "not_listed_components": missing}
+    packages = priced
     components = {"base": [p.price_inr for p in packages if p.price_inr is not None]}
     if album:
         components["album"] = [p.album.price_inr or _extra_price(p, "album") or 0 for p in packages
                                if p.album.offered or p.album.price_inr is not None or _extra_price(p, "album") is not None]
     if frames:
-        components["frames"] = [sum(f.price_inr for f in [f for f in p.frames if f.price_inr is not None][:frames]) for p in packages if p.frames]
+        components["frames"] = [_frame_price(p, frames) for p in packages]
     if casting:
         components["casting"] = [p.casting.price_inr for p in packages if p.casting.price_inr is not None]
     missing = [name for name, values in components.items() if not values]

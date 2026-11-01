@@ -49,3 +49,17 @@ def clone(name: str, sample: bytes, filename: str) -> str:
 
 def delete(voice_id: str) -> None:
     requests.delete(f"{API}/voices/{voice_id}", headers=_headers(), timeout=30).raise_for_status()
+
+
+def transcribe(audio: bytes, content_type: str) -> str:
+    """Transcribe an in-memory journal recording; do not send the parent's filename."""
+    extension = {"audio/webm": "webm", "audio/ogg": "ogg", "audio/mp4": "mp4", "audio/mpeg": "mp3",
+                 "audio/wav": "wav", "audio/x-wav": "wav"}[content_type]
+    response = requests.post(f"{API}/speech-to-text", headers=_headers(), timeout=120,
+                             data={"model_id": "scribe_v2", "tag_audio_events": "false", "diarize": "false"},
+                             files={"file": (f"recording.{extension}", audio, content_type)})
+    response.raise_for_status()
+    text = response.json()["text"]
+    if not isinstance(text, str):
+        raise ValueError("Invalid transcription response")
+    return text
