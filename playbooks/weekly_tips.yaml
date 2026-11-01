@@ -1,0 +1,94 @@
+# "One little moment" tips for the Today screen. Code picks the tip by week (constitution III).
+# Every tip cites a registry source and the printed page it was checked against (2026-11-01).
+# No doses, no diagnoses. `stage` is pregnancy or postpartum; weeks are inclusive.
+tips:
+  - id: T-FOLIC
+    stage: pregnancy
+    weeks: [4, 13]
+    text: Folic acid helps your baby's brain and spine form; it works best when started as early as possible. Your doctor will advise the tablet that suits you.
+    source: WHO-ANC
+    page: xi
+  - id: T-NAUSEA
+    stage: pregnancy
+    weeks: [5, 14]
+    text: Feeling queasy is common early on. WHO notes that ginger may ease nausea for some women; mention what helps you at your next check-up.
+    source: WHO-ANC
+    page: "75"
+  - id: T-CONTACTS
+    stage: pregnancy
+    weeks: [8, 20]
+    text: WHO recommends at least eight antenatal contacts in pregnancy. Each visit is a chance to ask questions, so write yours down beforehand.
+    source: WHO-ANC
+    page: "101"
+  - id: T-TETANUS
+    stage: pregnancy
+    weeks: [10, 24]
+    text: Ask about your tetanus injections at your antenatal visit; the first is given early in pregnancy and the second about a month later.
+    source: MOHFW-ANC
+    page: "26"
+  - id: T-ACTIVE
+    stage: pregnancy
+    weeks: [14, 30]
+    text: Staying gently active and eating well are both recommended in pregnancy. A daily walk counts.
+    source: WHO-ANC
+    page: "15"
+  - id: T-BACK
+    stage: pregnancy
+    weeks: [18, 34]
+    text: Regular exercise through pregnancy helps prevent low back and pelvic pain.
+    source: WHO-ANC
+    page: "80"
+  - id: T-ENERGY
+    stage: pregnancy
+    weeks: [14, 40]
+    text: From the second trimester your body needs about 350 extra calories a day, from a varied plate of cereals, pulses, vegetables, fruit and milk.
+    source: ICMR-NIN-DG
+    page: "31"
+  - id: T-MOVEMENTS
+    stage: pregnancy
+    weeks: [24, 40]
+    text: Get to know your baby's movements. If they slow down or stop, contact your doctor straight away, day or night.
+    source: MOHFW-ANC
+    page: "23"
+  - id: T-LEFT-SIDE
+    stage: pregnancy
+    weeks: [28, 40]
+    text: When you rest, lie on your left side rather than flat on your back; it helps blood flow to you and your baby.
+    source: MOHFW-ANC
+    page: "31"
+  - id: T-PLAN
+    stage: pregnancy
+    weeks: [30, 40]
+    text: Decide now where you will deliver, how you will get there, who will go with you, and keep some money aside for emergencies.
+    source: MOHFW-ANC
+    page: "29"
+  - id: T-DANGER
+    stage: pregnancy
+    weeks: [20, 40]
+    text: Know the danger signs (bleeding, severe headache with blurred vision, fits, leaking fluid, fever, reduced movements) and go to the hospital at once if one appears.
+    source: MOHFW-ANC
+    page: "29"
+  - id: T-BREASTFEED
+    stage: postpartum
+    weeks: [0, 26]
+    text: Breastmilk alone is all your baby needs for the first six months, no water needed.
+    source: WHO-POSTNATAL
+    page: "148"
+  - id: T-NEWBORN-SIGNS
+    stage: postpartum
+    weeks: [0, 8]
+    text: See a doctor quickly if your baby is not feeding well, has fits, breathes fast, feels hot or very cold, or looks yellow in the first day.
+    source: WHO-POSTNATAL
+    page: "99"
+  - id: T-BIRTH-DOSES
+    stage: postpartum
+    weeks: [0, 6]
+    text: Your baby's first vaccines (including BCG and the hepatitis B birth dose) are given at birth; keep the vaccination card safe.
+    source: INDIA-UIP
+    page: "6"
+  - id: T-MOOD
+    stage: postpartum
+    weeks: [0, 26]
+    text: Your feelings matter too. Being asked about your emotional wellbeing is part of good postnatal care, so share honestly at your visits.
+    source: WHO-POSTNATAL
+    page: "84"
