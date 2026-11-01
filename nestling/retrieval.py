@@ -13,6 +13,7 @@ Hybrid search and rerank come in the improved run (plan §9.5, lever 3).
 
 import os
 import sys
+from functools import cache
 from pathlib import Path
 
 import yaml
@@ -126,6 +127,13 @@ def get_index(pc: Pinecone | None = None, create: bool = False):
     return pc.index(host=pc.describe_index(name).host)
 
 
+@cache
+def _search_index():
+    """Client and index handle reused across searches (one describe_index per process)."""
+    pc = Pinecone()
+    return pc, get_index(pc)
+
+
 def ingest(source_ids: list[str] | None = None) -> dict[str, int]:
     """(Re)ingest sources: drop each source's old chunks, then upsert fresh ones."""
     registry = load_registry()
@@ -154,7 +162,7 @@ def ingest(source_ids: list[str] | None = None) -> dict[str, int]:
 @traceable(name="retrieval", run_type="retriever")
 def search(query: str, top_k: int = 5, source_ids: list[str] | None = None) -> list[dict]:
     """Dense search over the source library. Each hit has a score plus CITATION_FIELDS."""
-    index = get_index()
+    index = _search_index()[1]
     response = index.documents.search(
         namespace=NAMESPACE,
         top_k=top_k,
@@ -170,6 +178,39 @@ def search(query: str, top_k: int = 5, source_ids: list[str] | None = None) -> l
                 hit[k] = int(hit[k])
         hits.append(hit)
     return hits
+
+
+RERANK_MODEL = "bge-reranker-v2-m3"
+
+
+def sources_for(agent: str) -> list[str]:
+    """Ingested source IDs whose registry `used_by` includes the agent (metadata filter, lever 3)."""
+    return [s["id"] for s in ingestable(load_registry()) if agent in (s.get("used_by") or [])]
+
+
+@traceable(name="retrieval_reranked", run_type="retriever")
+def search_reranked(query: str, source_ids: list[str] | None = None, top_k: int = 6, candidates: int = 16,
+                    per_source: int = 3) -> list[dict]:
+    """Dense search for `candidates` hits within `source_ids`, rerank (Pinecone inference), then keep
+    the best `top_k` with at most `per_source` passages from any one source, so one long guide
+    cannot crowd out the others."""
+    hits = search(query, top_k=candidates, source_ids=source_ids)
+    if len(hits) <= top_k:
+        return hits
+    pc = _search_index()[0]
+    ranked = pc.inference.rerank(
+        model=RERANK_MODEL, query=query, documents=[h["chunk_text"] for h in hits],
+        top_n=len(hits), return_documents=False, parameters={"truncate": "END"},
+    )
+    picked, per = [], {}
+    for d in ranked.data:
+        hit = hits[d.index]
+        if per.get(hit["source_id"], 0) < per_source:
+            per[hit["source_id"]] = per.get(hit["source_id"], 0) + 1
+            picked.append({**hit, "dense_score": hit["score"], "score": d.score})
+        if len(picked) == top_k:
+            break
+    return picked
 
 
 def format_citation(hit: dict) -> str:

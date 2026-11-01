@@ -20,7 +20,7 @@ sources:
     pdf: https://apps.who.int/iris/bitstream/10665/250796/1/9789241549912-eng.pdf
     file: WHO-ANC.pdf
     pages: 172
-    used_by: [care, guardian]
+    used_by: [care, guardian, nourish]  # nourish: chapter A, nutritional interventions
     licence: All rights reserved (WHO 2016)
     ingest_allowed: true  # owner decision 2026-11-01 (publicly downloadable); request WHO Press permission before public launch
     verified: true
