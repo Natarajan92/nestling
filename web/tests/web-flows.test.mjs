@@ -250,3 +250,25 @@ test("a stored voice removed elsewhere does not survive in an unnecessary in-mem
   h.data.delete("nestling:voice_id");
   assert.equal(h.store.getVoiceId(), null);
 });
+
+test("Ready and pregnant Partner preview approved first-weeks lessons while Body keeps its stage filter", async () => {
+  const lessons = [
+    { lesson_id: "reviewed-prenatal-from-api", title: "Reviewed prenatal lesson", stage: "before_birth" },
+    { lesson_id: "reviewed-newborn-from-api", title: "Reviewed newborn lesson", stage: "first_weeks" },
+  ].map(lesson => ({ ...lesson, version: 1, video_url: `/media/lessons/${lesson.lesson_id}/lesson.mp4`, thumbnail_url: `/media/lessons/${lesson.lesson_id}/thumbnail.jpg`, steps: [], sources: [], see_how: null, reviewed_on: "2026-11-01" }));
+  for (const [name, props, previewsNewborn] of [["ReadyJourney", {}, true], ["ReadyJourney", { partner: true }, true], ["BodyJourney", {}, false]]) {
+    const h = harness(async url => url.endsWith("/lessons") ? response(lessons)
+      : url.endsWith("/today") ? response({ stage: { life_stage: "pregnancy", week: 28 }, tip: null, cards: [], tradition_card: false, disclaimer: "" })
+      : response({ title: "Bag", when: "Before delivery", sections: [] }));
+    h.mount("components/JourneyContent.tsx", props, name);
+    await new Promise(setImmediate);
+    const row = nodes(h.render()).find(n => n.type?.name === "LessonsRow");
+    assert.ok(row);
+    h.mountElement(row);
+    await new Promise(setImmediate);
+    const tree = h.render();
+    assert.match(content(tree), /Watch before baby arrives/);
+    assert.match(content(tree), /Reviewed prenatal lesson/);
+    assert.equal(nodes(tree).some(n => n.props?.href === "/lessons/reviewed-newborn-from-api"), previewsNewborn, `${name} preview=${previewsNewborn}`);
+  }
+});

@@ -38,9 +38,11 @@ export function Questions(
 
 function LessonsRow(
   {
-    stage
+    stage,
+    prenatalPreview = false
   }: {
     stage: string;
+    prenatalPreview?: boolean;
   }
 ) {
   const [lessons, setLessons] = useState<Lesson[] | null>(null);
@@ -58,8 +60,8 @@ function LessonsRow(
     };
   }, []);
 
-  const shown = lessons?.filter(l => l.stage === stage) ?? [];
-  return <Card><h2 className="text-xl">{stage === "before_birth" ? "Watch before baby arrives" : "Little Lessons for the first weeks"}</h2>{lessons === null ? <p className="mt-3 text-sm">Loading reviewed lessons…</p> : shown.length ? <ul className="mt-3 space-y-3">{shown.map(l => <li key={l.lesson_id}><Link className="underline" href={`/lessons/${l.lesson_id}`}>{l.title}</Link></li>)}</ul> : <p className="mt-3 text-sm text-ink-soft">No approved lessons for this stage yet. <Link className="underline" href="/ask">Ask for written, sourced guidance.</Link></p>}<Link className="mt-4 inline-block text-sm underline" href="/lessons">All reviewed lessons</Link></Card>;
+  const shown = lessons?.filter(l => l.stage === stage || (prenatalPreview && l.stage === "first_weeks")) ?? [];
+  return <Card><h2 className="text-xl">{stage === "before_birth" ? "Watch before baby arrives" : "Little Lessons for the first weeks"}</h2>{prenatalPreview && <p className="mt-2 text-sm text-ink-soft">Preview reviewed newborn-care lessons before your baby arrives.</p>}{lessons === null ? <p className="mt-3 text-sm">Loading reviewed lessons…</p> : shown.length ? <ul className="mt-3 space-y-3">{shown.map(l => <li key={l.lesson_id}><Link className="underline" href={`/lessons/${l.lesson_id}`}>{l.title}</Link></li>)}</ul> : <p className="mt-3 text-sm text-ink-soft">{prenatalPreview ? "No approved lessons to preview yet. " : "No approved lessons for this stage yet. "}<Link className="underline" href="/ask">Ask for written, sourced guidance.</Link></p>}<Link className="mt-4 inline-block text-sm underline" href="/lessons">All reviewed lessons</Link></Card>;
 }
 
 export function BodyJourney() {
@@ -153,7 +155,7 @@ export function ReadyJourney(
                     checked={ticks.has(i.id)}
                     onChange={() => toggle(i.id)}
                     className="mt-1 size-5 shrink-0 accent-[var(--sage)]" /><span>{i.item}</span></label><div className="ml-8 mt-2">{i.source ? <SourceChip source={i.source} /> : <span className="text-xs text-ink-soft">Practical packing suggestion</span>}</div></li>)}</ul></Card>
-        )}</>}<LessonsRow stage={partner && postpartum ? "first_weeks" : "before_birth"} /></div>
+        )}</>}<LessonsRow stage={partner && postpartum ? "first_weeks" : "before_birth"} prenatalPreview={!partner || !postpartum} /></div>
   );
 }
 
