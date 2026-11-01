@@ -92,7 +92,8 @@ def enforce_citations(answer: str, sources_cited: list[str], hits: list[dict]) -
     "(WHO-ANC)"), is replaced by canonical "(SOURCE-ID, p. N)" markers, one per (source, page) pair that is in the
     passages the model was given; every other pair is dropped. sources_cited keeps only IDs of given passages
     (those the model listed, plus those cited in text). The Verifier and the citation metric read this form."""
-    given = {(h["source_id"], str(h.get("page_label") or h.get("page")).lower()) for h in hits}
+    given = {(h["source_id"], str(h.get("page_label") or h.get("page")).lower()) for h in hits
+             if h["source_id"] in _registry_ids()}
     label = {(h["source_id"], str(h.get("page_label") or h.get("page")).lower()): h.get("page_label") or h.get("page") for h in hits}
     ids = {sid for sid, _ in given}
     cited_in_text = []
@@ -133,4 +134,6 @@ def answer_from_sources(agent: str, question: str, context: dict, hits: list[dic
     if data is None:
         data = {"answer": NO_SOURCE_LINE, "sources_cited": []}
     data["answer"], data["sources_cited"] = enforce_citations(data["answer"], data["sources_cited"], hits)
+    if agent.lower() in {"care", "nourish", "money"} and not data["sources_cited"]:
+        data["answer"] = NO_SOURCE_LINE
     return {**data, "usage": [usage], "raw": raw}

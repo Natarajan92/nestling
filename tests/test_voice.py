@@ -25,3 +25,16 @@ def test_transcribe_propagates_provider_failure(monkeypatch):
     monkeypatch.setattr(voice.requests, "post", lambda *a, **kw: (_ for _ in ()).throw(requests.Timeout("private data")))
     with pytest.raises(requests.Timeout):
         voice.transcribe(b"audio", "audio/webm")
+
+
+@pytest.mark.parametrize("status", [204, 404, 401, 502])
+def test_delete_is_idempotent_only_for_missing_provider_voice(monkeypatch, status):
+    monkeypatch.setenv("ELEVENLABS_API_KEY", "test-key")
+    response = requests.Response()
+    response.status_code = status
+    monkeypatch.setattr(voice.requests, "delete", lambda *a, **kw: response)
+    if status in (204, 404):
+        voice.delete("voice-id")
+    else:
+        with pytest.raises(requests.HTTPError):
+            voice.delete("voice-id")

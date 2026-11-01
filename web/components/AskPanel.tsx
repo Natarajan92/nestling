@@ -44,6 +44,7 @@ function HowIAnswered({ res }: { res: AskResponse }) {
 function Answer({ res, question }: { res: AskResponse; question: string }) {
   const { profile } = useProfile();
   const [saved, setSaved] = useState(false);
+  const [saveError, setSaveError] = useState(false);
   const red = res.guardian.level === "red" || res.escalate;
   const lesson = res.lesson ?? null;
   return (
@@ -72,14 +73,16 @@ function Answer({ res, question }: { res: AskResponse; question: string }) {
           type="button"
           disabled={saved}
           onClick={() => {
-            addJournalEntry(question);
-            setSaved(true);
+            const stored = addJournalEntry(question);
+            setSaved(stored);
+            setSaveError(!stored);
           }}
           className="mt-3 rounded-full border border-sage bg-sage/20 px-4 py-1.5 text-sm"
         >
           {saved ? "Saved to your journal" : "Save to my journal (stays on this phone)"}
         </button>
       )}
+      {saveError && <p role="alert" className="mt-3 text-sm">This browser could not save your entry. Free some browser storage and retry. Your question is still here.</p>}
       <HowIAnswered res={res} />
     </div>
   );

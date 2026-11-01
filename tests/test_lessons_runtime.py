@@ -141,3 +141,22 @@ def test_absent_breathing_how_to_skips_all_paid_calls(monkeypatch):
 def test_recorded_versions_keep_lessons_off():
     assert all(graph.VERSIONS[v]["lessons"] is False for v in ("v1", "v2", "v3", "v4", "v5", "v6", "v7"))
     assert graph.VERSIONS["v6+lessons"] == {**graph.VERSIONS["v6"], "lessons": True}
+
+
+def test_contrast_breathing_emergency_never_reaches_a_paid_call(monkeypatch):
+    def paid(*args, **kwargs):
+        pytest.fail("paid call before a code-owned emergency reply")
+    monkeypatch.setattr(guardian, "chat_json", paid)
+    monkeypatch.setattr(concierge, "route", paid)
+    out = graph.ask("No cough but my baby is not breathing", version="v6+lessons")
+    assert out["escalate"] and out["route"] == "guardian" and out["error"] is None
+
+
+def test_runtime_empty_retrieval_cannot_release_uncited_clinical_claim(monkeypatch):
+    monkeypatch.setattr(guardian, "screen", lambda q: (guardian.decide(q), None))
+    monkeypatch.setattr(concierge, "route", lambda *a, **kw: {"route": "care", "usage": None})
+    monkeypatch.setattr(graph.care, "answer", lambda *a, **kw: {"answer": "Drink this herb.", "sources_cited": [], "hits": [], "agent": "care", "usage": []})
+    monkeypatch.setattr(graph.verifier, "main_json", lambda *a, **kw: pytest.fail("empty trusted retrieval needs no paid verifier"))
+    out = graph.ask("A general care question", version="v6+lessons")
+    assert out["error"] is None and out["answer"] == graph.verifier.NO_SOURCE_LINE
+    assert out["verification"]["verdict"] == "replaced" and out["sources_cited"] == []

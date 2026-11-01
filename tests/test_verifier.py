@@ -1,4 +1,5 @@
 from nestling import graph, verifier
+from nestling.agents import NO_SOURCE_LINE
 
 HITS = [{"source_id": "WHO-ANC", "page_label": "48", "chunk_text": "Women with high blood sugar need referral."}]
 
@@ -29,3 +30,26 @@ def test_verify_passes_chosen_prompts(monkeypatch):
     out = verifier.verify("a (WHO-ANC, p. 48)", ["WHO-ANC"], HITS, strict=True)
     assert out["verdict"] == "rewritten"
     assert seen[0] == verifier.STRICT_CHECK_PROMPT and seen[1].startswith(verifier.STRICT_REWRITE_PROMPT[:50])
+
+
+def test_invalid_checker_cannot_pass_a_clinical_claim(monkeypatch):
+    monkeypatch.setattr(verifier, "main_json", lambda *a, **kw: (None, {"model": "m"}, "invalid JSON"))
+    out = verifier.verify("This condition is harmless. (WHO-ANC, p. 48)", ["WHO-ANC"], HITS, strict=True)
+    assert out["verdict"] == "replaced"
+    assert out["answer"] == NO_SOURCE_LINE and out["sources_cited"] == []
+    assert len(out["usage"]) == 1
+
+
+def test_valid_empty_claims_is_separate_from_invalid_checker(monkeypatch):
+    monkeypatch.setattr(verifier, "main_json", lambda *a, **kw: ({"claims": []}, {"model": "m"}, ""))
+    out = verifier.verify("Please ask your doctor. (WHO-ANC, p. 48)", ["WHO-ANC"], HITS)
+    assert out["verdict"] == "passed" and out["sources_cited"] == ["WHO-ANC"]
+
+
+def test_rewrite_losing_its_last_valid_citation_is_replaced(monkeypatch):
+    replies = iter([({"claims": [{"claim": "unsafe claim", "supported": False}]}, {"model": "m"}, ""),
+                    ({"answer": "Drink this herb. [FAKE-SOURCE, p. 99]", "sources_cited": ["FAKE-SOURCE"]}, {"model": "m"}, "")])
+    monkeypatch.setattr(verifier, "main_json", lambda *a, **kw: next(replies))
+    out = verifier.verify("unsafe claim (WHO-ANC, p. 48)", ["WHO-ANC"], HITS, strict=True)
+    assert out["verdict"] == "replaced" and out["answer"] == NO_SOURCE_LINE
+    assert out["sources_cited"] == []

@@ -53,9 +53,11 @@ for _flags in VERSIONS.values():
 VERSIONS["v6+lessons"] = {**VERSIONS["v6"], "lessons": True}
 VERSIONS["v7+lessons"] = {**VERSIONS["v7"], "lessons": True}
 VERSIONS["v7_vector"] = {**VERSIONS["v7"], "retrieval": "staged_vector"}
+VERSIONS["v7_vector_safe"] = {**VERSIONS["v7_vector"]}  # fresh measurement after fail-closed source/checker fixes
 VERSIONS["app_v7_vector"] = {**VERSIONS["v7_vector"], "lessons": True}
 PROMPT_VERSIONS.update({"v6+lessons": "app-v6-lessons-v1", "v7+lessons": "app-v7-lessons-v1",
-                        "v7_vector": "improved-v4-vector", "app_v7_vector": "app-v7-vector-lessons-v1"})
+                        "v7_vector": "improved-v4-vector", "v7_vector_safe": "improved-v4-vector-safe",
+                        "app_v7_vector": "app-v7-vector-lessons-v1"})
 APP_VERSION = "v6+lessons"  # promote only after the full v7 quality gate is reviewed
 SPECIALISTS = {"care": care, "nourish": nourish, "money": money, "ready": ready, "celebrate": celebrate, "journal": journal}
 VERIFIED = {"care", "nourish", "money"}  # medical, diet and insurance answers
@@ -187,7 +189,7 @@ def specialist_node(state: AskState) -> dict:
 
 def after_specialist(state: AskState) -> str:
     agent = state["result"].get("agent")
-    if state["flags"]["verifier"] and agent in VERIFIED and state["result"].get("hits"):
+    if state["flags"]["verifier"] and agent in VERIFIED:
         return "verifier"
     return END
 

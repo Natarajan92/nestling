@@ -9,6 +9,9 @@ import { cloneVoice, deleteVoice, speakLetter, transcribe } from "@/lib/api";
 import {
   addJournalEntry,
   addLetter,
+  finishVoiceClone,
+  getPrivacyEpoch,
+  getVoiceId,
   removeJournalEntry,
   removeLetter,
   saveProfile,
@@ -70,6 +73,11 @@ export default function MemoryPage() {
   const [status, setStatus] = useState("");
   const [readAudio, setReadAudio] = useState<Blob | null>(null);
   const active = useRef(true);
+  const currentProfile = useRef(profile);
+
+  useEffect(() => {
+    currentProfile.current = profile;
+  }, [profile]);
 
   useEffect(() => {
     active.current = true;
@@ -100,7 +108,12 @@ export default function MemoryPage() {
     if (!saveConsent || !text.trim())
       return;
 
-    addJournalEntry(text.trim());
+    if (!addJournalEntry(text.trim())) {
+      setError("This browser could not save your entry. Free some browser storage, then retry. Your draft is still here.");
+      setStatus("");
+      return;
+    }
+    setError("");
     setText("");
     setRecorded(null);
     setStatus("Journal entry saved in this browser.");
@@ -112,7 +125,12 @@ export default function MemoryPage() {
     if (!saveConsent || !letter.trim())
       return;
 
-    addLetter(title.trim() || "Dear baby", letter.trim());
+    if (!addLetter(title.trim() || "Dear baby", letter.trim())) {
+      setError("This browser could not save your letter. Free some browser storage, then retry. Your draft is still here.");
+      setStatus("");
+      return;
+    }
+    setError("");
     setTitle("");
     setLetter("");
     setStatus("Letter saved in this browser.");
@@ -149,11 +167,12 @@ export default function MemoryPage() {
     setBusy("clone");
     setError("");
 
+    const epoch = getPrivacyEpoch();
     try {
       const result = await cloneVoice(sample);
-      setVoiceId(result.voice_id);
+      const outcome = await finishVoiceClone(result.voice_id, epoch, active.current);
 
-      if (active.current) {
+      if (active.current && epoch === getPrivacyEpoch() && outcome === "ready") {
         if (profile) saveProfile({
           ...profile,
 
@@ -166,6 +185,8 @@ export default function MemoryPage() {
         setSample(null);
         setVoiceConsent(false);
         setStatus("Your own voice is ready. You can delete it below.");
+      } else if (active.current && outcome === "discarded") {
+        setError("Your voice was not saved in this browser, so the remote clone was deleted. Please retry when browser storage is available.");
       }
     } catch {
       if (active.current)
@@ -182,17 +203,21 @@ export default function MemoryPage() {
 
     setBusy("delete");
     setError("");
+    const epoch = getPrivacyEpoch();
 
     try {
       await deleteVoice(voiceId);
+      if (!active.current || epoch !== getPrivacyEpoch() || getVoiceId() !== voiceId)
+        return;
       setVoiceId(null);
       setReadAudio(null);
 
-      if (profile) saveProfile({
-        ...profile,
+      const latest = currentProfile.current;
+      if (latest) saveProfile({
+        ...latest,
 
         consent: {
-          ...profile.consent,
+          ...latest.consent,
           voice: false
         }
       });
@@ -200,9 +225,11 @@ export default function MemoryPage() {
       setStatus("Your cloned voice has been deleted.");
       setDeletingVoice(false);
     } catch {
-      setError("Your voice could not be deleted. Its ID is kept so you can retry.");
+      if (active.current && epoch === getPrivacyEpoch())
+        setError("Your voice could not be deleted. Its ID is kept so you can retry.");
     } finally {
-      setBusy("");
+      if (active.current && epoch === getPrivacyEpoch())
+        setBusy("");
     }
   }
 
