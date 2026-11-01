@@ -59,7 +59,7 @@ function Answer({ res, question }: { res: AskResponse; question: string }) {
           <LessonCard lesson={lesson} pageUrl={`${window.location.origin}/lessons/${lesson.lesson_id}`} />
         </div>
       )}
-      {!lesson && res.sources.length > 0 && (
+      {(!lesson || lesson.sources.length === 0) && res.sources.length > 0 && (
         <div className="mt-3 flex flex-wrap gap-2">
           {res.sources.map((s) => (
             <SourceChip key={s.id} source={s} />
@@ -85,9 +85,9 @@ function Answer({ res, question }: { res: AskResponse; question: string }) {
 }
 
 /** The conversation, used in the bottom sheet and on /ask. Messages live only in memory. */
-export default function AskPanel({ msgs, setMsgs }: { msgs: Msg[]; setMsgs: Dispatch<SetStateAction<Msg[]>> }) {
+export default function AskPanel({ msgs, setMsgs, initialText = "" }: { msgs: Msg[]; setMsgs: Dispatch<SetStateAction<Msg[]>>; initialText?: string }) {
   const { profile } = useProfile();
-  const [text, setText] = useState("");
+  const [text, setText] = useState(initialText);
   const [busy, setBusy] = useState(false);
   const end = useRef<HTMLDivElement>(null);
 

@@ -10,7 +10,7 @@ const FILTERS = [
   { id: "first_weeks", label: "First weeks" },
 ] as const;
 
-export const reviewedOn = (d: string | null) =>
+const reviewedOn = (d: string | null) =>
   d ? `Reviewed on ${new Date(d).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}` : "Reviewed";
 
 export default function LessonsPage() {

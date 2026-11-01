@@ -17,9 +17,11 @@ function StepStrip({ lesson }: { lesson: Lesson }) {
             >
               {s.step_no}
             </span>
-            <span className="text-xs uppercase tracking-wide text-ink-soft">{s.icon.replace(/[-_]/g, " ")}</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src={`/icons/${/^[a-z-]+$/.test(s.icon) ? s.icon : "sparkle"}.svg`} className="size-9" />
           </div>
           <p className="mt-2 font-display text-lg font-semibold leading-snug">{s.caption}</p>
+          <p className="mt-2 text-sm">{s.narration_line}</p>
           {s.safety_points.length > 0 && (
             <ul className="mt-2 list-disc space-y-1 pl-4 text-sm text-ink-soft">
               {s.safety_points.map((p) => (

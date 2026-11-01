@@ -4,6 +4,7 @@ import Card from "./Card";
 export type Journey = { slug: string; icon: string; name: string; blurb: string; tone: "peach" | "sage" | "blush" | "white" };
 
 export const JOURNEYS: Journey[] = [
+  { slug: "partner", icon: "🤝", name: "Partner", blurb: "A little help, shared together", tone: "sage" },
   { slug: "body", icon: "🩺", name: "Body", blurb: "How you and baby are doing", tone: "blush" },
   { slug: "ready", icon: "🎒", name: "Ready", blurb: "Bag, home and what to learn", tone: "sage" },
   { slug: "money", icon: "💰", name: "Money", blurb: "Insurance and costs, explained", tone: "white" },
