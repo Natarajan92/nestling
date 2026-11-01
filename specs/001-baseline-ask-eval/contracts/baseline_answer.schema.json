@@ -1,0 +1,16 @@
+{
+  "$comment": "What the baseline model returns (structured outputs). Mirrors ANSWER_SCHEMA in nestling/baseline.py.",
+  "type": "object",
+  "properties": {
+    "answer": {"type": "string", "description": "Text shown to the parent"},
+    "escalate": {"type": "boolean", "description": "The parent should contact a doctor or go to hospital now"},
+    "route": {
+      "type": "string",
+      "enum": ["care", "nourish", "ready", "money", "celebrate", "journal", "guardian", "out_of_scope", "clarify"]
+    },
+    "refused": {"type": "boolean", "description": "Declined the request outright"},
+    "sources_cited": {"type": "array", "items": {"type": "string"}, "description": "Registry source IDs used"}
+  },
+  "required": ["answer", "escalate", "route", "refused", "sources_cited"],
+  "additionalProperties": false
+}
