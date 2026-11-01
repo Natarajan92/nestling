@@ -130,3 +130,15 @@ Owner decision 2026-11-01: no image model. Each lesson is an attractive ~15-seco
 - `tests/test_api.py`: FastAPI TestClient smoke tests for every route with paid calls mocked.
 - README: run locally (API + web), deploy steps for Render and Vercel, the steps that need Anand (Pinecone `lessons` upsert, ffmpeg + rendering + review of lessons, judge calibration labels, Loom).
 - Full check: `uv run pytest`, `npm run lint`, `npm run build`.
+
+### Task 13: v7 quality round on the open models (owner decision 2026-11-01)
+
+v6 (DeepSeek on Nebius) holds safety and halves cost but fails faithfulness (80.3% vs the 90% bar) and citation match fell to 57.5% (wrong source family 18 → 28). One measured improvement round, run in parallel with the app work.
+
+- Diagnose from the committed v6 results with `evals/compare.py` (`failure_modes("v6")`, `faithfulness_regressions("v5", "v6")`); write `evals/results/phase3_v7_diagnosis.json`.
+- **Lever A — life-stage source routing:** pick each specialist's retrieval sources by the parent's life stage (pregnancy → antenatal sources; postpartum/newborn → WHO-POSTNATAL, MOHFW-IYCF, MOHFW-MAA, INDIA-UIP …) using the existing `context["life_stage"]`/week, in code (`nestling/retrieval.py::sources_for` and the agents), with unit tests. Registry sources only.
+- **Lever B — MAIN model bake-off:** on a fixed 20-case subset of the frozen set (the v6 faithfulness/citation failures plus 5 passing controls; list the case IDs in the diagnosis file), compare DeepSeek-V4-Pro (current), `moonshotai/Kimi-K3` and `zai-org/GLM-5.3` on Nebius — never a Qwen model (the judge's family) — judged by the existing Qwen judge. Pick by faithfulness, then citation match, then cost; record the table.
+- `v7` = v6 + the levers that helped (new `VERSIONS`/`PROMPT_VERSIONS` entries; v1–v6 unchanged). Full run on the frozen set + judge, exports, `phase3_experiments.json`, `phase3_judge_round1.json`, notebook 06 re-executed.
+- The API moves to v7 only if escalation 100%, refusal 100%, routing ≥ 90% hold and faithfulness beats v6; otherwise it stays on v6. Report honestly either way.
+- Budget ≤ ₹150 for the whole task (subset bake-off + one full run + judging).
+- Parallel work note: another implementer owns `nestling/lessons/`, `assets/`, `lessons/`, `docs/NESTLING_PLAN.md`, `.gitignore` and `web/`; do not touch them; commit by explicit paths.
