@@ -150,8 +150,7 @@ def build(lesson_id: str, hits: list[dict] | None = None, version: int = 1) -> d
 
 
 def _dump(board: dict) -> str:
-    return json.dumps(board, indent=2, ensure_ascii=False) + "
-"
+    return json.dumps(board, indent=2, ensure_ascii=False) + "\n"
 
 
 def write(lesson_id: str, board: dict) -> dict:
@@ -171,17 +170,9 @@ def write(lesson_id: str, board: dict) -> dict:
             return board
         board["version"] = prior["version"] + 1
     path.write_text(_dump(board), encoding="utf-8")
-    scenes = "
-".join(f'  - {{step_no: {s["step_no"]}, passed: null, notes: ""}}' for s in board["scenes"])
-    (folder / "review.yaml").write_text(f"lesson_id: {lesson_id}
-version: {board['version']}
-approved: false
-reviewer: null
-"
-                                        f"review_date: null
-scenes:
-{scenes}
-", encoding="utf-8")
+    scenes = "\n".join(f'  - {{step_no: {s["step_no"]}, passed: null, notes: ""}}' for s in board["scenes"])
+    (folder / "review.yaml").write_text(f"lesson_id: {lesson_id}\nversion: {board['version']}\napproved: false\nreviewer: null\n"
+                                        f"review_date: null\nscenes:\n{scenes}\n", encoding="utf-8")
     return board
 
 
