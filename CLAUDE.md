@@ -1,0 +1,11 @@
+# Nestling: rules for Claude Code
+- Read docs/NESTLING_PLAN.md first. The constitution (§2) overrides everything.
+- Python 3.12 + uv. Notebooks import from the `nestling/` package; logic lives in .py, not in notebook cells.
+- Models: claude-sonnet-5-5 (specialists, verifier), claude-haiku-5-5 (guardian classifier, concierge).
+- Red-flag escalation is decided in code (nestling/guardian.py). Never let an LLM decide it alone.
+- Every medical/diet/insurance answer must cite a source ID from sources/registry.yaml, or say it has no trusted source.
+- Never output medicine doses or diagnoses.
+- Every LangSmith trace carries the metadata in §9.4. No personal data in traces.
+- The active golden set is evals/golden_v2_india.csv (golden_v1 is history). It is FROZEN (2026-11-01; hash-locked in nestling/golden.py, LangSmith dataset nestling-golden-v2). Never edit it; new cases go in a new version.
+- Keep it light: no new frameworks, docs or abstractions unless a phase needs them.
+- Never commit keys. Use .env (gitignored) and .env.example.
