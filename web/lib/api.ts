@@ -50,6 +50,42 @@ export type Checklist = {
   sections: { name: string; items: { id: string; item: string; source: SourceChipData | null }[] }[];
 };
 
+export type LessonStep = {
+  step_no: number;
+  caption: string;
+  narration_line: string;
+  icon: string;
+  safety_points: string[];
+};
+
+/** The shared "API lesson payload" (/api/lessons, /api/lessons/{id}, `lesson` of /api/ask). */
+export type Lesson = {
+  lesson_id: string;
+  title: string;
+  version: number;
+  stage: "before_birth" | "first_weeks";
+  video_url: string;
+  thumbnail_url: string;
+  steps: LessonStep[];
+  sources: SourceChipData[];
+  see_how: { label: string; url: string; publisher: string } | null;
+  reviewed_on: string | null;
+};
+
+export type AskResponse = {
+  answer: string;
+  escalate: boolean;
+  refused: boolean;
+  route: string | null;
+  guardian: { level: "calm" | "amber" | "red"; rules_fired: string[]; unsafe: string[] };
+  sources: SourceChipData[];
+  how_i_answered: string[];
+  verification: { verdict: string; unsupported: string[] } | null;
+  save: boolean;
+  error: boolean;
+  lesson?: Lesson | null;
+};
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${API_URL}${path}`, init);
   if (!res.ok) throw new Error(`Nestling API ${path} failed (${res.status})`);
@@ -67,3 +103,13 @@ export const getChecklist = () => request<Checklist>("/api/checklist");
 export const getHealth = () => request<{ ok: boolean; disclaimer: string }>("/api/health");
 export const deleteVoice = (voiceId: string) =>
   request<{ deleted: string }>(`/api/voice/${encodeURIComponent(voiceId)}`, { method: "DELETE" });
+export const askNestling = (message: string, profile: ProfileBody | null, canSave: boolean) =>
+  request<AskResponse>("/api/ask", post({ message, ...(profile ? { profile } : {}), can_save: canSave }));
+
+/** Lesson media paths come back relative (/media/lessons/...); make them absolute for the browser. */
+export const mediaUrl = (u: string) => (/^https?:/.test(u) ? u : `${API_URL}${u}`);
+
+/** A missing or failing lessons endpoint means "no approved lessons yet": an empty library. */
+export const getLessons = () => request<Lesson[]>("/api/lessons").catch(() => [] as Lesson[]);
+export const getLesson = (id: string) =>
+  request<Lesson>(`/api/lessons/${encodeURIComponent(id)}`).catch(() => null);

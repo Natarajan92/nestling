@@ -1,5 +1,80 @@
-import ComingSoon from "@/components/ComingSoon";
+"use client";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import Card from "@/components/Card";
+import { getLessons, mediaUrl, type Lesson } from "@/lib/api";
+
+const FILTERS = [
+  { id: "all", label: "All" },
+  { id: "before_birth", label: "Before birth" },
+  { id: "first_weeks", label: "First weeks" },
+] as const;
+
+export const reviewedOn = (d: string | null) =>
+  d ? `Reviewed on ${new Date(d).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}` : "Reviewed";
 
 export default function LessonsPage() {
-  return <ComingSoon icon="🎬" title="Little Lessons" note="Short, reviewed how-to videos for the first weeks." />;
+  const [lessons, setLessons] = useState<Lesson[] | null>(null);
+  const [filter, setFilter] = useState<(typeof FILTERS)[number]["id"]>("all");
+
+  useEffect(() => {
+    let alive = true;
+    getLessons().then((l) => alive && setLessons(l));
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  const shown = (lessons ?? []).filter((l) => filter === "all" || l.stage === filter);
+
+  return (
+    <div>
+      <h1 className="text-3xl font-semibold">Little Lessons</h1>
+      <p className="mt-1 text-ink-soft">Short how-to videos, each checked by a person against a trusted source.</p>
+      <div role="group" aria-label="Filter by stage" className="mt-4 flex gap-2">
+        {FILTERS.map((f) => (
+          <button
+            key={f.id}
+            type="button"
+            aria-pressed={filter === f.id}
+            onClick={() => setFilter(f.id)}
+            className={`rounded-full px-4 py-1.5 text-sm ${filter === f.id ? "bg-peach font-medium" : "bg-white shadow-soft"}`}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+      {lessons === null ? (
+        <p className="mt-10 text-center text-ink-soft">One moment…</p>
+      ) : shown.length === 0 ? (
+        <Card className="mt-6 text-center">
+          <div className="text-4xl" aria-hidden>
+            🎬
+          </div>
+          <p className="mt-3 font-medium">No lessons to show yet</p>
+          <p className="mt-2 text-sm text-ink-soft">
+            Lessons are published only after a person has reviewed every step against a trusted source. Until then,
+            ask Nestling and you will get written, sourced steps.
+          </p>
+        </Card>
+      ) : (
+        <ul className="mt-5 grid grid-cols-2 gap-4">
+          {shown.map((l) => (
+            <li key={l.lesson_id}>
+              <Link href={`/lessons/${l.lesson_id}`} className="block rounded-card bg-white p-2 shadow-soft">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={mediaUrl(l.thumbnail_url)}
+                  alt=""
+                  className="aspect-[9/16] w-full rounded-[18px] bg-sage/20 object-cover"
+                />
+                <p className="mt-2 px-1 font-display font-semibold leading-snug">{l.title}</p>
+                <p className="px-1 pb-1 text-xs text-ink-soft">{reviewedOn(l.reviewed_on)}</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
