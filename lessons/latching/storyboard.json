@@ -1,7 +1,7 @@
 {
   "lesson_id": "latching",
   "title": "A good breastfeeding latch",
-  "version": 1,
+  "version": 2,
   "stage": "first_weeks",
   "language": "en",
   "sources": [
@@ -15,40 +15,51 @@
   "scenes": [
     {
       "step_no": 1,
-      "caption": "Hold baby close, facing your breast",
-      "narration_line": "Keep your baby close to your breast, facing it.",
+      "caption": "Hold close, head and body straight",
+      "narration_line": "Hold your baby close, with head and body straight.",
       "icon": "hand-heart",
       "source_id": "MOHFW-IYCF",
-      "page_label": "42",
-      "safety_points": []
+      "page_label": "87",
+      "safety_points": [
+        "Support your newborn's bottom, not just head and shoulders."
+      ]
     },
     {
       "step_no": 2,
-      "caption": "Wait for a wide-open mouth",
-      "narration_line": "Wait until your baby’s mouth is wide open.",
+      "caption": "Face the breast, nose opposite nipple",
+      "narration_line": "Face your baby towards your breast, nose opposite the nipple.",
+      "icon": "baby",
+      "source_id": "MOHFW-IYCF",
+      "page_label": "87",
+      "safety_points": []
+    },
+    {
+      "step_no": 3,
+      "caption": "Touch lips; wait for a wide mouth",
+      "narration_line": "Touch their lips with your nipple; wait for a wide-open mouth.",
       "icon": "smiley",
       "source_id": "MOHFW-IYCF",
       "page_label": "93",
       "safety_points": []
     },
     {
-      "step_no": 3,
-      "caption": "Bring baby on, chin first",
-      "narration_line": "Move your baby on quickly, aiming chin below the nipple.",
-      "icon": "baby",
+      "step_no": 4,
+      "caption": "Bring baby on, lower lip below nipple",
+      "narration_line": "Move your baby quickly onto your breast, lower lip below nipple.",
+      "icon": "heart",
       "source_id": "MOHFW-IYCF",
       "page_label": "93",
       "safety_points": []
     },
     {
-      "step_no": 4,
+      "step_no": 5,
       "caption": "Check chin touches, lip turned out",
       "narration_line": "Look for chin touching the breast and lower lip turned out.",
       "icon": "check-circle",
       "source_id": "MOHFW-IYCF",
       "page_label": "38",
       "safety_points": [
-        "If suckling is painful, your baby may not be well attached."
+        "Look for more areola above the mouth than below."
       ]
     }
   ]

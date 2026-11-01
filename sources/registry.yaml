@@ -307,12 +307,48 @@ sources:
     verified: true
     verified_on: 2026-11-01
 
+  - id: NHS-BABY-BATHING
+    title: Washing and bathing your baby
+    publisher: NHS
+    year: 2024
+    url: https://www.nhs.uk/baby/caring-for-a-newborn/washing-and-bathing-your-baby/
+    file: NHS-BABY-BATHING.pdf
+    snapshot_file: snapshots/NHS-BABY-BATHING.json
+    pages: 2
+    used_by: [care]
+    licence: Open Government Licence v3.0; NHS website terms apply; text only
+    licence_url: https://www.nhs.uk/our-policies/terms-and-conditions/
+    attribution: Information from the NHS website, as at 01 November 2026
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
+    source_reviewed_on: 2024-07-23
+    note: Dated text-only local PDF snapshot; page labels are local snapshot pages, not official NHS pagination. No images or video copied. Owner approved three source-namespace chunks on 2026-11-01; upsert completed without deletion. Lesson publication still requires human approval.
+
+  - id: NHS-BABY-BURPING
+    title: Burping your baby
+    publisher: NHS Best Start in Life
+    year: null
+    url: https://www.nhs.uk/best-start-in-life/baby/feeding-your-baby/breastfeeding/how-to-breastfeed/burping-your-baby/
+    file: NHS-BABY-BURPING.pdf
+    snapshot_file: snapshots/NHS-BABY-BURPING.json
+    pages: 2
+    used_by: [care]
+    licence: Open Government Licence v3.0; NHS website terms apply; text only
+    licence_url: https://www.nhs.uk/our-policies/terms-and-conditions/
+    attribution: Information from the NHS website, as at 01 November 2026
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
+    note: Dated text-only local PDF snapshot; page labels are local snapshot pages, not official NHS pagination. No images copied. Page has no visible review date. Owner approved three source-namespace chunks on 2026-11-01; upsert completed without deletion. Lesson publication still requires human approval.
+
   - id: NHS-CHILD-URGENT
     title: When to get urgent medical help for babies and children under 5
     publisher: NHS
     year: 2026
     url: https://www.nhs.uk/baby/health/when-to-get-urgent-medical-help-for-babies-and-children-under-5/
-    file: null
+    file: NHS-CHILD-URGENT.pdf
+    snapshot_file: snapshots/NHS-CHILD-URGENT.json
     used_by: [guardian]
     licence: Open Government Licence v3.0; NHS website terms apply; text only
     licence_url: https://www.nhs.uk/our-policies/terms-and-conditions/
@@ -328,7 +364,8 @@ sources:
     publisher: NHS
     year: 2026
     url: https://www.nhs.uk/baby/first-aid-and-safety/first-aid/how-to-resuscitate-a-child/
-    file: null
+    file: NHS-CHILD-CPR.pdf
+    snapshot_file: snapshots/NHS-CHILD-CPR.json
     used_by: [guardian]
     licence: Open Government Licence v3.0; NHS website terms apply; text only
     licence_url: https://www.nhs.uk/our-policies/terms-and-conditions/

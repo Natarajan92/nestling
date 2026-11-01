@@ -1,0 +1,423 @@
+{
+  "status": "approved by owner; current review-date media validated and publication ready",
+  "lessons": [
+    {
+      "lesson_id": "bathing",
+      "version": 1,
+      "storyboard_path": "E:\\maai-projects\\nestling\\lessons\\bathing\\storyboard.json",
+      "storyboard_sha256": "d323b10a678dc02883bba5bda108cfc1752762575dd5540f7f6eb5d6a3c2f910",
+      "video_path": "E:\\maai-projects\\nestling\\lessons\\bathing\\renders\\lesson.mp4",
+      "video_sha256": "c15e578483d0abf679b22cbc1ba4c439ef157cd815a58601757d02fecb274d16",
+      "review_path": "E:\\maai-projects\\nestling\\lessons\\bathing\\review.yaml",
+      "checklist_path": "E:\\maai-projects\\nestling\\lessons\\bathing\\checklist.yaml",
+      "sources": [
+        "NHS-BABY-BATHING"
+      ],
+      "render_log": {
+        "cost_inr": 0.0,
+        "cost_basis": "approval-date badge refresh using cached narration; earlier charges retained in render_history",
+        "seconds": 21.7,
+        "rendered_at": "2026-11-01T15:56:28+00:00",
+        "storyboard_version": 1,
+        "reviewed_on": "2026-11-01",
+        "render_history": [
+          {
+            "cost_inr": 0.0,
+            "cost_basis": "incremental stitching from cached narration; original narration bill unavailable",
+            "seconds": 21.7,
+            "rendered_at": "2026-11-01T15:26:55+00:00",
+            "storyboard_version": 1
+          }
+        ]
+      },
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All narration lines, captions, and safety points are supported by the cited source pages. Step 1 (preparation), Step 2 (water temperature check), Step 3 (head/shoulder support and holding upper arm), Step 4 (keeping head above water), and Step 5 (drying skin folds and keeping baby warm) are all explicitly mentioned in the source passages on pages 1 and 2. Safety points such as never leaving the baby alone and water temperature are directly cited. No steps contradict or invent beyond the source.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 2393,
+          "tokens_out": 139
+        },
+        "cost_inr": 0.0533,
+        "prompt_version": "lessons-judge-v1",
+        "prompt_sha256": "19b590953a500e7771045a0e4fbd4f894f2e132ab2e0fe1b2e913e30631e1574"
+      },
+      "human_approved_video_sha256": "ae60e7f0b713b62be1aa61031dac4c02fc089d922bf795243ffb1cd7033f57ae",
+      "human_review": {
+        "lesson_id": "bathing",
+        "version": 1,
+        "approved": true,
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          },
+          {
+            "step_no": 2,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          },
+          {
+            "step_no": 3,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          },
+          {
+            "step_no": 4,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          },
+          {
+            "step_no": 5,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          }
+        ]
+      },
+      "approval_refresh_note": "Same storyboard/narration; approved date shown; title no longer makes a fixed duration claim.",
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920
+          },
+          {
+            "codec_name": "aac"
+          }
+        ],
+        "format": {
+          "duration": "21.720000",
+          "size": "3019009"
+        }
+      }
+    },
+    {
+      "lesson_id": "burping",
+      "version": 1,
+      "storyboard_path": "E:\\maai-projects\\nestling\\lessons\\burping\\storyboard.json",
+      "storyboard_sha256": "c6a28239ba70e60f787d14226c1b08bfdeec9b7395891b185ea7ef2b3e7f74ee",
+      "video_path": "E:\\maai-projects\\nestling\\lessons\\burping\\renders\\lesson.mp4",
+      "video_sha256": "ddfb4f1998bef55ba43543197aeb65bc113258b99378ccd9b247f1f53b14aa6d",
+      "review_path": "E:\\maai-projects\\nestling\\lessons\\burping\\review.yaml",
+      "checklist_path": "E:\\maai-projects\\nestling\\lessons\\burping\\checklist.yaml",
+      "sources": [
+        "NHS-BABY-BURPING"
+      ],
+      "render_log": {
+        "cost_inr": 0.0,
+        "cost_basis": "approval-date badge refresh using cached narration; earlier charges retained in render_history",
+        "seconds": 18.4,
+        "rendered_at": "2026-11-01T15:56:45+00:00",
+        "storyboard_version": 1,
+        "reviewed_on": "2026-11-01",
+        "render_history": [
+          {
+            "cost_inr": 5.2,
+            "cost_estimated": true,
+            "cost_basis": "260 narration characters at saved conservative rate; provider billing unavailable",
+            "seconds": 18.4,
+            "rendered_at": "2026-11-01T15:30:40+00:00",
+            "storyboard_version": 1
+          }
+        ]
+      },
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All steps and safety points in the storyboard are supported by the cited source page (NHS-BABY-BURPING, page 1). The burp cloth, head/neck support, straight back, chin-on-shoulder position, hand support, and gentle patting/rubbing are all explicitly mentioned. The two-minute duration is also source-supported.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 1390,
+          "tokens_out": 102
+        },
+        "cost_inr": 0.0322,
+        "prompt_version": "lessons-judge-v1",
+        "prompt_sha256": "19b590953a500e7771045a0e4fbd4f894f2e132ab2e0fe1b2e913e30631e1574"
+      },
+      "human_approved_video_sha256": "0e9b6caafe47dbc50529439120e3c81f8747c397b1e2b3549233a1aa32a70ea9",
+      "human_review": {
+        "lesson_id": "burping",
+        "version": 1,
+        "approved": true,
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          },
+          {
+            "step_no": 2,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          },
+          {
+            "step_no": 3,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          },
+          {
+            "step_no": 4,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          }
+        ]
+      },
+      "approval_refresh_note": "Same storyboard/narration; approved date shown; title no longer makes a fixed duration claim.",
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920
+          },
+          {
+            "codec_name": "aac"
+          }
+        ],
+        "format": {
+          "duration": "18.380000",
+          "size": "2574292"
+        }
+      }
+    },
+    {
+      "lesson_id": "latching",
+      "version": 2,
+      "storyboard_path": "E:\\maai-projects\\nestling\\lessons\\latching\\storyboard.json",
+      "storyboard_sha256": "81a14ddc86efe3af3355cf6ec747acbad872dcb938a1615586e84c6be83ae28f",
+      "video_path": "E:\\maai-projects\\nestling\\lessons\\latching\\renders\\lesson.mp4",
+      "video_sha256": "ccde2b51bafb15692bb8ed779fcf608a52207fd087887afe1670f8da5cb48719",
+      "review_path": "E:\\maai-projects\\nestling\\lessons\\latching\\review.yaml",
+      "checklist_path": "E:\\maai-projects\\nestling\\lessons\\latching\\checklist.yaml",
+      "sources": [
+        "MOHFW-IYCF"
+      ],
+      "render_log": {
+        "cost_inr": 0.0,
+        "cost_basis": "approval-date badge refresh using cached narration; earlier charges retained in render_history",
+        "seconds": 23.8,
+        "rendered_at": "2026-11-01T15:57:10+00:00",
+        "storyboard_version": 2,
+        "reviewed_on": "2026-11-01",
+        "render_history": [
+          {
+            "cost_inr": 4.74,
+            "cost_estimated": true,
+            "cost_basis": "237 new narration characters at saved rate; unchanged clips cached; provider billing unavailable",
+            "seconds": 23.8,
+            "rendered_at": "2026-11-01T15:38:31+00:00",
+            "storyboard_version": 2
+          }
+        ]
+      },
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All captions, narration lines, and safety points in the storyboard are supported by the cited pages from the MOHFW-IYCF source. Step 1â€“5 align with pages 87, 93, and 38, including correct emphasis on head-body alignment, nose opposite nipple, wide mouth, lower lip below nipple, chin contact, lip flanging, and areola visibility. Safety point on supporting newborn's bottom is explicitly stated on page 87. No steps contradict or invent beyond the source.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 2751,
+          "tokens_out": 135
+        },
+        "cost_inr": 0.0599,
+        "prompt_version": "lessons-judge-v1",
+        "prompt_sha256": "19b590953a500e7771045a0e4fbd4f894f2e132ab2e0fe1b2e913e30631e1574"
+      },
+      "human_approved_video_sha256": "014549787a0f308f222148e2553e5a7a743eb85711e079e80758be759accc88b",
+      "human_review": {
+        "lesson_id": "latching",
+        "version": 2,
+        "approved": true,
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          },
+          {
+            "step_no": 2,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          },
+          {
+            "step_no": 3,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          },
+          {
+            "step_no": 4,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          },
+          {
+            "step_no": 5,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          }
+        ]
+      },
+      "approval_refresh_note": "Same storyboard/narration; approved date shown; title no longer makes a fixed duration claim.",
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920
+          },
+          {
+            "codec_name": "aac"
+          }
+        ],
+        "format": {
+          "duration": "23.750000",
+          "size": "3383668"
+        }
+      }
+    },
+    {
+      "lesson_id": "cord_care",
+      "version": 4,
+      "storyboard_path": "E:\\maai-projects\\nestling\\lessons\\cord_care\\storyboard.json",
+      "storyboard_sha256": "279e8a9ed947b02a34e4e6913189d4ef0d6022a75020277fd4df7ac9c6cff896",
+      "video_path": "E:\\maai-projects\\nestling\\lessons\\cord_care\\renders\\lesson.mp4",
+      "video_sha256": "e16c3c24cfcc5cb0071201e51b9c4f97ca53fac82161149f8346b7dfdf3cd279",
+      "review_path": "E:\\maai-projects\\nestling\\lessons\\cord_care\\review.yaml",
+      "checklist_path": "E:\\maai-projects\\nestling\\lessons\\cord_care\\checklist.yaml",
+      "sources": [
+        "MOHFW-ANC",
+        "WHO-POSTNATAL"
+      ],
+      "render_log": {
+        "cost_inr": 0.0,
+        "cost_basis": "approval-date badge refresh using cached narration; earlier charges retained in render_history",
+        "seconds": 19.1,
+        "rendered_at": "2026-11-01T15:57:29+00:00",
+        "storyboard_version": 4,
+        "reviewed_on": "2026-11-01",
+        "render_history": [
+          {
+            "cost_inr": 0.84,
+            "cost_estimated": true,
+            "cost_basis": "42 new narration characters at saved rate; unchanged clips cached; cumulative cord correction estimate3.12INR; provider billing unavailable",
+            "seconds": 19.1,
+            "rendered_at": "2026-11-01T15:48:19+00:00",
+            "storyboard_version": 4
+          }
+        ]
+      },
+      "fidelity": {
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All storyboard steps are supported by the cited source pages. Step 1 (keep cord clean and dry) is directly stated in WHO-POSTNATAL p120 (Recommendation 32a). Step 2 (hygiene when handling baby) is advised in MOHFW-ANC p64. Step 3 (do not apply anything to cord, keep dry) is explicitly stated in MOHFW-ANC p64. Step 4 (seek help for redness, swelling, pus) is listed in MOHFW-ANC p65 under signs requiring immediate medical attention. Safety points align with source content. No invented or unsupported steps are present.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 3790,
+          "tokens_out": 167
+        },
+        "cost_inr": 0.0815,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "cord_care:v4",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "cord_care",
+          "predicted_route": "cord_care",
+          "refused": null,
+          "sources_cited": [
+            "MOHFW-ANC",
+            "WHO-POSTNATAL"
+          ],
+          "correct": true,
+          "latency_ms": 36766,
+          "tokens_in": 3790,
+          "tokens_out": 167,
+          "cost_inr": 0.0815,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null
+        },
+        "trace_upload_status": "uploaded cached verdict and metadata; readback verified; no new inference",
+        "trace_run_id": "ad2c6cbd-e45e-5365-b11d-4d24f6a2816a"
+      },
+      "human_approved_video_sha256": "6bac1a4e08cb2e680097941bd23650e1023364de2bb6808391b816c430315322",
+      "human_review": {
+        "lesson_id": "cord_care",
+        "version": 4,
+        "approved": true,
+        "reviewer": "S Anand Natarajan",
+        "review_date": "2026-11-01",
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          },
+          {
+            "step_no": 2,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          },
+          {
+            "step_no": 3,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          },
+          {
+            "step_no": 4,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in chat on 2026-11-01."
+          }
+        ]
+      },
+      "approval_refresh_note": "Same storyboard/narration; approved date shown; title no longer makes a fixed duration claim.",
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920
+          },
+          {
+            "codec_name": "aac"
+          }
+        ],
+        "format": {
+          "duration": "19.100000",
+          "size": "2919682"
+        }
+      }
+    }
+  ]
+}

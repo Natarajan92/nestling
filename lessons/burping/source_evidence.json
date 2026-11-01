@@ -1,0 +1,55 @@
+{
+  "lesson_id": "burping",
+  "storyboard_version": 1,
+  "validation": "passed code source-page/evidence/length/icon/prohibited-content checks",
+  "source_snapshot": "sources/snapshots/NHS-BABY-BURPING.json",
+  "source_pdf_sha256": "c8d76d77d314fa6c848687df91f993a8e512341313d1ebf4494adb18301f529e",
+  "scenes": [
+    {
+      "step_no": 1,
+      "caption": "Have a burp cloth ready",
+      "narration_line": "Keep a burp cloth or muslin square ready.",
+      "icon": "towel",
+      "source_id": "NHS-BABY-BURPING",
+      "page_label": "1",
+      "evidence": "have a burp cloth or muslin square ready",
+      "safety_points": []
+    },
+    {
+      "step_no": 2,
+      "caption": "Support their head and neck",
+      "narration_line": "Support your baby's head and neck; keep their back straight.",
+      "icon": "hand-heart",
+      "source_id": "NHS-BABY-BURPING",
+      "page_label": "1",
+      "evidence": "Support your baby's head and neck",
+      "safety_points": [
+        "Keep their tummy and back straight, not curled up."
+      ]
+    },
+    {
+      "step_no": 3,
+      "caption": "Rest their chin on your shoulder",
+      "narration_line": "Rest their chin on your shoulder, supporting head and shoulders.",
+      "icon": "baby",
+      "source_id": "NHS-BABY-BURPING",
+      "page_label": "1",
+      "evidence": "With your baby's chin resting on your shoulder",
+      "safety_points": [
+        "Support the head and shoulder area with one hand."
+      ]
+    },
+    {
+      "step_no": 4,
+      "caption": "Gently rub or pat their back",
+      "narration_line": "Gently rub or pat your baby's back.",
+      "icon": "hand-waving",
+      "source_id": "NHS-BABY-BURPING",
+      "page_label": "1",
+      "evidence": "gently rub and pat your baby's back",
+      "safety_points": [
+        "A couple of minutes should be enough."
+      ]
+    }
+  ]
+}

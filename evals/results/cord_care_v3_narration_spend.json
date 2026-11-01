@@ -1,0 +1,18 @@
+{
+  "cap_inr": 6.0,
+  "maximum_estimated_inr": 2.2800000000000002,
+  "rate_inr_per_char": 0.02,
+  "provider_actual_inr": null,
+  "calls": [
+    {
+      "characters": 51,
+      "estimated_inr": 1.02,
+      "status": "response received; billing estimated"
+    },
+    {
+      "characters": 63,
+      "estimated_inr": 1.26,
+      "status": "response received; billing estimated"
+    }
+  ]
+}
