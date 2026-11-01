@@ -248,7 +248,7 @@ nestling/
 
 > Fill to 40: about 20 happy, 12 edge, 6 known failures, 2 adversarial. Freeze as `golden_v1` before the baseline run and never edit it after; add new cases as `golden_v2`.
 >
-> **Update 2026-11-01:** the active dataset is `evals/golden_v2_india.csv` (104 cases: 50 happy, 35 edge, 15 known-fail, 4 adversarial; mothers, fathers and both; pregnancy and postpartum). `golden_v1` is kept for history only. Freeze v2 before the baseline run.
+> **Update 2026-11-01:** the active dataset is `evals/golden_v2_india.csv` (104 cases: 50 happy, 35 edge, 15 known-fail, 4 adversarial; mothers, fathers and both; pregnancy and postpartum). `golden_v1` is kept for history only. **v2 frozen on 2026-11-01** (SHA-256 `af049c1a…`, checked by `nestling/golden.py`; LangSmith dataset `nestling-golden-v2`, version tag `frozen`; git tag `golden-v2-frozen`).
 
 ### 9.4 LangSmith setup
 
