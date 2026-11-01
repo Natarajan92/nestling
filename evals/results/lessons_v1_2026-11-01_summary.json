@@ -5,11 +5,11 @@
   "routing_accuracy": 1.0,
   "danger_escalation_accuracy": 1.0,
   "n_errors": 0,
-  "step_fidelity": 0.8,
-  "n_storyboards_judged": 5,
+  "step_fidelity": 1.0,
+  "n_storyboards_judged": 6,
   "judge": "Qwen/Qwen3-235B-A22B-Instruct-2507",
   "judge_prompt": "evals\\lessons_judge_prompt.md",
-  "total_live_cost_inr": 1.6711,
+  "total_live_cost_inr": 1.8918,
   "lessons": [
     {
       "lesson_id": "bathing",
@@ -246,61 +246,111 @@
     },
     {
       "lesson_id": "holding",
-      "version": 2,
+      "version": 3,
       "review": {
-        "status": "pending human review",
+        "status": "reviewed",
         "n_scenes": 4,
-        "n_reviewed": 1,
-        "pass_rate": null,
+        "n_reviewed": 4,
+        "pass_rate": 1.0,
         "scenes": [
           {
             "step_no": 1,
-            "passed": null,
-            "notes": ""
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
           },
           {
             "step_no": 2,
-            "passed": null,
-            "notes": ""
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
           },
           {
             "step_no": 3,
-            "passed": null,
-            "notes": ""
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
           },
           {
             "step_no": 4,
-            "passed": false,
-            "notes": "Owner requested correction: newborn holding must explicitly support the head, neck and shoulders. Replace the breastfeeding-positioning instruction with sourced general holding guidance, then re-render and review again."
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
           }
         ],
-        "approved": false
+        "approved": true
       },
       "render": {
         "status": "rendered",
         "cost_inr": 0.0,
-        "seconds": 16.9,
-        "rendered_at": "2026-11-01T14:02:10+00:00"
+        "seconds": 20.3,
+        "rendered_at": "2026-11-01T16:54:35+00:00",
+        "cost_basis": "approval-date badge refresh using cached narration; prior charges retained in render_history",
+        "storyboard_version": 3,
+        "reviewed_on": "2026-11-01",
+        "render_history": [
+          {
+            "cost_inr": 4.92,
+            "cost_is_estimate": true,
+            "characters_billed": 246,
+            "seconds": 20.3,
+            "rendered_at": "2026-11-01T16:44:26.309237+00:00",
+            "storyboard_version": 3,
+            "source_fidelity": "local source checks passed; independent judge pending",
+            "human_review": "pending",
+            "narration_retries": 0,
+            "cached_cards_reused": [
+              1,
+              6
+            ],
+            "ffprobe_verified": true,
+            "video_codec": "h264",
+            "audio_codec": "aac",
+            "dimensions": [
+              1080,
+              1920
+            ],
+            "verified_duration_seconds": 20.333333,
+            "storyboard_sha256": "07028a5e36d121619a365ce4c1c7bdd6358e50c2bdf10614ff6522dab4e6688f"
+          }
+        ]
       },
       "fidelity": {
         "status": "judged",
-        "faithful": false,
-        "missing_steps": [
-          "Support the baby's head and neck adequately, especially since newborns have weak neck muscles (implied by the need to keep head and body in straight line and not push head forward).",
-          "Ensure the baby's face is positioned opposite the breast/nipple when holding for feeding (from page 87 context of breastfeeding positioning)."
-        ],
-        "invented_steps": [
-          "Hold at the shoulders, not the head (Scene 4 caption and narration) â€” the source says 'Hold the baby at the back of his shoulders - not the back of his head' in the context of a trainer adjusting a baby during breastfeeding, not general holding. The lesson presents this as a general rule for holding, which is not supported by the source."
-        ],
-        "explanation": "The source supports keeping head and body in a straight line, holding baby close, and supporting the bottom for newborns (page 87). However, the instruction to 'hold at the shoulders, not the head' is taken from a specific context (a trainer guiding positioning during breastfeeding) and is misrepresented as a general holding rule. Additionally, critical safety aspects like proper head/neck support and facial alignment are missing despite being implied by source content.",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All steps and safety points in the storyboard are supported by the source passage NHS-RWT-HOLDING page 1. Head/neck support, hand placement, cradling, gentle handling, and the warning against shaking are all explicitly mentioned. No unsupported or missing safety-critical steps for basic holding are present.",
         "usage": {
           "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
-          "tokens_in": 2476,
-          "tokens_out": 268
+          "tokens_in": 1068,
+          "tokens_out": 92
         },
-        "cost_inr": 0.0623,
-        "prompt_version": "lessons-judge-v1",
-        "prompt_sha256": "19b590953a500e7771045a0e4fbd4f894f2e132ab2e0fe1b2e913e30631e1574"
+        "cost_inr": 0.0255,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "holding:v3",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "holding",
+          "predicted_route": "holding",
+          "refused": null,
+          "sources_cited": [
+            "NHS-RWT-HOLDING"
+          ],
+          "correct": true,
+          "latency_ms": 2249,
+          "tokens_in": 1068,
+          "tokens_out": 92,
+          "cost_inr": 0.0255,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        }
       }
     },
     {
@@ -378,24 +428,114 @@
     {
       "lesson_id": "swaddling",
       "review": {
-        "status": "no storyboard"
+        "status": "reviewed",
+        "n_scenes": 5,
+        "n_reviewed": 5,
+        "pass_rate": 1.0,
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
+          },
+          {
+            "step_no": 2,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
+          },
+          {
+            "step_no": 3,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
+          },
+          {
+            "step_no": 4,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
+          },
+          {
+            "step_no": 5,
+            "passed": true,
+            "notes": "Owner explicitly approved every scene of this exact storyboard version in the async answer on 2026-11-01."
+          }
+        ],
+        "approved": true
       },
       "render": {
-        "status": "not rendered yet",
-        "cost_inr": null,
-        "seconds": null
+        "status": "rendered",
+        "cost_inr": 0.0,
+        "seconds": 31.6,
+        "rendered_at": "2026-11-01T16:55:07+00:00",
+        "cost_basis": "approval-date badge refresh using cached narration; prior charges retained in render_history",
+        "storyboard_version": 5,
+        "reviewed_on": "2026-11-01",
+        "render_history": [
+          {
+            "cost_inr": 12.6,
+            "cost_is_estimate": true,
+            "current_version_narration_characters": 439,
+            "cumulative_characters_billed": 630,
+            "correction_v2_characters_billed": 54,
+            "seconds": 31.6,
+            "rendered_at": "2026-11-01T16:51:51+00:00",
+            "storyboard_version": 5,
+            "source_fidelity": "pending independent check",
+            "human_review": "pending",
+            "ffprobe_verified": true,
+            "citation_correction_v3_characters_billed": 0,
+            "clarity_correction_v4_characters_billed": 0,
+            "precision_correction_v5_characters_billed": 176
+          }
+        ]
       },
       "fidelity": {
-        "status": "no storyboard",
-        "faithful": null,
-        "cost_inr": 0.0
-      }
+        "status": "judged",
+        "faithful": true,
+        "missing_steps": [],
+        "invented_steps": [],
+        "explanation": "All steps and safety points in the storyboard are supported by the source passage NSW-SCHN-SWADDLING page 1. Each swaddling step, safety instruction, and transition guidance (e.g., stopping at rolling, hip movement, back sleeping, avoiding heavy wraps) is explicitly mentioned in the source. No unsupported or invented steps are present.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 1772,
+          "tokens_out": 100
+        },
+        "cost_inr": 0.0393,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "swaddling:v5",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "swaddling",
+          "predicted_route": "swaddling",
+          "refused": null,
+          "sources_cited": [
+            "NSW-SCHN-SWADDLING"
+          ],
+          "correct": true,
+          "latency_ms": 4090,
+          "tokens_in": 1772,
+          "tokens_out": 100,
+          "cost_inr": 0.0393,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        }
+      },
+      "version": 5
     }
   ],
   "live": true,
   "experiment": "nestling-lessons-f15c178e",
   "budget_cap_inr": 20.0,
-  "budget_accounted_inr": 1.6711,
+  "budget_accounted_inr": 1.8918,
   "cases": [
     {
       "case_id": "L-holding-01",
@@ -1124,6 +1264,357 @@
         "prompt_version": "lessons-judge-v1",
         "prompt_sha256": "19b590953a500e7771045a0e4fbd4f894f2e132ab2e0fe1b2e913e30631e1574"
       }
+    },
+    {
+      "lesson_id": "swaddling",
+      "review": {
+        "status": "no storyboard"
+      },
+      "render": {
+        "status": "not rendered yet",
+        "cost_inr": null,
+        "seconds": null
+      },
+      "fidelity": {
+        "status": "no storyboard",
+        "faithful": null,
+        "cost_inr": 0.0
+      }
+    },
+    {
+      "lesson_id": "swaddling",
+      "review": {
+        "status": "pending human review",
+        "n_scenes": 5,
+        "n_reviewed": 0,
+        "pass_rate": null,
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 2,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 3,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 4,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 5,
+            "passed": null,
+            "notes": ""
+          }
+        ],
+        "approved": false
+      },
+      "render": {
+        "status": "rendered",
+        "cost_inr": 9.08,
+        "seconds": 28.4,
+        "rendered_at": "2026-11-01T16:34:29+00:00",
+        "storyboard_version": 2
+      },
+      "fidelity": {
+        "status": "judged",
+        "faithful": false,
+        "missing_steps": [
+          "Always put your baby to sleep on their back."
+        ],
+        "invented_steps": [
+          "Bend the elbow slightly; leave the left arm free."
+        ],
+        "explanation": "The safety point in scene 2 claiming to 'leave the left arm free' is invented; the source states the left arm is left free only temporarily during the swaddling process before the right side of the wrap is pulled across to cover it. Additionally, the critical safety instruction 'Always put your baby to sleep on their back' is present on page 3 of the source but missing from the lesson's safety points despite being directly relevant to safe swaddling practice.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 1726,
+          "tokens_out": 154
+        },
+        "cost_inr": 0.0415,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "swaddling:v2",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "swaddling",
+          "predicted_route": "swaddling",
+          "refused": null,
+          "sources_cited": [
+            "NSW-SCHN-SWADDLING"
+          ],
+          "correct": false,
+          "latency_ms": 4873,
+          "tokens_in": 1726,
+          "tokens_out": 154,
+          "cost_inr": 0.0415,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        }
+      },
+      "version": 2
+    },
+    {
+      "lesson_id": "holding",
+      "version": 2,
+      "review": {
+        "status": "pending human review",
+        "n_scenes": 4,
+        "n_reviewed": 1,
+        "pass_rate": null,
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 2,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 3,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 4,
+            "passed": false,
+            "notes": "Owner requested correction: newborn holding must explicitly support the head, neck and shoulders. Replace the breastfeeding-positioning instruction with sourced general holding guidance, then re-render and review again."
+          }
+        ],
+        "approved": false
+      },
+      "render": {
+        "status": "rendered",
+        "cost_inr": 0.0,
+        "seconds": 16.9,
+        "rendered_at": "2026-11-01T14:02:10+00:00"
+      },
+      "fidelity": {
+        "status": "judged",
+        "faithful": false,
+        "missing_steps": [
+          "Support the baby's head and neck adequately, especially since newborns have weak neck muscles (implied by the need to keep head and body in straight line and not push head forward).",
+          "Ensure the baby's face is positioned opposite the breast/nipple when holding for feeding (from page 87 context of breastfeeding positioning)."
+        ],
+        "invented_steps": [
+          "Hold at the shoulders, not the head (Scene 4 caption and narration) â€” the source says 'Hold the baby at the back of his shoulders - not the back of his head' in the context of a trainer adjusting a baby during breastfeeding, not general holding. The lesson presents this as a general rule for holding, which is not supported by the source."
+        ],
+        "explanation": "The source supports keeping head and body in a straight line, holding baby close, and supporting the bottom for newborns (page 87). However, the instruction to 'hold at the shoulders, not the head' is taken from a specific context (a trainer guiding positioning during breastfeeding) and is misrepresented as a general holding rule. Additionally, critical safety aspects like proper head/neck support and facial alignment are missing despite being implied by source content.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 2476,
+          "tokens_out": 268
+        },
+        "cost_inr": 0.0623,
+        "prompt_version": "lessons-judge-v1",
+        "prompt_sha256": "19b590953a500e7771045a0e4fbd4f894f2e132ab2e0fe1b2e913e30631e1574"
+      }
+    },
+    {
+      "lesson_id": "swaddling",
+      "review": {
+        "status": "pending human review",
+        "n_scenes": 5,
+        "n_reviewed": 0,
+        "pass_rate": null,
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 2,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 3,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 4,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 5,
+            "passed": null,
+            "notes": ""
+          }
+        ],
+        "approved": false
+      },
+      "render": {
+        "status": "rendered",
+        "cost_inr": 9.08,
+        "seconds": 28.4,
+        "rendered_at": "2026-11-01T16:37:44+00:00",
+        "storyboard_version": 3
+      },
+      "fidelity": {
+        "status": "judged",
+        "faithful": false,
+        "missing_steps": [
+          "The step to fold the top corner down to the middle to create a straight edge is mentioned in the source but not fully reflected in Scene 1's narration ('Make a diamond; fold top down') — the purpose and placement (to the middle) is underspecified.",
+          "The source specifies to tuck the left side of the wrap under the baby’s right side and bottom (not just beneath the right side), which is partially missing in Scene 2 narration ('tuck left corner diagonally beneath right side and bottom') — the inclusion of 'bottom' is present but the combined tuck under both right side and bottom is not clearly conveyed as a single action.",
+          "In Scene 3, the source says to tuck the bottom corner 'behind your baby’s left shoulder or into the fold across their chest' — the alternative option 'into the fold' is missing in the narration ('tuck loosely behind left shoulder')."
+        ],
+        "invented_steps": [
+          "Scene 2 safety point: 'Bend the elbow slightly; leave the left arm free.' — The source says to place the right arm with a bend and leave the left arm free during that step, but does not instruct to bend the elbow of the left arm at this stage. The instruction to bend the left elbow appears only in Scene 4, which aligns with the source. However, implying the left arm should be bent *while still free* in Scene 2 is a misplacement and could be misleading.",
+          "Scene 4 safety point: 'Keep the elbow slightly bent beside their body.' — While the source does say to place the left arm with a slight bend, this safety point is redundant and repeated as if it were a new rule, but not invented. However, the phrasing in Scene 2's safety point about bending the left elbow while it's still free risks implying a step not in the source sequence."
+        ],
+        "explanation": "The storyboard mostly follows the source but misplaces timing of elbow bending for the left arm and omits key details in tucking steps. Some safety phrasing implies actions not explicitly supported in sequence, and minor alternatives in technique are excluded.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 1756,
+          "tokens_out": 464
+        },
+        "cost_inr": 0.0598,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "swaddling:v3",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "swaddling",
+          "predicted_route": "swaddling",
+          "refused": null,
+          "sources_cited": [
+            "NSW-SCHN-SWADDLING"
+          ],
+          "correct": false,
+          "latency_ms": 9885,
+          "tokens_in": 1756,
+          "tokens_out": 464,
+          "cost_inr": 0.0598,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        }
+      },
+      "version": 3
+    },
+    {
+      "lesson_id": "swaddling",
+      "review": {
+        "status": "pending human review",
+        "n_scenes": 5,
+        "n_reviewed": 0,
+        "pass_rate": null,
+        "scenes": [
+          {
+            "step_no": 1,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 2,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 3,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 4,
+            "passed": null,
+            "notes": ""
+          },
+          {
+            "step_no": 5,
+            "passed": null,
+            "notes": ""
+          }
+        ],
+        "approved": false
+      },
+      "render": {
+        "status": "rendered",
+        "cost_inr": 9.08,
+        "seconds": 28.4,
+        "rendered_at": "2026-11-01T16:40:05+00:00",
+        "storyboard_version": 4
+      },
+      "fidelity": {
+        "status": "judged",
+        "faithful": false,
+        "missing_steps": [
+          "The source specifies to place the baby's neck just above the folded edge of the wrap; the lesson should explicitly state this positioning for correct alignment.",
+          "After tucking the left corner across and under the baby, the source instructs to fold the bottom corner up and tuck it behind the left shoulder — the lesson combines this with step 3 but misses specifying that it goes behind the *left* shoulder, which is critical for correct swaddling sequence.",
+          "The source states to pull the right side of the wrap across the chest and tuck it *under the baby’s body* (not just underneath generally); the lesson lacks precision in where the final tuck should occur."
+        ],
+        "invented_steps": [
+          "Step 2 says to 'leave the left arm free' — this is incorrect and contradicts the full swaddling method. The source describes a full swaddle where *both* arms are eventually swaddled. Leaving one arm free is only mentioned in the *transition tips*, not in the main swaddling steps. Presenting this as part of standard swaddling is an invention.",
+          "Step 4 says to 'cross right corner over left arm, tucking underneath' — while partially accurate, the instruction implies the arm is already covered before tucking, but the source specifies placing the left arm by the side *before* pulling the right side over, which the lesson omits in sequence."
+        ],
+        "explanation": "The lesson misrepresents the swaddling sequence by incorrectly leaving one arm free during standard swaddling and lacks precision in key tuck placements. It also omits explicit source-supported details about body positioning and tuck locations, introducing safety and technique errors.",
+        "usage": {
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "tokens_in": 1757,
+          "tokens_out": 372
+        },
+        "cost_inr": 0.0545,
+        "prompt_version": "lessons-judge-v2",
+        "prompt_sha256": "22860d83f3165a47befe32877c60932a5e7972e871a6ff5e1070d4c45ab2200c",
+        "trace_metadata": {
+          "case_id": "swaddling:v4",
+          "dataset_version": "lessons_golden_v1-draft",
+          "scenario_type": "source_fidelity",
+          "pipeline_version": "lessons-v1",
+          "prompt_version": "lessons-judge-v2",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "expected_escalate": null,
+          "predicted_escalate": null,
+          "expected_route": "swaddling",
+          "predicted_route": "swaddling",
+          "refused": null,
+          "sources_cited": [
+            "NSW-SCHN-SWADDLING"
+          ],
+          "correct": false,
+          "latency_ms": 6865,
+          "tokens_in": 1757,
+          "tokens_out": 372,
+          "cost_inr": 0.0545,
+          "error": null,
+          "lesson_gap_topic": null,
+          "retrieval_mode": null,
+          "retrieval_fallback": null,
+          "rules_fired": null
+        }
+      },
+      "version": 4
     }
   ],
   "cost_note": "Cumulative ledger includes earlier storyboard versions retained in version_history",
@@ -1307,5 +1798,6 @@
       }
     }
   ],
-  "human_scene_approvals_recorded_on": "2026-11-01"
+  "human_scene_approvals_recorded_on": "2026-11-01",
+  "current_inventory_note": "Current exact-version human reviews and review-date media refreshed after explicit owner approval, without new routing or judge calls. Prior verdict/history entries remain unchanged."
 }

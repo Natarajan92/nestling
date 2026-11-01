@@ -94,26 +94,28 @@ Executed notebooks (saved execution counts, not a live rerun claim):
 
 ## Separate Little Lessons evaluation
 
-The 39-case intent set is **draft, pending human labels**. Routing 100.0%; danger escalation 100.0%; errors 0. Source fidelity 80.0% across 5 saved storyboards; no storyboard means no fidelity score. Evaluation cost ₹1.6711 under the separate ₹20 cap. LangSmith experiment: `nestling-lessons-f15c178e`. These scores never constitute human approval.
+The 39-case intent set is **draft, pending human labels**. The saved routing results remain 39/39 and danger escalation 3/3, with zero errors. Current source fidelity is 6/6 storyboards (100%); evaluation spend is INR1.8918 under the separate INR20 cap. LangSmith experiment: `nestling-lessons-f15c178e`. These scores never constitute human approval.
 
 | Lesson/version | Source fidelity | Human scene review | Render seconds |
 |---|---|---|---|
 | bathing v1 | pass | reviewed | 21.7 |
 | burping v1 | pass | reviewed | 18.4 |
 | cord_care v4 | pass | reviewed | 19.1 |
-| holding v2 | fail | pending human review | 16.9 |
+| holding v3 | pass | reviewed | 20.3 |
 | latching v2 | pass | reviewed | 23.8 |
-| swaddling v— | not judged | no storyboard | not rendered |
+| swaddling v5 | pass | reviewed | 31.6 |
 
-The original latching v1 script substituted chin for lower lip; v2 corrects this and adds sourced setup steps. Cord-care v4 uses the source's general hygiene wording, explicitly says apply nothing, and cites the registered immediate-care signs. Both changes reset the old approvals; the owner subsequently approved every scene of bathing v1, burping v1, latching v2 and cord-care v4 on 2026-11-01. Earlier judge verdicts and old scene reviews remain in the summary history. Chlorhexidine application suggestions were not adopted. The scoped `lessons-judge-v2` prompt clarifies that completeness concerns the named skill, not unrelated advice on the same source page; its hash and the earlier v1 prompt hash are recorded with verdicts. Cord-care v4's cached source-fidelity verdict/metadata were uploaded with verified readback. Holding remains rejected; swaddling has no trusted storyboard.
+The owner approved every scene of bathing v1, burping v1, latching v2 and cord-care v4 on 2026-11-01 after their source corrections; earlier approvals and verdicts remain historical. Holding v3 replaces the rejected breastfeeding-positioning instructions with registered general cradle guidance. Swaddling v5 completes the registered wrapping method and its safety checks. Raw earlier Qwen False verdicts, including swaddling v3/v4, remain preserved; v5 precision corrections passed cross-family fidelity and independent source/visual review. The owner explicitly approved every scene of holding v3 and swaddling v5 on 2026-11-01, completing all six current scene approvals. Their review-date media is verified and all six videos are published through the local approval gate.
 
-Render logs measure the current render operation, not lifetime production cost: bathing reused cached audio at ₹0 incremental cost (the earlier narration bill is unavailable). Burping and latching v2 narration are estimated at ₹5.20 and ₹4.74; cord-care corrections cost an estimated ₹3.12 cumulatively (₹2.28 for v3, ₹0.84 for v4). Provider billing is unavailable. Bathing (21.72 seconds) and latching v2 (23.75 seconds) exceed the 15–20-second target; burping and cord-care v4 fit. None of these results changes the human review gate.
+Holding (`NHS-RWT-HOLDING`) and swaddling (`NSW-SCHN-SWADDLING`) use citation-only local research PDFs, with no Pinecone ingestion or public source-text reproduction. Build retrieval separates these from licensed indexed sources and fails closed without evidence. Narration permits 20 words, captions remain 8 words, and the renderer preserves the entire narration text or fails clearly. Independent re-review and 42 focused tests passed; the fresh full Python suite passed 262 tests. These build-only changes do not alter the measured clinical pipeline or require a new benchmark.
+
+Narration costs are estimates, separate from evaluation spend and the unchanged INR244.0804 quality ledger: holding INR4.92; swaddling INR12.60 cumulatively. Earlier burping/latching narration estimates are INR5.20/INR4.74; cord-care corrections total INR3.12. Bathing reused cached audio and its original narration bill is unavailable. Real render logs supply durations; bathing, holding, latching and swaddling exceed the approximate 15-20-second target because complete instructions are retained. The notebook is re-executed offline from saved results and current local inventory, with no paid calls.
 
 ## Production monitoring and human work
 
 Monitor faithfulness drops >5 percentage points over 7 days; p95 cost >25% over budget in 24 hours; latency above SLA on >5% of runs; any sampled missed escalation; Guardian trip rate >2× baseline; tool failures >5% per hour. These alerts are proposed monitoring thresholds, not an installed alerting system.
 
-Little Lessons use their own draft dataset and report; routing intent does not approve media. Six explicitly authorized NHS bathing/burping chunks were added to the existing source namespace. Other source writes need approval. Holding/swaddling source gaps, pending human scene reviews, judge calibration labels and the Loom remain visible. No push or deployment is implied by this report.
+Little Lessons use their own draft dataset and report; routing intent does not approve media. Six explicitly authorized NHS bathing/burping chunks were added to the existing source namespace. Other source writes need approval. Draft lesson labels, judge calibration, the Loom and interactive browser/device QA remain pending. Optional Tamil Nadu 7/11/21-plate and five-varieties-of-rice practices are now explicitly owner-authorized, independently reviewed and verified through an actual API 200 response. No push or deployment is implied by this report.
 
 ## Six-part Loom outline
 

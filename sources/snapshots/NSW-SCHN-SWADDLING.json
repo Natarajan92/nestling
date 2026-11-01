@@ -1,0 +1,19 @@
+{
+  "source_id": "NSW-SCHN-SWADDLING",
+  "title": "Swaddling newborns",
+  "publisher": "Sydney Children's Hospitals Network (NSW Government)",
+  "url": "https://www.schn.health.nsw.gov.au/kids-health-hub/healthy-sleep-children/newborn-sleep/swaddling-newborns",
+  "source_reviewed_on": "2026-10-07",
+  "copied_on": "2026-11-01",
+  "raw_html_sha256": "a07e1731684fa0b527909e30b59c86452b63cb376a8dee639203be8ad89e74be",
+  "research_pdf_sha256": "56164129f58321b2d058fa4ec6d45d52498974330296b850077103e95c95d901",
+  "file": "NSW-SCHN-SWADDLING.pdf",
+  "pages": 1,
+  "page_sections": {
+    "1": "How to swaddle your baby; Swaddle tips; When to transition out of a swaddle"
+  },
+  "licence": "Crown copyright NSW, all rights reserved. Personal research copies permitted; public major/full extracts and modifications require permission. Original factual lesson prose only.",
+  "licence_url": "https://www.schn.health.nsw.gov.au/copyright",
+  "ingest_allowed": false,
+  "pinecone_chunk_count": 0
+}

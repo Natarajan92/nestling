@@ -386,15 +386,24 @@ CAPTION_BOX = (W, 150)
 
 
 def render_caption(text: str) -> Image.Image:
-    """Transparent strip with the narration text (up to two lines), laid over a card in the video."""
+    """Fit the complete narration in its transparent strip; never truncate instructions."""
     img = Image.new("RGBA", CAPTION_BOX, (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
-    fnt = font("Inter", 38, 500)
-    lines = wrap(draw, text, fnt, W - 200)[:2]
-    y = (CAPTION_BOX[1] - 48 * len(lines)) / 2
+    for size in range(38, 27, -2):
+        fnt = font("Inter", size, 500)
+        lines = wrap(draw, text, fnt, W - 200)
+        spacing = round(size * 48 / 38)
+        y = (CAPTION_BOX[1] - spacing * len(lines)) / 2
+        boxes = [draw.textbbox((W / 2, y + i * spacing), line, font=fnt, anchor="ma")
+                 for i, line in enumerate(lines)]
+        if boxes and all(100 <= x0 < x1 <= W - 100 and 0 <= y0 < y1 <= CAPTION_BOX[1]
+                         for x0, y0, x1, y1 in boxes):
+            break
+    else:
+        raise ValueError("Narration caption cannot fit legibly in the video strip")
     for line in lines:
         draw.text((W / 2, y), line, font=fnt, fill=INK, anchor="ma")
-        y += 48
+        y += spacing
     return img
 
 

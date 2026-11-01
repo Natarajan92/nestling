@@ -2,7 +2,7 @@
 
     uv run python -m nestling.lessons.storyboard <lesson_id>
 
-Passages come from the registered sources (Pinecone reads only). The model writes 4-5 step scenes;
+Passages come from registered sources (licensed Pinecone reads or citation-only local PDFs). The model writes 4-5 step scenes;
 code then checks that every (source_id, page_label) is one of the retrieved passages, that the step's
 evidence quote really appears on that page, that the icon exists, and that there are no doses or
 diagnoses. If the passages do not support the steps, nothing is written (`no_trusted_source`).
@@ -17,7 +17,7 @@ from nestling.lessons import LESSONS, LESSONS_DIR, icon_names
 from nestling.llm import MAIN, chat_json
 
 MAX_CAPTION_WORDS = 8
-MAX_NARRATION_WORDS = 12
+MAX_NARRATION_WORDS = 20
 MAX_SAFETY_WORDS = 12
 NO_TRUSTED_SOURCE = "no_trusted_source"
 
@@ -47,14 +47,15 @@ def schema(icons: list[str]) -> dict:
             "required": ["supported", "scenes"], "additionalProperties": False}
 
 
-SYSTEM = """You write the script for "Little Lessons": a calm ~15-second step-card video that teaches first-time parents in India one newborn-care skill.
+SYSTEM = """You write the script for "Little Lessons": a calm short step-card video that teaches first-time parents in India one newborn-care skill.
 
 Rules:
 - Use ONLY the passages given. Every step must be something the passages say. Do not add steps from general knowledge.
+- Prioritize complete source-supported instructions and safety over approximate video duration. Never omit a necessary action to shorten the narration.
 - If the passages do not clearly give 4 practical steps for this skill, reply {{"supported": false, "scenes": []}}.
 - Otherwise write 4 or 5 scenes in order. For each scene:
   - caption: at most {cap} words, imperative and plain (e.g. "Support the head and neck").
-  - narration_line: ONE short sentence, at most {nar} words, warm and spoken-style, saying the same thing as the caption.
+  - narration_line: ONE clear sentence, at most {nar} words, warm and spoken-style, explaining the caption with its complete sourced instructions.
   - icon: the single icon from the list that best matches the step.
   - source_id and page_label: copied exactly from the [source_id=... | page_label=...] label above the passage the step comes from (page_label is only the page, e.g. 114).
   - evidence: a short phrase (4 to 12 words) copied word for word from that passage.
@@ -114,13 +115,34 @@ def passages_text(hits: list[dict]) -> str:
 
 
 def retrieve(lesson_id: str) -> list[dict]:
-    """Passages for the lesson, de-duplicated across its queries."""
+    """Read approved source paths only; citation-only research never reaches Pinecone."""
     cfg, seen, hits = LESSONS[lesson_id], set(), []
+    registry, indexed = retrieval.load_registry(), []
+
+    def add(chunks):
+        for chunk in chunks:
+            chunk_id = chunk.get("id") or chunk["_id"]
+            if chunk_id not in seen:
+                seen.add(chunk_id)
+                hits.append({**chunk, "id": chunk_id})
+
+    for source_id in cfg["sources"]:
+        source = registry.get(source_id)
+        if not source:
+            continue
+        if source.get("ingest_allowed") is False or source.get("private"):
+            filename = source.get("file")
+            if filename and (retrieval.PDF_DIR / filename).is_file():
+                try:
+                    add(retrieval.load_chunks(source))
+                except OSError:  # the private research file may have been removed
+                    continue
+        else:
+            indexed.append(source_id)
+    if not indexed:
+        return hits
     for query in cfg["queries"]:
-        for h in retrieval.search_reranked(query, source_ids=cfg["sources"], top_k=6, candidates=20, per_source=4):
-            if h["id"] not in seen:
-                seen.add(h["id"])
-                hits.append(h)
+        add(retrieval.search_reranked(query, source_ids=indexed, top_k=6, candidates=20, per_source=4))
     return hits
 
 
@@ -129,6 +151,9 @@ def build(lesson_id: str, hits: list[dict] | None = None, version: int = 1) -> d
     cfg, icons = LESSONS[lesson_id], icon_names()
     hits = retrieve(lesson_id) if hits is None else hits
     usage, problems, scenes = [], [], []
+    if not hits:
+        return {"status": NO_TRUSTED_SOURCE, "storyboard": None,
+                "problems": ["No registered trusted source passages were found; check the local research PDF or licensed source availability."], "usage": []}
     user = f"Lesson: {cfg['title']}\nIcons you may use: {', '.join(icons)}\n\nPassages:{passages_text(hits) or ' (none found)'}"
     system = SYSTEM.format(cap=MAX_CAPTION_WORDS, nar=MAX_NARRATION_WORDS, saf=MAX_SAFETY_WORDS)
     for _ in range(3):  # two retries, with the code's complaints fed back

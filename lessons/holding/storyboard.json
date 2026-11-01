@@ -1,50 +1,56 @@
 {
   "lesson_id": "holding",
   "title": "Holding your newborn",
-  "version": 2,
+  "version": 3,
   "stage": "first_weeks",
   "language": "en",
   "sources": [
-    "MOHFW-IYCF"
+    "NHS-RWT-HOLDING"
   ],
   "see_how": null,
   "scenes": [
     {
       "step_no": 1,
-      "caption": "Keep head and body in a straight line",
-      "narration_line": "Make sure your baby's head and body stay in a straight line.",
-      "icon": "baby",
-      "source_id": "MOHFW-IYCF",
-      "page_label": "87",
-      "safety_points": []
+      "caption": "Support the head, neck and shoulders",
+      "narration_line": "Support their head, neck, and shoulders throughout the hold.",
+      "icon": "hand-heart",
+      "source_id": "NHS-RWT-HOLDING",
+      "page_label": "1",
+      "safety_points": [
+        "Support the head and neck at all times."
+      ]
     },
     {
       "step_no": 2,
-      "caption": "Hold your baby close to you",
-      "narration_line": "Hold your baby's body close to yours.",
-      "icon": "hand-heart",
-      "source_id": "MOHFW-IYCF",
-      "page_label": "87",
-      "safety_points": []
+      "caption": "Support their bottom; lift gently",
+      "narration_line": "Put one hand beneath their head, the other beneath their bottom.",
+      "icon": "hand-palm",
+      "source_id": "NHS-RWT-HOLDING",
+      "page_label": "1",
+      "safety_points": [
+        "Lift slowly and gently."
+      ]
     },
     {
       "step_no": 3,
-      "caption": "Support their bottom, not just head and shoulders",
-      "narration_line": "For a newborn, support their bottom too.",
-      "icon": "hand-palm",
-      "source_id": "MOHFW-IYCF",
-      "page_label": "87",
-      "safety_points": []
+      "caption": "Cradle the head and whole body",
+      "narration_line": "Rest their head in your arm's bend; support their body underneath.",
+      "icon": "baby",
+      "source_id": "NHS-RWT-HOLDING",
+      "page_label": "1",
+      "safety_points": [
+        "Support shoulders, back and bottom with your other arm."
+      ]
     },
     {
       "step_no": 4,
-      "caption": "Hold at the shoulders, not the head",
-      "narration_line": "Hold your baby at the back of their shoulders.",
-      "icon": "shield-check",
-      "source_id": "MOHFW-IYCF",
-      "page_label": "88",
+      "caption": "Hold close; handle gently",
+      "narration_line": "Keep them close, move gently, and never shake your baby.",
+      "icon": "heart",
+      "source_id": "NHS-RWT-HOLDING",
+      "page_label": "1",
       "safety_points": [
-        "Never push your baby's head forward."
+        "Never shake your baby."
       ]
     }
   ]
