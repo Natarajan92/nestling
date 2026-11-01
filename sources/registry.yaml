@@ -5,6 +5,8 @@
 # verified        title, year and ISBN checked against the PDF's own front matter
 # licence         as printed in the document
 # ingest_allowed  retrieval.py may only chunk/embed sources marked true
+# counts_as       golden-set citation IDs this document satisfies (e.g. one WHO guideline
+#                 covers both WHO-POSTNATAL and WHO-NEWBORN)
 #
 # Before freezing red-flag rules, record the page/section each rule comes from.
 
@@ -119,6 +121,188 @@ sources:
     updates: IRDAI
     used_by: [money]
     licence: not stated (regulator circular, publicly published)
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
+
+  - id: WHO-POSTNATAL
+    title: WHO recommendations on maternal and newborn care for a positive postnatal experience
+    publisher: World Health Organization
+    year: 2022
+    isbn: 978-92-4-004598-9
+    url: https://www.who.int/publications/i/item/9789240045989
+    file: WHO-POSTNATAL.pdf
+    pages: 242
+    counts_as: [WHO-NEWBORN]  # covers maternal and newborn postnatal care
+    used_by: [care, guardian]
+    licence: CC BY-NC-SA 3.0 IGO
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
+
+  - id: MOHFW-IYCF
+    title: "Infant and Young Child Feeding: Trainers' Guide (MAA programme)"
+    publisher: Ministry of Health and Family Welfare, Government of India
+    year: 2016  # August 2016
+    url: https://nhm.gov.in/New_Updates_2018/NHM_Components/RMNCHA/CH/Schemes/Maa/TRAINERS'_GUIDE_FINAL_Web.pdf
+    file: MOHFW-IYCF.pdf
+    pages: 260
+    used_by: [care, nourish]
+    licence: not stated (Government of India publication)
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
+
+  - id: MOHFW-MAA
+    title: "MAA (Mothers' Absolute Affection) Programme for Promotion of Breastfeeding: Operational Guidelines"
+    publisher: Ministry of Health and Family Welfare, Government of India
+    year: 2016
+    url: https://nhm.gov.in/MAA/Operational_Guidelines.pdf
+    file: MOHFW-MAA.pdf
+    pages: 36
+    counts_as: [MOHFW-IYCF]
+    used_by: [care]
+    licence: not stated (Government of India publication)
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
+
+  - id: INDIA-UIP
+    title: National Immunization Schedule (Universal Immunization Programme)
+    publisher: Department of Health & Family Welfare, Government of Manipur (state copy of the national schedule)
+    year: 2023
+    url: https://familywelfare.mn.gov.in/uploads/media/2023/12/04/m1701700111.pdf
+    file: INDIA-UIP.pdf
+    pages: 22
+    used_by: [care]
+    licence: not stated (Government publication)
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
+    note: no national MoHFW copy reachable (old mohfw.gov.in paths return 404)
+
+  - id: INDIA-UIP-2026
+    title: "Celebrating the Power of Vaccines (UIP backgrounder: HPV and indigenous Td vaccine launches)"
+    publisher: Press Information Bureau, Government of India
+    year: 2026  # 17 March 2026
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/mar/doc2026320830601.pdf
+    file: INDIA-UIP-2026.pdf
+    pages: 13
+    counts_as: [INDIA-UIP]
+    used_by: [care]
+    licence: not stated (Government publication)
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
+
+  - id: INDIA-UIP-NIS
+    title: National Immunization Schedule (table)
+    publisher: null  # added by owner; the PDF does not name its publisher
+    year: null  # pre-2021: lists PCV only in selected states
+    url: null
+    file: "National_ Immunization_Schedule.pdf"
+    pages: 3
+    counts_as: [INDIA-UIP]
+    used_by: [care]
+    licence: null
+    ingest_allowed: false  # outdated schedule and unknown origin; confirm before use
+    verified: false
+
+  - id: INDIA-PMMVY
+    title: "Pradhan Mantri Matru Vandana Yojana: Empowering mothers, shaping generations (backgrounder)"
+    publisher: Press Information Bureau, Government of India
+    year: 2025  # 24 August 2025
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/aug/doc2025825619601.pdf
+    file: INDIA-PMMVY.pdf
+    pages: 8
+    used_by: [money]
+    licence: not stated (Government publication)
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
+    note: full Mission Shakti guidelines (wcd.nic.in) not reachable; eligibility details must point users to pmmvy.wcd.gov.in
+
+  - id: INDIA-JSSK
+    title: "Janani Shishu Suraksha Karyakaram (JSSK) Dietary Norms: Operational Guidelines for State Programme Managers"
+    publisher: Ministry of Health and Family Welfare (Maternal Health Division), Government of India
+    year: 2018  # September 2018
+    url: https://nhm.gov.in/New_Updates_2018/NHM_Components/RMNCHA/MH/Guidelines/JSSK_Final_English.pdf
+    file: INDIA-JSSK.pdf
+    pages: 54
+    counts_as: [INDIA-NHM-SCHEMES]
+    used_by: [money]
+    licence: not stated (Government of India publication)
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
+    note: dietary-norms guideline; its introduction lists the JSSK free entitlements
+
+  - id: INDIA-JSY
+    title: Operational Guidelines for Implementation of Janani Suraksha Yojana (Odisha)
+    publisher: National Health Mission, Health & Family Welfare Department, Government of Odisha
+    year: null  # not printed in the document; uploaded 2023-08
+    url: https://nhmodisha.gov.in/wp-content/uploads/2023/08/Guideline-for-JSY.pdf
+    file: INDIA-JSY.pdf
+    pages: 28
+    counts_as: [INDIA-NHM-SCHEMES]
+    used_by: [money]
+    licence: not stated (Government publication)
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
+    note: state version; JSY amounts and eligibility vary by state, so answers must say so
+
+  - id: INDIA-PCPNDT
+    title: The Pre-Conception and Pre-Natal Diagnostic Techniques (Prohibition of Sex Selection) Act, 1994 (as amended 2003)
+    publisher: Government of India (copy hosted by Government of Puducherry)
+    year: 1994
+    url: https://www.py.gov.in/sites/default/files/pre-conception-pre-natal-diagnostic-techniquest-act1994.pdf
+    file: INDIA-PCPNDT.pdf
+    pages: 19
+    used_by: [guardian]
+    licence: not stated (Act of Parliament)
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
+
+  - id: INDIA-CRS
+    title: The Registration of Births and Deaths Act, 1969
+    publisher: Office of the Registrar General, India (copy hosted by censusindia.gov.in)
+    year: 1969
+    url: https://censusindia.gov.in/nada/index.php/catalog/42545/download/46171/CRS_BD_ACT.pdf
+    file: INDIA-CRS.pdf
+    pages: 7
+    used_by: [ready]
+    licence: not stated (Act of Parliament)
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
+    note: original 1969 text, without the 2023 amendment (indiacode.nic.in consolidated copy timed out)
+
+  - id: INDIA-LEAVE
+    title: Summary of CCS (Leave) Rules, 1972 (Rules 1 to 65)
+    publisher: MCR HRD Institute of Telangana (training material)
+    year: 2025
+    url: https://mcrhrdi.gov.in/2025/itpepd/week1/ccs%20Leave%20Rules.pdf
+    file: INDIA-LEAVE.pdf
+    pages: 61
+    used_by: [money]
+    licence: not stated (Government training material)
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
+    note: central government rules only (Rule 43-A paternity leave); there is no general statutory paternity leave for private-sector employees
+
+  - id: INDIA-LEAVE-2024
+    title: Central Civil Services (Leave) Amendment Rules, 2024 (Gazette notification, 18 June 2024)
+    publisher: Department of Personnel and Training, Government of India
+    year: 2024
+    url: https://documents.doptcirculars.nic.in/D2/D02est/gazette%20notificationM667L.pdf
+    file: INDIA-LEAVE-2024.pdf
+    pages: 3
+    counts_as: [INDIA-LEAVE]
+    used_by: [money]
+    licence: not stated (Gazette of India)
     ingest_allowed: true
     verified: true
     verified_on: 2026-11-01
