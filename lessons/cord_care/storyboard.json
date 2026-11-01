@@ -1,0 +1,53 @@
+{
+  "lesson_id": "cord_care",
+  "title": "Caring for the umbilical cord",
+  "version": 1,
+  "stage": "first_weeks",
+  "language": "en",
+  "sources": [
+    "WHO-POSTNATAL"
+  ],
+  "see_how": null,
+  "scenes": [
+    {
+      "step_no": 1,
+      "caption": "Keep the cord stump clean and dry",
+      "narration_line": "Keep your baby’s cord stump clean and dry every day.",
+      "icon": "hand",
+      "source_id": "WHO-POSTNATAL",
+      "page_label": "120",
+      "safety_points": []
+    },
+    {
+      "step_no": 2,
+      "caption": "Wash hands before touching the cord",
+      "narration_line": "Always wash your hands well before touching the cord area.",
+      "icon": "hand-soap",
+      "source_id": "WHO-POSTNATAL",
+      "page_label": "120",
+      "safety_points": []
+    },
+    {
+      "step_no": 3,
+      "caption": "Do not apply dung or other harmful substances",
+      "narration_line": "Never put dung, mud, or other harmful things on the cord.",
+      "icon": "shield-check",
+      "source_id": "WHO-POSTNATAL",
+      "page_label": "120",
+      "safety_points": [
+        "Avoid harmful substances like animal dung on the cord."
+      ]
+    },
+    {
+      "step_no": 4,
+      "caption": "Watch for signs of infection",
+      "narration_line": "Watch for redness, pus, or swelling around the cord stump.",
+      "icon": "eye",
+      "source_id": "WHO-POSTNATAL",
+      "page_label": "122",
+      "safety_points": [
+        "Learn to recognize signs of umbilical cord infection."
+      ]
+    }
+  ]
+}
