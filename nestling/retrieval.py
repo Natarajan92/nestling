@@ -183,9 +183,22 @@ def search(query: str, top_k: int = 5, source_ids: list[str] | None = None) -> l
 RERANK_MODEL = "bge-reranker-v2-m3"
 
 
-def sources_for(agent: str) -> list[str]:
-    """Ingested source IDs whose registry `used_by` includes the agent (metadata filter, lever 3)."""
-    return [s["id"] for s in ingestable(load_registry()) if agent in (s.get("used_by") or [])]
+# Lever A (v7): sources that only fit the other life stage. Pregnancy questions skip infant and newborn
+# sources (the v6 Nourish answers for pregnant parents cited the infant-feeding guide instead of ICMR-NIN-DG);
+# postpartum questions skip pregnancy-only scan and supplement sources.
+STAGE_EXCLUDE = {
+    "pregnancy": {"WHO-POSTNATAL", "MOHFW-IYCF", "MOHFW-MAA", "INDIA-UIP", "INDIA-UIP-2026", "INDIA-UIP-NIS"},
+    "postpartum": {"WHO-ANC-ULTRASOUND", "WHO-ANC-ZINC"},
+}
+
+
+def sources_for(agent: str, life_stage: str | None = None) -> list[str]:
+    """Ingested source IDs whose registry `used_by` includes the agent (metadata filter, lever 3).
+    With a `life_stage` ("pregnancy" or "postpartum") sources for the other stage are left out (lever A);
+    if that would leave nothing, the full list is used."""
+    ids = [s["id"] for s in ingestable(load_registry()) if agent in (s.get("used_by") or [])]
+    kept = [i for i in ids if i not in STAGE_EXCLUDE.get(life_stage or "", set())]
+    return kept or ids
 
 
 @traceable(name="retrieval_reranked", run_type="retriever")

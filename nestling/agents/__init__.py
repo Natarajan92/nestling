@@ -55,10 +55,11 @@ def retrieval_query(question: str, context: dict) -> str:
 
 
 def retrieve(question: str, context: dict, agent: str, mode: str) -> list[dict]:
-    """mode 'plain' = baseline dense search; 'reranked' = agent sources + life stage + rerank (lever 3)."""
+    """mode 'plain' = baseline dense search; 'reranked' = agent sources + life stage + rerank (lever 3); 'staged' = reranked, with sources limited to the life stage (lever A)."""
     if mode == "plain":
         return retrieval.search(question, top_k=6)
-    return retrieval.search_reranked(retrieval_query(question, context), source_ids=retrieval.sources_for(agent))
+    stage = context.get("life_stage") if mode == "staged" else None  # "staged" = lever A (v7)
+    return retrieval.search_reranked(retrieval_query(question, context), source_ids=retrieval.sources_for(agent, stage))
 
 
 _ID = r"[A-Za-z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)+"

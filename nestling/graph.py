@@ -35,7 +35,7 @@ from nestling.tracing import cost_inr, trace_metadata
 
 PROJECT = "nestling-ask-improved"
 PROMPT_VERSIONS = {"v1": "improved-v1", "v2": "improved-v1", "v3": "improved-v1", "v4": "improved-v1",
-                   "v5": "improved-v2", "v6": "improved-v3"}  # v2 = guardian code-only unsafe + concierge-v2 + verifier-v2
+                   "v5": "improved-v2", "v6": "improved-v3", "v7": "improved-v4"}  # v2 = guardian code-only unsafe + concierge-v2 + verifier-v2
 PROMPT_VERSION = PROMPT_VERSIONS["v6"]
 VERSIONS = {
     "v1": {"concierge": False, "retrieval": "plain", "verifier": False},
@@ -44,6 +44,7 @@ VERSIONS = {
     "v4": {"concierge": True, "retrieval": "reranked", "verifier": True},
     "v5": {"concierge": True, "retrieval": "reranked", "verifier": True},
     "v6": {"concierge": True, "retrieval": "reranked", "verifier": True, "strict_verifier": True},
+    "v7": {"concierge": True, "retrieval": "staged", "verifier": True, "strict_verifier": True},
 }
 SPECIALISTS = {"care": care, "nourish": nourish, "money": money, "ready": ready, "celebrate": celebrate, "journal": journal}
 VERIFIED = {"care", "nourish", "money"}  # medical, diet and insurance answers
