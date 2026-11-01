@@ -1,7 +1,11 @@
 # Nestling trusted source library (plan §6).
 # Every medical, diet and insurance answer must cite one of these IDs.
-# `verified: false` means nobody has yet checked the title, year and URL against
-# the actual document. Fill gaps from the document itself; never guess.
+#
+# file            local PDF in sources/pdfs/ (gitignored; never committed)
+# verified        title, year and ISBN checked against the PDF's own front matter
+# licence         as printed in the document
+# ingest_allowed  retrieval.py may only chunk/embed sources marked true
+#
 # Before freezing red-flag rules, record the page/section each rule comes from.
 
 sources:
@@ -9,50 +13,124 @@ sources:
     title: WHO recommendations on antenatal care for a positive pregnancy experience
     publisher: World Health Organization
     year: 2016
+    isbn: 978-92-4-154991-2
     url: https://www.who.int/publications/i/item/9789241549912
     pdf: https://apps.who.int/iris/bitstream/10665/250796/1/9789241549912-eng.pdf
+    file: WHO-ANC.pdf
+    pages: 172
     used_by: [care, guardian]
-    verified: false
+    licence: All rights reserved (WHO 2016)
+    ingest_allowed: true  # owner decision 2026-11-01 (publicly downloadable); request WHO Press permission before public launch
+    verified: true
+    verified_on: 2026-11-01
+
+  - id: WHO-ANC-ZINC
+    title: "WHO antenatal care recommendations for a positive pregnancy experience. Nutritional interventions update: zinc supplements during pregnancy"
+    publisher: World Health Organization
+    year: 2021
+    isbn: 978-92-4-003046-6
+    url: null  # add the who.int publication page
+    file: WHO-ANC-Zinc-Supplements-during-pregnancy-updated.pdf
+    pages: 40
+    updates: WHO-ANC  # supersedes the 2016 zinc recommendation
+    used_by: [care, nourish]
+    licence: CC BY-NC-SA 3.0 IGO
+    ingest_allowed: true  # non-commercial use with attribution
+    verified: true
+    verified_on: 2026-11-01
+
+  - id: WHO-ANC-ULTRASOUND
+    title: "WHO antenatal care recommendations for a positive pregnancy experience. Maternal and fetal assessment update: imaging ultrasound before 24 weeks of pregnancy"
+    publisher: World Health Organization
+    year: 2022  # the file name says 2024, but the document is © WHO 2022
+    isbn: 978-92-4-004600-9
+    url: null  # add the who.int publication page
+    file: WHO-ANC-maternal-and_fetal-assessment-update-2024.pdf
+    pages: 43
+    updates: WHO-ANC  # supersedes the 2016 ultrasound recommendation
+    used_by: [care]
+    licence: CC BY-NC-SA 3.0 IGO
+    ingest_allowed: true  # non-commercial use with attribution
+    verified: true
+    verified_on: 2026-11-01
 
   - id: MOHFW-ANC
     title: Guidelines for Antenatal Care and Skilled Attendance at Birth by ANMs/LHVs/SNs
     publisher: Ministry of Health and Family Welfare (Maternal Health Division), Government of India
-    year: 2010
-    url: https://nhmodisha.gov.in/writereaddata/Upload/Guidelines/Guidelines%20for%20ANC%20and%20SAB%20by%20ANMs,LHVs,SNs.pdf  # state NHM copy; prefer an nhm.gov.in copy if found
+    year: 2010  # April 2010 revision
+    url: https://nhm.gov.in/images/pdf/programmes/maternal-health/guidelines/sba_guidelines_for_skilled_attendance_at_birth.pdf
+    file: MOHFW-ANC.pdf
+    pages: 140  # pages 138-139 have no extractable text
     used_by: [care, guardian]
-    verified: false
+    licence: not stated (Government of India publication)
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
 
   - id: ICMR-NIN-DG
-    title: Dietary Guidelines for Indians (pregnancy and lactation sections)
-    publisher: ICMR-National Institute of Nutrition
+    title: Dietary Guidelines for Indians (Revised Edition 2024)
+    publisher: ICMR-National Institute of Nutrition, Hyderabad
     year: 2024
     url: https://www.nin.res.in/dietaryguidelines/
     pdf: https://www.nin.res.in/dietaryguidelines/pdfjs/locale/DGI24thJune2024fin.pdf
+    file: ICMR-NIN-DG.pdf  # ICMR_NIN-DGI-2024.pdf is an identical duplicate
+    pages: 148
     sections: Guideline 2 (pregnancy and lactation), Guideline 3 (breastfeeding)
     used_by: [nourish]
-    verified: false
+    licence: "Personal use with full acknowledgment; no electronic storage or reproduction for creating a product without prior written permission of NIN"
+    ingest_allowed: true  # owner decision 2026-11-01 (publicly downloadable); request NIN written permission (nin@nic.in) before public launch
+    verified: true
+    verified_on: 2026-11-01
 
   - id: FOGSI
-    title: null  # FOGSI patient-facing guidance, where publicly available
+    title: null  # no patient-facing FOGSI guidance found; parked for v1
     publisher: Federation of Obstetric and Gynaecological Societies of India
     year: null
     url: https://www.fogsi.org/
+    file: null
     used_by: [care]
+    licence: null
+    ingest_allowed: false
     verified: false
+    status: parked
 
   - id: IRDAI
-    title: null  # IRDAI consumer guidance on health insurance claims
+    title: Master Circular on Health Insurance Business (IRDAI (Insurance Products) Regulations 2024 - Health Insurance)
     publisher: Insurance Regulatory and Development Authority of India
-    year: null
-    url: https://irdai.gov.in/
+    year: 2024
+    reference: IRDAI/HLT/CIR/PRO/84/5/2024 dated 29.05.2024
+    url: https://irdai.gov.in/document-detail?documentId=4942918
+    file: IRDAI-HEALTH-MC-2024.pdf
+    pages: 17
     used_by: [money]
-    verified: false
+    licence: not stated (regulator circular, publicly published)
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
+    note: no official consumer handbook PDF found on irdai.gov.in; this circular sets policyholder entitlements and claim rules
+
+  - id: IRDAI-ANNEX
+    title: Annexure to Master Circular on Health Insurance Business (29.05.2024)
+    publisher: Insurance Regulatory and Development Authority of India
+    year: 2024
+    url: https://irdai.gov.in/document-detail?documentId=4942918
+    file: IRDAI-HEALTH-MC-2024-ANNEXURE.pdf
+    pages: 46
+    updates: IRDAI
+    used_by: [money]
+    licence: not stated (regulator circular, publicly published)
+    ingest_allowed: true
+    verified: true
+    verified_on: 2026-11-01
 
   - id: USER-POLICY
     title: The user's own uploaded insurance policy
     publisher: user's insurer
     year: null
     url: null  # private, per user; never stored in this repo or in traces
+    file: null  # uploaded at runtime
     used_by: [money]
     private: true
+    licence: user's own document
+    ingest_allowed: true  # per-user only, with consent
     verified: false
