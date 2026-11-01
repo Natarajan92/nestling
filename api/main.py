@@ -96,11 +96,11 @@ class AskIn(BaseModel):
 
 @traceable(name="nestling_app_ask", run_type="chain")
 def _app_ask(message: str, context: dict, can_save: bool) -> dict:
-    out = graph.ask(message, context, version="v5", can_save=can_save)
+    out = graph.ask(message, context, version="v6", can_save=can_save)
     run = get_current_run_tree()
     if run is not None:  # §9.4 metadata; labels and numbers only, no personal data
         run.add_metadata(trace_metadata(
-            pipeline_version="v5", prompt_version=graph.PROMPT_VERSION, model=out["model"],
+            pipeline_version="v6", prompt_version=graph.PROMPT_VERSION, model=out["model"],
             predicted_escalate=out["escalate"], predicted_route=out["route"], refused=out["refused"],
             sources_cited=out["sources_cited"], latency_ms=out["latency_ms"], tokens_in=out["tokens_in"],
             tokens_out=out["tokens_out"], cost_inr=out["cost_inr"], error=out["error"]))

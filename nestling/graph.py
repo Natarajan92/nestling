@@ -9,6 +9,10 @@ measured on the frozen golden set with the same evaluators as the baseline:
     v4  + Verifier
     v5  all levers after round-1 failure analysis (code-only unsafe kinds, Concierge v2,
         source-diversity cap, single-rewrite Verifier); v1-v4 were measured with round-1 code
+    v6  v5 + stricter Verifier (verifier-v3: also checks practical advice and the parent's week;
+        the rewrite only deletes), to win back the v5 faithfulness drop, on Nebius open models
+        (DeepSeek-V4-Pro / V4.1-Flash, nestling/llm.py). v1-v5 results were recorded on Claude
+        (Sonnet 5.5 / Haiku 5.5) and stay as published; the code now runs every version on the open models.
 
     uv run python -m nestling.graph v4 K01   # one case, traced into nestling-ask-improved
     uv run python -m nestling.graph v4 all   # full experiment
@@ -25,20 +29,21 @@ from langgraph.graph import END, START, StateGraph
 from langsmith import get_current_run_tree, traceable
 from langsmith.utils import ContextThreadPoolExecutor
 
-from nestling import baseline, concierge, golden, guardian, retrieval, verifier
+from nestling import baseline, concierge, golden, guardian, llm, retrieval, verifier
 from nestling.agents import care, celebrate, journal, money, nourish, ready
 from nestling.tracing import cost_inr, trace_metadata
 
 PROJECT = "nestling-ask-improved"
 PROMPT_VERSIONS = {"v1": "improved-v1", "v2": "improved-v1", "v3": "improved-v1", "v4": "improved-v1",
-                   "v5": "improved-v2"}  # v2 = guardian code-only unsafe + concierge-v2 + verifier-v2
-PROMPT_VERSION = PROMPT_VERSIONS["v5"]
+                   "v5": "improved-v2", "v6": "improved-v3"}  # v2 = guardian code-only unsafe + concierge-v2 + verifier-v2
+PROMPT_VERSION = PROMPT_VERSIONS["v6"]
 VERSIONS = {
     "v1": {"concierge": False, "retrieval": "plain", "verifier": False},
     "v2": {"concierge": True, "retrieval": "plain", "verifier": False},
     "v3": {"concierge": True, "retrieval": "reranked", "verifier": False},
     "v4": {"concierge": True, "retrieval": "reranked", "verifier": True},
     "v5": {"concierge": True, "retrieval": "reranked", "verifier": True},
+    "v6": {"concierge": True, "retrieval": "reranked", "verifier": True, "strict_verifier": True},
 }
 SPECIALISTS = {"care": care, "nourish": nourish, "money": money, "ready": ready, "celebrate": celebrate, "journal": journal}
 VERIFIED = {"care", "nourish", "money"}  # medical, diet and insurance answers
@@ -154,7 +159,7 @@ def after_specialist(state: AskState) -> str:
 
 def verifier_node(state: AskState) -> dict:
     r = state["result"]
-    v = verifier.verify(r["answer"], r["sources_cited"], r["hits"])
+    v = verifier.verify(r["answer"], r["sources_cited"], r["hits"], strict=state["flags"].get("strict_verifier", False))
     step = {"passed": "Verifier: every claim matches its source",
             "rewritten": f"Verifier: removed {len(v['unsupported'])} unsupported claim(s)",
             "replaced": "Verifier: claims not supported; answered that there is no trusted source"}[v["verdict"]]
@@ -190,7 +195,7 @@ def _total_cost(usage: list[dict]) -> float | None:
 
 
 @traceable(name="nestling_pipeline", run_type="chain")
-def ask(question: str, context: dict | None = None, version: str = "v5", can_save: bool = False) -> dict:
+def ask(question: str, context: dict | None = None, version: str = "v6", can_save: bool = False) -> dict:
     """Answer one message. Never raises: failures come back in `error`, and the Guardian's
     decision (code) is kept even if a later step fails."""
     context = context or {}
@@ -210,7 +215,7 @@ def ask(question: str, context: dict | None = None, version: str = "v5", can_sav
             rules_fired=s["red_flags"], unsafe=s["unsafe"], classifier_flags=s["classifier_flags"], agent=r.get("agent"),
             verification=state.get("verification"), steps=state.get("steps", []), error=r.get("error"),
             passages=[{"source_id": h["source_id"], "page_label": h.get("page_label"), "text": h["chunk_text"]} for h in r.get("hits", [])],
-            model=next((u["model"] for u in reversed(usage) if u["model"].startswith("claude-sonnet")), usage[-1]["model"] if usage else "rules"),
+            model=next((u["model"] for u in reversed(usage) if u["model"] in (llm.MAIN, "claude-sonnet-5-5")), usage[-1]["model"] if usage else "rules"),
             tokens_in=sum(u.get("tokens_in", 0) + u.get("cache_write", 0) + u.get("cache_read", 0) for u in usage),
             tokens_out=sum(u.get("tokens_out", 0) for u in usage), cost_inr=_total_cost(usage),
         )
@@ -265,7 +270,7 @@ def make_target(version: str):
 
 def run_info(version: str) -> dict:
     return {"dataset": golden.LANGSMITH_DATASET, "dataset_version": golden.DATASET_VERSION, "pipeline_version": version,
-            "prompt_version": PROMPT_VERSIONS[version], "model": "claude-sonnet-5-5 + claude-haiku-5-5", "levers": VERSIONS[version]}
+            "prompt_version": PROMPT_VERSIONS[version], "model": f"{llm.MAIN} + {llm.FAST}" if version == "v6" else "claude-sonnet-5-5 + claude-haiku-5-5", "levers": VERSIONS[version]}
 
 
 def run_experiment(version: str, max_concurrency: int = 4):
@@ -282,7 +287,7 @@ def run_experiment(version: str, max_concurrency: int = 4):
     )
 
 
-def run_one(case_id: str, version: str = "v5") -> tuple[dict, uuid.UUID]:
+def run_one(case_id: str, version: str = "v6") -> tuple[dict, uuid.UUID]:
     case = _golden_by_id()[case_id]
     run_id = uuid.uuid4()
     out = make_target(version)(golden.to_example(case)["inputs"], {"case_id": case_id},

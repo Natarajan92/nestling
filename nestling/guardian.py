@@ -1,4 +1,4 @@
-"""Guardian: code-owned red-flag rules plus a Haiku classifier.
+"""Guardian: code-owned red-flag rules plus a FAST-model classifier.
 
 Escalation is decided by the rules in this module, never by the LLM alone (constitution I).
 
@@ -7,7 +7,7 @@ How a message is screened:
    library. Every rule cites the page it comes from (checked against the PDF on 2026-11-01).
 2. Unsafe-request rules: dosing, medicine choice, diagnosis, sex determination, attempts to
    override the rules, covert surveillance.
-3. The Haiku classifier proposes red flags the rules missed, each with a verbatim quote. Code
+3. The FAST-model classifier proposes red flags the rules missed, each with a verbatim quote. Code
    accepts a proposal only if the quote really is in the message AND it contains a keyword of
    that sign's family. The classifier can add a flag; it can never remove one a rule raised.
    (Its unsafe-request labels are logged in the trace but not used: unsafe kinds are code-only.)
@@ -16,14 +16,13 @@ How a message is screened:
    hard-unsafe kinds; medicine questions get a safe redirect instead.
 """
 
-import json
 import re
 from dataclasses import asdict, dataclass, field
-from functools import cache
 
 from langsmith import traceable
 
-HAIKU = "claude-haiku-5-5"
+from nestling.llm import FAST, chat_json
+
 ESCALATION_LINE = "Please contact your doctor or go to the hospital now."
 EMERGENCY_NUMBERS = "In an emergency in India, call 112, or 108 for an ambulance (102 for free transport to a government hospital in pregnancy)."
 CRISIS_LINE = ("You don't have to carry this alone. Please call Tele-MANAS on 14416 (free, 24x7) "
@@ -236,30 +235,11 @@ Unsafe request kinds:
 For each red flag give the exact words from the message that show it, copied character for character. Return empty lists if nothing applies."""
 
 
-@cache
-def _client():
-    import anthropic
-    from langsmith.wrappers import wrap_anthropic
-
-    return wrap_anthropic(anthropic.Anthropic())
-
-
 @traceable(name="guardian_classifier", run_type="chain")
 def classify(text: str) -> dict:
-    """Haiku's proposals: {"red_flags": [{"sign", "quote"}], "unsafe": [...], "usage": {...}}."""
-    response = _client().messages.create(
-        model=HAIKU,
-        max_tokens=1000,
-        system=CLASSIFIER_PROMPT,
-        messages=[{"role": "user", "content": text}],
-        output_config={"effort": "low", "format": {"type": "json_schema", "schema": CLASSIFIER_SCHEMA}},
-    )
-    usage = response.usage
-    out = {"red_flags": [], "unsafe": []}
-    if response.stop_reason not in ("refusal", "max_tokens"):
-        out = json.loads("".join(b.text for b in response.content if b.type == "text"))
-    out["usage"] = {"model": response.model, "tokens_in": usage.input_tokens, "tokens_out": usage.output_tokens}
-    return out
+    """The FAST model's proposals: {"red_flags": [{"sign", "quote"}], "unsafe": [...], "usage": {...}}."""
+    data, usage, _ = chat_json(FAST, CLASSIFIER_PROMPT, text, CLASSIFIER_SCHEMA, max_tokens=1000)
+    return {**(data or {"red_flags": [], "unsafe": []}), "usage": usage}
 
 
 def accept_classifier_flags(text: str, proposals: list[dict]) -> list[str]:

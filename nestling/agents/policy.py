@@ -1,50 +1,80 @@
 """Money, part 2: questions about the parent's own insurance policy, answered with exact clauses.
 
-The uploaded PDF goes to Claude as a document with citations enabled, so every statement
-comes back with the exact quoted text and its page number (constitution II: clause-level
-sources). The PDF is processed in memory and never stored or indexed; the trace hides it.
+The PDF is read in memory (pypdf) and the model gets page-numbered text. It must quote the clauses
+it relies on; code then checks that every quote appears word for word on its page and drops any
+that do not (constitution II: clause-level sources). If no quote survives, no clause was found.
+The PDF is processed in memory and never stored or indexed; the trace hides it.
 """
 
-import base64
+import io
+import re
 
 from langsmith import traceable
+from pypdf import PdfReader
 
-from nestling.agents import SONNET, client, usage_of
+from nestling.llm import MAIN, chat_json
 from nestling.tracing import cost_inr
 
-SYSTEM = """You help a parent in India understand their own health insurance policy for pregnancy, delivery and the newborn.
-Answer only from the policy document. Quote the exact clause for every point and keep the policy's own numbers and waiting periods.
-If the policy does not say, reply: "I couldn't find this in your policy. Please ask your insurer or TPA." Never guess cover.
-Do not give medical advice. Keep it short and kind."""
+NOT_FOUND = "I couldn't find this in your policy. Please ask your insurer or TPA."
+MAX_CHARS = 120_000
+
+SYSTEM = f"""You help a parent in India understand their own health insurance policy for pregnancy, delivery and the newborn.
+Answer only from the policy text, which is given page by page as [Page N]. Keep the policy's own numbers and waiting periods.
+Every point you make must rest on a clause you copy exactly, character for character, from one page, with that page number.
+If the policy does not say, reply: "{NOT_FOUND}" with no quotes. Never guess cover. Do not give medical advice. Keep it short and kind."""
+
+SCHEMA = {
+    "type": "object",
+    "properties": {
+        "answer": {"type": "string"},
+        "quotes": {"type": "array", "items": {
+            "type": "object",
+            "properties": {"text": {"type": "string"}, "page": {"type": "integer"}},
+            "required": ["text", "page"], "additionalProperties": False}},
+    },
+    "required": ["answer", "quotes"],
+    "additionalProperties": False,
+}
 
 
-@traceable(name="policy_ask", run_type="chain")
+def _squash(text: str) -> str:
+    return re.sub(r"\s+", " ", text).strip().lower()
+
+
+def read_pages(pdf: bytes) -> list[str]:
+    """Text of each page, in memory (index 0 = page 1)."""
+    return [(page.extract_text() or "") for page in PdfReader(io.BytesIO(pdf)).pages]
+
+
+def verified_quotes(quotes: list[dict], pages: list[str]) -> list[dict]:
+    """Keep only quotes that appear verbatim (ignoring spacing and case) on the page they name."""
+    squashed = [_squash(p) for p in pages]
+    kept, seen = [], set()
+    for q in quotes:
+        text, page = q.get("text", "").strip(), q.get("page")
+        if text and isinstance(page, int) and 1 <= page <= len(pages) and _squash(text) in squashed[page - 1] \
+                and (text, page) not in seen:
+            seen.add((text, page))
+            kept.append({"text": text, "page_start": page, "page_end": page})
+    return kept
+
+
+@traceable(name="policy_ask", run_type="chain", process_inputs=lambda i: {"question_chars": len(i.get("question", ""))})
 def ask_policy(question: str, pdf: bytes) -> dict:
     """{"answer", "quotes": [{"text", "page_start", "page_end"}], "cost_inr"}"""
-    response = client().beta.messages.create(
-        model=SONNET,
-        max_tokens=4000,
-        system=SYSTEM,
-        messages=[{"role": "user", "content": [
-            {"type": "document", "title": "Your policy", "citations": {"enabled": True},
-             "source": {"type": "base64", "media_type": "application/pdf", "data": base64.standard_b64encode(pdf).decode()}},
-            {"type": "text", "text": question},
-        ]}],
-        output_config={"effort": "low"},
-        betas=["server-side-fallback-2026-07-01"],
-        fallbacks="default",
-    )
-    if response.stop_reason == "refusal":
-        return {"answer": "I couldn't read this policy. Please ask your insurer or TPA.", "quotes": [], "cost_inr": None}
-    parts, quotes = [], []
-    for block in response.content:
-        if block.type != "text":
-            continue
-        parts.append(block.text)
-        for c in getattr(block, "citations", None) or []:
-            if getattr(c, "type", None) == "page_location":
-                quotes.append({"text": c.cited_text.strip(), "page_start": c.start_page_number, "page_end": c.end_page_number - 1})
-    u = usage_of(response)
-    unique = list({(q["text"], q["page_start"]): q for q in quotes}.values())
-    return {"answer": "".join(parts).strip(), "quotes": unique,
-            "cost_inr": cost_inr(u["model"], u["tokens_in"], u["tokens_out"], u["cache_write"], u["cache_read"])}
+    try:
+        pages = read_pages(pdf)
+    except Exception:
+        pages = []
+    text = "\n\n".join(f"[Page {n}]\n{t}" for n, t in enumerate(pages, 1))[:MAX_CHARS]
+    if not text.strip():
+        return {"answer": "I couldn't read text in this policy (it may be a scan). Please ask your insurer or TPA.",
+                "quotes": [], "cost_inr": None}
+    data, u, _ = chat_json(MAIN, SYSTEM, f"Policy:\n{text}\n\nQuestion: {question}", SCHEMA, max_tokens=4000)
+    cost = cost_inr(u["model"], u["tokens_in"], u["tokens_out"])
+    if data is None:
+        return {"answer": "I couldn't read this policy. Please ask your insurer or TPA.", "quotes": [], "cost_inr": cost}
+    quotes = verified_quotes(data["quotes"], pages)
+    if not quotes:
+        return {"answer": NOT_FOUND + " I could not match a clause in the document to your question.", "quotes": [], "cost_inr": cost}
+    return {"answer": data["answer"].strip(), "quotes": quotes, "cost_inr": cost}
