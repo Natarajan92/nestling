@@ -1,0 +1,58 @@
+# Nestling trusted source library (plan §6).
+# Every medical, diet and insurance answer must cite one of these IDs.
+# `verified: false` means nobody has yet checked the title, year and URL against
+# the actual document. Fill gaps from the document itself; never guess.
+# Before freezing red-flag rules, record the page/section each rule comes from.
+
+sources:
+  - id: WHO-ANC
+    title: WHO recommendations on antenatal care for a positive pregnancy experience
+    publisher: World Health Organization
+    year: 2016
+    url: https://www.who.int/publications/i/item/9789241549912
+    pdf: https://apps.who.int/iris/bitstream/10665/250796/1/9789241549912-eng.pdf
+    used_by: [care, guardian]
+    verified: false
+
+  - id: MOHFW-ANC
+    title: Guidelines for Antenatal Care and Skilled Attendance at Birth by ANMs/LHVs/SNs
+    publisher: Ministry of Health and Family Welfare (Maternal Health Division), Government of India
+    year: 2010
+    url: https://nhmodisha.gov.in/writereaddata/Upload/Guidelines/Guidelines%20for%20ANC%20and%20SAB%20by%20ANMs,LHVs,SNs.pdf  # state NHM copy; prefer an nhm.gov.in copy if found
+    used_by: [care, guardian]
+    verified: false
+
+  - id: ICMR-NIN-DG
+    title: Dietary Guidelines for Indians (pregnancy and lactation sections)
+    publisher: ICMR-National Institute of Nutrition
+    year: 2024
+    url: https://www.nin.res.in/dietaryguidelines/
+    pdf: https://www.nin.res.in/dietaryguidelines/pdfjs/locale/DGI24thJune2024fin.pdf
+    sections: Guideline 2 (pregnancy and lactation), Guideline 3 (breastfeeding)
+    used_by: [nourish]
+    verified: false
+
+  - id: FOGSI
+    title: null  # FOGSI patient-facing guidance, where publicly available
+    publisher: Federation of Obstetric and Gynaecological Societies of India
+    year: null
+    url: https://www.fogsi.org/
+    used_by: [care]
+    verified: false
+
+  - id: IRDAI
+    title: null  # IRDAI consumer guidance on health insurance claims
+    publisher: Insurance Regulatory and Development Authority of India
+    year: null
+    url: https://irdai.gov.in/
+    used_by: [money]
+    verified: false
+
+  - id: USER-POLICY
+    title: The user's own uploaded insurance policy
+    publisher: user's insurer
+    year: null
+    url: null  # private, per user; never stored in this repo or in traces
+    used_by: [money]
+    private: true
+    verified: false
