@@ -1,17 +1,18 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useAskSheet } from "./AskSheet";
 
 const ITEMS = [
   { href: "/", label: "Today", icon: "🌤️" },
   { href: "/journeys", label: "Journeys", icon: "🧭" },
   { href: "/lessons", label: "Lessons", icon: "🎬" },
   { href: "/memory", label: "Memory", icon: "📔" },
-  { href: "/ask", label: "Ask", icon: "💬" },
 ];
 
 export default function BottomNav() {
   const path = usePathname();
+  const { open, setOpen } = useAskSheet();
   if (path.startsWith("/welcome")) return null;
   return (
     <nav
@@ -39,6 +40,20 @@ export default function BottomNav() {
             </li>
           );
         })}
+        <li className="flex-1">
+          <button
+            type="button"
+            aria-haspopup="dialog"
+            aria-expanded={open}
+            onClick={() => setOpen(true)}
+            className="flex w-full flex-col items-center gap-0.5 py-2.5 text-xs text-ink-soft"
+          >
+            <span aria-hidden className={`rounded-full px-3 py-0.5 text-lg ${open ? "bg-peach/40" : ""}`}>
+              💬
+            </span>
+            Ask
+          </button>
+        </li>
       </ul>
     </nav>
   );

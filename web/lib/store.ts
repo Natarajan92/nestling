@@ -3,8 +3,14 @@
 import { useCallback, useMemo, useSyncExternalStore } from "react";
 import { deleteVoice, type ProfileBody } from "./api";
 
+// Every browser storage key MUST start with PREFIX: "Delete everything" clears by this prefix.
 const PREFIX = "nestling:";
-const KEYS = { profile: `${PREFIX}profile`, ticks: `${PREFIX}ticks`, voice: `${PREFIX}voice_id` } as const;
+const KEYS = {
+  profile: `${PREFIX}profile`,
+  ticks: `${PREFIX}ticks`,
+  voice: `${PREFIX}voice_id`,
+  journal: `${PREFIX}journal`,
+} as const;
 const SSR = "\u0000ssr"; // server snapshot sentinel: "not read yet"
 
 export type Consent = { store_profile: boolean; save_journal: boolean; voice: boolean };
@@ -71,6 +77,15 @@ export function useTicks() {
     write(KEYS.ticks, JSON.stringify([...next]));
   }, []);
   return { ticks, toggle };
+}
+
+export type JournalEntry = { id: string; saved_at: string; text: string };
+
+/** Journal entries offered by Ask (`save` = true); kept only in this browser. */
+export function addJournalEntry(text: string) {
+  const all = parse<JournalEntry[]>(read(KEYS.journal), []);
+  all.push({ id: String(Date.now()), saved_at: new Date().toISOString(), text });
+  write(KEYS.journal, JSON.stringify(all));
 }
 
 export const getVoiceId = () => read(KEYS.voice) || null;
