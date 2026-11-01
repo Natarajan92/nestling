@@ -118,7 +118,7 @@ sources:
     url: https://irdai.gov.in/document-detail?documentId=4942918
     file: IRDAI-HEALTH-MC-2024-ANNEXURE.pdf
     pages: 46
-    updates: IRDAI
+    counts_as: [IRDAI]  # part of the same master circular
     used_by: [money]
     licence: not stated (regulator circular, publicly published)
     ingest_allowed: true
