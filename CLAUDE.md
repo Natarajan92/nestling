@@ -1,0 +1,11 @@
+# Nestling: rules for Claude Code
+- Read docs/NESTLING_PLAN.md first. The constitution (§2) overrides everything.
+- Python 3.12 + uv. Notebooks import from the `nestling/` package; logic lives in .py, not in notebook cells.
+- Models (no Anthropic API at runtime): Nebius open models through nestling/llm.py. MAIN deepseek-ai/DeepSeek-V4-Pro (specialists, verifier, policy Q&A), FAST deepseek-ai/DeepSeek-V4.1-Flash (guardian classifier, concierge, Capture extraction). Judge: Qwen3-235B on Nebius. Claude stays only in baseline.py (Phase 2 record).
+- Red-flag escalation is decided in code (nestling/guardian.py). Never let an LLM decide it alone.
+- Every medical/diet/insurance answer must cite a source ID from sources/registry.yaml, or say it has no trusted source.
+- Never output medicine doses or diagnoses.
+- Every LangSmith trace carries the metadata in §9.4. No personal data in traces.
+- The sole active Ask golden set is evals/golden_v3.csv, FROZEN on2026-11-02:62 owner-selected/reviewed cases, hash-locked in nestling/golden.py, LangSmith nestling-golden-v3. Never edit it; new cases go in a new version. Old Ask CSVs were deleted by explicit owner request; saved v2 results are historical. Paid v3 runs use evals/v3_run.py with the separately approved INR350 shared cap; never reuse old ledgers/checkpoints.
+- Keep it light: no new frameworks, docs or abstractions unless a phase needs them.
+- Never commit keys. Use .env (gitignored) and .env.example.
