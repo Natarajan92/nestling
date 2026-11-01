@@ -11,7 +11,7 @@ Detailed task log (local, gitignored): `.superpowers/sdd/plan/progress.md` (ever
 | 1 | Phase 3 comparison, notebooks 02–06, failure analysis | ✅ done, reviewed | c03cc0d |
 | 2 | All runtime LLM calls moved to Nebius open models; v6 + code-enforced citations; v6 run + judge | ✅ done, reviewed | 5341e97, 55bdaea, 5bde3b7 |
 | 3 | Week 4 report (`docs/week4_report.md`) + README | ⏳ not started (waits for Task 13's v7 result) | — |
-| 4 | Little Lessons build pipeline (step-card videos) | 🟡 built; fix round 1 committed — **scoped re-review still to run** (see §3) | 99762fc, 97576aa, 38a623f, 7eb40cc |
+| 4 | Little Lessons build pipeline (step-card videos) | ✅ built; fix round 1 scoped re-review passed (two nonblocking visual follow-ups; human lesson approval still pending) | 99762fc, 97576aa, 38a623f, 7eb40cc |
 | 5 | Little Lessons runtime (lessons route, library match, API, Pinecone `lessons` upsert) | ⏳ not started (waits for Task 13; touches graph.py/concierge) | — |
 | 6 | Little Lessons eval (`lessons_golden_v1`, §9.9) + notebook 08 | ⏳ not started (after 5) | — |
 | 7 | Web foundation: tokens, shell, Welcome, Today, Settings/Delete everything | ✅ done, reviewed | 392b2fc |
@@ -23,7 +23,7 @@ Detailed task log (local, gitignored): `.superpowers/sdd/plan/progress.md` (ever
 | 13 | v7 quality round (life-stage source routing + model bake-off) | 🟡 code + bake-off done; **blocked** (see §2) | 1fd1dad |
 | — | Final whole-branch review (most capable model), one fix wave | ⏳ after all tasks | — |
 
-Tests: `uv run pytest` (91+ passing at 1fd1dad; Task 4 adds 30). Web: `cd web && npm run lint && npm run build`.
+Tests: 122 passing (31 lesson tests), verified at 2191526. In the Windows sandbox, use a fresh `--basetemp`, `-p no:cacheprovider` and a writable `uv --cache-dir` with `run --no-sync pytest` to avoid permissions on existing caches. Web: `cd web && npm run lint && npm run build`.
 
 ## 2. Evaluation results so far (frozen set `golden_v2_india`, 104 cases)
 
@@ -48,7 +48,7 @@ GLM-5.3 needs a large `max_tokens` (empty output at 300, fine at 3000). Model ov
 
 ## 3. In flight when the session ended
 
-- **Task 4 fix round 1 landed** (97576aa, 38a623f, 7eb40cc; 31/31 lesson tests, 122 total): storyboard content changes now bump the version and reset review.yaml (approval kept only for byte-identical content); the "stop"-like `hand` icon is removed (cord_care step 1 → sun, holding step 4 → shield-check), title icons no longer repeat a step icon; holding and cord_care are now version 2, reviews reset, and holding, cord_care and latching were re-rendered. Still to do: a scoped re-review of 99762fc..7eb40cc against the two findings.
+- **Task 4 fix round 1 reviewed** (97576aa, 38a623f, 7eb40cc; scoped range 99762fc..7eb40cc): no blocking findings. Changed storyboards bump the persisted version and clear the review; identical content preserves the review. Holding and cord_care boards/reviews consistently use version 2 and remain unapproved. The rendered holding, cord_care and latching cards were visually checked: cord_care step 1 uses sun, holding step 4 uses shield-check, and the current title icons differ from the steps. Two nonblocking visual follow-ups are recorded in §7. Fresh full suite: 122 passed; no paid calls or lesson approvals.
 - Task 8 was reviewed and approved; normal answers and a real lesson payload were not seen live (rerank quota, Task 5 not built) — check both once those are unblocked.
 
 ## 4. Blockers and decisions waiting for the owner
@@ -94,15 +94,15 @@ GLM-5.3 needs a large `max_tokens` (empty output at 300, fine at 3000). Model ov
 - Web (Task 7): `deleteVoice` treats 404 as failure; "Change my answers" restarts Welcome blank; checklist failure shows "0 of 0"; WeekRing ignores reduced motion; fetch has no timeout.
 - Web (Task 8): step strip shows the icon name as text (render the vendored Phosphor SVGs instead); with a lesson present, answer chips fall back to nothing if `lesson.sources` is empty (fall back to `res.sources`); Ask sheet has no focus trap/restore or scroll lock; lesson detail prints raw ISO `reviewed_on`; `reviewedOn` exported from a page file; layout indentation.
 - Lessons: narration text isn't checked against the cited page (only the evidence quote is); videos run 17–20 s; hygiene steps without safety points show no Safety pill.
+- Lessons (scoped re-review): `cards.py:341` falls back to `sparkle` if a valid five-scene board uses all five title candidates, repeating a step icon (current lessons do not trigger this); choose an additional unused vendored icon. Holding step 3 still uses the pre-existing `hand-palm` icon, which also resembles "stop"; revisit during visual/human review.
 
 ## 8. Next steps (in order)
 
-1. Scoped re-review of the Task 4 fix (99762fc..7eb40cc).
-2. Owner decisions in §4 (rerank quota, v7 budget, gap sources).
-3. Task 13: full v7 run + judge → app version decision → notebook 06.
-4. Task 5 → Task 6 (lessons runtime and eval; run `index_phrasings` dry run, then the approved upsert).
-5. Task 3 (Week 4 report from `evals/compare.py` numbers).
-6. Tasks 9, 10, 11, 12 (web journeys, Capture, Memory book, deploy readiness).
-7. Final whole-branch review, one fix wave, then push/PR with the owner's approval.
+1. Owner decisions in §4 (rerank quota, v7 budget, gap sources).
+2. Task 13: full v7 run + judge → app version decision → notebook 06.
+3. Task 5 → Task 6 (lessons runtime and eval; run `index_phrasings` dry run, then the approved upsert).
+4. Task 3 (Week 4 report from `evals/compare.py` numbers).
+5. Tasks 9, 10, 11, 12 (web journeys, Capture, Memory book, deploy readiness).
+6. Final whole-branch review, one fix wave, then push/PR with the owner's approval.
 
 Each task: implement → review against its brief in `specs/003-complete-app/plan.md` and the Global Constraints there → fix → re-review. Commit as the configured git user, no AI attribution, never push without approval.
