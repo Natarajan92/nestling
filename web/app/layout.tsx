@@ -21,11 +21,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className={`${fraunces.variable} ${inter.variable} antialiased`}>
       <body className="min-h-dvh">
         <AskSheetProvider>
-        <div className="mx-auto flex min-h-dvh max-w-md flex-col px-5 pb-28 pt-8">
-          <main className="flex-1">{children}</main>
-          <footer className="mt-10 text-center text-xs leading-relaxed text-ink-soft">{DISCLAIMER}</footer>
-        </div>
-        <Suspense fallback={null}>
+          <div className="mx-auto flex min-h-dvh max-w-md flex-col px-5 pb-28 pt-8">
+            <main className="flex-1">{children}</main>
+            <footer className="mt-10 text-center text-xs leading-relaxed text-ink-soft">{DISCLAIMER}</footer>
+          </div>
+          <Suspense fallback={null}>
             <BottomNav />
           </Suspense>
         </AskSheetProvider>

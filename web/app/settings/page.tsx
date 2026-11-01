@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Card from "@/components/Card";
 import { deleteEverything, useProfile } from "@/lib/store";
+import { dateLabel } from "@/lib/format";
 
 export default function SettingsPage() {
   const router = useRouter();
@@ -34,7 +35,7 @@ export default function SettingsPage() {
           </p>
           <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
             <dt className="text-ink-soft">{profile.birth_date ? "Born" : "Due"}</dt>
-            <dd>{profile.birth_date ?? profile.due_date}</dd>
+            <dd>{dateLabel(profile.birth_date ?? profile.due_date)}</dd>
             <dt className="text-ink-soft">Tradition</dt><dd>{profile.tradition}</dd>
             <dt className="text-ink-soft">Food</dt><dd>{profile.diet}</dd>
             <dt className="text-ink-soft">City</dt><dd>{profile.city}</dd>
