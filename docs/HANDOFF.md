@@ -11,7 +11,7 @@ Detailed task log (local, gitignored): `.superpowers/sdd/plan/progress.md` (ever
 | 1 | Phase 3 comparison, notebooks 02–06, failure analysis | ✅ done, reviewed | c03cc0d |
 | 2 | All runtime LLM calls moved to Nebius open models; v6 + code-enforced citations; v6 run + judge | ✅ done, reviewed | 5341e97, 55bdaea, 5bde3b7 |
 | 3 | Week 4 report (`docs/week4_report.md`) + README | ⏳ not started (waits for Task 13's v7 result) | — |
-| 4 | Little Lessons build pipeline (step-card videos) | 🟡 built; **fix round 1 in progress** (see §3) | 99762fc (+ fix commit if it landed) |
+| 4 | Little Lessons build pipeline (step-card videos) | 🟡 built; fix round 1 committed — **scoped re-review still to run** (see §3) | 99762fc, 97576aa, 38a623f, 7eb40cc |
 | 5 | Little Lessons runtime (lessons route, library match, API, Pinecone `lessons` upsert) | ⏳ not started (waits for Task 13; touches graph.py/concierge) | — |
 | 6 | Little Lessons eval (`lessons_golden_v1`, §9.9) + notebook 08 | ⏳ not started (after 5) | — |
 | 7 | Web foundation: tokens, shell, Welcome, Today, Settings/Delete everything | ✅ done, reviewed | 392b2fc |
@@ -48,7 +48,7 @@ GLM-5.3 needs a large `max_tokens` (empty output at 300, fine at 3000). Model ov
 
 ## 3. In flight when the session ended
 
-- **Task 4 fix round 1** (nestling/lessons): (1) IMPORTANT — `storyboard.write` must reset `review.yaml` approval (parse YAML, bump version) whenever storyboard content changes, never carry approval to unreviewed content; replace `test_write_keeps_an_approved_review`. (2) Swap the `hand` icon (reads as "stop") on cord_care step 1 and holding step 4; re-render those lessons. Check `git log` / `git status` for whether these landed; finish what's missing, then a scoped re-review.
+- **Task 4 fix round 1 landed** (97576aa, 38a623f, 7eb40cc; 31/31 lesson tests, 122 total): storyboard content changes now bump the version and reset review.yaml (approval kept only for byte-identical content); the "stop"-like `hand` icon is removed (cord_care step 1 → sun, holding step 4 → shield-check), title icons no longer repeat a step icon; holding and cord_care are now version 2, reviews reset, and holding, cord_care and latching were re-rendered. Still to do: a scoped re-review of 99762fc..7eb40cc against the two findings.
 - Task 8 was reviewed and approved; normal answers and a real lesson payload were not seen live (rerank quota, Task 5 not built) — check both once those are unblocked.
 
 ## 4. Blockers and decisions waiting for the owner
@@ -97,7 +97,7 @@ GLM-5.3 needs a large `max_tokens` (empty output at 300, fine at 3000). Model ov
 
 ## 8. Next steps (in order)
 
-1. Check Task 4's fix commit; finish it if partial; scoped re-review.
+1. Scoped re-review of the Task 4 fix (99762fc..7eb40cc).
 2. Owner decisions in §4 (rerank quota, v7 budget, gap sources).
 3. Task 13: full v7 run + judge → app version decision → notebook 06.
 4. Task 5 → Task 6 (lessons runtime and eval; run `index_phrasings` dry run, then the approved upsert).
