@@ -11,25 +11,29 @@ with inputs and outputs hidden, so only the §9.4 metadata (route, rules, source
 
 import os
 
-os.environ.setdefault("LANGSMITH_HIDE_INPUTS", "true")  # before langsmith is imported anywhere
-os.environ.setdefault("LANGSMITH_HIDE_OUTPUTS", "true")
+os.environ["LANGSMITH_HIDE_INPUTS"] = "true"  # app privacy applies even when the shell says false
+os.environ["LANGSMITH_HIDE_OUTPUTS"] = "true"
 
 from dotenv import find_dotenv, load_dotenv  # noqa: E402
 
 load_dotenv(find_dotenv(usecwd=True))
 
 from datetime import date  # noqa: E402
+from typing import Literal  # noqa: E402
 
-from fastapi import FastAPI, File, Form, HTTPException, UploadFile  # noqa: E402
+from fastapi import FastAPI, HTTPException, Request  # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
-from fastapi.responses import Response  # noqa: E402
+from fastapi.responses import FileResponse, Response  # noqa: E402
 from langsmith import get_current_run_tree, traceable  # noqa: E402
 from pydantic import BaseModel  # noqa: E402
+from starlette.concurrency import run_in_threadpool  # noqa: E402
 
+from api.uploads import AUDIO_TYPES, MAX_AUDIO_BYTES, MAX_POLICY_BYTES, memory_form, read_file  # noqa: E402
 from nestling import graph, profile  # noqa: E402
 from nestling.agents import celebrate as celebrate_agent  # noqa: E402
 from nestling.agents import ready as ready_agent  # noqa: E402
 from nestling.capture import estimate as capture_estimate  # noqa: E402
+from nestling.lessons import LESSONS, library  # noqa: E402
 from nestling.retrieval import load_registry  # noqa: E402
 from nestling.schemas.studio_package import StudioPackage  # noqa: E402
 from nestling.tracing import trace_metadata  # noqa: E402
@@ -39,7 +43,7 @@ DISCLAIMER = ("Nestling offers general information from trusted sources and is n
               "In an emergency, contact your doctor or the nearest hospital.")
 
 app = FastAPI(title="Nestling API", version="0.1.0")
-app.add_middleware(CORSMiddleware, allow_origins=os.getenv("NESTLING_WEB_ORIGINS", "http://localhost:3000").split(","),
+app.add_middleware(CORSMiddleware, allow_origins=[s.strip() for s in os.getenv("NESTLING_WEB_ORIGINS", "http://localhost:3000").split(",") if s.strip()],
                    allow_methods=["*"], allow_headers=["*"])
 
 
@@ -96,14 +100,17 @@ class AskIn(BaseModel):
 
 @traceable(name="nestling_app_ask", run_type="chain")
 def _app_ask(message: str, context: dict, can_save: bool) -> dict:
-    out = graph.ask(message, context, version="v6", can_save=can_save)
+    out = graph.ask(message, context, version=graph.APP_VERSION, can_save=can_save)
     run = get_current_run_tree()
     if run is not None:  # §9.4 metadata; labels and numbers only, no personal data
         run.add_metadata(trace_metadata(
-            pipeline_version="v6", prompt_version=graph.PROMPT_VERSION, model=out["model"],
+            pipeline_version=graph.APP_VERSION, prompt_version=graph.PROMPT_VERSIONS[graph.APP_VERSION], model=out["model"],
             predicted_escalate=out["escalate"], predicted_route=out["route"], refused=out["refused"],
             sources_cited=out["sources_cited"], latency_ms=out["latency_ms"], tokens_in=out["tokens_in"],
-            tokens_out=out["tokens_out"], cost_inr=out["cost_inr"], error=out["error"]))
+            tokens_out=out["tokens_out"], cost_inr=out["cost_inr"], error="pipeline_error" if out["error"] else None,
+            lesson_gap_topic=out.get("lesson_gap_topic") if out.get("lesson_gap_topic") in {*LESSONS, "newborn_care"} else None,
+            retrieval_mode=out.get("retrieval_mode"),
+            retrieval_fallback="vector_order" if out.get("retrieval_fallback") == "vector_order" else None))
     return out
 
 
@@ -128,7 +135,35 @@ def ask(body: AskIn) -> dict:
         "guardian": {"level": level, "rules_fired": out["rules_fired"], "unsafe": out["unsafe"]},
         "sources": chips, "how_i_answered": out["steps"], "verification": out["verification"],
         "save": bool(out.get("agent") == "journal" and body.can_save), "error": bool(out["error"]),
+        "lesson": out.get("lesson"),
+        "retrieval_fallback": out.get("retrieval_fallback"),
     }
+
+
+@app.get("/api/lessons")
+def lessons(stage: Literal["before_birth", "first_weeks"] | None = None) -> list[dict]:
+    """The reviewed library only; absent rendered content stays absent."""
+    return [item for lesson in library.approved() if (item := library.payload(lesson["lesson_id"]))
+            and (stage is None or item["stage"] == stage)]
+
+
+@app.get("/api/lessons/{lesson_id}")
+def lesson_detail(lesson_id: str) -> dict:
+    item = library.payload(lesson_id)
+    if item is None:
+        raise HTTPException(404, "Lesson unavailable")
+    return item
+
+
+@app.get("/media/lessons/{lesson_id}/{filename}")
+def lesson_media(lesson_id: str, filename: str) -> FileResponse:
+    if filename not in {"lesson.mp4", "thumbnail.jpg"} or library.payload(lesson_id) is None:
+        raise HTTPException(404, "Lesson unavailable")
+    path = library.get(lesson_id)["folder"] / "renders" / filename
+    if not path.is_file():
+        raise HTTPException(404, "Media unavailable")
+    return FileResponse(path, media_type="video/mp4" if filename == "lesson.mp4" else "image/jpeg",
+                        headers={"Cache-Control": "no-store"})
 
 
 @app.get("/api/checklist")
@@ -179,16 +214,16 @@ def invitation(body: InvitationIn) -> dict:
 # --- Money: questions about the parent's own policy (exact clauses, Phase 10) ---------------
 
 @app.post("/api/policy/ask")
-async def policy_ask(question: str = Form(...), file: UploadFile = File(...)) -> dict:
+async def policy_ask(request: Request) -> dict:
     """Answer from the uploaded policy PDF with exact quotes and page numbers. Not stored."""
     from nestling.agents import policy
 
-    if file.content_type not in ("application/pdf", "application/octet-stream"):
-        raise HTTPException(400, "Please upload the policy as a PDF")
-    pdf = await file.read()
-    if len(pdf) > 20 * 1024 * 1024:
-        raise HTTPException(413, "PDF too large (20 MB max)")
-    return policy.ask_policy(question[:1000], pdf, langsmith_extra={"project_name": APP_PROJECT})
+    async with memory_form(request, MAX_POLICY_BYTES) as form:
+        question = form.get("question")
+        if not isinstance(question, str) or not question.strip():
+            raise HTTPException(422, "Question is required")
+        pdf, _ = await read_file(form, "file", MAX_POLICY_BYTES, {"application/pdf", "application/octet-stream"})
+        return await run_in_threadpool(policy.ask_policy, question[:1000], pdf, langsmith_extra={"project_name": APP_PROJECT})
 
 
 # --- Voice: letters to baby read aloud (Phase 9) --------------------------------------------
@@ -207,13 +242,33 @@ def speak(body: SpeakIn) -> Response:
 
 
 @app.post("/api/voice/clone")
-async def clone(consent: bool = Form(...), name: str = Form("My voice"), sample: UploadFile = File(...)) -> dict:
+async def clone(request: Request) -> dict:
     """Create the parent's own voice from their sample. Own voice only, explicit consent."""
     from nestling import voice
 
-    if not consent:
-        raise HTTPException(400, "Voice cloning needs your explicit consent")
-    return {"voice_id": voice.clone(name[:60], await sample.read(), sample.filename or "sample.mp3")}
+    async with memory_form(request, MAX_AUDIO_BYTES) as form:
+        if form.get("consent") != "true":
+            raise HTTPException(400, "Voice cloning needs your explicit consent")
+        name = form.get("name", "My voice")
+        if not isinstance(name, str):
+            raise HTTPException(422, "Invalid voice name")
+        sample, mime = await read_file(form, "sample", MAX_AUDIO_BYTES, AUDIO_TYPES)
+        extension = {"audio/webm": "webm", "audio/ogg": "ogg", "audio/mp4": "mp4", "audio/mpeg": "mp3", "audio/wav": "wav", "audio/x-wav": "wav"}[mime]
+        return {"voice_id": await run_in_threadpool(voice.clone, name[:60], sample, f"sample.{extension}")}
+
+
+@app.post("/api/voice/transcribe")
+async def transcribe(request: Request) -> dict:
+    """A journal recording in memory; transcript persistence belongs to the browser."""
+    from nestling import voice
+
+    async with memory_form(request, MAX_AUDIO_BYTES) as form:
+        audio, mime = await read_file(form, "file", MAX_AUDIO_BYTES, AUDIO_TYPES)
+        try:
+            text = await run_in_threadpool(voice.transcribe, audio, mime)
+        except Exception:
+            raise HTTPException(502, "Transcription unavailable. Please try again.") from None
+    return {"text": text}
 
 
 @app.delete("/api/voice/{voice_id}")

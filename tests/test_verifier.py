@@ -12,7 +12,7 @@ def test_prompts_strict_extends_plain():
 
 
 def test_v6_is_v5_plus_strict_verifier_and_v5_unchanged():
-    assert graph.VERSIONS["v5"] == {"concierge": True, "retrieval": "reranked", "verifier": True}
+    assert graph.VERSIONS["v5"] == {"concierge": True, "retrieval": "reranked", "verifier": True, "lessons": False}
     assert graph.VERSIONS["v6"] == {**graph.VERSIONS["v5"], "strict_verifier": True}
     assert graph.PROMPT_VERSIONS["v6"] != graph.PROMPT_VERSIONS["v5"]
 

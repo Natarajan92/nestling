@@ -13,13 +13,15 @@ Hybrid search and rerank come in the improved run (plan §9.5, lever 3).
 
 import os
 import sys
+from contextlib import contextmanager
+from contextvars import ContextVar
 from functools import cache
 from pathlib import Path
 
 import yaml
 from langsmith import traceable
 from llama_index.core.node_parser import SentenceSplitter
-from pinecone import Pinecone, SchemaBuilder
+from pinecone import Pinecone, PineconeConnectionError, SchemaBuilder
 from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -33,6 +35,35 @@ CHUNK_TOKENS = 512
 CHUNK_OVERLAP = 64
 UPSERT_BATCH = 96  # Pinecone's cap per request when the index embeds the text
 CITATION_FIELDS = ["chunk_text", "source_id", "title", "year", "url", "page", "page_label", "section"]
+_APP_RERANK_FALLBACK: ContextVar[bool] = ContextVar("nestling_app_rerank_fallback", default=False)
+
+
+@contextmanager
+def app_rerank_fallback(enabled: bool = True):
+    """Scope degraded retrieval to one app invocation, never concurrent evaluations."""
+    token = _APP_RERANK_FALLBACK.set(enabled)
+    try:
+        yield
+    finally:
+        _APP_RERANK_FALLBACK.reset(token)
+
+
+def _diverse(hits: list[dict], top_k: int, per_source: int) -> list[dict]:
+    picked, per = [], {}
+    for hit in hits:
+        if per.get(hit["source_id"], 0) < per_source:
+            per[hit["source_id"]] = per.get(hit["source_id"], 0) + 1
+            picked.append(hit)
+        if len(picked) == top_k:
+            break
+    return picked
+
+
+@traceable(name="retrieval_vector", run_type="retriever")
+def search_vector(query: str, source_ids: list[str] | None = None, top_k: int = 6, candidates: int = 16,
+                  per_source: int = 3) -> list[dict]:
+    """Explicit vector evaluation variant: preserve filters and source diversity, no rerank call."""
+    return _diverse(search(query, top_k=candidates, source_ids=source_ids), top_k, per_source)
 
 
 def load_registry() -> dict[str, dict]:
@@ -211,10 +242,17 @@ def search_reranked(query: str, source_ids: list[str] | None = None, top_k: int 
     if len(hits) <= top_k:
         return hits
     pc = _search_index()[0]
-    ranked = pc.inference.rerank(
-        model=RERANK_MODEL, query=query, documents=[h["chunk_text"] for h in hits],
-        top_n=len(hits), return_documents=False, parameters={"truncate": "END"},
-    )
+    try:
+        ranked = pc.inference.rerank(
+            model=RERANK_MODEL, query=query, documents=[h["chunk_text"] for h in hits],
+            top_n=len(hits), return_documents=False, parameters={"truncate": "END"},
+        )
+    except Exception as exc:
+        status = getattr(exc, "status_code", getattr(exc, "status", None))
+        unavailable = status in {429, 500, 502, 503, 504} or isinstance(exc, (TimeoutError, PineconeConnectionError))
+        if not _APP_RERANK_FALLBACK.get() or not unavailable:
+            raise
+        return [{**hit, "retrieval_fallback": "vector_order"} for hit in _diverse(hits, top_k, per_source)]
     picked, per = [], {}
     for d in ranked.data:
         hit = hits[d.index]

@@ -71,6 +71,16 @@ RED_FLAGS: tuple[Rule, ...] = (
          (r"\b(difficulty|trouble|struggling|hard) (in )?breath", r"\bcan'?t (catch (my|her|his) )?breath", r"\bbreathless(ness)?\b",
           r"\bshort(ness)? of breath\b", r"\b(fast|rapid|noisy) breathing\b", r"\bgasping\b", r"\bchest (in-?drawing|sinking|pulling in)\b"),
          (("MOHFW-ANC", "29"), ("MOHFW-ANC", "63"), ("WHO-POSTNATAL", "99")), r"breath|gasp|chest"),
+    # NHS registrations verified 2026-11-01. These rules only escalate; no CPR
+    # instructions are generated, and the reply retains India's emergency numbers.
+    Rule("RF-ABSENT-BREATHING", "A baby who is not breathing normally needs emergency help immediately.",
+         (r"\b(not|isn'?t|aren'?t|stopped|stops?) breathing\b", r"\bno breathing\b",
+          r"\b(not|isn'?t|aren'?t) taking (any )?breaths?\b"),
+         (("NHS-CHILD-CPR", "Section 5b"),), r"breath"),
+    Rule("RF-BLUE-LIPS", "Blue or grey lips or tongue need emergency help immediately.",
+         (r"\b(blue|grey|gray) (lips|tongue)\b",
+          r"\b(lips|tongue) (are |is |look |looks |turning |turned |have turned |are turning |is turning )?(blue|grey|gray)\b"),
+         (("NHS-CHILD-URGENT", "Section: Immediate action required"),), r"blue|grey|gray|lips|tongue"),
     Rule("RF-FETAL-MOVEMENT", "Fewer movements than usual can mean the baby needs to be checked straight away.",
          (r"\b(baby|bub|fetus|foetus)('s)? (is )?(moving|kicking|movements?|kicks?) (much |a lot |far )?(less|fewer|slower|reduced|decreased)",
           r"\b(baby|fetus|foetus) (is )?(not|hasn'?t|has not|isn'?t|stopped|didn'?t|did not) (been )?(moving|moved|kicking|kicked|move|kick)",
@@ -178,8 +188,22 @@ def _fires(rule: Rule, text: str) -> bool:
                 continue
             if rule.exclude and re.search(rule.exclude, text[max(0, m.start() - 30):m.end() + 30]):
                 continue
+            if _remote_resolved_breathing(rule, text, m.start(), m.end()):
+                continue
             return True
     return False
+
+
+def _remote_resolved_breathing(rule: Rule, text: str, start: int, end: int) -> bool:
+    """Do not turn an explicitly remote, resolved event into a present emergency.
+
+    Recent events still escalate, including when breathing has resumed. This narrow
+    exception applies only to the two new breathing rules, not existing measured rules.
+    """
+    if rule.id not in {"RF-ABSENT-BREATHING", "RF-BLUE-LIPS"}:
+        return False
+    nearby = text[max(0, start - 80):end + 120]
+    return bool(re.search(r"\b(last year|years ago|months ago)\b[^.?!]{0,80}\b(breathing normally|well|fine) now\b", nearby))
 
 
 def rule_flags(text: str) -> list[str]:
@@ -252,6 +276,8 @@ def accept_classifier_flags(text: str, proposals: list[dict]) -> list[str]:
         rule = rules.get(p.get("sign"))
         if rule and quote and quote in norm and re.search(rule.family, quote):
             start = norm.find(quote)
+            if _remote_resolved_breathing(rule, norm, start, start + len(quote)):
+                continue
             if not rule.negatable or not _NEGATION.search(norm[max(0, start - 40):start]):
                 accepted.append(rule.id)
     return accepted
@@ -312,7 +338,9 @@ def _reply(s: Screening) -> str | None:
         if UNSAFE[kind]["refuse"] or s.escalate or (kind in ("override", "dose", "medicine") and s.refuse):
             parts.append(UNSAFE_REPLIES[kind])
     if s.sources:
-        cites = "; ".join(f"{x['source_id']}" + (f", p. {x['page_label']}" if x["page_label"] else "") for x in s.sources)
+        cites = "; ".join(f"{x['source_id']}" +
+                          ((f", {x['page_label']}" if str(x["page_label"]).startswith("Section") else f", p. {x['page_label']}")
+                           if x["page_label"] else "") for x in s.sources)
         parts.append(f"Source: {cites}.")
     return "\n\n".join(dict.fromkeys(parts))
 
