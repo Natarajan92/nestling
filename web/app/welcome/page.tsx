@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Card from "@/components/Card";
 import { saveProfile, useProfile, type Profile } from "@/lib/store";
 
@@ -65,6 +65,7 @@ export default function WelcomePage() {
 }
 
 function WelcomeForm({ profile }: { profile: Profile | null }) {
+  const reduced = useReducedMotion();
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [d, setD] = useState<Draft>({
@@ -170,7 +171,7 @@ function WelcomeForm({ profile }: { profile: Profile | null }) {
       </div>
       <div className="flex-1">
         <AnimatePresence mode="wait">
-          <motion.div key={step} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.3 }}>
+          <motion.div key={step} initial={reduced ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduced ? 0 : -8 }} transition={{ duration: reduced ? 0 : 0.3 }}>
             {screens[step]}
           </motion.div>
         </AnimatePresence>

@@ -42,6 +42,7 @@ function HowIAnswered({ res }: { res: AskResponse }) {
 }
 
 function Answer({ res, question }: { res: AskResponse; question: string }) {
+  const { profile } = useProfile();
   const [saved, setSaved] = useState(false);
   const red = res.guardian.level === "red" || res.escalate;
   const lesson = res.lesson ?? null;
@@ -66,7 +67,7 @@ function Answer({ res, question }: { res: AskResponse; question: string }) {
           ))}
         </div>
       )}
-      {res.save && (
+      {res.save && profile?.consent.save_journal && (
         <button
           type="button"
           disabled={saved}

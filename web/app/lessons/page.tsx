@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Card from "@/components/Card";
 import { getLessons, mediaUrl, type Lesson } from "@/lib/api";
+import { dateLabel } from "@/lib/format";
 
 const FILTERS = [
   { id: "all", label: "All" },
@@ -11,7 +12,7 @@ const FILTERS = [
 ] as const;
 
 const reviewedOn = (d: string | null) =>
-  d ? `Reviewed on ${new Date(d).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}` : "Reviewed";
+  d ? `Reviewed on ${dateLabel(d)}` : "Reviewed";
 
 export default function LessonsPage() {
   const [lessons, setLessons] = useState<Lesson[] | null>(null);
