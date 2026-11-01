@@ -256,11 +256,20 @@ def test_unreviewed_scene_and_missing_lessons(tmp_path):
     assert not library.is_approved("nope", tmp_path) and library.get("../x", tmp_path) is None
 
 
-def test_shipped_lessons_are_unapproved_with_full_files():
+def test_shipped_lessons_have_full_files_and_consistent_reviews():
     for lesson_id in ("holding", "bathing", "burping", "swaddling", "latching", "cord_care"):
         folder = library.LESSONS_DIR / lesson_id
         review = yaml.safe_load((folder / "review.yaml").read_text())
-        assert review["approved"] is False and review["reviewer"] is None
+        assert review["lesson_id"] == lesson_id and isinstance(review["approved"], bool)
         assert "Card and icon match the narration" in yaml.safe_load((folder / "checklist.yaml").read_text())["items"]
         assert 6 <= len(yaml.safe_load((folder / "phrasings.yaml").read_text())["phrasings"]) <= 8
-        assert not library.is_approved(lesson_id)
+        board_path = folder / "storyboard.json"
+        if board_path.exists():
+            board = json.loads(board_path.read_text(encoding="utf-8"))
+            assert review["version"] == board["version"]
+            assert [s["step_no"] for s in review["scenes"]] == [s["step_no"] for s in board["scenes"]]
+        if review["approved"]:
+            assert board_path.exists() and review["reviewer"] and review["review_date"]
+            assert review["scenes"] and all(s["passed"] is True for s in review["scenes"])
+        else:
+            assert not library.is_approved(lesson_id)

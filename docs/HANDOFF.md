@@ -11,7 +11,7 @@ Detailed task log (local, gitignored): `.superpowers/sdd/plan/progress.md` (ever
 | 1 | Phase 3 comparison, notebooks 02–06, failure analysis | ✅ done, reviewed | c03cc0d |
 | 2 | All runtime LLM calls moved to Nebius open models; v6 + code-enforced citations; v6 run + judge | ✅ done, reviewed | 5341e97, 55bdaea, 5bde3b7 |
 | 3 | Week 4 report (`docs/week4_report.md`) + README | ⏳ not started (waits for Task 13's v7 result) | — |
-| 4 | Little Lessons build pipeline (step-card videos) | ✅ built; fix round 1 scoped re-review passed (two nonblocking visual follow-ups; human lesson approval still pending) | 99762fc, 97576aa, 38a623f, 7eb40cc |
+| 4 | Little Lessons build pipeline (step-card videos) | ✅ built; scoped re-review passed; owner approved cord_care v2 and latching v1; holding v2 needs correction; three source gaps remain | 99762fc, 97576aa, 38a623f, 7eb40cc |
 | 5 | Little Lessons runtime (lessons route, library match, API, Pinecone `lessons` upsert) | ⏳ not started (waits for Task 13; touches graph.py/concierge) | — |
 | 6 | Little Lessons eval (`lessons_golden_v1`, §9.9) + notebook 08 | ⏳ not started (after 5) | — |
 | 7 | Web foundation: tokens, shell, Welcome, Today, Settings/Delete everything | ✅ done, reviewed | 392b2fc |
@@ -23,7 +23,7 @@ Detailed task log (local, gitignored): `.superpowers/sdd/plan/progress.md` (ever
 | 13 | v7 quality round (life-stage source routing + model bake-off) | 🟡 code + bake-off done; **blocked** (see §2) | 1fd1dad |
 | — | Final whole-branch review (most capable model), one fix wave | ⏳ after all tasks | — |
 
-Tests: 122 passing (31 lesson tests), verified at 2191526. In the Windows sandbox, use a fresh `--basetemp`, `-p no:cacheprovider` and a writable `uv --cache-dir` with `run --no-sync pytest` to avoid permissions on existing caches. Web: `cd web && npm run lint && npm run build`.
+Tests: 122 passing (31 lesson tests), reverified after the owner's lesson reviews on 2026-11-01. In the Windows sandbox, use a fresh `--basetemp`, `-p no:cacheprovider` and a writable `uv --cache-dir` with `run --no-sync pytest` to avoid permissions on existing caches. Web: `cd web && npm run lint && npm run build`.
 
 ## 2. Evaluation results so far (frozen set `golden_v2_india`, 104 cases)
 
@@ -48,18 +48,19 @@ GLM-5.3 needs a large `max_tokens` (empty output at 300, fine at 3000). Model ov
 
 ## 3. In flight when the session ended
 
-- **Task 4 fix round 1 reviewed** (97576aa, 38a623f, 7eb40cc; scoped range 99762fc..7eb40cc): no blocking findings. Changed storyboards bump the persisted version and clear the review; identical content preserves the review. Holding and cord_care boards/reviews consistently use version 2 and remain unapproved. The rendered holding, cord_care and latching cards were visually checked: cord_care step 1 uses sun, holding step 4 uses shield-check, and the current title icons differ from the steps. Two nonblocking visual follow-ups are recorded in §7. Fresh full suite: 122 passed; no paid calls or lesson approvals.
+- **Task 4 fix round 1 reviewed** (97576aa, 38a623f, 7eb40cc; scoped range 99762fc..7eb40cc): no blocking code findings. Changed storyboards bump the persisted version and clear the review; identical content preserves the review. Holding and cord_care boards/reviews consistently use version 2. The rendered holding, cord_care and latching cards were visually checked: cord_care step 1 uses sun, holding step 4 uses shield-check, and the current title icons differ from the steps. Full suite at the review checkpoint: 122 passed.
+- **Owner lesson review (2026-11-01):** Anand approved cord_care v2 and latching v1 in chat; recorded with all four scenes passed in their review.yaml files. Their closing cards and MP4s now show the review date (cached audio, no paid calls). The local library gate returns exactly these two lessons as approved; runtime/API integration is still Task 5. Holding v2 was rejected: the owner requires explicit support for the newborn's head, neck and shoulders. Step 4 is marked failed with the correction request; other scenes remain unscored. The current general-holding lesson was drawn from breastfeeding-positioning guidance and needs a better registered source, a rewrite, a new version/render and human re-review. Bathing, burping and swaddling still have no storyboards or videos, only YAML scaffolds; no invented steps.
 - Task 8 was reviewed and approved; normal answers and a real lesson payload were not seen live (rerank quota, Task 5 not built) — check both once those are unblocked.
 
 ## 4. Blockers and decisions waiting for the owner
 
 1. **Pinecone rerank monthly quota exhausted** (`bge-reranker-v2-m3`, 429). This blocks the full v7 run **and** makes normal app answers fail (red-flag answers still work: they are decided in code). Options: raise/upgrade the Pinecone plan; or add a fallback to vector order when rerank fails (app only — eval runs should fail loudly, not degrade silently); or switch rerank to Fireworks `qwen3-reranker-8b` (changes retrieval, so re-measure).
 2. **v7 full run budget.** Task 13 already spent ₹191.74 (budget was ₹150; Kimi was costly). A full v7 run: GLM-5.3 ≈ ₹190, DeepSeek + life-stage routing ≈ ₹100–120. The API moves to v7 only if escalation 100%, refusal 100%, routing ≥ 90% hold and faithfulness beats v6.
-3. **Little Lessons gaps: bathing, burping, swaddling** have no registered source with practical steps (WHO-POSTNATAL covers only the timing of the first bath). The owner asked to look at how Indian families do this (Instagram, YouTube, Keenable, Toloka). Constitution rule 8 requires every lesson step to come from a registered trusted source, and web search is for non-medical lookups only. Suggested path to confirm with the owner:
+3. **Little Lessons source gaps: general holding, bathing, burping, swaddling.** Bathing, burping and swaddling have no registered source with sufficient practical steps (WHO-POSTNATAL covers only the timing of the first bath); holding needs general handling guidance rather than the current breastfeeding-positioning passages. The owner asked to look at how Indian families do this (Instagram, YouTube, Keenable, Toloka). Constitution rule 8 requires every lesson step to come from a registered trusted source, and web search is for non-medical lookups only. Suggested path to confirm with the owner:
    - Steps: register an Indian government source that covers these practices, e.g. the NHM ASHA training modules / Home Based Newborn Care guidelines (newborn bathing, wrapping/keeping warm, burping after feeds, cord care); NHM's copyright policy allows reproduction with prominent source acknowledgement. Alternatively NHS Best Start in Life pages (Open Government Licence v3; credit "Information from the NHS website" + date). Either needs a new registry entry and an ingest into the Pinecone `sources` namespace — a write that needs the owner's go-ahead (only the `lessons` namespace is approved).
    - Indian context: use web research (Keenable/Tavily, YouTube, Instagram) only for framing — the words Indian parents use, common home practices, and myths to gently correct (e.g. putting oil, ash or other substances on the cord) — never as the source of a step.
    - Toloka fits Phase 12: Indian parents rating the finished lessons.
-4. **Human work:** review the rendered lessons against `lessons/<id>/checklist.yaml` (holding's steps come only from breastfeeding-positioning pages and lack a "head and neck supported" step — likely regenerate after a better source is registered); label the 20-case judge calibration sheet (Task 3 exports it); review `lessons_golden_v1` draft labels (Task 6); record the Loom; approve push and deploy.
+4. **Human work:** re-review holding after the correction and review bathing, burping and swaddling once sourced and rendered (cord_care v2 and latching v1 already approved); label the 20-case judge calibration sheet (Task 3 exports it); review `lessons_golden_v1` draft labels (Task 6); record the Loom; approve push and deploy.
 
 ## 5. Decisions already made (owner)
 
@@ -94,7 +95,7 @@ GLM-5.3 needs a large `max_tokens` (empty output at 300, fine at 3000). Model ov
 - Web (Task 7): `deleteVoice` treats 404 as failure; "Change my answers" restarts Welcome blank; checklist failure shows "0 of 0"; WeekRing ignores reduced motion; fetch has no timeout.
 - Web (Task 8): step strip shows the icon name as text (render the vendored Phosphor SVGs instead); with a lesson present, answer chips fall back to nothing if `lesson.sources` is empty (fall back to `res.sources`); Ask sheet has no focus trap/restore or scroll lock; lesson detail prints raw ISO `reviewed_on`; `reviewedOn` exported from a page file; layout indentation.
 - Lessons: narration text isn't checked against the cited page (only the evidence quote is); videos run 17–20 s; hygiene steps without safety points show no Safety pill.
-- Lessons (scoped re-review): `cards.py:341` falls back to `sparkle` if a valid five-scene board uses all five title candidates, repeating a step icon (current lessons do not trigger this); choose an additional unused vendored icon. Holding step 3 still uses the pre-existing `hand-palm` icon, which also resembles "stop"; revisit during visual/human review.
+- Lessons (scoped re-review): `cards.py:341` falls back to `sparkle` if a valid five-scene board uses all five title candidates, repeating a step icon (current lessons do not trigger this); choose an additional unused vendored icon. Replace holding step 3's stop-like `hand-palm` icon during the required holding rewrite (§3/§4).
 
 ## 8. Next steps (in order)
 
