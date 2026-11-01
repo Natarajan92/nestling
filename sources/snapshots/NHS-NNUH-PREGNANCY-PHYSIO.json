@@ -1,0 +1,16 @@
+{
+  "source_id": "NHS-NNUH-PREGNANCY-PHYSIO",
+  "title": "Physiotherapy Advice in Pregnancy",
+  "url": "https://www.nnuh.nhs.uk/publication/download/physiotherapy-advice-in-pregnancy-v12/",
+  "publisher": "Norfolk and Norwich University Hospitals NHS Foundation Trust",
+  "accessed_on": "2026-11-01",
+  "source_date_observed": "Reviewed 2021-06-29; further one-year review given 2024-10-21; version 12",
+  "raw_source_sha256": "da4497db60707e3e92819a03ee83862817af073f5f123d921e957c4be964b5ef",
+  "private_pdf_sha256": "da4497db60707e3e92819a03ee83862817af073f5f123d921e957c4be964b5ef",
+  "pages": 2,
+  "sections": "Page 1: In bed; Getting in and out of bed; General Exercise",
+  "private_pdf": "sources/pdfs/NHS-NNUH-PREGNANCY-PHYSIO.pdf",
+  "ingest_allowed": false,
+  "verbatim_public_quote_words": 0,
+  "method": "Official publisher read and private download; original PDFs retained or relevant HTML text printed privately. This tracked file contains metadata only."
+}

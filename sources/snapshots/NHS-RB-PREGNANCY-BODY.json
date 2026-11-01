@@ -1,0 +1,16 @@
+{
+  "source_id": "NHS-RB-PREGNANCY-BODY",
+  "title": "Caring for your body in pregnancy",
+  "url": "https://www.royalberkshire.nhs.uk/media/ypelspll/physio-caring-for-your-body-in-pregnancy.pdf",
+  "publisher": "Royal Berkshire NHS Foundation Trust",
+  "accessed_on": "2026-11-01",
+  "source_date_observed": "2025-02",
+  "raw_source_sha256": "64e3ac3fc67ed7e7539a7d37393812d5825395090d8311eb4027e50c626cba3e",
+  "private_pdf_sha256": "64e3ac3fc67ed7e7539a7d37393812d5825395090d8311eb4027e50c626cba3e",
+  "pages": 4,
+  "sections": "Page 1: Exercise and pregnancy; page 2: Caring for your body in pregnancy",
+  "private_pdf": "sources/pdfs/NHS-RB-PREGNANCY-BODY.pdf",
+  "ingest_allowed": false,
+  "verbatim_public_quote_words": 0,
+  "method": "Official publisher read and private download; original PDFs retained or relevant HTML text printed privately. This tracked file contains metadata only."
+}

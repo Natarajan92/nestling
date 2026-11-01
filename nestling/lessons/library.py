@@ -15,6 +15,8 @@ from langsmith import traceable
 from nestling import llm, retrieval
 from nestling.lessons import LESSONS, LESSONS_DIR
 
+MATCH_PROMPT_VERSION = "lesson-match-v2-prenatal"
+
 
 def _read_yaml(path: Path) -> dict:
     return yaml.safe_load(path.read_text(encoding="utf-8")) if path.exists() else {}
@@ -113,7 +115,7 @@ def match(question: str, *, usage: list | None = None) -> dict:
     """Closed-set FAST classifier. Topics are code-owned labels, never question text."""
     schema = {"type": "object", "properties": {"lesson_id": {"type": "string", "enum": [*sorted(LESSONS), "none"]}},
               "required": ["lesson_id"], "additionalProperties": False}
-    system = ("Match a practical newborn-care how-to to one lesson from this catalogue. Symptoms, danger signs, general "
+    system = ("Match a practical before-birth preparation or newborn-care how-to to one lesson from this catalogue. Symptoms, danger signs, general "
               "questions and unrelated requests are none. Never answer the question. Return the lesson_id only.\n" +
               json.dumps(_catalogue(), ensure_ascii=False))
     try:

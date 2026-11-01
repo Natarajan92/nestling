@@ -1,0 +1,16 @@
+{
+  "source_id": "NHS-PREGNANCY-EXERCISE",
+  "title": "Exercise in pregnancy",
+  "url": "https://www.nhs.uk/pregnancy/keeping-well/exercise/",
+  "publisher": "NHS",
+  "accessed_on": "2026-11-01",
+  "source_date_observed": "Page reviewed 2026-09-24",
+  "raw_source_sha256": "fb3d325edcb41ea22c4b9906cb170796270ec9bcc5b82455b8957cb943a836e9",
+  "private_pdf_sha256": "5328ebaa8f2e889bb9bdaca33f099ec07a1293e3c8f7c3c669fc124ef63946e5",
+  "pages": 1,
+  "sections": "Getting started with exercise in pregnancy; Exercise in later pregnancy; How to exercise safely in pregnancy",
+  "private_pdf": "sources/pdfs/NHS-PREGNANCY-EXERCISE.pdf",
+  "ingest_allowed": false,
+  "verbatim_public_quote_words": 0,
+  "method": "Official publisher read and private download; original PDFs retained or relevant HTML text printed privately. This tracked file contains metadata only."
+}

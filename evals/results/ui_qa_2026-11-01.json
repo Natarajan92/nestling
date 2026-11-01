@@ -1,0 +1,335 @@
+{
+  "date": "2026-11-01",
+  "scope": "Local app navigation and form QA; isolated synthetic profiles",
+  "browser": "Headless Chrome via Playwright-core",
+  "viewports": [
+    {
+      "width": 390,
+      "height": 844
+    },
+    {
+      "width": 1440,
+      "height": 1000
+    }
+  ],
+  "coverage": {
+    "unique_latest_scenarios": 120,
+    "passed": 120,
+    "failed": 0,
+    "actual_client_click_navigations": 242,
+    "same_document_navigations": 242,
+    "final_focused_run": {
+      "passed": 50,
+      "failed": 0,
+      "javascript_page_errors": 0,
+      "paid_route_guard_escapes": 0
+    },
+    "areas": [
+      "Today and all five Journeys",
+      "Capture search, estimate, quote approval and local save",
+      "six original approved lesson details, filters and unavailable states",
+      "Memory consent, journal, letters and mocked voice forms",
+      "Settings edit and isolated Delete everything",
+      "Ask client question links, valid/error responses and keyboard modal focus",
+      "history, reload, deep links and404",
+      "API500/timeout/abort errors and Retry recovery",
+      "quota, fake microphone denial, downloads and mocked clipboard/share fallback"
+    ],
+    "original_lesson_detail_ids": [
+      "bathing",
+      "burping",
+      "cord_care",
+      "holding",
+      "latching",
+      "swaddling"
+    ],
+    "additional_prenatal_detail_pages_in_this_matrix": false
+  },
+  "baseline_history": {
+    "preserved": true,
+    "broad_run_scenarios": 112,
+    "passed": 76,
+    "negative_results": 36,
+    "genuine_kerala_crash_cases": 4,
+    "harness_only_negatives": 32,
+    "interpretation": "Baseline stays unchanged; latest cases point to focused rerun evidence. All36 negative cases were rechecked. Eight new cases and six repeated controls complete the50-case focused run."
+  },
+  "defects_verified_fixed": [
+    "Ask: native scrollIntoView Promise was returned as effect cleanup; valid and error/close flows now render safely.",
+    "Celebrate: Kerala optional menu_ideas omission no longer crashes rendering.",
+    "Lesson/Today load outages show explicit recoverable errors rather than a false empty library."
+  ],
+  "live_api": {
+    "method": "Real API TestClient; unmocked retrieval/models; synthetic inputs; no retries",
+    "prompt_version": "app-v7-vector-safe-lessons-v2-prenatal",
+    "passed": 9,
+    "failed": 0,
+    "route_counts": {
+      "care": 1,
+      "lessons": 7,
+      "guardian": 1
+    },
+    "model_sdk_call_counts": {
+      "deepseek-ai/DeepSeek-V4.1-Flash": 23,
+      "deepseek-ai/DeepSeek-V4-Pro": 2
+    },
+    "budget_accounted_inr": 1.8927,
+    "budget_cap_inr": 10,
+    "unresolved_reservations": 0,
+    "cases": [
+      {
+        "case_id": "UI-ANTENATAL-01",
+        "passed": true,
+        "status": 200,
+        "route": "care",
+        "escalate": false,
+        "lesson_id": null,
+        "source_ids": [
+          "WHO-ANC",
+          "MOHFW-ANC"
+        ],
+        "cost_inr": 0.977237
+      },
+      {
+        "case_id": "UI-BURPING-01",
+        "passed": true,
+        "status": 200,
+        "route": "lessons",
+        "escalate": false,
+        "lesson_id": "burping",
+        "source_ids": [
+          "NHS-BABY-BURPING"
+        ],
+        "cost_inr": 0.125053
+      },
+      {
+        "case_id": "UI-EMERGENCY-01",
+        "passed": true,
+        "status": 200,
+        "route": "guardian",
+        "escalate": true,
+        "lesson_id": null,
+        "source_ids": [
+          "NHS-CHILD-CPR"
+        ],
+        "cost_inr": 0.0
+      },
+      {
+        "case_id": "UI-PRENATAL-LABOUR",
+        "passed": true,
+        "status": 200,
+        "route": "lessons",
+        "escalate": false,
+        "lesson_id": "labour_room_readiness",
+        "source_ids": [
+          "MOHFW-ANC",
+          "NHS-WALES-BIRTH-PARTNER"
+        ],
+        "cost_inr": 0.132997
+      },
+      {
+        "case_id": "UI-PRENATAL-YOGA",
+        "passed": true,
+        "status": 200,
+        "route": "lessons",
+        "escalate": false,
+        "lesson_id": "prenatal_yoga_preparation",
+        "source_ids": [
+          "NHS-PRENATAL-YOGA",
+          "NHS-NNUH-PREGNANCY-PHYSIO",
+          "NHS-RB-PREGNANCY-BODY"
+        ],
+        "cost_inr": 0.130435
+      },
+      {
+        "case_id": "UI-PRENATAL-BREATHING",
+        "passed": true,
+        "status": 200,
+        "route": "lessons",
+        "escalate": false,
+        "lesson_id": "pregnancy_breathing",
+        "source_ids": [
+          "NHS-UHNM-ANTENATAL"
+        ],
+        "cost_inr": 0.133025
+      },
+      {
+        "case_id": "UI-PRENATAL-BED",
+        "passed": true,
+        "status": 200,
+        "route": "lessons",
+        "escalate": false,
+        "lesson_id": "pregnancy_bed_movement",
+        "source_ids": [
+          "NHS-RB-PREGNANCY-BODY",
+          "NHS-NNUH-PREGNANCY-PHYSIO"
+        ],
+        "cost_inr": 0.131175
+      },
+      {
+        "case_id": "UI-PRENATAL-STAIRS",
+        "passed": true,
+        "status": 200,
+        "route": "lessons",
+        "escalate": false,
+        "lesson_id": "pregnancy_stair_comfort",
+        "source_ids": [
+          "NHS-PREGNANCY-PELVIC-PAIN",
+          "HSE-PREGNANCY-PGP-ACTIVITIES"
+        ],
+        "cost_inr": 0.133026
+      },
+      {
+        "case_id": "UI-PRENATAL-PREPARE",
+        "passed": true,
+        "status": 200,
+        "route": "lessons",
+        "escalate": false,
+        "lesson_id": "preparing_body_for_birth",
+        "source_ids": [
+          "NHS-PREGNANCY-EXERCISE"
+        ],
+        "cost_inr": 0.12978
+      }
+    ],
+    "checkpoint_note": "First three successful cases retained without repeating them; six additional prenatal Ask cases measured and returned the expected approved lesson IDs."
+  },
+  "evidence_sha256": {
+    "navigation-matrix-consolidated.json": "6180806dfb31a7056347d48fd82ce39856b38eab7ec01cca7dd9d557a1974745",
+    "focused-final-matrix.json": "1404a289a3f3a4817e5a99e1c6e0e2b94b264b76a432b2a4af224824b9ba3741",
+    "live-api-results.json": "1f905e47e8e42e757acbd64ff128cb6c634cc9905553572a26670ac195ba5493"
+  },
+  "limits": [
+    "Browser provider endpoints were mocked; the separate nine-case live API check does not establish full model quality.",
+    "Physical devices, real microphone permissions/audio, native clipboard and native sharing integrations remain unverified.",
+    "Transport timeouts were injected errors, not a real 90-second timer wait.",
+    "Only listed scenarios and profiles were covered; this is not all possible QA.",
+    "Historical 39-case intent results cover the original six-topic v1 catalogue, not current 12-topic v2 intent accuracy."
+  ],
+  "prenatal_publication_extension": {
+    "scope": "Additional checks after12-lesson publication; separate from the original120-scenario matrix",
+    "grouped_checks_passed": 22,
+    "failed": 0,
+    "actual_client_click_navigations": 34,
+    "same_document_navigations": 34,
+    "javascript_page_errors": 0,
+    "paid_route_guard_escapes": 0,
+    "real_paid_calls": 0,
+    "approved_catalogue_size": 12,
+    "stages": {
+      "before_birth": 6,
+      "first_weeks": 6
+    },
+    "coverage": [
+      "Body six prenatal lesson links",
+      "Ready previews all12 approved lessons",
+      "Before birth/First weeks/All filters",
+      "six new exact-version detail pages, review dates and direct written-step counts",
+      "muted real video playback advancing in both viewports"
+    ],
+    "video_playback_observations": 12,
+    "videos": [
+      {
+        "lesson_id": "labour_room_readiness",
+        "version": 1,
+        "reviewed_on": "2026-11-01",
+        "viewports_played": [
+          "desktop",
+          "mobile"
+        ],
+        "width": 1080,
+        "height": 1920,
+        "duration_seconds": 31.647
+      },
+      {
+        "lesson_id": "prenatal_yoga_preparation",
+        "version": 1,
+        "reviewed_on": "2026-11-01",
+        "viewports_played": [
+          "desktop",
+          "mobile"
+        ],
+        "width": 1080,
+        "height": 1920,
+        "duration_seconds": 32.714
+      },
+      {
+        "lesson_id": "pregnancy_breathing",
+        "version": 1,
+        "reviewed_on": "2026-11-01",
+        "viewports_played": [
+          "desktop",
+          "mobile"
+        ],
+        "width": 1080,
+        "height": 1920,
+        "duration_seconds": 32.342
+      },
+      {
+        "lesson_id": "pregnancy_bed_movement",
+        "version": 1,
+        "reviewed_on": "2026-11-01",
+        "viewports_played": [
+          "desktop",
+          "mobile"
+        ],
+        "width": 1080,
+        "height": 1920,
+        "duration_seconds": 31.6
+      },
+      {
+        "lesson_id": "pregnancy_stair_comfort",
+        "version": 2,
+        "reviewed_on": "2026-11-01",
+        "viewports_played": [
+          "desktop",
+          "mobile"
+        ],
+        "width": 1080,
+        "height": 1920,
+        "duration_seconds": 29.374
+      },
+      {
+        "lesson_id": "preparing_body_for_birth",
+        "version": 1,
+        "reviewed_on": "2026-11-01",
+        "viewports_played": [
+          "desktop",
+          "mobile"
+        ],
+        "width": 1080,
+        "height": 1920,
+        "duration_seconds": 30.578
+      }
+    ],
+    "initial_harness_record_preserved": true,
+    "harness_correction": "Exact written-step assertion changed to direct list children so nested safety-point items are not counted as steps.",
+    "evidence_sha256": "afeb7728509be56f54b856f6e35cda1cc755bc489225e5abcbefd901a5d54876"
+  },
+  "final_local_http_smoke": {
+    "checks_passed": 43,
+    "published_lessons": 12,
+    "stage_counts": {
+      "before_birth": 6,
+      "first_weeks": 6
+    },
+    "checks": [
+      "exact version/review date/source metadata",
+      "MP4 ranged response206",
+      "JPEG response200",
+      "unknown/disallowed media404"
+    ],
+    "inference_calls": 0,
+    "evidence": "prenatal_lessons_completion_2026-11-01.json"
+  },
+  "new_work_budget_inr": {
+    "narration_estimate": 55.32,
+    "narration_cap": 65,
+    "fidelity": 0.3609,
+    "fidelity_cap": 5,
+    "live_api_qa": 1.8927,
+    "live_api_qa_cap": 10,
+    "total": 57.5736,
+    "combined_cap": 80
+  }
+}

@@ -6,7 +6,7 @@ import pytest
 import yaml
 
 from nestling import concierge, graph, guardian, llm, retrieval
-from nestling.lessons import library
+from nestling.lessons import LESSONS, library
 
 
 @pytest.fixture
@@ -50,12 +50,12 @@ def test_review_must_cover_same_scenes_and_be_human(lesson_root):
     assert library.payload("cord_care") is None
 
 
-def test_all_six_phrasing_sets_are_indexed_without_connecting(monkeypatch):
+def test_all_configured_phrasing_sets_are_prepared_without_connecting(monkeypatch):
     monkeypatch.setattr(retrieval, "get_index", lambda **kw: pytest.fail("dry-run contacted Pinecone"))
     out = library.index_phrasings()
     assert out["namespace"] == "lessons" and out["dry_run"] is True
-    assert {r["lesson_id"] for r in out["records"]} == {"holding", "bathing", "burping", "swaddling", "latching", "cord_care"}
-    assert 36 <= len(out["records"]) <= 48
+    assert {r["lesson_id"] for r in out["records"]} == set(LESSONS)
+    assert 6 * len(LESSONS) <= len(out["records"]) <= 8 * len(LESSONS)
     assert len({r["_id"] for r in out["records"]}) == len(out["records"])
     assert all(r["chunk_text"] and r["title"] for r in out["records"])
 
@@ -94,6 +94,23 @@ def test_concierge_lessons_route_does_not_change_measured_prompt(monkeypatch):
     assert concierge.route("how to clean the cord")["route"] == "care"
     assert concierge.route("how to clean the cord", lessons=True)["route"] == "lessons"
     assert "lessons:" not in seen[0][0] and "lessons:" in seen[1][0]
+
+
+def test_prenatal_howtos_are_in_the_app_only_lesson_prompts(monkeypatch):
+    seen = []
+    def route_call(model, system, user, schema, **kwargs):
+        seen.append((system, user))
+        return {"route": "lessons"}, {}, ""
+    monkeypatch.setattr(concierge, "chat_json", route_call)
+    concierge.route("How can I practise breathing before labour?", lessons=True)
+    assert "before-birth" in seen[0][0]
+    assert '"How can I practise breathing before labour?" -> lessons' in seen[0][1]
+    def match_call(model, system, user, schema, **kwargs):
+        assert "before-birth" in system and "newborn" in system
+        assert "Symptoms" in system and "danger signs" in system
+        return {"lesson_id": "none"}, {}, ""
+    monkeypatch.setattr(llm, "chat_json", match_call)
+    assert library.match("How can I practise breathing before labour?")["lesson_id"] is None
 
 
 def mock_graph(monkeypatch, lesson_id="cord_care", topic="cord_care"):

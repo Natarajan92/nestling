@@ -62,7 +62,9 @@ SCHEMA = {
 def _user(text: str, lessons: bool = False) -> str:
     examples = EXAMPLES + ([("How do I clean the umbilical cord?", "lessons"),
                             ("Show me how to help my newborn latch", "lessons"),
-                            ("How can I hold my newborn safely?", "lessons")] if lessons else [])
+                            ("How can I hold my newborn safely?", "lessons"),
+                            ("How can I practise breathing before labour?", "lessons"),
+                            ("Show us how to prepare together for the labour room", "lessons")] if lessons else [])
     shots = "\n".join(f'Message: "{q}" -> {r}' for q, r in examples)
     return f"Examples:\n{shots}\n\nMessage: \"{text}\""
 
@@ -73,8 +75,10 @@ def route(text: str, lessons: bool = False) -> dict:
     try:
         system, schema = SYSTEM, SCHEMA
         if lessons:
-            system += ("\n- lessons: practical newborn-care how-tos: holding, bathing, burping, swaddling, "
-                       "latching or cord care. Route these to lessons rather than care. Symptoms and concerns stay care.")
+            system += ("\n- lessons: practical before-birth preparation and newborn-care how-tos: preparing together for the labour room, "
+                       "prenatal yoga class preparation, breathing practice, getting in and out of bed, stair comfort, "
+                       "preparing the body for birth, holding, bathing, burping, swaddling, latching or cord care. "
+                       "Route these to lessons rather than care or ready. Symptoms, danger signs and individual exercise-safety concerns stay care.")
             schema = {**SCHEMA, "properties": {"route": {"type": "string", "enum": [*ROUTES, "lessons"]}}}
         data, usage, _ = chat_json(FAST, system, _user(text, lessons), schema, max_tokens=500)
     except Exception as exc:

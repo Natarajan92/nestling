@@ -5,6 +5,22 @@ import json
 import pytest
 
 
+@pytest.mark.parametrize("stage,dataset,pipeline", [
+    ("before_birth", "prenatal_lessons_v1-draft", "prenatal-lessons-v1"),
+    ("first_weeks", "lessons_golden_v1-draft", "lessons-v1"),
+])
+def test_source_fidelity_trace_labels_identify_the_correct_lesson_set(monkeypatch, stage, dataset, pipeline):
+    from evals import lessons_eval
+
+    monkeypatch.setenv("LANGSMITH_TRACING", "false")
+    monkeypatch.setattr(lessons_eval, "source_passages", lambda board: [])
+    monkeypatch.setattr(lessons_eval, "judge_steps", lambda board, passages: {"status": "judged", "faithful": True, "cost_inr": 0})
+    item = {"storyboard": {"lesson_id": "synthetic", "version": 1, "stage": stage, "sources": []}}
+    metadata = lessons_eval.traced_fidelity(item, "local-test")["trace_metadata"]
+    assert metadata["dataset_version"] == dataset
+    assert metadata["pipeline_version"] == pipeline
+
+
 def test_routing_errors_do_not_count_as_correct_none():
     from evals.lessons_eval import score_route
 

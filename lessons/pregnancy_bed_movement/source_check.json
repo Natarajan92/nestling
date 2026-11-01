@@ -1,0 +1,66 @@
+{
+  "lesson_id": "pregnancy_bed_movement",
+  "version": 1,
+  "status": "source_checked",
+  "storyboard_sha256": "2227b8f3674ddebb51d5ffe5f2bf3b4e8db40e23b5ad42c3598e8f67b11ca54d",
+  "scope": "General antenatal movement and side-resting advice; clinician/physiotherapist should confirm suitability, especially with pain or mobility restrictions.",
+  "checks": [
+    {
+      "step_no": 1,
+      "source_id": "NHS-RB-PREGNANCY-BODY",
+      "page_label": "1",
+      "section": "Introduction",
+      "evidence_method": "Source action and context read on exact private PDF page; no public verbatim excerpt.",
+      "source_pdf_sha256": "64e3ac3fc67ed7e7539a7d37393812d5825395090d8311eb4027e50c626cba3e",
+      "source_page_text_sha256": "3713b032f27a07141c7ed3a0542951ab209c81222d899b509ec8786e221cb714"
+    },
+    {
+      "step_no": 2,
+      "source_id": "NHS-NNUH-PREGNANCY-PHYSIO",
+      "page_label": "1",
+      "section": "In bed",
+      "evidence_method": "Source action and context read on exact private PDF page; no public verbatim excerpt.",
+      "source_pdf_sha256": "da4497db60707e3e92819a03ee83862817af073f5f123d921e957c4be964b5ef",
+      "source_page_text_sha256": "dad485d294e9cd779bc442ab41258ca9355944f10f44b8ae72201e24fa16fea4"
+    },
+    {
+      "step_no": 3,
+      "source_id": "NHS-NNUH-PREGNANCY-PHYSIO",
+      "page_label": "1",
+      "section": "Getting in and out of bed",
+      "evidence_method": "Source action and context read on exact private PDF page; no public verbatim excerpt.",
+      "source_pdf_sha256": "da4497db60707e3e92819a03ee83862817af073f5f123d921e957c4be964b5ef",
+      "source_page_text_sha256": "dad485d294e9cd779bc442ab41258ca9355944f10f44b8ae72201e24fa16fea4"
+    },
+    {
+      "step_no": 4,
+      "source_id": "NHS-NNUH-PREGNANCY-PHYSIO",
+      "page_label": "1",
+      "section": "Getting in and out of bed",
+      "evidence_method": "Source action and context read on exact private PDF page; no public verbatim excerpt.",
+      "source_pdf_sha256": "da4497db60707e3e92819a03ee83862817af073f5f123d921e957c4be964b5ef",
+      "source_page_text_sha256": "dad485d294e9cd779bc442ab41258ca9355944f10f44b8ae72201e24fa16fea4"
+    },
+    {
+      "step_no": 5,
+      "source_id": "NHS-NNUH-PREGNANCY-PHYSIO",
+      "page_label": "1",
+      "section": "Getting in and out of bed",
+      "evidence_method": "Source action and context read on exact private PDF page; no public verbatim excerpt.",
+      "source_pdf_sha256": "da4497db60707e3e92819a03ee83862817af073f5f123d921e957c4be964b5ef",
+      "source_page_text_sha256": "dad485d294e9cd779bc442ab41258ca9355944f10f44b8ae72201e24fa16fea4"
+    }
+  ],
+  "verbatim_quote_words": 0,
+  "ingestion": "New sources are citation-only ingest_allowed:false. No Pinecone writes.",
+  "human_review": "approved",
+  "clinical_review": "pending",
+  "mechanical_validation": [],
+  "independent_fidelity": {
+    "faithful": true,
+    "results_file": "evals/results/prenatal_lessons_fidelity_2026-11-01.json",
+    "storyboard_sha256": "2227b8f3674ddebb51d5ffe5f2bf3b4e8db40e23b5ad42c3598e8f67b11ca54d"
+  },
+  "reviewer": "S Anand Natarajan",
+  "review_date": "2026-11-01"
+}

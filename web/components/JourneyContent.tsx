@@ -46,6 +46,8 @@ function LessonsRow(
   }
 ) {
   const [lessons, setLessons] = useState<Lesson[] | null>(null);
+  const [failed, setFailed] = useState(false);
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     let alive = true;
@@ -53,14 +55,15 @@ function LessonsRow(
     getLessons().then(l => {
       if (alive)
         setLessons(l);
-    });
+    }).catch(() => alive && setFailed(true));
 
     return () => {
       alive = false;
     };
-  }, []);
+  }, [attempt]);
 
   const shown = lessons?.filter(l => l.stage === stage || (prenatalPreview && l.stage === "first_weeks")) ?? [];
+  if (failed) return <Card><h2 className="text-xl">Little Lessons</h2><p role="alert" className="mt-3 text-sm">We could not load the lessons. The service may be temporarily unavailable.</p><button type="button" className="mt-4 rounded-full bg-peach px-5 py-2.5 font-medium" onClick={() => { setFailed(false); setLessons(null); setAttempt(n => n + 1); }}>Retry</button></Card>;
   return <Card><h2 className="text-xl">{stage === "before_birth" ? "Watch before baby arrives" : "Little Lessons for the first weeks"}</h2>{prenatalPreview && <p className="mt-2 text-sm text-ink-soft">Preview reviewed newborn-care lessons before your baby arrives.</p>}{lessons === null ? <p className="mt-3 text-sm">Loading reviewed lessons…</p> : shown.length ? <ul className="mt-3 space-y-3">{shown.map(l => <li key={l.lesson_id}><Link className="underline" href={`/lessons/${l.lesson_id}`}>{l.title}</Link></li>)}</ul> : <p className="mt-3 text-sm text-ink-soft">{prenatalPreview ? "No approved lessons to preview yet. " : "No approved lessons for this stage yet. "}<Link className="underline" href="/ask">Ask for written, sourced guidance.</Link></p>}<Link className="mt-4 inline-block text-sm underline" href="/lessons">All reviewed lessons</Link></Card>;
 }
 
@@ -277,7 +280,7 @@ export function CelebrateJourney() {
             setInvite(null);
           }}><option value="tamil_nadu">Tamil Nadu</option><option value="kerala">Kerala</option><option value="karnataka">Karnataka</option></select></label>{failed ? <p role="alert">The playbook could not load. Try another tradition or reload.</p> : book && <><Card tone="peach"><h2 className="text-2xl">{book.tradition}</h2><p className="mt-3 text-sm">{book.note}</p><p className="mt-3 text-sm">{book.timing}</p><p className="mt-3 text-xs text-ink-soft">Family customs, not medical guidance.</p></Card><Card><h2 className="text-xl">Make it your family&apos;s day</h2>{book.rituals.map(
             r => <div key={r.name} className="mt-4"><h3 className="font-semibold">{r.name}</h3><p className="mt-1 text-sm text-ink-soft">{r.what}</p></div>
-          )}<h3 className="mt-5 font-semibold">A little planning list</h3><ul className="mt-2 list-disc space-y-2 pl-5 text-sm">{book.checklist.map(c => <li key={c}>{c}</li>)}</ul><h3 className="mt-5 font-semibold">Menu ideas</h3><ul className="mt-2 list-disc pl-5 text-sm">{book.menu_ideas.map(c => <li key={c}>{c}</li>)}</ul><Link
+          )}<h3 className="mt-5 font-semibold">A little planning list</h3><ul className="mt-2 list-disc space-y-2 pl-5 text-sm">{book.checklist.map(c => <li key={c}>{c}</li>)}</ul>{!!book.menu_ideas?.length && <><h3 className="mt-5 font-semibold">Menu ideas</h3><ul className="mt-2 list-disc pl-5 text-sm">{book.menu_ideas.map(c => <li key={c}>{c}</li>)}</ul></>}<Link
             className="mt-4 inline-block text-sm underline"
             href="/ask?q=What%20food%20safety%20should%20we%20consider%20for%20a%20pregnancy%20celebration%3F">Ask for sourced food safety guidance</Link></Card></>}<Card><h2 className="text-xl">An invitation from the heart</h2><form onSubmit={invitation} className="mt-4 space-y-3">{[
             ["hosts", "Host names", true],

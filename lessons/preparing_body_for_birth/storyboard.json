@@ -1,0 +1,64 @@
+{
+  "lesson_id": "preparing_body_for_birth",
+  "title": "Gentle activity to prepare for birth",
+  "version": 1,
+  "stage": "before_birth",
+  "language": "en",
+  "sources": [
+    "NHS-PREGNANCY-EXERCISE"
+  ],
+  "see_how": null,
+  "scenes": [
+    {
+      "caption": "Check your personal exercise needs",
+      "narration_line": "If you have a health condition, ask your midwife which activities are suitable for you.",
+      "icon": "shield-check",
+      "source_id": "NHS-PREGNANCY-EXERCISE",
+      "page_label": "1",
+      "safety_points": [],
+      "step_no": 1
+    },
+    {
+      "caption": "Start gradually with manageable activity",
+      "narration_line": "If you are new to exercise, start with a small amount, such as ten minutes a day.",
+      "icon": "timer",
+      "source_id": "NHS-PREGNANCY-EXERCISE",
+      "page_label": "1",
+      "safety_points": [
+        "Do not start a new vigorous activity."
+      ],
+      "step_no": 2
+    },
+    {
+      "caption": "Keep a pace that allows conversation",
+      "narration_line": "Walking can count towards activity; choose a moderate pace where you can still talk.",
+      "icon": "leaf",
+      "source_id": "NHS-PREGNANCY-EXERCISE",
+      "page_label": "1",
+      "safety_points": [],
+      "step_no": 3
+    },
+    {
+      "caption": "Adapt as your pregnancy progresses",
+      "narration_line": "As your bump grows, adapt your activity for comfort and avoid pushing yourself too hard.",
+      "icon": "heart",
+      "source_id": "NHS-PREGNANCY-EXERCISE",
+      "page_label": "1",
+      "safety_points": [
+        "Avoid prolonged flat-back exercise in later pregnancy."
+      ],
+      "step_no": 4
+    },
+    {
+      "caption": "Drink water, keep cool, and listen",
+      "narration_line": "Drink water, keep cool, and stop if you feel uncomfortable, overheated or unwell.",
+      "icon": "drop",
+      "source_id": "NHS-PREGNANCY-EXERCISE",
+      "page_label": "1",
+      "safety_points": [
+        "Avoid activities with falls or tummy-impact risks."
+      ],
+      "step_no": 5
+    }
+  ]
+}

@@ -17,6 +17,7 @@ export default function TodayPage() {
   const { profile, ready } = useProfile();
   const { ticks } = useTicks();
   const [load, setLoad] = useState<Load>({ today: null, ids: [], failed: false });
+  const [attempt, setAttempt] = useState(0);
   const body = useMemo(() => (profile ? JSON.stringify(profileBody(profile)) : null), [profile]);
 
   useEffect(() => {
@@ -34,13 +35,14 @@ export default function TodayPage() {
     return () => {
       alive = false;
     };
-  }, [body]);
+  }, [body, attempt]);
 
   if (!ready || !profile) return <p className="mt-20 text-center text-ink-soft">One moment…</p>;
   if (load.failed)
     return (
       <Card className="mt-10 text-center">
-        <p>Nestling could not reach its server just now. Please check your connection and try again in a moment.</p>
+        <p role="alert">Nestling could not reach its server just now. The service may be temporarily unavailable.</p>
+        <button type="button" className="mt-4 rounded-full bg-peach px-5 py-2.5 font-medium" onClick={() => { setLoad({ today: null, ids: [], failed: false }); setAttempt(n => n + 1); }}>Retry</button>
       </Card>
     );
   if (!load.today) return <p className="mt-20 text-center text-ink-soft">Getting today ready…</p>;

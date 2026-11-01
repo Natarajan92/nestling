@@ -16,15 +16,17 @@ const reviewedOn = (d: string | null) =>
 
 export default function LessonsPage() {
   const [lessons, setLessons] = useState<Lesson[] | null>(null);
+  const [failed, setFailed] = useState(false);
+  const [attempt, setAttempt] = useState(0);
   const [filter, setFilter] = useState<(typeof FILTERS)[number]["id"]>("all");
 
   useEffect(() => {
     let alive = true;
-    getLessons().then((l) => alive && setLessons(l));
+    getLessons().then((l) => alive && setLessons(l)).catch(() => alive && setFailed(true));
     return () => {
       alive = false;
     };
-  }, []);
+  }, [attempt]);
 
   const shown = (lessons ?? []).filter((l) => filter === "all" || l.stage === filter);
 
@@ -45,7 +47,12 @@ export default function LessonsPage() {
           </button>
         ))}
       </div>
-      {lessons === null ? (
+      {failed ? (
+        <Card className="mt-6 text-center">
+          <p role="alert">We could not load the lessons. The service may be temporarily unavailable.</p>
+          <button type="button" className="mt-4 rounded-full bg-peach px-5 py-2.5 font-medium" onClick={() => { setFailed(false); setLessons(null); setAttempt(n => n + 1); }}>Retry</button>
+        </Card>
+      ) : lessons === null ? (
         <p className="mt-10 text-center text-ink-soft">One moment…</p>
       ) : shown.length === 0 ? (
         <Card className="mt-6 text-center">

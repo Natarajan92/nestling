@@ -71,6 +71,26 @@ test("API rejection stays an error and never becomes a successful empty response
   await assert.rejects(api.transcribe(new Blob(["test"], { type: "audio/webm" })), /413/);
 });
 
+
+test("lesson library preserves a real empty library but rejects network and HTTP outages", async () => {
+  const empty = [];
+  const ok = load("api", { fetch: async () => ({ ok: true, json: async () => empty }) });
+  assert.equal(await ok.getLessons(), empty);
+  const unavailable = load("api", { fetch: async () => ({ ok: false, status: 503 }) });
+  await assert.rejects(unavailable.getLessons(), /503/);
+  const offline = load("api", { fetch: async () => { throw new Error("network unavailable"); } });
+  await assert.rejects(offline.getLessons(), /network unavailable/);
+});
+
+test("lesson detail returns missing only for HTTP404 and preserves other failures", async () => {
+  const missing = load("api", { fetch: async () => ({ ok: false, status: 404 }) });
+  assert.equal(await missing.getLesson("absent"), null);
+  const unavailable = load("api", { fetch: async () => ({ ok: false, status: 502 }) });
+  await assert.rejects(unavailable.getLesson("swaddling"), /502/);
+  const offline = load("api", { fetch: async () => { throw new Error("network unavailable"); } });
+  await assert.rejects(offline.getLesson("swaddling"), /network unavailable/);
+});
+
 test("blank example configuration still reaches the separate local API", async () => {
   let requested;
   const api = load("api", { process: { env: { NEXT_PUBLIC_API_URL: " " } }, fetch: async url => { requested = url; return { ok: true, json: async () => ({ ok: true }) }; } });

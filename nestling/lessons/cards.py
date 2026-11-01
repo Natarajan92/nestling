@@ -14,6 +14,7 @@ from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 
 from nestling import retrieval
 from nestling.lessons import ASSETS
+from nestling.lessons.stitch import CAPTION_Y
 
 W, H = 1080, 1920
 SS = 3  # supersampling for shapes and icons
@@ -354,17 +355,35 @@ def render_closing(board: dict, reviewed_on: str | None) -> Image.Image:
     img, draw = _frame(tone["bg"])
     _wordmark(img, draw)
     fnt, pages_fnt = font("Inter", 34, 500), font("Inter", 30, 700)
-    cards = [(wrap(draw, title, fnt, W - 248)[:3], pages) for title, pages in source_lines(board)]
+    cards = [(wrap(draw, title, fnt, W - 248), pages) for title, pages in source_lines(board)]
     heights = [56 + 46 * len(lines) + 50 for lines, _ in cards]
     # layout as one centred group: heading, check badge, source cards, review pill, disclaimer
     group = 100 + 40 + 360 + 50 + sum(h + 28 for h in heights) + 40 + 92 + 40 + 100
     y = 190 + max(0, (1790 - 190 - group) // 2)
+    badge_height, after_badge, card_gap, before_review = 360, 50, 28, 40
+    disclaimer_font = font("Inter", 32, 500)
+    disclaimer_lines = wrap(draw, DISCLAIMER, disclaimer_font, W - 220)
+    disclaimer_bottom = max(draw.textbbox((W // 2, 132 + i * 46), line,
+                                          font=disclaimer_font, anchor="ma")[3]
+                            for i, line in enumerate(disclaimer_lines))
+    bottom = y + 140 + badge_height + after_badge + sum(h + card_gap for h in heights) + before_review + disclaimer_bottom
+    if bottom > CAPTION_Y - 24:
+        # Keep the actual citation type size; compact only decoration and spacing.
+        badge_height, after_badge, card_gap, before_review = 240, 30, 20, 24
+        group = 140 + badge_height + after_badge + sum(h + card_gap for h in heights) + before_review + disclaimer_bottom
+        available = CAPTION_Y - 24 - 190
+        if group > available:
+            raise ValueError("Full source citations cannot fit above the video caption strip")
+        y = 190 + (available - group) // 2
     draw.text((W // 2, y), "Where this comes from", font=font("Fraunces", 78, 700), fill=INK, anchor="ma")
     y += 140
     badge = shape_mask((440, 440), lambda d, s: d.polygon([(x * s, yy * s) for x, yy in blob_polygon(220, 220, 150, 11)], fill=255))
-    shadowed(img, badge, tone["blob"], (W // 2 - 220, y + 180 - 220), blur=24, offset=(0, 16), opacity=0.16)
-    draw_icon(img, "check-circle", (W // 2, y + 180), 190, INK)
-    y += 360 + 50
+    if badge_height != 360:
+        badge = badge.resize((294, 294), Image.Resampling.LANCZOS)
+    badge_center = y + badge_height // 2
+    shadowed(img, badge, tone["blob"], (W // 2 - badge.width // 2, badge_center - badge.height // 2), blur=24, offset=(0, 16), opacity=0.16)
+    draw_icon(img, "check-circle", (W // 2, badge_center), 190 if badge_height == 360 else 130, INK)
+    y += badge_height + after_badge
     for (lines, pages), h in zip(cards, heights):
         pill(img, (84, y, W - 84, y + h), "#FFFFFF", radius=40, shadow=True)
         ty = y + 32
@@ -372,12 +391,12 @@ def render_closing(board: dict, reviewed_on: str | None) -> Image.Image:
             draw.text((124, ty), line, font=fnt, fill=INK)
             ty += 46
         draw.text((124, ty + 6), pages, font=pages_fnt, fill=tone["deep"])
-        y += h + 28
-    y += 40
+        y += h + card_gap
+    y += before_review
     label = f"Reviewed on {reviewed_on}" if reviewed_on else CLOSING_REVIEW_PENDING
     pill(img, (W // 2 - 270, y, W // 2 + 270, y + 92), GOLD if not reviewed_on else SAGE, shadow=True)
     draw.text((W // 2, y + 46), label, font=font("Inter", 38, 700), fill=INK, anchor="mm")
-    text_block(draw, (W // 2, y + 132), DISCLAIMER, font("Inter", 32, 500), INK, W - 220, 46, anchor="m")
+    text_block(draw, (W // 2, y + 132), DISCLAIMER, disclaimer_font, INK, W - 220, 46, anchor="m")
     _dots(img, len(board["scenes"]) + 2, len(board["scenes"]) + 1, tone)
     return img
 

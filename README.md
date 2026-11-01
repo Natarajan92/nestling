@@ -45,7 +45,7 @@ The API needs `NEBIUS_API_KEY`, `PINECONE_API_KEY`, and `PINECONE_INDEX` (the ex
 
 ## Deploy readiness
 
-Deployment and pushing require the owner's approval; neither is performed by these instructions.
+The owner authorized GitHub publication and merge to main for this completed release. No app deployment has been performed, and deployment still requires approval.
 
 - **Render API:** use `render.yaml`, Python 3.12.12, build `pip install uv && uv sync --locked --no-dev`, start `uv run --no-sync uvicorn api.main:app --host 0.0.0.0 --port $PORT`. Health check: `/api/health`. Automatic deploy triggers are off. Enter required secrets in Render and set `NESTLING_WEB_ORIGINS` to the Vercel origin.
 - **Vercel web:** project root `web`, install/build using the lockfile; set `NEXT_PUBLIC_API_URL` to the Render API origin before building. Check API health, CORS, a sourced Ask answer, code-owned red-flag escalation, and approved lesson playback after release.
@@ -53,6 +53,8 @@ Deployment and pushing require the owner's approval; neither is performed by the
 
 ## Remaining owner work
 
-All six current videos are available locally after explicit owner approval of every scene on 2026-11-01: bathing v1, burping v1, latching v2, cord-care v4, holding v3 and swaddling v5. All six pass source fidelity; earlier reviews and failed verdicts remain historical. Holding/swaddling use registered citation-only local research PDFs without Pinecone ingestion. Builds permit 20-word narration and 8-word captions, preserving all burned-in narration text or failing clearly.
+All 12 current videos are available locally after explicit owner approval of every exact-version scene on 2026-11-01. The original six and six prenatal videos pass source fidelity; earlier reviews and failed verdicts remain historical. Builds permit 20-word narration and 8-word captions, preserving full burned-in narration text or failing clearly.
 
-The authorized 45 lesson phrasing records and six NHS bathing/burping source chunks are complete; further source writes need approval. Remaining work: the 20-case judge calibration, draft lesson-intent labels, Loom, interactive browser/device QA, and approval for push or deployment. Saved notebooks make no paid calls; explicit live evaluation commands cost money.
+The new before-birth videos cover labour-room preparation, prenatal yoga preparation, relaxed breathing, bed movement, stair comfort (v2) and gentle activity for birth. Eight new sources are citation-only local research PDFs; 37 new phrasings stay local. The original 45 Pinecone phrasing records and six authorized NHS bathing/burping source chunks are unchanged; further writes need approval. Historical 39-case intent results cover the original six-topic prompt, not the expanded 12-topic app prompt.
+
+[Headless browser QA](evals/results/ui_qa_2026-11-01.json) covers 120 listed mobile/desktop scenarios and 242 client navigations; the Ask crash, Kerala menu crash and misleading outage states were fixed. A separate 22-check publication extension verified all six new videos playing in both viewports, stage filters and Body/Ready links; final HTTP smoke passed 43 checks for all 12 lessons. Nine real API checks also passed: the original Care/lesson/emergency cases plus all six prenatal lesson routes. Physical devices, real microphone/native sharing, judge calibration, draft intent labels, Loom and app deployment approval remain pending. GitHub publication/merge is authorized for this release. Saved notebooks make no paid calls; explicit live evaluations cost money.

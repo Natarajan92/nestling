@@ -214,7 +214,8 @@ def checklist() -> dict:
 def celebrate(tradition: str) -> dict:
     if tradition not in celebrate_agent.FILES:
         raise HTTPException(404, "Unknown tradition")
-    return celebrate_agent.playbook(tradition)
+    book = celebrate_agent.playbook(tradition)
+    return {**book, "menu_ideas": book.get("menu_ideas", [])}
 
 
 class InvitationIn(BaseModel):
