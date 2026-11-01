@@ -1,0 +1,10 @@
+lesson_id: cord_care
+version: 1
+approved: false
+reviewer: null
+review_date: null
+scenes:
+  - {step_no: 1, passed: null, notes: ""}
+  - {step_no: 2, passed: null, notes: ""}
+  - {step_no: 3, passed: null, notes: ""}
+  - {step_no: 4, passed: null, notes: ""}

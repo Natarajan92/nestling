@@ -28,10 +28,13 @@ def default_voice() -> str:
     return premade[0]["voice_id"]
 
 
-def speak(text: str, voice_id: str | None = None) -> bytes:
-    """MP3 audio of the text."""
+def speak(text: str, voice_id: str | None = None, speed: float | None = None) -> bytes:
+    """MP3 audio of the text (speed 0.7-1.2 changes the pace; omitted = the voice's natural pace)."""
+    body = {"text": text, "model_id": MODEL}
+    if speed:
+        body["voice_settings"] = {"speed": speed}
     r = requests.post(f"{API}/text-to-speech/{voice_id or default_voice()}", headers=_headers(), timeout=120,
-                      params={"output_format": "mp3_44100_128"}, json={"text": text, "model_id": MODEL})
+                      params={"output_format": "mp3_44100_128"}, json=body)
     r.raise_for_status()
     return r.content
 

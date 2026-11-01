@@ -232,3 +232,6 @@ sources/pdfs/*
 node_modules/
 .next/
 .vercel/
+
+# Little Lessons renders (built locally, never committed)
+lessons/*/renders/

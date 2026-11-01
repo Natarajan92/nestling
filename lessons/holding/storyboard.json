@@ -1,0 +1,51 @@
+{
+  "lesson_id": "holding",
+  "title": "Holding your newborn",
+  "version": 1,
+  "stage": "first_weeks",
+  "language": "en",
+  "sources": [
+    "MOHFW-IYCF"
+  ],
+  "see_how": null,
+  "scenes": [
+    {
+      "step_no": 1,
+      "caption": "Keep head and body in a straight line",
+      "narration_line": "Make sure your baby's head and body stay in a straight line.",
+      "icon": "baby",
+      "source_id": "MOHFW-IYCF",
+      "page_label": "87",
+      "safety_points": []
+    },
+    {
+      "step_no": 2,
+      "caption": "Hold your baby close to you",
+      "narration_line": "Hold your baby's body close to yours.",
+      "icon": "hand-heart",
+      "source_id": "MOHFW-IYCF",
+      "page_label": "87",
+      "safety_points": []
+    },
+    {
+      "step_no": 3,
+      "caption": "Support their bottom, not just head and shoulders",
+      "narration_line": "For a newborn, support their bottom too.",
+      "icon": "hand-palm",
+      "source_id": "MOHFW-IYCF",
+      "page_label": "87",
+      "safety_points": []
+    },
+    {
+      "step_no": 4,
+      "caption": "Hold at the shoulders, not the head",
+      "narration_line": "Hold your baby at the back of their shoulders.",
+      "icon": "hand",
+      "source_id": "MOHFW-IYCF",
+      "page_label": "88",
+      "safety_points": [
+        "Never push your baby's head forward."
+      ]
+    }
+  ]
+}

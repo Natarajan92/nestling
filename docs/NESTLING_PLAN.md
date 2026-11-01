@@ -32,10 +32,10 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
 7. **Light engineering.** One spec per journey, about 30–40 eval cases per agent, ship small, and post about it.
 8. **Little Lessons are reviewed, never improvised.** Safety-critical how-tos (holding, bathing, burping, swaddling, latching, cord care) are pre-generated and human-reviewed, never generated live per question.
    - Every step comes from a registered source; no invented steps.
-   - Illustration style only, never photorealistic babies. The baby is appropriately covered (nappy, towel or clothes) in every scene.
-   - Each lesson has a safety checklist, e.g. bathing: head and neck supported, water temperature checked, baby never left alone in water, everything ready before starting; holding: head and neck supported at all times. Every checklist also checks that each image matches its narration. Unapproved videos are never shown.
+   - Visuals are step cards with icons, drawn in code. There are no generated or photographic images of babies.
+   - Each lesson has a safety checklist, e.g. bathing: head and neck supported, water temperature checked, baby never left alone in water, everything ready before starting; holding: head and neck supported at all times. Every checklist also checks that each card and icon match its narration. Unapproved videos are never shown.
    - No approved video for a question → the written sourced steps only, and the gap is logged as a candidate lesson.
-   - Live image generation is allowed only for low-stakes, fun content (weekly fruit card, invitation cards).
+   - Live image generation is allowed only for low-stakes, fun content (weekly fruit card, invitation cards); Little Lessons use no image model at all.
 
 ---
 
@@ -60,7 +60,7 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
 3. **Ask Nestling:** a bottom sheet chat.
    - A small 🛡️ pulse shows the Guardian checking each message.
    - Answers carry **source chips** and a collapsible **"How I answered"** (agents used, sources, checks passed).
-   - **How-to answers (🎬 Little Lessons):** a 20–40 second illustrated video (narration + captions) on top, the written steps below, a source chip and **"Share on WhatsApp"**. With no approved video: the written sourced steps only.
+   - **How-to answers (🎬 Little Lessons):** a ~15-second step-card video (narration + captions) on top, the written steps below, a source chip and **"Share on WhatsApp"**. Where a trusted external video exists, a **"See how it's done"** link-out (never embedded). With no approved video: the written sourced steps only.
 4. **Journeys:** focused pages per journey (checklists, plans, Q&A).
    - 🩺 Body: the lessons for this stage (e.g. latching and cord care in the first weeks).
    - 🎒 Ready: *"Watch before baby arrives"* (holding, bathing, burping, swaddling).
@@ -107,11 +107,12 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
                → parent approves → sent
 
   🎬 Little Lessons, build time (offline, never per question):
-               registry steps → MAIN-model storyboard (5–6 scenes, JSON; each scene's narration_line
-               and image_prompt written together) → image per scene (one fixed style) + ElevenLabs
-               narration per scene → ffmpeg/Remotion stitch (audio length sets scene duration)
-               → MP4 + thumbnail → human review per scene → approved library
-               (a failed scene: fix it in storyboard.json, re-render only what changed, review again)
+               registry passages → MAIN-model storyboard (4–5 step scenes, JSON; caption, narration line
+               and icon written together; code checks every source and page) → step cards drawn in code
+               (title, steps, closing) + ElevenLabs narration per card → ffmpeg stitch (narration length
+               sets card duration) → MP4 + thumbnail → human review per scene → approved library
+               (a failed scene: fix it in storyboard.json, re-render, review again)
+               (no supported steps in the registry → no_trusted_source: a gap, never invented steps)
   🎬 Little Lessons, runtime (reviewed content, skips the Verifier):
                Concierge routes a how-to → match sample phrasings (Pinecone `lessons`) → approved lesson?
                → yes: video + written steps + source
@@ -128,7 +129,7 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
 | Money | Maternity cover, claims, newborn add-on; exact clause quotes from the uploaded policy | RAG over policy PDF + rules |
 | Celebrate | Tradition playbooks, babymoon ideas (Tavily for live venues and stays) | YAML playbooks + MAIN model |
 | Capture | Plan and compare photoshoots (maternity, baby shower / seemantham, newborn, hand & foot casting): find studios for a city, budget, shoot type and date; compare packages side by side; draft quote requests | Tavily/Keenable search → page fetch → FAST model extraction to `StudioPackage` → code comparison → approved enquiry |
-| Little Lessons | Short illustrated how-to videos for new parents (holding, bathing, burping, swaddling, latching, cord care) | **Build time:** MAIN-model storyboard → image model → ElevenLabs → ffmpeg/Remotion → human review. **Runtime:** retrieval of an approved video only; no live generation |
+| Little Lessons | Short step-card how-to videos for new parents (holding, bathing, burping, swaddling, latching, cord care) | **Build time:** MAIN-model storyboard → step cards drawn in code → ElevenLabs → ffmpeg → human review. **Runtime:** retrieval of an approved video only; no live generation |
 | Journal | Voice and text entries → mood, notes, profile updates | MAIN model + ElevenLabs |
 | Verifier | Faithfulness check of every claim against its source | MAIN model, checked by a cross-family judge |
 
@@ -148,12 +149,12 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
 - Nothing is sent, and the parent's contact details are never shared, without explicit approval.
 
 **🎬 Little Lessons: how a lesson is made** (constitution rule 8 applies)
-1. **Storyboard (MAIN model):** sourced steps from the registry (WHO, MoHFW, other registered sources) → 5–6 scenes as JSON: `step_no, caption, image_prompt, narration_line, source_id, safety_points[]`. The storyboard is the single source of truth: each scene's narration and image prompt are written together from the same sourced step, so they match.
-2. **Images:** each scene's `image_prompt` plus one fixed illustration-style prompt → an image model on Fireworks or Nebius (e.g. FLUX), so all scenes look consistent.
-3. **Voice:** ElevenLabs narration per scene from its `narration_line`; English first, Tamil/Hindi as optional later variants.
-4. **Stitch:** ffmpeg (or Remotion) combines images, gentle pan/zoom, captions and voice into a 20–40 second MP4, plus a thumbnail. Each narration's length sets how long its scene stays on screen.
-5. **Review gate (human in the loop):** Anand (and ideally a nurse or doctor) checks every scene against the lesson's safety checklist, which always includes *"image matches narration"*; the result goes in `review.yaml`. A failed scene is fixed in `storyboard.json`, only what changed (image, narration or both) is re-rendered, and it is reviewed again. Unapproved videos are never shown.
-6. **Library:** approved videos are stored with `lesson_id, version, sources, reviewer, review_date, language`. Each lesson also has sample phrasings (`phrasings.yaml`, e.g. *"how do I give a bath"*, *"first bath at home"*), embedded in Pinecone namespace `lessons`. At runtime the Concierge routes a how-to question to Little Lessons, which matches it against the phrasings and returns that lesson's approved video. Same or related question → same `lesson_id` and version → the same reviewed video, narration and steps every time. Lesson content never lives in mem0; mem0 only remembers which lessons a parent has watched.
+1. **Storyboard (MAIN model):** passages from the registered sources (WHO, MoHFW, other registered sources) → 4–5 step scenes as JSON: `step_no, caption (≤ 8 words), narration_line, icon, source_id, page_label, safety_points[]`. The storyboard is the single source of truth: each step's caption, narration and icon are written together from the same sourced step. Code then checks that every `source_id` and `page_label` is one of the retrieved passages, that the step's evidence quote appears on that page, that the icon exists, and that nothing is a dose or a diagnosis. If the passages do not support the steps, the lesson is a gap (`no_trusted_source`) and nothing is written.
+2. **Cards (no image model):** a title card, one card per step and a closing card (sources and *"Reviewed on <date>"* or *"Pending review"*) are drawn in code as 1080×1920 images in the Nestling palette: a large Fraunces step number, the step line, one Phosphor icon on a soft blob, a gold *Safety* pill, progress dots and the wordmark.
+3. **Voice:** ElevenLabs narration per card from its `narration_line`; English first, Tamil/Hindi as optional later variants.
+4. **Stitch:** ffmpeg combines the cards, a slow zoom, slide transitions, burned-in captions and the narration into a vertical H.264/AAC MP4 of about 15–20 seconds, plus a thumbnail. Each narration's length sets how long its card stays on screen. No music.
+5. **Review gate (human in the loop):** Anand (and ideally a nurse or doctor) checks every scene against the lesson's safety checklist, which always includes *"Card and icon match the narration"*; the result goes in `review.yaml`. A failed scene is fixed in `storyboard.json`, the lesson is re-rendered and reviewed again. Unapproved videos are never shown.
+6. **Library:** approved videos are stored with `lesson_id, version, sources, reviewer, review_date, language`. Each lesson also has sample phrasings (`phrasings.yaml`, e.g. *"how do I give a bath"*, *"first bath at home"*), embedded in Pinecone namespace `lessons`. At runtime the Concierge routes a how-to question to Little Lessons, which matches it against the phrasings and returns that lesson's approved video. Where a trusted external video exists (e.g. NHS bathing, Global Health Media Project attachment in Hindi), the lesson also carries a hand-curated `see_how` link-out, never embedded and never written by a model. Same or related question → same `lesson_id` and version → the same reviewed video, narration and steps every time. Lesson content never lives in mem0; mem0 only remembers which lessons a parent has watched.
 
 **Plain code (no agent):** week engine (due date ↔ week), red-flag rules, checklists, playbook loader, Capture package comparison, Little Lessons approved-library lookup, consent and deletion.
 
@@ -171,10 +172,10 @@ Use these as the Spec Kit constitution (`/speckit.constitution`).
 | **LlamaIndex** | Ingest guideline and policy PDFs with page and section metadata |
 | **Pinecone** | Vector index for the source library (hybrid search + rerank in the improved run); namespace `lessons` holds Little Lessons sample phrasings for lesson matching |
 | **Fireworks or Nebius** | Cross-family LLM-as-judge (an open model judging Claude) |
-| **Image model (Fireworks or Nebius)** | e.g. FLUX, whichever our credits cover: Little Lessons scenes at build time (one fixed illustration style); live only for fun cards (weekly fruit, invitations) |
+| **Image model (Fireworks or Nebius)** | Live, for fun cards only (weekly fruit, invitations). Little Lessons use no image model: their cards are drawn in code |
 | **Tavily** | Live **non-medical** lookups only (venues, stays, caterers, and photo studios for Capture); Keenable as fallback |
 | **ElevenLabs** | Voice journal, letters in own voice, narrated weekly update, Little Lessons narration (English first; Tamil/Hindi later) |
-| **ffmpeg or Remotion** | Stitch Little Lessons: images + pan/zoom + captions + voice → MP4 + thumbnail |
+| **ffmpeg** | Stitch Little Lessons: step cards + slow zoom + slide transitions + captions + narration → MP4 + thumbnail. Fonts (Fraunces, Inter; SIL OFL) and icons (Phosphor; MIT) are vendored under `assets/` |
 | **mem0** | Soft memory (preferences, journal recall, which Little Lessons a parent has watched). The hard profile stays in the DB; lesson content stays in the approved library. |
 | **Toloka** | Later: real moms and clinicians rate answers → human-validated golden set |
 | **Claude Code + Spec Kit** | Building; Codex as second PR reviewer |
@@ -213,6 +214,9 @@ nestling/
 ├── sources/
 │   ├── registry.yaml
 │   └── pdfs/                      # gitignored if licence unclear
+├── assets/
+│   ├── fonts/                     # Fraunces, Inter (SIL OFL, licences included)
+│   └── icons/                     # Phosphor icons used by Little Lessons (MIT, licence included)
 ├── playbooks/
 │   ├── labour_bag.yaml
 │   ├── seemantham_tamilnadu.yaml
@@ -220,7 +224,8 @@ nestling/
 │   └── seemantha_karnataka.yaml
 ├── lessons/
 │   └── <lesson_id>/               # one folder per Little Lesson
-│       ├── storyboard.json        # 5–6 scenes, each with source_id and safety_points
+│       ├── storyboard.json        # 4–5 step scenes, each with source_id, page_label and safety_points
+│       ├── renders/               # card PNGs, narration MP3s, lesson.mp4, thumbnail.jpg (gitignored)
 │       ├── checklist.yaml         # per-lesson safety checklist
 │       ├── phrasings.yaml         # sample questions for lesson matching (Pinecone `lessons`)
 │       └── review.yaml            # reviewer, date, checklist result per scene, approved yes/no
@@ -234,10 +239,11 @@ nestling/
 │   ├── capture/
 │   │   └── estimate.py            # estimate_cost(): tier ranges + confidence, code only
 │   ├── lessons/                   # Little Lessons (build time, except library.py)
-│   │   ├── storyboard.py          # sourced steps → scene JSON (MAIN model)
-│   │   ├── render_images.py       # scenes → images (Fireworks/Nebius, fixed style)
-│   │   ├── narrate.py             # narration per scene (ElevenLabs)
-│   │   ├── stitch.py              # ffmpeg/Remotion → MP4 + thumbnail
+│   │   ├── storyboard.py          # sourced steps → scene JSON (MAIN model), validated in code
+│   │   ├── cards.py               # scenes → 1080×1920 step cards (drawn in code, no image model)
+│   │   ├── narrate.py             # narration per card (ElevenLabs)
+│   │   ├── stitch.py              # ffmpeg → MP4 + thumbnail
+│   │   ├── render.py              # CLI: cards → narration → stitch → render_log.json
 │   │   └── library.py             # approved videos + metadata; runtime lookup
 │   ├── verifier.py
 │   ├── retrieval.py               # LlamaIndex + Pinecone
@@ -486,7 +492,7 @@ MEM0_API_KEY=
 - [ ] A clinician or nurse to review the red-flag rules and a sample of answers. *Deferred.* Until then, every red-flag rule is checked against the WHO/MoHFW page it cites. Web search (Tavily) is not a substitute: it is for non-medical lookups only (§5, constitution).
 - [x] Capture pilot city: **Bengaluru**, including studios' Instagram where it can be used properly (public pages, bio links, later the official Business Discovery API; no scraping, no copied images). *Decided 2026-11-01.*
 - [ ] Do we approach 3–5 studios to try the Partner API?
-- [ ] Little Lessons image model: Fireworks or Nebius?
+- [x] Little Lessons visuals: **step-card videos drawn in code, no image model**, with trusted link-outs where a good external video exists. *Decided 2026-11-01.*
 - [ ] Which 6 Little Lessons first? (Proposed: holding, bathing, burping, swaddling, latching positions, cord care.)
 - [ ] Who reviews Little Lessons medically? (Could be the same clinician or nurse as the red-flag review above.)
 
