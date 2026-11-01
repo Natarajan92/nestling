@@ -41,5 +41,25 @@
     "web_home_http": 200,
     "api_health": true,
     "approved_lessons": 12
+  },
+  "dependency_audit": {
+    "production": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "all_dependencies": {
+      "info": 0,
+      "low": 0,
+      "moderate": 16,
+      "high": 0,
+      "critical": 0,
+      "total": 16
+    },
+    "open_advisory": "https://github.com/isaacs/minimatch/security/advisories/GHSA-g3hv-75wg-m249",
+    "scope": "Development lint dependency chain; compatible upstream fix unavailable at review time. No forced major override. Not a comprehensive security review."
   }
 }

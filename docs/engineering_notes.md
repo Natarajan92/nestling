@@ -40,6 +40,10 @@ Known constraints include previously exposed questions, remaining source-verific
 
 ## Verification and publication
 
+Final checks: **373 Python tests and 39 web tests passed**, along with ESLint and the production build. [Current QA evidence](../evals/results/golden_v3/qa/summary.json) records commands/status; [media smoke](../evals/results/golden_v3/qa/media_smoke.json) confirms all 12 approved videos and thumbnails are served locally. These checks do not certify physical devices or public hosting.
+
+**Open development dependency advisory:** [GHSA-g3hv-75wg-m249](https://github.com/isaacs/minimatch/security/advisories/GHSA-g3hv-75wg-m249) affects the minimatch lint dependency chain. Production-only `npm audit --omit=dev` reports zero vulnerabilities; full audit still reports this advisory across development dependencies. Compatible upstream ESLint/TypeScript ESLint dependencies have no automatic fix; forcing minimatch 11 over callable 3.x breaks callers. Keep the alert open, use trusted repository glob patterns, and update when compatible fixes land. This is a bounded dependency check, not a comprehensive security certification.
+
 [Saved UI QA](../evals/results/ui_qa_2026-11-01.json) records browser/mobile-width coverage and a separate prenatal extension. It does not certify physical devices, real microphone permissions, native sharing or clipboard. Test counts and live costs belong to their dated evidence; do not present an old count as a new run.
 
 Old Ask result files and retired generators were privately archived and removed from the publication tree at the owner's request. Private archives and their closed budgets must stay ignored; the current v3 ledger remains part of the saved evidence. GitHub history cleanup must operate on a verified backup and use explicit refs/leases; closed PR refs and cached commit/diff pages can retain earlier objects despite rewritten branch history. Do not promise complete remote erasure from a normal force-push.

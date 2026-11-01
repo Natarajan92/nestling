@@ -26,7 +26,7 @@ Frozen **v3, 62 cases**; same inputs, labels, models and independent Qwen judge 
 | p95 response time | <8s | 22.55s → 12.11s | ❌ |
 | Mean pipeline cost | <₹2 | ₹0.681 → ₹0.719 | ✅ |
 
-A citation parser truncated a source ID and discarded relevant evidence; fixing it improved paired faithfulness **27/33 → 30/33** and task completion **47/62 → 52/62**. Two later experiments were rejected because useful-answer quality fell, despite some speed gains. Safety held on these test cases; latency still misses target, and human-versus-judge calibration is **pending (0/20)**.
+A citation parser truncated a source ID and discarded relevant evidence; fixing it improved paired faithfulness **27/33 → 30/33** and judged task completion **47/62 → 52/62**. Two later experiments were rejected because useful-answer quality fell, despite some speed gains. Safety held on these test cases; latency still misses target, and human-versus-judge calibration is **pending (0/20)**.
 
 ![Faithfulness, latency and cost trade-offs](docs/media/tradeoff.png)
 ![Metrics across all completed experiments](docs/media/metrics_by_version.png)

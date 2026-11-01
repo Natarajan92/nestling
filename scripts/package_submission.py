@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
@@ -18,6 +19,7 @@ RESULTS = ROOT / "evals/results/golden_v3"
 
 def build() -> Path:
     from evals.v3_run import JUDGE_SCHEMA, JUDGE_SYSTEM, JUDGE_VERSION
+    from evals.label_calibration import report as calibration_report
     from nestling import golden
 
     golden.load()
@@ -57,11 +59,20 @@ def build() -> Path:
     if not code or any(cell.get("execution_count") is None for cell in code):
         raise ValueError("Submission notebook must be executed")
     OUT.mkdir(parents=True, exist_ok=True)
+    calibration = calibration_report(RESULTS / "human_review.csv")
+    pending = []
+    if any(calibration[key]["n_labelled"] < calibration[key]["n_total"]
+           for key in ("faithfulness", "task_fulfillment")):
+        pending.append("Owner's actual-output calibration (20 cases)")
+    report_text = (ROOT / "docs/week4_report.md").read_text(encoding="utf-8")
+    loom = re.search(r"^\*\*Loom:\*\*\s*(.*)$", report_text, re.MULTILINE)
+    if not loom or not re.search(r"https?://", loom.group(1)):
+        pending.append("Owner's Loom recording/link")
     manifest = {
         "created_at": datetime.now(timezone.utc).isoformat(),
         "dataset_version": golden.DATASET_VERSION, "dataset_sha256": golden.SHA256,
         "selected_round": "round1", "completed_rejected_rounds": ["round2", "round3"],
-        "pending": ["Owner's actual-output calibration (20 cases)", "Owner's Loom recording/link"],
+        "pending": pending,
         "excluded": ["Secrets and personal data", "Full copyrighted source passages/checkpoints",
                      "Private Git backups", "Lesson media (separate approved local render files)"],
         "files": [{"path": p.relative_to(ROOT).as_posix(), "bytes": p.stat().st_size,
@@ -78,7 +89,7 @@ def build() -> Path:
         archive.writestr("START_HERE.txt", (
             "Read output/pdf/Nestling_Week4_Submission.pdf and docs/week4_report.md.\n"
             "All four complete runs are included; Round 1 is retained.\n"
-            "Human calibration and the owner's Loom are pending; do not submit as complete yet.\n"
+            f"Pending: {', '.join(pending) if pending else 'No missing owner calibration or Loom link'}.\n"
             "Case CSVs contain answers/scores/trace links. Private LangSmith access may be needed.\n"
             "No secrets, personal data, source PDFs or private review checkpoints are included.\n"
             "This is an evidence pack with evaluation code, not a full application checkout.\n"

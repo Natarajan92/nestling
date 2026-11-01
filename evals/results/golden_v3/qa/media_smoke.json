@@ -1,0 +1,176 @@
+{
+  "recorded_on": "2026-11-02",
+  "api_origin": "http://127.0.0.1:8010",
+  "lessons_checked": 12,
+  "paid_calls": 0,
+  "checks": [
+    {
+      "lesson_id": "bathing",
+      "version": 1,
+      "video_url": {
+        "status": 206,
+        "content_type": "video/mp4",
+        "bytes_sampled": 80
+      },
+      "thumbnail_url": {
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes_sampled": 80
+      }
+    },
+    {
+      "lesson_id": "burping",
+      "version": 1,
+      "video_url": {
+        "status": 206,
+        "content_type": "video/mp4",
+        "bytes_sampled": 80
+      },
+      "thumbnail_url": {
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes_sampled": 80
+      }
+    },
+    {
+      "lesson_id": "cord_care",
+      "version": 4,
+      "video_url": {
+        "status": 206,
+        "content_type": "video/mp4",
+        "bytes_sampled": 80
+      },
+      "thumbnail_url": {
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes_sampled": 80
+      }
+    },
+    {
+      "lesson_id": "holding",
+      "version": 3,
+      "video_url": {
+        "status": 206,
+        "content_type": "video/mp4",
+        "bytes_sampled": 80
+      },
+      "thumbnail_url": {
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes_sampled": 80
+      }
+    },
+    {
+      "lesson_id": "labour_room_readiness",
+      "version": 1,
+      "video_url": {
+        "status": 206,
+        "content_type": "video/mp4",
+        "bytes_sampled": 80
+      },
+      "thumbnail_url": {
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes_sampled": 80
+      }
+    },
+    {
+      "lesson_id": "latching",
+      "version": 2,
+      "video_url": {
+        "status": 206,
+        "content_type": "video/mp4",
+        "bytes_sampled": 80
+      },
+      "thumbnail_url": {
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes_sampled": 80
+      }
+    },
+    {
+      "lesson_id": "pregnancy_bed_movement",
+      "version": 1,
+      "video_url": {
+        "status": 206,
+        "content_type": "video/mp4",
+        "bytes_sampled": 80
+      },
+      "thumbnail_url": {
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes_sampled": 80
+      }
+    },
+    {
+      "lesson_id": "pregnancy_breathing",
+      "version": 1,
+      "video_url": {
+        "status": 206,
+        "content_type": "video/mp4",
+        "bytes_sampled": 80
+      },
+      "thumbnail_url": {
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes_sampled": 80
+      }
+    },
+    {
+      "lesson_id": "pregnancy_stair_comfort",
+      "version": 2,
+      "video_url": {
+        "status": 206,
+        "content_type": "video/mp4",
+        "bytes_sampled": 80
+      },
+      "thumbnail_url": {
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes_sampled": 80
+      }
+    },
+    {
+      "lesson_id": "prenatal_yoga_preparation",
+      "version": 1,
+      "video_url": {
+        "status": 206,
+        "content_type": "video/mp4",
+        "bytes_sampled": 80
+      },
+      "thumbnail_url": {
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes_sampled": 80
+      }
+    },
+    {
+      "lesson_id": "preparing_body_for_birth",
+      "version": 1,
+      "video_url": {
+        "status": 206,
+        "content_type": "video/mp4",
+        "bytes_sampled": 80
+      },
+      "thumbnail_url": {
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes_sampled": 80
+      }
+    },
+    {
+      "lesson_id": "swaddling",
+      "version": 5,
+      "video_url": {
+        "status": 206,
+        "content_type": "video/mp4",
+        "bytes_sampled": 80
+      },
+      "thumbnail_url": {
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes_sampled": 80
+      }
+    }
+  ]
+}
