@@ -17,7 +17,8 @@ RESULTS = ROOT / "evals" / "results" / "golden_v3"
 MEDIA = ROOT / "docs" / "media"
 CREAM, INK, GRID = "#FFF8F1", "#2E2A3A", "#E7DCD2"
 COLORS = ("#EAA582", "#86A88A", "#CE94A3", "#CAA353", "#8B9EB8")
-ORDER = {"baseline": 0, "round1": 1, "round2": 2, "round3": 3, "final": 4}
+ORDER = {"baseline": 0, "round1": 1, "round2": 2, "round3": 3,
+         "latency1": 4, "latency2": 5, "latency3": 6, "final": 7}
 
 
 def _number(value, label, *, share=False):

@@ -60,6 +60,14 @@ PROMPT_VERSIONS.update({"v6+lessons": "app-v6-lessons-v1", "v7+lessons": "app-v7
                         "v7_vector": "improved-v4-vector", "v7_vector_safe": "improved-v4-vector-safe",
                         "v7_vector_safe+lessons": "app-v7-vector-safe-lessons-v2-prenatal",
                         "app_v7_vector": "app-v7-vector-lessons-v1"})
+# Explicit latency candidates; the selected app and historical versions keep their defaults.
+VERSIONS["latency_fast_direct"] = {**VERSIONS["v7_vector_safe+lessons"], "fast_reasoning_effort": "none"}
+VERSIONS["latency_fast_low"] = {**VERSIONS["v7_vector_safe+lessons"], "fast_reasoning_effort": "low"}
+VERSIONS["latency_fast_direct_warm"] = {**VERSIONS["latency_fast_direct"], "prewarm_sources": True}
+VERSIONS["latency_fast_low_warm"] = {**VERSIONS["latency_fast_low"], "prewarm_sources": True}
+PROMPT_VERSIONS.update({"latency_fast_direct": "latency-fast-direct-v1", "latency_fast_low": "latency-fast-low-v1",
+                        "latency_fast_direct_warm": "latency-fast-direct-warm-v1",
+                        "latency_fast_low_warm": "latency-fast-low-warm-v1"})
 APP_VERSION = "v7_vector_safe+lessons"  # owner-approved full104 gate, 2026-11-01; MAIN stays DeepSeek
 SPECIALISTS = {"care": care, "nourish": nourish, "money": money, "ready": ready, "celebrate": celebrate, "journal": journal}
 VERIFIED = {"care", "nourish", "money"}  # medical, diet and insurance answers
@@ -90,14 +98,17 @@ def guardian_node(state: AskState) -> dict:
     """Guardian screening. When the Concierge is on and the rules do not escalate, the Concierge
     runs at the same time (it only proposes a route; the Guardian's decision still comes first)."""
     question = state["question"]
+    effort = state["flags"].get("fast_reasoning_effort")
+    reasoning = {"reasoning_effort": effort} if effort is not None else {}
     proposed = None
     if state["flags"]["concierge"] and not guardian.decide(question).escalate:
         with ContextThreadPoolExecutor(max_workers=2) as pool:
-            screening = pool.submit(guardian.screen, question)
-            routing = pool.submit(concierge.route, question, **({"lessons": True} if state["flags"].get("lessons") else {}))
+            screening = pool.submit(guardian.screen, question, **reasoning)
+            routing = pool.submit(concierge.route, question, **({"lessons": True} if state["flags"].get("lessons") else {}),
+                                  **reasoning)
             (decision, usage), proposed = screening.result(), routing.result()
     else:
-        decision, usage = guardian.screen(question)
+        decision, usage = guardian.screen(question, **reasoning)
     steps = ["Guardian checked the message"]
     if decision.red_flags:
         steps.append("Red-flag rules fired: " + ", ".join(decision.red_flags))
@@ -147,7 +158,9 @@ def concierge_node(state: AskState) -> dict:
     out = state.get("proposed_route")
     usage = []
     if out is None:  # not pre-computed alongside the Guardian
-        out = concierge.route(state["question"], **({"lessons": True} if state["flags"].get("lessons") else {}))
+        effort = state["flags"].get("fast_reasoning_effort")
+        reasoning = {"reasoning_effort": effort} if effort is not None else {}
+        out = concierge.route(state["question"], **({"lessons": True} if state["flags"].get("lessons") else {}), **reasoning)
         usage = [out["usage"]] if out.get("usage") else []
     return {"route": out["route"], "usage": usage, "steps": [f"Concierge routed to {out['route']}"]}
 

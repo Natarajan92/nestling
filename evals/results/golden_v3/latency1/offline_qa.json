@@ -1,0 +1,21 @@
+{
+  "recorded_on": "2026-11-02",
+  "scope": "Offline unit/regression tests only; no provider latency improvement claim",
+  "tests": 457,
+  "failures": 0,
+  "errors": 0,
+  "warning": "Existing LangSmith wrapper deprecation",
+  "model_calls": 0,
+  "selected_app_version": "v7_vector_safe+lessons",
+  "selected_flags": {
+    "concierge": true,
+    "retrieval": "staged_vector",
+    "verifier": true,
+    "strict_verifier": true,
+    "lessons": true
+  },
+  "dataset_hash": "8075c270caa94751047580136d7588ba1d49a51fb9a194688c54be92fc387012",
+  "prior_ledger_sha256": "c968cc3bfaf48c8bc97721e286f5e7074c748e2a57d99dd03629b67a158840d9",
+  "authorization_status": "pending owner approval for up to INR160; max3full rounds and compatibility probe",
+  "review": "Independent implementation review and scoped re-review; all identified blockers addressed"
+}

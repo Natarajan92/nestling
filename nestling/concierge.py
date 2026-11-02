@@ -70,7 +70,7 @@ def _user(text: str, lessons: bool = False) -> str:
 
 
 @traceable(name="concierge", run_type="chain")
-def route(text: str, lessons: bool = False) -> dict:
+def route(text: str, lessons: bool = False, *, reasoning_effort: str | None = None) -> dict:
     """{"route": one of ROUTES, "usage": {...}}. Falls back to clarify if the call fails."""
     try:
         system, schema = SYSTEM, SCHEMA
@@ -80,7 +80,8 @@ def route(text: str, lessons: bool = False) -> dict:
                        "preparing the body for birth, holding, bathing, burping, swaddling, latching or cord care. "
                        "Route these to lessons rather than care or ready. Symptoms, danger signs and individual exercise-safety concerns stay care.")
             schema = {**SCHEMA, "properties": {"route": {"type": "string", "enum": [*ROUTES, "lessons"]}}}
-        data, usage, _ = chat_json(FAST, system, _user(text, lessons), schema, max_tokens=500)
+        reasoning = {"reasoning_effort": reasoning_effort} if reasoning_effort is not None else {}
+        data, usage, _ = chat_json(FAST, system, _user(text, lessons), schema, max_tokens=500, **reasoning)
     except Exception as exc:
         return {"route": "clarify", "usage": None, "error": type(exc).__name__}
     return {"route": data["route"] if data else "clarify", "usage": usage}

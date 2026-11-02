@@ -15,7 +15,7 @@ REPORT = ROOT / "docs/v3_evaluation_report.md"
 WEEK4_REPORT = ROOT / "docs/week4_report.md"
 SUBMISSION40 = ROOT / "evals/golden_v3.submission40.json"
 SUBMISSION_MIX = {"happy": 20, "edge": 12, "known-fail": 6, "adversarial": 2}
-ROUND_ORDER = ("baseline", "round1", "round2", "round3", "final")
+ROUND_ORDER = ("baseline", "round1", "round2", "round3", "latency1", "latency2", "latency3", "final")
 
 
 def _round_key(path):

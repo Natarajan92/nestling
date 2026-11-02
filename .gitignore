@@ -240,3 +240,4 @@ lessons/*/renders/
 output/pdf/
 output/submission/
 evals/results/golden_v3/runner.lock
+evals/results/golden_v3/latency_budget/runner.lock

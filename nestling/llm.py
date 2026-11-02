@@ -38,19 +38,31 @@ def _parse(text: str, schema: dict) -> dict | None:
         return None
 
 
-def chat_json(model: str, system: str, user: str, schema: dict, max_tokens: int = 3000) -> tuple[dict | None, dict, str]:
-    """(parsed or None, usage, raw text). Schema path first; JSON mode with the schema in the prompt if rejected."""
+def chat_json(model: str, system: str, user: str, schema: dict, max_tokens: int = 3000,
+              *, reasoning_effort: str | None = None) -> tuple[dict | None, dict, str]:
+    """(parsed or None, usage, raw text). Schema path first, JSON mode if rejected.
+
+    Reasoning effort is caller-scoped; omission preserves the provider's default.
+    """
+    if reasoning_effort not in (None, "none", "low"):
+        raise ValueError("reasoning_effort must be None, 'none' or 'low'")
+    reasoning = {"reasoning_effort": reasoning_effort} if reasoning_effort is not None else {}
     messages = [{"role": "system", "content": system}, {"role": "user", "content": user}]
     try:
         response = client().chat.completions.create(
             model=model, messages=messages, max_tokens=max_tokens, temperature=0,
-            response_format={"type": "json_schema", "json_schema": {"name": "reply", "schema": schema, "strict": True}})
+            response_format={"type": "json_schema", "json_schema": {"name": "reply", "schema": schema, "strict": True}},
+            **reasoning)
     except Exception as exc:  # BadRequest etc.: this model does not take json_schema
-        schema_rejection = any(marker in str(exc).lower() for marker in ("json_schema", "json schema", "response_format"))
+        message = str(exc).lower()
+        # A reasoning-parameter rejection cannot be repaired by switching JSON formats.
+        schema_rejection = "reasoning_effort" not in message and any(
+            marker in message for marker in ("json_schema", "json schema", "response_format"))
         if getattr(exc, "status_code", None) not in (400, 422) or not schema_rejection:
             raise
         messages[0]["content"] += "\n\nReply with one JSON object only, matching this JSON schema:\n" + json.dumps(schema)
         response = client().chat.completions.create(
-            model=model, messages=messages, max_tokens=max_tokens, temperature=0, response_format={"type": "json_object"})
+            model=model, messages=messages, max_tokens=max_tokens, temperature=0, response_format={"type": "json_object"},
+            **reasoning)
     text = response.choices[0].message.content or ""
     return _parse(text, schema), usage_of(response), text

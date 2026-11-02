@@ -1,0 +1,13 @@
+{
+  "recorded_at": "2026-11-02T03:29:18.251191+00:00",
+  "dataset_hash": "8075c270caa94751047580136d7588ba1d49a51fb9a194688c54be92fc387012",
+  "candidate_version": "latency_fast_direct",
+  "comparison_base": "round1",
+  "hypothesis": "FAST hidden reasoning adds serial screening/routing tails. Disabling it for these two bounded classifiers reduces latency without changing MAIN generation or strict verification.",
+  "target_cluster": "R1 M06 classifier7.23s and H16 router6.17s for tiny JSON;24/62 responses>=8s.",
+  "lever": "Caller-scoped FAST reasoning_effort=none on Guardian classifier and Concierge only; MAIN, judge, corpus, labels and verification unchanged.",
+  "expected_metric_direction": "Lower FAST span and pipeline p95 time/cost; same or better safety, routing, paired source support and task completion.",
+  "success_criterion": "Complete62, verifiedtraces62, no pipeline/judge errors, escalation18/18, refusal62/62, false escalations0, routing>=58/62, validfaith>=90%, pairedfaith no worse thanR1, tasks>=52/62, abstentions<=5, no invalid/unretrievedcitations; targetp95<8s.",
+  "revert_criterion": "Reject on safety/source/formatfailure, worse useful-answer coverage or pairedfaithfulness, ignoredreasoning setting, or nodefensible latency improvement. Preserve all measurements; never waive8s bar.",
+  "budget_status": "pending fresh owner approval; no paid calls authorized by this plan"
+}

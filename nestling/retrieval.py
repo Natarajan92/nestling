@@ -165,6 +165,15 @@ def _search_index():
     return pc, get_index(pc)
 
 
+def warm_sources() -> None:
+    """Initialize the cached source handle without searches, embeddings or writes.
+
+    Returns None; initialization errors propagate so each caller can record a
+    sanitized startup result. The cache contains only the shared source client.
+    """
+    _search_index()
+
+
 def ingest(source_ids: list[str] | None = None) -> dict[str, int]:
     """(Re)ingest sources: drop each source's old chunks, then upsert fresh ones."""
     registry = load_registry()

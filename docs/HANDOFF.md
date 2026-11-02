@@ -1,5 +1,12 @@
 # Nestling handoff - 2 November 2026
 
+## Active latency improvement work - approval pending
+
+Isolated worktree `E:/maai-projects/nestling/.superpowers/sdd/worktrees/latency`, branch `perf/v3-latency`. Caller-scoped FAST reasoning candidates and optional source-handle startup warmup are implemented; R1 remains selected. Full offline suite: **457 passed**, one existing warning; independent review and budget crash-recovery regressions pass. See [latency checkpoint](latency_improvements.md).
+
+New `evals/latency_run.py` reuses unchanged v3 measurement/judge code with a separate budget/lock namespace and source/model/auth-bound compatibility probe. The original v3 ledger/results and frozen inputs are untouched. Proposed new cap **INR160** keeps combined v3 spend at most **INR343.9041**, below the original350 ceiling, but extends the completed three-round scope and therefore awaits explicit owner approval. No new model calls have been made. Do not create `latency_budget/authorization.json` or run paid work until the owner answers the pending approval question. A pre-call `latency1/plan.json` and offline QA record are prepared; no live score exists.
+
+
 ## Submission state
 
 Owner deadline: **2 November, 10:00 AM IST**; official cutoff **noon IST**, per owner clarification. The morning tasks are actual-output human calibration and recording/linking the Loom. Public hosting has not been deployed. Start with [the submission checklist](SUBMISSION.md) and [the canonical report](week4_report.md).

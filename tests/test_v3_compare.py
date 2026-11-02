@@ -368,3 +368,90 @@ def test_notebook_evidence_is_saved_only_and_distinguishes_rejected_latest(tmp_p
     assert "coverage fell" in evidence["decisions"]
     assert "H07" in evidence["h07"]
     assert "not independently verified" in evidence["limitations"]
+
+
+def test_latency_reports_compare_declared_retained_base_and_select_latest_keep(tmp_path):
+    from nestling import golden
+
+    cases = {case["case_id"]: {} for case in golden.load()}
+    saved_round(tmp_path, "baseline", cases, digest=golden.SHA256)
+    for name, latency, decision, base in (
+            ("round1", 12000, "keep", None),
+            ("round2", 11000, "reject", None),
+            ("round3", 10000, "reject", "round1"),
+            ("latency1", 9000, "keep", "round1"),
+            ("latency2", 7000, "keep", "latency1"),
+            ("latency3", 6000, "reject", "latency2"),
+            ("final", 5000, "reject", "latency2")):
+        run = saved_round(tmp_path, name, {cid: {"latency_ms": latency} for cid in cases}, digest=golden.SHA256)
+        (run / "decision.json").write_text(json.dumps({"decision": decision}))
+        if base:
+            (run / "plan.json").write_text(json.dumps({"comparison_base": base, "hypothesis": "latency fixture"}))
+
+    # Each writer reads real saved checkpoints/CSV/decisions and validates each pair.
+    for writer, filename in ((compare.write_report, "deep.md"), (compare.write_week4_report, "week4.md")):
+        output = tmp_path / filename
+        writer(tmp_path, output)
+        report = output.read_text(encoding="utf-8")
+        headings = ["Incremental round1 → latency1", "Incremental latency1 → latency2",
+                    "Incremental latency2 → latency3", "Incremental latency2 → final"]
+        assert [report.index(heading) for heading in headings] == sorted(report.index(heading) for heading in headings)
+        paired = report.split(headings[1], 1)[1].split(headings[2], 1)[0]
+        assert "full 62-case comparison; 62 identical case IDs" in paired
+        assert "| p95_latency_s | 9.0000 | 7.0000 | -2.0000 |" in paired
+        assert "Latest completed: **final** (reject)" in report
+        assert "Selected retained candidate: **latency2** (keep)" in report
+        assert "Overall baseline → latency2" in report
+        assert "Overall baseline → latency3" not in report
+        assert "Overall baseline → final" not in report
+
+
+def test_latency_plot_reads_completed_saved_rounds_in_order_and_marks_latest_keep(tmp_path):
+    from evals import plot_tradeoff
+    from nestling import golden
+
+    names = ("baseline", "round1", "round2", "round3", "latency1", "latency2", "latency3", "final")
+    for name in reversed(names):
+        folder = tmp_path / name
+        folder.mkdir()
+        summary = {"run": {"round_name": name, "dataset_version": "golden_v3", "dataset_hash": golden.SHA256,
+                            "n_cases": 62, "judge_version": "fixed-judge"},
+                   "progress": {"complete": True, "n_expected": 62, "n_done": 62, "n_errors": 0},
+                   "judging": {"faithfulness": 1, "n_faithfulness_valid": 35, "n_faithfulness_eligible": 35,
+                               "n_faithfulness_errors": 0, "n_zero_claim": 27, "judge_version": "fixed-judge"},
+                   "metrics": {"p95_latency_s": {"value": 7}, "mean_cost_inr": {"value": 0.7}}}
+        (folder / "summary.json").write_text(json.dumps(summary))
+        decision = "keep" if name in ("round1", "latency1", "latency2") else "reject"
+        (folder / "decision.json").write_text(json.dumps({"decision": decision}))
+
+    rows = plot_tradeoff.load_completed(tmp_path)
+    assert [row["name"] for row in rows] == list(names)
+    assert [row["name"] for row in rows if row["retained"]] == ["latency2"]
+    assert next(row for row in rows if row["name"] == "latency3")["rejected"] is True
+    assert rows[-1]["name"] == "final" and rows[-1]["rejected"] is True
+
+
+@pytest.mark.parametrize("changed_field", [
+    "dataset_version", "dataset_hash", "main_model", "fast_model", "judge_model", "judge_version",
+    "prices_usd_per_mtok", "usd_to_inr", "pinecone_index", "max_concurrency",
+    "files.evals/evaluators.py", "files.evals/v3_run.py", "files.evals/judge.py", "files.evals/judge_prompt.md",
+    "files.evals/budgeted_run.py", "files.sources/registry.yaml", "files.nestling/golden.py",
+])
+def test_latency_comparison_preserves_each_fixed_provenance_invariant(tmp_path, changed_field):
+    pinned = {"dataset_version": "golden_v3", "dataset_hash": "hash", "main_model": "main",
+              "fast_model": "fast", "judge_model": "independent-judge", "judge_version": "fixed-protocol",
+              "prices_usd_per_mtok": {"main": 1}, "usd_to_inr": 94.91, "pinecone_index": "sources",
+              "max_concurrency": 2,
+              "files": {"evals/evaluators.py": "score", "evals/v3_run.py": "measure", "evals/judge.py": "judge",
+                        "evals/judge_prompt.md": "prompt", "evals/budgeted_run.py": "budget",
+                        "sources/registry.yaml": "registry", "nestling/golden.py": "frozen-loader"}}
+    old = saved_round(tmp_path, "latency1", {"a": {}}, provenance=pinned)
+    changed = json.loads(json.dumps(pinned))
+    if changed_field.startswith("files."):
+        changed["files"][changed_field.removeprefix("files.")] = "changed"
+    else:
+        changed[changed_field] = "changed"
+    new = saved_round(tmp_path, "latency2", {"a": {}}, provenance=changed)
+
+    with pytest.raises(ValueError, match="measurement, model, judge or source provenance mismatch"):
+        compare.compare_rounds(old, new)

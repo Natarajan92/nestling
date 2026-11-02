@@ -290,9 +290,10 @@ For each red flag give the exact words from the message that show it, copied cha
 
 
 @traceable(name="guardian_classifier", run_type="chain")
-def classify(text: str) -> dict:
+def classify(text: str, *, reasoning_effort: str | None = None) -> dict:
     """The FAST model's proposals: {"red_flags": [{"sign", "quote"}], "unsafe": [...], "usage": {...}}."""
-    data, usage, _ = chat_json(FAST, CLASSIFIER_PROMPT, text, CLASSIFIER_SCHEMA, max_tokens=1000)
+    reasoning = {"reasoning_effort": reasoning_effort} if reasoning_effort is not None else {}
+    data, usage, _ = chat_json(FAST, CLASSIFIER_PROMPT, text, CLASSIFIER_SCHEMA, max_tokens=1000, **reasoning)
     return {**(data or {"red_flags": [], "unsafe": []}), "usage": usage}
 
 
@@ -381,7 +382,7 @@ def _reply(s: Screening) -> str | None:
 
 
 @traceable(name="guardian", run_type="chain")
-def screen(text: str, use_classifier: bool = True) -> tuple[Screening, dict | None]:
+def screen(text: str, use_classifier: bool = True, *, reasoning_effort: str | None = None) -> tuple[Screening, dict | None]:
     """Screen one message. Returns (decision, classifier usage or None).
 
     The classifier can only add flags, so it is skipped when the rules already escalate.
@@ -389,7 +390,8 @@ def screen(text: str, use_classifier: bool = True) -> tuple[Screening, dict | No
     classifier = None
     if use_classifier and not decide(text).escalate:
         try:
-            classifier = classify(text)
+            reasoning = {"reasoning_effort": reasoning_effort} if reasoning_effort is not None else {}
+            classifier = classify(text, **reasoning)
         except Exception:  # the rules still run; a classifier outage never blocks escalation
             classifier = None
     decision = decide(text, classifier)

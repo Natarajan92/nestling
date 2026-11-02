@@ -18,6 +18,7 @@ from dotenv import find_dotenv, load_dotenv  # noqa: E402
 
 load_dotenv(find_dotenv(usecwd=True))
 
+from contextlib import asynccontextmanager  # noqa: E402
 from datetime import date  # noqa: E402
 from functools import cache  # noqa: E402
 from typing import Literal  # noqa: E402
@@ -35,7 +36,7 @@ from nestling.agents import celebrate as celebrate_agent  # noqa: E402
 from nestling.agents import ready as ready_agent  # noqa: E402
 from nestling.capture import estimate as capture_estimate  # noqa: E402
 from nestling.lessons import LESSONS, library  # noqa: E402
-from nestling.retrieval import load_registry  # noqa: E402
+from nestling.retrieval import load_registry, warm_sources  # noqa: E402
 from nestling.schemas.studio_package import StudioPackage  # noqa: E402
 from nestling.tracing import trace_metadata  # noqa: E402
 
@@ -43,7 +44,23 @@ APP_PROJECT = "nestling-app"
 DISCLAIMER = ("Nestling offers general information from trusted sources and is not a substitute for medical advice. "
               "In an emergency, contact your doctor or the nearest hospital.")
 
-app = FastAPI(title="Nestling API", version="0.1.0")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    app.state.sources_warmup = "skipped"
+    if graph.VERSIONS[graph.APP_VERSION].get("prewarm_sources"):
+        try:
+            await run_in_threadpool(warm_sources)
+        except Exception:
+            # Provider errors can contain private details. Keep only a fixed label;
+            # an unavailable source index must not block health or Guardian rules.
+            app.state.sources_warmup = "degraded"
+        else:
+            app.state.sources_warmup = "ready"
+    yield
+
+
+app = FastAPI(title="Nestling API", version="0.1.0", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=[s.strip() for s in os.getenv("NESTLING_WEB_ORIGINS", "http://localhost:3000").split(",") if s.strip()],
                    allow_methods=["*"], allow_headers=["*"])
 
