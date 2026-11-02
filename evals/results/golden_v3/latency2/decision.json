@@ -1,0 +1,22 @@
+{
+  "decision": "reject",
+  "reason": "Warm startup plus direct FAST reduced p95 12.11->11.19s but faithfulness33/37=89.19% fails90% and pairedR1faithfulness31/34->30/34 regresses. Keep R1; no quality tradeoff promotion.",
+  "observed_vs_round1": {
+    "p95_latency_s": "12.11 ->11.19",
+    "faithfulness": "32/35 ->33/37",
+    "paired_faithfulness": "31/34 ->30/34",
+    "task_fulfilled": "52/62 ->52/62",
+    "abstentions": "5 ->4",
+    "mean_cost_inr": ".719 ->.703"
+  },
+  "complete_cases": 62,
+  "verified_traces": 62,
+  "pipeline_errors": 0,
+  "judge_errors": 0,
+  "startup_elapsed_s": 2.5003,
+  "remaining_failed_bars": [
+    "p95<8s",
+    "faithfulness>=90%"
+  ],
+  "next": "One final approved low-reasoning+warm candidate; no changes to MAIN or strictchecker."
+}

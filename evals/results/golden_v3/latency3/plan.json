@@ -1,0 +1,12 @@
+{
+  "recorded_at": "2026-11-02T04:31:17.562421+00:00",
+  "dataset_hash": "8075c270caa94751047580136d7588ba1d49a51fb9a194688c54be92fc387012",
+  "candidate_version": "latency_fast_low_warm",
+  "comparison_base": "round1",
+  "hypothesis": "FAST none removes all reasoning but full warm run failed faithfulness and M11 task completeness. Low retains a bounded reasoning budget for nuanced screening/routing while source-handle startup stays warm. This is a test of the predefined quality-latency compromise, not a claim that FAST caused stochastic MAIN faithfulness differences. MAIN strict verification is unchanged.",
+  "target_cluster": "Default FAST hidden reasoning spikes and none-mode quality uncertainty; remaining MAIN verifier tail is disclosed and may still prevent8s.",
+  "lever": "Predefined fast_reasoning_effort=low +prewarm_sources; versus latency2 only effort differs; primary retainedR1 comparison remains required.",
+  "expected_metric_direction": "Preserve>=90%faithfulness and pairedquality, with defensible p95 decrease versusR1. Acknowledge provider/model variability.",
+  "success_criterion": "62complete/verified,0pipeline/judgeerrors,escalation18/18,refusal62/62,falseesc0,route>=58/62,faith>=90%,pairedfaithnotworseR1,tasks>=52/62,abst<=5,invalid/unretrieved0. Seekp95<8; keep only defensible speedgain with all qualitygates, disclose unmet8s.",
+  "revert_criterion": "Reject on any quality/safetygate failure or no speed benefit; no fourth paidround; R1 remains retained if candidate fails."
+}

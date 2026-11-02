@@ -15,7 +15,7 @@ A calm companion for first-time parents in India: trusted answers, pregnancy pre
 
 ## What improved
 
-Frozen **v3, 62 cases**; same inputs, labels, models and independent Qwen judge across four complete runs. Round 1 is retained.
+Frozen **v3, 62 cases**; same inputs, labels, models and independent Qwen judge across seven complete runs. Round 1 is retained.
 
 | Measure | Target | Baseline → retained R1 | Status |
 |---|---|---|---|
@@ -26,12 +26,12 @@ Frozen **v3, 62 cases**; same inputs, labels, models and independent Qwen judge 
 | p95 response time | <8s | 22.55s → 12.11s | ❌ |
 | Mean pipeline cost | <₹2 | ₹0.681 → ₹0.719 | ✅ |
 
-A citation parser truncated a source ID and discarded relevant evidence; fixing it improved paired faithfulness **27/33 → 30/33** and judged task completion **47/62 → 52/62**. Two later experiments were rejected because useful-answer quality fell, despite some speed gains. Safety held on these test cases; latency still misses target, and human-versus-judge calibration is **pending (0/20)**.
+A citation parser truncated a source ID and discarded relevant evidence; fixing it improved paired faithfulness **27/33 → 30/33** and judged task completion **47/62 → 52/62**. R2/R3 lowered useful-answer quality; three further FAST-reasoning/warmup experiments were also rejected: direct mode worsened p95 to 13.10s, while warm variants reached 11.19/11.24s but missed quality gates. Safety held on these test cases; latency still misses target, and human-versus-judge calibration is **pending (0/20)**.
 
 ![Faithfulness, latency and cost trade-offs](docs/media/tradeoff.png)
 ![Metrics across all completed experiments](docs/media/metrics_by_version.png)
 
-Questions are owner-attested human-authored and reviewed, not independently audited. A retrospective **40-case presentation** accompanies the full62 results; this previously exposed regression set does not establish unseen-case or clinical performance.
+Questions are owner-attested human-authored and reviewed, not independently audited. A retrospective **40-case presentation** accompanies the full 62 results; this previously exposed regression set does not establish unseen-case or clinical performance. Original spend remains **₹183.9041/350**; the separate latency ledger accounts **₹146.6423/160**, combined **₹330.5464**.
 
 ## How it works
 

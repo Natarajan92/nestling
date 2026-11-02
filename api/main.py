@@ -9,6 +9,7 @@ with inputs and outputs hidden, so only the §9.4 metadata (route, rules, source
     uv run uvicorn api.main:app --reload --port 8000
 """
 
+import asyncio
 import os
 
 os.environ["LANGSMITH_HIDE_INPUTS"] = "true"  # app privacy applies even when the shell says false
@@ -41,6 +42,7 @@ from nestling.schemas.studio_package import StudioPackage  # noqa: E402
 from nestling.tracing import trace_metadata  # noqa: E402
 
 APP_PROJECT = "nestling-app"
+SOURCE_WARMUP_TIMEOUT_S = 5.0
 DISCLAIMER = ("Nestling offers general information from trusted sources and is not a substitute for medical advice. "
               "In an emergency, contact your doctor or the nearest hospital.")
 
@@ -48,12 +50,18 @@ DISCLAIMER = ("Nestling offers general information from trusted sources and is n
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     app.state.sources_warmup = "skipped"
-    if graph.VERSIONS[graph.APP_VERSION].get("prewarm_sources"):
+    enabled = os.getenv("NESTLING_PREWARM_SOURCES", "").strip().lower() in {"1", "true"}
+    if enabled or graph.VERSIONS[graph.APP_VERSION].get("prewarm_sources"):
         try:
-            await run_in_threadpool(warm_sources)
+            # API-only startup work; answer flags and FAST reasoning stay unchanged.
+            # The observed ~2.5s initialization is not a proven per-request saving
+            # or full-set p95 improvement. Historical R1 benchmarks were prewarm-off.
+            await asyncio.wait_for(asyncio.to_thread(warm_sources), timeout=SOURCE_WARMUP_TIMEOUT_S)
         except Exception:
             # Provider errors can contain private details. Keep only a fixed label;
-            # an unavailable source index must not block health or Guardian rules.
+            # health and Guardian rules remain available after the startup bound.
+            # A timeout stops waiting, not the network thread: it may finish and
+            # populate the shared handle cache later. No personal data is cached.
             app.state.sources_warmup = "degraded"
         else:
             app.state.sources_warmup = "ready"

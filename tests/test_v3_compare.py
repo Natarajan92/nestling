@@ -375,6 +375,20 @@ def test_latency_reports_compare_declared_retained_base_and_select_latest_keep(t
 
     cases = {case["case_id"]: {} for case in golden.load()}
     saved_round(tmp_path, "baseline", cases, digest=golden.SHA256)
+    fields = ("case_id", "judge_faithful", "judge_task_fulfilled", "human_faithful", "human_task_fulfilled")
+    with (tmp_path / "human_review.csv").open("w", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows({"case_id": cid, "judge_faithful": "Y", "judge_task_fulfilled": "Y"} for cid in list(cases)[:20])
+    (tmp_path / "media").mkdir()
+    for name in ("tradeoff.png", "metrics_by_version.png"):
+        (tmp_path / "media" / name).touch()
+    (tmp_path / "spend.json").write_text(json.dumps({"accounted_inr": 183.9041, "cap_inr": 350}))
+    budget = tmp_path / "latency_budget"
+    budget.mkdir()
+    (budget / "authorization.json").write_text(json.dumps({
+        "cap_inr": 160, "prior_v3_accounted_inr": 183.9041, "combined_max_inr": 343.9041}))
+    (budget / "spend.json").write_text(json.dumps({"accounted_inr": 150, "cap_inr": 160}))
     for name, latency, decision, base in (
             ("round1", 12000, "keep", None),
             ("round2", 11000, "reject", None),
@@ -398,12 +412,43 @@ def test_latency_reports_compare_declared_retained_base_and_select_latest_keep(t
         assert [report.index(heading) for heading in headings] == sorted(report.index(heading) for heading in headings)
         paired = report.split(headings[1], 1)[1].split(headings[2], 1)[0]
         assert "full 62-case comparison; 62 identical case IDs" in paired
-        assert "| p95_latency_s | 9.0000 | 7.0000 | -2.0000 |" in paired
+        if writer is compare.write_report:
+            assert "| p95_latency_s | 9.0000 | 7.0000 | -2.0000 |" in paired
+        else:
+            assert "p95_latency_s: 9.0000 → 7.0000 (-2.0000; n=62→62)" in paired
         assert "Latest completed: **final** (reject)" in report
         assert "Selected retained candidate: **latency2** (keep)" in report
         assert "Overall baseline → latency2" in report
         assert "Overall baseline → latency3" not in report
         assert "Overall baseline → final" not in report
+        if writer is compare.write_week4_report:
+            assert len(report.splitlines()) < 250
+            assert "| faithfulness | 0/20 | pending |" in report
+
+
+@pytest.mark.parametrize("new_accounted", [None, 0, 151.25])
+def test_latency_budget_reporting_preserves_separate_original_ledger(tmp_path, new_accounted):
+    original = tmp_path / "spend.json"
+    original.write_text(json.dumps({"accounted_inr": 183.9041, "cap_inr": 350, "pending": {}}))
+    original_bytes = original.read_bytes()
+    budget = tmp_path / "latency_budget"
+    budget.mkdir()
+    (budget / "authorization.json").write_text(json.dumps({
+        "cap_inr": 160, "prior_v3_accounted_inr": 183.9041, "combined_max_inr": 343.9041}))
+    if new_accounted is not None:
+        (budget / "spend.json").write_text(json.dumps({"cap_inr": 160, "accounted_inr": new_accounted}))
+    text = "\n".join(compare._budget_lines(tmp_path))
+    assert "Original completed v3 ledger: **₹183.9041 / ₹350 accounted**" in text
+    assert "New latency campaign ledger:" in text
+    assert "₹343.9041" in text
+    assert "₹510" not in text
+    if new_accounted is None:
+        assert "pending (no saved ledger) / ₹160 accounted" in text
+        assert "Combined accounted: **pending**" in text
+    else:
+        assert f"**₹{new_accounted:.4f} / ₹160 accounted**" in text
+        assert f"Combined accounted: **₹{183.9041 + new_accounted:.4f}**" in text
+    assert original.read_bytes() == original_bytes
 
 
 def test_latency_plot_reads_completed_saved_rounds_in_order_and_marks_latest_keep(tmp_path):

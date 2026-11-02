@@ -163,6 +163,8 @@ Retain a candidate only when escalation/refusal remain 100%, routing remains >=9
 
 The owner approved a **fresh shared INR350 cap on 2026-11-02** for the baseline, cross-family judging, up to three improvement rounds and synthetic traces. `evals/results/golden_v3/spend.json` accounts for all attempted provider work, including failed/discarded calls and unknown-outcome reservations. Never reset the ledger or discard reservations to continue spending.
 
+After those four measurements closed at INR183.9041, the owner separately approved **up to INR160** for a FAST compatibility check and up to three full 62-case latency evaluations, with the same Qwen judge and deidentified LangSmith traces. This extends the original round count; it does not reset the old ledger. Authorization and request accounting live in `evals/results/golden_v3/latency_budget/`. Maximum combined spend is INR343.9041. Hosted reasoning compatibility must pass before paid candidate evaluation; source-handle startup time is recorded separately when warmup is enabled. Promotion still requires the complete quality and safety gates above.
+
 Use `python -m evals.v3_run --status`, then `--round baseline --only H03`; continue with `--round baseline --resume`. Other rounds require their recorded plan. Request-level accounting must intercept every billed call, disable hidden SDK retries and stop before the cap. Limit concurrency to two.
 
 Pin full dataset, runtime/scorer/judge code, prompts, model IDs, prices, registry/playbooks and relevant lesson assets/approvals. Reject mixed-provenance caches. Save outputs before judging; reuse successful output and judge results on resume. Keep each round's checkpoint, cases, summary, judge and calibration artifacts separate.

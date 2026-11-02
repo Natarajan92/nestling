@@ -1,0 +1,12 @@
+{
+  "recorded_at": "2026-11-02T04:13:35.836539+00:00",
+  "dataset_hash": "8075c270caa94751047580136d7588ba1d49a51fb9a194688c54be92fc387012",
+  "candidate_version": "latency_fast_direct_warm",
+  "comparison_base": "round1",
+  "hypothesis": "The first direct-mode full run has5.24-5.54s early retrieval spans and higher MAIN delays. Preinitializing the existing cached source-index handle removes startup metadata/connection work from answer latency; it cannot remove ongoing MAIN check/rewrite latency.",
+  "target_cluster": "Early H01/H03 retrieval cold paths plus remaining13.10s direct-mode p95; full strict verifier7.12s on M01 remains a limit.",
+  "lever": "Approved combination FAST direct reasoning plus prewarm_sources startup; incremental addition versus rejectedlatency1 is only warmup. RetainedR1 remains primary comparison because latency1 failed latency gate.",
+  "expected_metric_direction": "Lower cold first-answer time and potentially pipeline p95; preserve safety, source support and task completion. Startup duration recorded separately, no claims of8s until measured.",
+  "success_criterion": "62complete/verified,0pipeline/judgeerrors, escalation18/18,refusal62/62,falseescalations0,routing>=58/62,validfaith>=90%,pairedfaithnotworseR1,tasks>=52/62,abstentions<=5,noinvalid/unretrievedcitations; targetp95<8s.",
+  "revert_criterion": "Reject on safety/source/formatfailure, worse pairedquality/taskfulfillment versusR1, or no defensible speed benefit. Preserve failed targets and originalmeasurements."
+}

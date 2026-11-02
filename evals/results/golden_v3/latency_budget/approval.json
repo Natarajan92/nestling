@@ -1,0 +1,14 @@
+{
+  "approved": true,
+  "approved_on": "2026-11-02",
+  "cap_inr": 160.0,
+  "dataset_version": "golden_v3",
+  "dataset_hash": "8075c270caa94751047580136d7588ba1d49a51fb9a194688c54be92fc387012",
+  "max_full_rounds": 3,
+  "probe_cap_inr": 10.0,
+  "langsmith_tracing": true,
+  "scope": "FAST reasoning and retrieval warmup; frozen v3; same Qwen judge",
+  "owner_confirmation": "Approve up to INR160 for latency improvements",
+  "prior_v3_accounted_inr": 183.9041,
+  "combined_max_inr": 343.9041
+}

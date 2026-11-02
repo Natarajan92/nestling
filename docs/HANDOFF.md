@@ -1,11 +1,14 @@
 # Nestling handoff - 2 November 2026
 
-## Active latency improvement work - approval pending
+## Latency campaign closed - R1 retained
 
-Isolated worktree `E:/maai-projects/nestling/.superpowers/sdd/worktrees/latency`, branch `perf/v3-latency`. Caller-scoped FAST reasoning candidates and optional source-handle startup warmup are implemented; R1 remains selected. Full offline suite: **457 passed**, one existing warning; independent review and budget crash-recovery regressions pass. See [latency checkpoint](latency_improvements.md).
+All three approved latency evaluations completed 62 cases with 62 verified traces and zero pipeline/judge errors each. **All were rejected**: direct FAST had p95 13.10s despite better quality; direct FAST plus warmup had p95 11.19s but faithfulness 33/37=89.19%; low FAST plus warmup had p95 11.24s but faithfulness 32/36=88.89%, paired R1 29/32 ->28/32, and six abstentions. Do not promote a failed candidate or claim the 8s target passed. R1 remains the answer configuration, p95 12.11s, faithfulness32/35.
 
-New `evals/latency_run.py` reuses unchanged v3 measurement/judge code with a separate budget/lock namespace and source/model/auth-bound compatibility probe. The original v3 ledger/results and frozen inputs are untouched. Proposed new cap **INR160** keeps combined v3 spend at most **INR343.9041**, below the original350 ceiling, but extends the completed three-round scope and therefore awaits explicit owner approval. No new model calls have been made. Do not create `latency_budget/authorization.json` or run paid work until the owner answers the pending approval question. A pre-call `latency1/plan.json` and offline QA record are prepared; no live score exists.
+The separate owner-approved INR160 campaign closed at **INR146.6423**, zero pending reservations. Unknown-outcome conservative charges remain accounted. Original ledger **INR183.9041** is unchanged; combined v3 accounting **INR330.5464**, below the approved maximum INR343.9041. Scope of three full latency rounds is exhausted; no further paid round is authorized by this campaign.
 
+After measurements, API startup gained an explicit default-off `NESTLING_PREWARM_SOURCES=1` option. It initializes only the cached source handle, with a five-second maximum wait; failures/timeouts retain a fixed degraded state and allow health/Guardian service. A timed-out network thread may finish later. R1 graph flags, FAST defaults, MAIN generation and strict verification are unchanged. This is operational cold-start work: the observed ~2.5s startup duration is neither a proven per-request saving nor a new measured full-set p95. Historical R1 scores were prewarm-off. See [latency diagnosis and decisions](latency_improvements.md). Source changes after measurement deliberately prevent mixing them into an old live checkpoint.
+
+Final regression verification and refreshed submission artifacts accompany this checkpoint; use the dated [latency QA](../evals/results/golden_v3/qa/latency-final-summary.json). Full source passages/checkpoints remain excluded from the submission ZIP. No deployment, Pinecone writes, new lesson versions, judge changes or frozen-label changes occurred.
 
 ## Submission state
 
@@ -25,7 +28,7 @@ Runtime app version `v7_vector_safe+lessons`, full DeepSeek MAIN strict verifier
 
 ## Evaluation and authorization
 
-`evals.v3_run` owns request reservations/provenance, successful-output caching, same-protocol judging and verified LangSmith exports. Artifacts: `evals/results/golden_v3/`. Owner authorized one fresh INR 350 shared cap for baseline and up to 3 improvement rounds with deidentified traces. All four measurements are complete: **INR 183.9041 accounted, zero pending reservations**. No further paid run is needed. Costs are fixed-price token estimates at comparison FX94.91INR/USD; not billing invoices or hosting costs.
+`evals.v3_run` owns request reservations/provenance, successful-output caching, same-protocol judging and verified LangSmith exports. Artifacts: `evals/results/golden_v3/`. Owner authorized one fresh INR 350 shared cap for baseline and up to 3 improvement rounds with deidentified traces. The original four measurements are complete: **INR 183.9041 accounted, zero pending reservations**. The separately approved latency campaign and its closed budget are recorded above; the ledgers stay separate. Costs are fixed-price token estimates at comparison FX94.91INR/USD; not billing invoices or hosting costs.
 
 Legacy live entry points reject the active v3 dataset. Never reset old budgets, infer successful inference must rerun after a trace-only error, or change pinned runtime during a live round. No deployment, new Pinecone writes or new lesson versions authorized by this evaluation.
 

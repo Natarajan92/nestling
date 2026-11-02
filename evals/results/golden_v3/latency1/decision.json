@@ -1,0 +1,19 @@
+{
+  "decision": "reject",
+  "reason": "FAST direct mode passed hosted compatibility and improved quality, but full-set p95 rose12.11->13.10s, so it did not satisfy the declared latency success gate. Keep R1 selected while testing approved startup warmup.",
+  "observed_vs_round1": {
+    "faithfulness": "32/35 ->35/37",
+    "paired_faithfulness": "31/34 ->32/34",
+    "task_fulfilled": "52/62 ->55/62",
+    "p95_latency_s": "12.11 ->13.10",
+    "median_latency_s": "7.3795 ->7.0085",
+    "mean_cost_inr": ".719 ->.710"
+  },
+  "complete_cases": 62,
+  "verified_traces": 62,
+  "pipeline_errors": 0,
+  "judge_errors": 0,
+  "visibility_diagnostic": "H16 has listed MOHFW-ANC absent from visible text; source-ID completeness54/55; registered/retrieved citation safety0failures.",
+  "next": "latency2: same direct FAST profile plus source-handle prewarm; compare retained R1 and show latency1 incremental diagnostic separately.",
+  "clinical_scope": "MAIN generation and full strict verifier unchanged."
+}

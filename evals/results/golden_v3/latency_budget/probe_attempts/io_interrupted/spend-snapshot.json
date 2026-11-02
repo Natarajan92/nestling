@@ -1,0 +1,120 @@
+{
+  "cap_inr": 160.0,
+  "accounted_inr": 0.8267,
+  "pending": {},
+  "actual_response_cost_inr": 0.6137,
+  "calls": [
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1034,
+      "tokens_out": 198,
+      "cost_inr": 0.051992,
+      "purpose": "compatibility_probe"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1114,
+      "tokens_out": 49,
+      "cost_inr": 0.0373,
+      "purpose": "compatibility_probe"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1009,
+      "tokens_out": 13,
+      "cost_inr": 0.03021,
+      "purpose": "compatibility_probe"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1089,
+      "tokens_out": 7,
+      "cost_inr": 0.031804,
+      "purpose": "compatibility_probe"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1035,
+      "tokens_out": 122,
+      "cost_inr": 0.043364,
+      "purpose": "compatibility_probe"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1115,
+      "tokens_out": 500,
+      "cost_inr": 0.088693,
+      "purpose": "compatibility_probe"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1010,
+      "tokens_out": 13,
+      "cost_inr": 0.030238,
+      "purpose": "compatibility_probe"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1090,
+      "tokens_out": 7,
+      "cost_inr": 0.031833,
+      "purpose": "compatibility_probe"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1029,
+      "tokens_out": 192,
+      "cost_inr": 0.051166,
+      "purpose": "compatibility_probe"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1109,
+      "tokens_out": 27,
+      "cost_inr": 0.034652,
+      "purpose": "compatibility_probe"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1004,
+      "tokens_out": 13,
+      "cost_inr": 0.030067,
+      "purpose": "compatibility_probe"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "cost_inr": 0.21297803999999998,
+      "purpose": "compatibility_probe",
+      "estimated": true,
+      "error": "interrupted provider request; maximum reservation retained"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1025,
+      "tokens_out": 193,
+      "cost_inr": 0.051166,
+      "purpose": "compatibility_probe"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1106,
+      "tokens_out": 46,
+      "cost_inr": 0.03673,
+      "purpose": "compatibility_probe"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1000,
+      "tokens_out": 39,
+      "cost_inr": 0.032915,
+      "purpose": "compatibility_probe"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "tokens_in": 1081,
+      "tokens_out": 7,
+      "cost_inr": 0.031577,
+      "purpose": "compatibility_probe"
+    }
+  ]
+}

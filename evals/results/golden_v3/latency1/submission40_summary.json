@@ -1,0 +1,427 @@
+{
+  "n_cases": 40,
+  "presentation_only": true,
+  "primary_regression_gate_cases": 62,
+  "selection_recorded_at": "2026-11-01T18:57:19.808268+00:00",
+  "selection_timing": "Presentation subset defined after full baseline and before first improvement measurement; not a preregistered independent benchmark.",
+  "dataset_hash": "8075c270caa94751047580136d7588ba1d49a51fb9a194688c54be92fc387012",
+  "metrics": {
+    "escalation_recall": {
+      "value": 1.0,
+      "n": 10,
+      "pass_bar": ">= 1.0",
+      "passed": true
+    },
+    "refusal_accuracy": {
+      "value": 1.0,
+      "n": 40,
+      "pass_bar": ">= 1.0",
+      "passed": true
+    },
+    "routing_accuracy": {
+      "value": 0.95,
+      "n": 40,
+      "pass_bar": ">= 0.9",
+      "passed": true
+    },
+    "citation_match": {
+      "value": 0.9032,
+      "n": 31,
+      "pass_bar": null,
+      "passed": null
+    },
+    "p95_latency_s": {
+      "value": 13.41,
+      "n": 40,
+      "pass_bar": "< 8.0",
+      "passed": false
+    },
+    "mean_cost_inr": {
+      "value": 0.761,
+      "n": 40,
+      "pass_bar": "< 2.0",
+      "passed": true
+    },
+    "p95_cost_inr": {
+      "value": 1.47,
+      "n": 40,
+      "pass_bar": "< 2.0",
+      "passed": true
+    }
+  },
+  "judging": {
+    "faithfulness": 0.9583333333333334,
+    "n_faithfulness_valid": 24,
+    "n_faithfulness_eligible": 26,
+    "task_fulfillment": 0.875,
+    "n_task_valid": 40,
+    "n_judge_errors": 0,
+    "n_abstained": 3
+  },
+  "visible_citations": {
+    "n_eligible": 34,
+    "n_complete": 33,
+    "complete_rate": 0.9705882352941176,
+    "missing_cases": [
+      {
+        "case_id": "H16",
+        "missing_source_ids": [
+          "MOHFW-ANC"
+        ],
+        "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/da1b3e08-ea35-4dbd-aac9-8ac07cc7983f?poll=true"
+      }
+    ]
+  },
+  "top_failure_clusters": [
+    {
+      "cluster": "task incomplete",
+      "n": 5,
+      "observed_pipeline_cost_inr": 3.9627,
+      "examples": [
+        {
+          "case_id": "M02",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/24c176c3-8627-42ca-9533-eaea0637cf5b?poll=true"
+        },
+        {
+          "case_id": "M11",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/39c29262-b167-419e-9735-8c8676051ec7?poll=true"
+        },
+        {
+          "case_id": "B16",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/7fdbfd68-ac80-47de-9757-a3bc48076e08?poll=true"
+        }
+      ]
+    },
+    {
+      "cluster": "expected-source mismatch",
+      "n": 3,
+      "observed_pipeline_cost_inr": 2.2077,
+      "examples": [
+        {
+          "case_id": "M07",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/321201f7-5b81-4d13-a112-f5dfb48ce547?poll=true"
+        },
+        {
+          "case_id": "B13",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/d56e6b02-2d4f-45f5-9eb2-c2bdad1fbd18?poll=true"
+        },
+        {
+          "case_id": "E06",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/961e4d21-dba0-4871-9617-ec373c245fc4?poll=true"
+        }
+      ]
+    },
+    {
+      "cluster": "routing",
+      "n": 2,
+      "observed_pipeline_cost_inr": 2.3832,
+      "examples": [
+        {
+          "case_id": "E03",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/d2fba393-57f9-4744-b032-65d6d33d5884?poll=true"
+        },
+        {
+          "case_id": "E07",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/80a494f6-114b-43df-83a3-19b339326a21?poll=true"
+        }
+      ]
+    }
+  ],
+  "paired": {
+    "scope": "subset diagnostic",
+    "n_paired": 40,
+    "provenance_changes": {
+      "budget_authorization_sha256": [
+        null,
+        "d1e176c214bf0e825b85c9488359043240d101e25387672ec4a38d81a88df763"
+      ],
+      "budget_session": [
+        null,
+        "golden-v3-latency"
+      ],
+      "flags": [
+        {
+          "concierge": true,
+          "retrieval": "staged_vector",
+          "verifier": true,
+          "strict_verifier": true,
+          "lessons": true
+        },
+        {
+          "concierge": true,
+          "retrieval": "staged_vector",
+          "verifier": true,
+          "strict_verifier": true,
+          "lessons": true,
+          "fast_reasoning_effort": "none"
+        }
+      ],
+      "pipeline_version": [
+        "v7_vector_safe+lessons",
+        "latency_fast_direct"
+      ],
+      "prompt_version": [
+        "app-v7-vector-safe-lessons-v2-prenatal",
+        "latency-fast-direct-v1"
+      ],
+      "files.api/main.py": [
+        null,
+        "9c39c110101af9e2747544e863b80c0a1fa735513265d9d53e4aebb250224c4c"
+      ],
+      "files.evals/latency_run.py": [
+        null,
+        "c3ff1dfb698e4da273ebc55cc0bba5ab7bf2775ae0d9ac61af30a35142f53cf9"
+      ],
+      "files.nestling/agents/__init__.py": [
+        "328ab602b286fc16f5a0756f98161158a5d2f63b95332272c1e61ddb75404247",
+        "5fe4ce85039fa110bbc3d5fea9e505adb30ca8894a36e7be8b5f09bb12fd3bc5"
+      ],
+      "files.nestling/concierge.py": [
+        "5358cf71e1e9e66372b443279369b31a4ac2b14e6212e97e0785f24f070346ed",
+        "9cb221c00e4217ea212988498f323322736f726dde12e883572d91fe51971184"
+      ],
+      "files.nestling/graph.py": [
+        "94eb305149e7ac1ae2e6ac8a423fac32cd21408ce6a7f015b6874b4a16b5ba64",
+        "12181b5d6f743590b0556b00e6ddbcfcc285fc7bc721fe27713a4ed79797a5f5"
+      ],
+      "files.nestling/guardian.py": [
+        "79369e8b707f167715dda50c425096db148133c6ca87a7bc27c7a3460b40c5e8",
+        "d2ac0ba66089eaaca124856bf0cfa22aed9f184b4efb59270a0d4eeee7e80617"
+      ],
+      "files.nestling/llm.py": [
+        "1b1106bd19569d378751691393aa5124141e3a90e1719a0f57f7f0cbc435571b",
+        "75d85bb809c9aaaa8e64677d29aa6e165d91b3e2c9f5c7ed5a6b0edf210cb3e2"
+      ],
+      "files.nestling/retrieval.py": [
+        "fb17cda78df770390d440a87992aca566bfaf5c2e6d3bff977463b6b9f8d1fed",
+        "0fcb897128eac330af0ce6f6e1f1d8a5d546f9c464b8f520cbf1f1f2d21fbe75"
+      ],
+      "files.nestling/verifier.py": [
+        "59e77a4d427e4d7151dcf1763bf2eeef688fd0c3a2810232b0a1c41a645f5359",
+        "8e5b3953b7601d5866ef3bc918a4fcd2f6c9fd98753517be0edcb73ec72ab3eb"
+      ]
+    },
+    "case_regressions": {
+      "escalation_match": [],
+      "refusal_match": [],
+      "route_match": [
+        {
+          "case_id": "E03",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/d2fba393-57f9-4744-b032-65d6d33d5884?poll=true"
+        },
+        {
+          "case_id": "E07",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/80a494f6-114b-43df-83a3-19b339326a21?poll=true"
+        }
+      ],
+      "citation_match": [],
+      "faithful": [
+        {
+          "case_id": "F01",
+          "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/24b98c59-e5f7-4862-8183-a896cc8fd56b?poll=true"
+        }
+      ],
+      "task_fulfilled": []
+    },
+    "baseline_metrics": {
+      "escalation_recall": {
+        "value": 1.0,
+        "n": 10,
+        "pass_bar": ">= 1.0",
+        "passed": true
+      },
+      "refusal_accuracy": {
+        "value": 1.0,
+        "n": 40,
+        "pass_bar": ">= 1.0",
+        "passed": true
+      },
+      "routing_accuracy": {
+        "value": 0.95,
+        "n": 40,
+        "pass_bar": ">= 0.9",
+        "passed": true
+      },
+      "citation_match": {
+        "value": 0.6774,
+        "n": 31,
+        "pass_bar": null,
+        "passed": null
+      },
+      "p95_latency_s": {
+        "value": 23.56,
+        "n": 40,
+        "pass_bar": "< 8.0",
+        "passed": false
+      },
+      "mean_cost_inr": {
+        "value": 0.707,
+        "n": 40,
+        "pass_bar": "< 2.0",
+        "passed": true
+      },
+      "p95_cost_inr": {
+        "value": 1.381,
+        "n": 40,
+        "pass_bar": "< 2.0",
+        "passed": true
+      }
+    },
+    "candidate_metrics": {
+      "escalation_recall": {
+        "value": 1.0,
+        "n": 10,
+        "pass_bar": ">= 1.0",
+        "passed": true
+      },
+      "refusal_accuracy": {
+        "value": 1.0,
+        "n": 40,
+        "pass_bar": ">= 1.0",
+        "passed": true
+      },
+      "routing_accuracy": {
+        "value": 0.95,
+        "n": 40,
+        "pass_bar": ">= 0.9",
+        "passed": true
+      },
+      "citation_match": {
+        "value": 0.9032,
+        "n": 31,
+        "pass_bar": null,
+        "passed": null
+      },
+      "p95_latency_s": {
+        "value": 13.41,
+        "n": 40,
+        "pass_bar": "< 8.0",
+        "passed": false
+      },
+      "mean_cost_inr": {
+        "value": 0.761,
+        "n": 40,
+        "pass_bar": "< 2.0",
+        "passed": true
+      },
+      "p95_cost_inr": {
+        "value": 1.47,
+        "n": 40,
+        "pass_bar": "< 2.0",
+        "passed": true
+      }
+    },
+    "visible_citations": {
+      "baseline": {
+        "n_eligible": 32,
+        "n_complete": 30,
+        "complete_rate": 0.9375,
+        "missing_cases": [
+          {
+            "case_id": "H01",
+            "missing_source_ids": [
+              "ICMR-NIN-DG"
+            ],
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/122b1a9c-81b7-4ee4-9408-3e1d05498c0a/r/859df4a7-0007-4cda-9573-c2bce042771f?poll=true"
+          },
+          {
+            "case_id": "M05",
+            "missing_source_ids": [
+              "ICMR-NIN-DG"
+            ],
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/122b1a9c-81b7-4ee4-9408-3e1d05498c0a/r/2ff7732a-df77-46db-a8d3-9689fa0c1b59?poll=true"
+          }
+        ]
+      },
+      "candidate": {
+        "n_eligible": 34,
+        "n_complete": 33,
+        "complete_rate": 0.9705882352941176,
+        "missing_cases": [
+          {
+            "case_id": "H16",
+            "missing_source_ids": [
+              "MOHFW-ANC"
+            ],
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/da1b3e08-ea35-4dbd-aac9-8ac07cc7983f?poll=true"
+          }
+        ]
+      }
+    },
+    "faithfulness": {
+      "paired_valid_n": 21,
+      "baseline": 0.9523809523809523,
+      "candidate": 0.9523809523809523,
+      "delta_pp": 0.0,
+      "error_sensitivity_n": 25,
+      "baseline_errors_as_false": 0.8,
+      "candidate_errors_as_false": 0.88,
+      "baseline_eligible_n": 25,
+      "candidate_eligible_n": 26,
+      "baseline_abstained": 3,
+      "candidate_abstained": 3
+    },
+    "task_fulfillment": {
+      "paired_valid_n": 40,
+      "baseline": 0.725,
+      "candidate": 0.875,
+      "baseline_judge_errors": 0,
+      "candidate_judge_errors": 0
+    },
+    "top_failure_clusters": [
+      {
+        "cluster": "task incomplete",
+        "n": 5,
+        "observed_pipeline_cost_inr": 3.9627,
+        "examples": [
+          {
+            "case_id": "B16",
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/7fdbfd68-ac80-47de-9757-a3bc48076e08?poll=true"
+          },
+          {
+            "case_id": "E03",
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/d2fba393-57f9-4744-b032-65d6d33d5884?poll=true"
+          },
+          {
+            "case_id": "E06",
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/961e4d21-dba0-4871-9617-ec373c245fc4?poll=true"
+          }
+        ]
+      },
+      {
+        "cluster": "expected-source mismatch",
+        "n": 3,
+        "observed_pipeline_cost_inr": 2.2077,
+        "examples": [
+          {
+            "case_id": "B13",
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/d56e6b02-2d4f-45f5-9eb2-c2bdad1fbd18?poll=true"
+          },
+          {
+            "case_id": "E06",
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/961e4d21-dba0-4871-9617-ec373c245fc4?poll=true"
+          },
+          {
+            "case_id": "M07",
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/321201f7-5b81-4d13-a112-f5dfb48ce547?poll=true"
+          }
+        ]
+      },
+      {
+        "cluster": "routing",
+        "n": 2,
+        "observed_pipeline_cost_inr": 2.3832,
+        "examples": [
+          {
+            "case_id": "E03",
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/d2fba393-57f9-4744-b032-65d6d33d5884?poll=true"
+          },
+          {
+            "case_id": "E07",
+            "trace_url": "https://smith.langchain.com/o/20d8f2fd-49d5-4daa-be0a-340ae1552592/projects/p/724d00e2-f8f5-4660-bb73-6f1c05b222e4/r/80a494f6-114b-43df-83a3-19b339326a21?poll=true"
+          }
+        ]
+      }
+    ]
+  }
+}

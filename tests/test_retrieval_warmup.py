@@ -69,6 +69,7 @@ def test_failed_warmup_can_be_retried_without_caching_failure(source_client):
 
 @pytest.mark.parametrize("flag,expected", [(None, "skipped"), (False, "skipped"), (True, "ready")])
 def test_startup_only_warms_when_selected_version_enables_it(monkeypatch, flag, expected):
+    monkeypatch.delenv("NESTLING_PREWARM_SOURCES", raising=False)
     flags = {**graph.VERSIONS[graph.APP_VERSION]}
     flags.pop("prewarm_sources", None)
     if flag is not None:
@@ -84,6 +85,8 @@ def test_startup_only_warms_when_selected_version_enables_it(monkeypatch, flag, 
 
 
 def test_current_app_startup_does_not_warm_sources(monkeypatch):
+    monkeypatch.setattr(graph, "APP_VERSION", "v7_vector_safe+lessons")
+    monkeypatch.delenv("NESTLING_PREWARM_SOURCES", raising=False)
     warmup = Mock(side_effect=AssertionError("default startup contacted Pinecone"))
     monkeypatch.setattr(main, "warm_sources", warmup, raising=False)
 

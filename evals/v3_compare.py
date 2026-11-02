@@ -343,13 +343,27 @@ def _clean_prose(value):
 
 
 def _budget_lines(results):
-    path = Path(results) / "spend.json"
+    results = Path(results)
+    path = results / "spend.json"
     if not path.exists():
         return []
     saved = json.loads(path.read_text(encoding="utf-8"))
-    return [f"Shared evaluation ledger: **₹{saved['accounted_inr']:.4f} / ₹{saved['cap_inr']:.0f} accounted** "
-            "across pipeline and judge requests, including any retained unknown-outcome reservations. "
-            "This is measured evaluation spend, not an estimate of parent harm.", ""]
+    authorization = results / "latency_budget/authorization.json"
+    if not authorization.exists():
+        return [f"Shared evaluation ledger: **₹{saved['accounted_inr']:.4f} / ₹{saved['cap_inr']:.0f} accounted** "
+                "across pipeline and judge requests, including any retained unknown-outcome reservations. "
+                "This is measured evaluation spend, not an estimate of parent harm.", ""]
+    approved = json.loads(authorization.read_text(encoding="utf-8"))
+    latency_path = authorization.with_name("spend.json")
+    latency = json.loads(latency_path.read_text(encoding="utf-8")) if latency_path.exists() else None
+    new_spend = f"₹{latency['accounted_inr']:.4f}" if latency else "pending (no saved ledger)"
+    combined = f"₹{saved['accounted_inr'] + latency['accounted_inr']:.4f}" if latency else "pending"
+    maximum = approved["combined_max_inr"]
+    return [f"Original completed v3 ledger: **₹{saved['accounted_inr']:.4f} / ₹{saved['cap_inr']:.0f} accounted**; "
+            "preserved separately without reset or relabelling. "
+            f"New latency campaign ledger: **{new_spend} / ₹{approved['cap_inr']:.0f} accounted**, including the compatibility probe. "
+            f"Combined accounted: **{combined}**; authorized combined maximum **₹{maximum:.4f}**. "
+            "Accounted spend includes retained unknown-outcome reservations; costs are fixed-price token estimates, not billing invoices.", ""]
 
 
 def _percent(value):
@@ -402,6 +416,28 @@ def _comparison_lines(before, after, result, *, overall=False):
     return lines
 
 
+def _compact_comparison_lines(before, after, result, *, overall=False):
+    """Keep every paired metric/denominator while leaving room for rejected experiments."""
+    groups = {"Code rates": [], "Pipeline time / cost": [], "Paired judgments": []}
+    for key, metric in result["candidate_metrics"].items():
+        old = result["baseline_metrics"][key]
+        group = "Code rates" if key.endswith(("recall", "accuracy", "match")) else "Pipeline time / cost"
+        groups[group].append(f"{key}: {_metric_display(key, old['value'])} → {_metric_display(key, metric['value'])} "
+                             f"({_delta(key, old['value'], metric['value'])}; n={old['n']}→{metric['n']})")
+    for label, pair in (("Faithfulness", result["faithfulness"]), ("Task completion", result["task_fulfillment"])):
+        groups["Paired judgments"].append(f"{label}: {_percent(pair['baseline'])} → {_percent(pair['candidate'])} "
+                                           f"({_delta('accuracy', pair['baseline'], pair['candidate'])}; paired valid n={pair['paired_valid_n']})")
+    heading = f"### {'Overall' if overall else 'Incremental'} {before} → {after}"
+    if overall:
+        heading += " (selected retained candidate)"
+    lines = [heading, "",
+             f"Scope: {result['scope']}; {result['n_paired']} identical case IDs.", "",
+             "| Metric group | Previous → current (delta; denominators) |", "| --- | --- |"]
+    lines.extend(f"| {group} | {'; '.join(values)} |" for group, values in groups.items())
+    lines += ["", _comparison_lines(before, after, result)[-2]]
+    return lines
+
+
 def write_report(results=RESULTS, output=REPORT, *, selector=None):
     results, output = Path(results), Path(output)
     selector = Path(selector) if selector is not None else SUBMISSION40 if results.resolve() == RESULTS.resolve() else None
@@ -423,7 +459,7 @@ def write_report(results=RESULTS, output=REPORT, *, selector=None):
              "share sent to an allowed expected specialist; refusal accuracy checks both correct refusals and correct nonrefusals. "
              "Source-ID match accepts at least one required source or registered alias; it does not prove the answer is supported. "
              "p95 is the nearest-rank 95th percentile: approximately 95% of measured requests finish within that time. Mean cost is "
-             "average pipeline token cost per case in INR; offline judge spend and unresolved reservations belong in the separate shared budget.", "",
+             "average pipeline token cost per case in INR; offline judge spend and unresolved reservations belong in the separately reported campaign ledgers.", "",
              "The runtime Verifier checks source support before an answer is returned. The separate Qwen LLM judge evaluates "
              "saved answers against saved passages afterward: faithfulness must reach 90%. Coverage/task fulfillment checks whether "
              "the request and reviewed expectations were addressed; it is supplementary and has no clinical-validation claim. "
@@ -628,7 +664,7 @@ def write_week4_report(results=RESULTS, output=WEEK4_REPORT):
              "Plan §9.4 metadata records case/scenario, dataset hash/version, pipeline/prompt/model versions, expected/predicted escalation "
              "and route, refusal, sources, correctness, latency, tokens, cost and errors; rule IDs and retrieval mode remain inspectable.", "",
              "Traces use frozen test inputs, without browser profiles or uploaded personal documents. Successful outputs/evidence persist before judging; retries "
-             "reuse completed inference, and request reservations share the owner-authorized ₹350 cap.", "",
+             "reuse completed inference. Original v3 and the separately authorized latency campaign retain separate budget ledgers.", "",
              "## Baseline run", ""]
     if baseline:
         traces = [r for r in baseline["rows"] if r["trace_url"]]
@@ -666,30 +702,34 @@ def write_week4_report(results=RESULTS, output=WEEK4_REPORT):
                      f"{impacts.get(cluster['cluster'], 'Delayed or incomplete help')} | {link} |")
     lines += ["", "## Improvement hypotheses", "",
               "Only saved pre-call hypotheses are listed; unmeasured changes are proposals, not results. "
-              + ("Three measured changes are complete, including the rejected candidates; all decisions and regressions remain visible."
+              + ("At least three measured changes are complete, including the rejected candidates; all decisions and regressions remain visible."
                  if len([r for r in complete if r["directory"].name != "baseline"]) >= 3 else
                  "The handout's three-to-four measured changes remain pending until completed evidence exists."), "",
-              "| Round | Pre-call hypothesis / one lever | Target cluster | Predicted direction |", "| --- | --- | --- | --- |"]
+              "| Round | Pre-call hypothesis / one lever | Target cluster | Predicted direction | Success / revert gates |", "| --- | --- | --- | --- | --- |"]
     for plan_path in sorted(results.glob("*/plan.json"), key=lambda p: _round_key(p.parent)):
         plan = json.loads(plan_path.read_text(encoding="utf-8"))
         values = [plan_path.parent.name, f"{plan.get('hypothesis', '')} {plan.get('lever', '')}",
-                  plan.get("target_cluster", ""), plan.get("expected_metric_direction", "")]
+                  plan.get("target_cluster", ""), plan.get("expected_metric_direction", ""),
+                  f"Success: {plan.get('success_criterion', 'not saved')}; revert: {plan.get('revert_criterion', 'not saved')}"]
         lines.append("| " + " | ".join(_clean_prose(v).replace("|", "\\|").replace("\n", " ") for v in values) + " |")
     lines += ["", "## Post-improvement results", ""]
     lines += _selection_lines(runs)
     lines += _budget_lines(results)
     candidates = [r for r in complete if r["directory"].name != "baseline"]
+    compact = len(candidates) > 3
     if not baseline or not candidates:
         lines += ["Post-improvement measurement pending. Partial rounds are excluded from final scores and deltas.", ""]
     predecessor = baseline
     for candidate in candidates if baseline else []:
+        section_start = len(lines)
         causal_base = _declared_predecessor(candidate, predecessor)
         if causal_base["directory"] != predecessor["directory"]:
             lines += [f"Declared restored base: **{causal_base['directory'].name}** plus the new lever; "
                       f"chronological predecessor {predecessor['directory'].name} used another configuration. "
                       "The latter difference is not a one-lever causal comparison.", ""]
         result = compare_rounds(causal_base["directory"], candidate["directory"])
-        lines += _comparison_lines(causal_base["directory"].name, candidate["directory"].name, result)
+        render_comparison = _compact_comparison_lines if compact else _comparison_lines
+        lines += render_comparison(causal_base["directory"].name, candidate["directory"].name, result)
         decision_path = candidate["directory"] / "decision.json"
         if decision_path.exists():
             decision = json.loads(decision_path.read_text(encoding="utf-8"))
@@ -709,11 +749,20 @@ def write_week4_report(results=RESULTS, output=WEEK4_REPORT):
             notes.append(f"{key}: {len(rows)} ({examples})")
         lines += ["Observed case regressions (previous pass → current fail): " +
                   ("; ".join(notes) if notes else "none in the recorded paired checks") + ".", ""]
+        if compact:
+            # Adjacent prose sentences share a paragraph; tables/headings retain their spacing.
+            for index in range(len(lines) - 2, section_start, -1):
+                if lines[index] == "" and lines[index - 1].startswith(("**Decision:", "Current round's unpaired headline:", "Abstentions:")):
+                    del lines[index]
+            for index in range(len(lines) - 1, section_start, -1):
+                if lines[index].startswith("Abstentions:") and lines[index - 1].startswith("Current round's unpaired headline:"):
+                    lines[index - 1] += " " + lines.pop(index)
         predecessor = candidate
     _, selected = _selection(runs)
     if baseline and selected and selected is not baseline:
         overall = compare_rounds(baseline["directory"], selected["directory"])
-        lines += _comparison_lines("baseline", selected["directory"].name, overall, overall=True)
+        render_comparison = _compact_comparison_lines if compact else _comparison_lines
+        lines += render_comparison("baseline", selected["directory"].name, overall, overall=True)
     for filename, label in (("tradeoff.png", "Quality, latency and cost tradeoffs"), ("metrics_by_version.png", "Completed-round metrics")):
         if (output.parent / "media" / filename).exists():
             lines += [f"![{label}](media/{filename})", ""]
@@ -765,11 +814,7 @@ def notebook_evidence(results=RESULTS):
     complete = [r for r in runs if r["summary"].get("progress", {}).get("complete") and not any(row["error"] for row in r["rows"])]
     baseline = next((r for r in complete if r["directory"].name == "baseline"), None)
     overview = _selection_lines(runs)
-    ledger = results / "spend.json"
-    if ledger.exists():
-        spend = json.loads(ledger.read_text(encoding="utf-8"))
-        overview += [f"Accounted evaluation spend: **₹{spend.get('accounted_inr', 0):.4f} / ₹{spend.get('cap_inr', 350):.0f}**. "
-                     "The ledger includes pipeline, judge and unknown-outcome reservations; this notebook adds no calls.", ""]
+    overview += _budget_lines(results)
     full = ["| Round | Decision | Routing | Faithfulness (valid/eligible) | Task completion | p95 s | Mean ₹ |", "| --- | --- | ---: | --- | ---: | ---: | ---: |"]
     presentation, paired, decisions = [], [], []
     predecessor = baseline
@@ -817,12 +862,18 @@ def notebook_evidence(results=RESULTS):
     if "baseline" in snapshots and "round1" in snapshots:
         h07 += [f"Exact ordered retrieved-passage snapshots equal between baseline and R1: **{snapshots['baseline'] == snapshots['round1']}**. "
                 "A single pair of generated answers does not isolate every stochastic effect.", ""]
+    _, selected = _selection(runs)
+    latency_limit = "The retained candidate's latency target is pending. "
+    if selected:
+        latency = _metrics(selected['rows'])["p95_latency_s"]
+        latency_limit = (f"The retained {selected['directory'].name} {'meets' if latency['passed'] else 'misses'} "
+                         "the 8-second latency target on this measured set. ")
     limits = ["All 62 questions are owner-attested human-authored and reviewed; authorship is not independently verified. "
               "This previously exposed regression set is not an unseen holdout. The deterministic 40-case view was selected "
               "after baseline and before R1; all 62 cases and failures remain the primary gates. "
               "Human output calibration is separate and pending until actual labels are entered; B11 retains its missing-policy "
               "citation-label limitation. Faithfulness is source support, not clinical validation. "
-              "The retained R1 still misses the 8-second latency target; rejected rounds remain visible."]
+              + latency_limit + "Rejected rounds remain visible."]
     return {"overview": "\n".join(overview), "full62": "\n".join(full),
             "submission40": "\n".join(presentation) or "40-case saved summaries pending.",
             "paired": "\n".join(paired) or "No completed improvement pairs.",

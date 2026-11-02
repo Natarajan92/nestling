@@ -1,0 +1,23 @@
+{
+  "decision": "reject",
+  "reason": "Low FAST reasoning plus warmup reduced p95 12.11->11.24s but faithfulness32/36=88.89% fails90%; pairedR1faithfulness29/32->28/32 regresses and abstentions5->6 exceed gate. R1 stays selected.",
+  "observed_vs_round1": {
+    "p95_latency_s": "12.11 ->11.24",
+    "faithfulness": "32/35 ->32/36",
+    "paired_faithfulness": "29/32 ->28/32",
+    "task_fulfilled": "52/62 ->52/62",
+    "abstentions": "5 ->6",
+    "mean_cost_inr": ".719 ->.737"
+  },
+  "complete_cases": 62,
+  "verified_traces": 62,
+  "pipeline_errors": 0,
+  "judge_errors": 0,
+  "remaining_failed_bars": [
+    "p95<8s",
+    "faithfulness>=90%",
+    "pairedfaithnotworseR1",
+    "abstentions<=5"
+  ],
+  "next": "Campaign closed. No furtherpaidround. Retain R1 answerconfiguration; optional bounded API-onlysourcehandlewarmup is operational and has no newfull-setp95 claim."
+}

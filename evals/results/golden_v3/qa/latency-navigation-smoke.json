@@ -1,0 +1,107 @@
+{
+  "recorded_at": "2026-11-02T04:34:32.257248+00:00",
+  "routes": [
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/welcome",
+      "status": 200
+    },
+    {
+      "path": "/ask",
+      "status": 200
+    },
+    {
+      "path": "/journeys",
+      "status": 200
+    },
+    {
+      "path": "/journeys/body",
+      "status": 200
+    },
+    {
+      "path": "/journeys/ready",
+      "status": 200
+    },
+    {
+      "path": "/journeys/money",
+      "status": 200
+    },
+    {
+      "path": "/journeys/celebrate",
+      "status": 200
+    },
+    {
+      "path": "/journeys/partner",
+      "status": 200
+    },
+    {
+      "path": "/celebrate/capture",
+      "status": 200
+    },
+    {
+      "path": "/lessons",
+      "status": 200
+    },
+    {
+      "path": "/memory",
+      "status": 200
+    },
+    {
+      "path": "/settings",
+      "status": 200
+    },
+    {
+      "path": "/lessons/bathing",
+      "status": 200
+    },
+    {
+      "path": "/lessons/burping",
+      "status": 200
+    },
+    {
+      "path": "/lessons/cord_care",
+      "status": 200
+    },
+    {
+      "path": "/lessons/holding",
+      "status": 200
+    },
+    {
+      "path": "/lessons/labour_room_readiness",
+      "status": 200
+    },
+    {
+      "path": "/lessons/latching",
+      "status": 200
+    },
+    {
+      "path": "/lessons/pregnancy_bed_movement",
+      "status": 200
+    },
+    {
+      "path": "/lessons/pregnancy_breathing",
+      "status": 200
+    },
+    {
+      "path": "/lessons/pregnancy_stair_comfort",
+      "status": 200
+    },
+    {
+      "path": "/lessons/prenatal_yoga_preparation",
+      "status": 200
+    },
+    {
+      "path": "/lessons/preparing_body_for_birth",
+      "status": 200
+    },
+    {
+      "path": "/lessons/swaddling",
+      "status": 200
+    }
+  ],
+  "passed": 25,
+  "scope": "HTTP/server-render smoke only; browser interactions separately covered by39 web tests and prior UI evidence. No personal profile or paid Ask submitted."
+}

@@ -1,0 +1,10 @@
+{
+  "reason": "Windows atomic ledger replace interrupted requests; compatibility not certified by this attempt",
+  "not_pipeline_evaluation": true,
+  "unknown_reservations_retained": true,
+  "files": {
+    "probe-none-partial.json": "93781f4fa398a50c4ac64ff06981ca24b9fd51c1fddb9dcf71cae1aca84218c3",
+    "probe-none.json": "ca60dd0b0476146216e2578e8c0c167cd60f11a70be3cbef1915df6da92c4c3d",
+    "spend-snapshot.json": "c05d0f7cb6527b7dc4df54171c7107d485045b76eccc410f577b08e322b8ac4e"
+  }
+}

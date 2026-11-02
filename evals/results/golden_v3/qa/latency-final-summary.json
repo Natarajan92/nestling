@@ -1,0 +1,50 @@
+{
+  "recorded_at": "2026-11-02T04:44:08.381600+00:00",
+  "python": {
+    "command": "python -m pytest -q -p no:cacheprovider --basetemp=.superpowers/sdd/plan/latency-post-startup-pytest --junitxml=evals/results/golden_v3/qa/latency-final-pytest.xml",
+    "exit_code": 0,
+    "passed": 470,
+    "failed": 0,
+    "warnings": 1,
+    "warning_detail": "Existing LangSmith wrapper deprecation"
+  },
+  "web": {
+    "command": "node --test tests/*.test.mjs",
+    "cwd": "E:/maai-projects/nestling/web",
+    "exit_code": 0,
+    "passed": 39,
+    "failed": 0,
+    "worktree_attempt": "Missing TypeScript dependency in isolated web directory; reran unchanged web source in installed main checkout"
+  },
+  "local_smoke": {
+    "web_http": 200,
+    "api_health_http": 200,
+    "approved_lessons": 12,
+    "media_evidence": "latency-media-smoke.json"
+  },
+  "startup_recovery": "Restarted stale unresponsive Next production server; subsequent local page returned200",
+  "limitations": [
+    "No fresh web lint/build; prior saved checks remain separate",
+    "Physical devices, microphone and native sharing not manually certified",
+    "Owner actual-output calibration and Loom remain pending"
+  ],
+  "regression_red_phase": {
+    "startup_switch_missing_behavior": "5 failed,3passed before implementation; complete final suite passes"
+  },
+  "selected_round": "round1",
+  "operational_warmup": {
+    "default": "off",
+    "local_launch": "NESTLING_PREWARM_SOURCES=1",
+    "startup_wait_bound_s": 5,
+    "answer_graph_flags_changed": false,
+    "new_full_set_p95_claim": false
+  },
+  "code_sha256": {
+    "api/main.py": "edf0ce6ee4c8fa2910d094ca242e7ef9ab1eefd65e5fea246f2dd574e91b2225",
+    "nestling/graph.py": "12181b5d6f743590b0556b00e6ddbcfcc285fc7bc721fe27713a4ed79797a5f5",
+    "nestling/llm.py": "75d85bb809c9aaaa8e64677d29aa6e165d91b3e2c9f5c7ed5a6b0edf210cb3e2",
+    "nestling/guardian.py": "d2ac0ba66089eaaca124856bf0cfa22aed9f184b4efb59270a0d4eeee7e80617",
+    "nestling/concierge.py": "9cb221c00e4217ea212988498f323322736f726dde12e883572d91fe51971184",
+    "nestling/retrieval.py": "0fcb897128eac330af0ce6f6e1f1d8a5d546f9c464b8f520cbf1f1f2d21fbe75"
+  }
+}
