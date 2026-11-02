@@ -27,7 +27,7 @@ ROUNDS = ("latency1", "latency2", "latency3")
 CANDIDATES = frozenset({"latency_fast_direct", "latency_fast_low",
                         "latency_fast_direct_warm", "latency_fast_low_warm"})
 SCOPE = "FAST reasoning and retrieval warmup; frozen v3; same Qwen judge"
-OVERRIDES = ("ROOT", "RESULTS", "ROUNDS", "CAP_INR", "APPROVAL", "round_directory", "new_meter", "provenance", "exclusive_run")
+OVERRIDES = ("ROOT", "RESULTS", "ROUNDS", "CAP_INR", "APPROVAL", "round_directory", "new_meter", "provenance", "exclusive_run", "write_json")
 _CONFIG_LOCK = threading.RLock()
 
 
@@ -60,8 +60,22 @@ def campaign_session(authorization, *, results_root=None, budget_root=None):
     authorization = validate_authorization(authorization)
     results_root, budget_root = Path(results_root or RESULTS_ROOT), Path(budget_root or BUDGET_ROOT)
     with _CONFIG_LOCK:
+        from evals import budgeted_run
         original = {key: getattr(base, key) for key in OVERRIDES}
+        original_budget_write = budgeted_run.write_json
         allowed_rounds = ROUNDS[:authorization["max_full_rounds"]]
+
+        def retry_write(writer):
+            def write(path, payload):
+                for attempt in range(6):
+                    try:
+                        return writer(path, payload)
+                    except PermissionError:
+                        if attempt==5:
+                            raise
+                        print(f"Retrying atomic JSON write: {Path(path).name}, attempt {attempt+1}/6", flush=True)
+                        time.sleep(min(.05*2**attempt, .5))
+            return write
 
         def directory(name, root=None):
             if name not in allowed_rounds or (root is not None and Path(root) != results_root):
@@ -86,8 +100,11 @@ def campaign_session(authorization, *, results_root=None, budget_root=None):
             base.RESULTS, base.ROUNDS = budget_root, allowed_rounds
             base.CAP_INR, base.APPROVAL = authorization["cap_inr"], authorization
             base.round_directory, base.new_meter, base.provenance = directory, meter, provenance
+            base.write_json = retry_write(original["write_json"])
+            budgeted_run.write_json = retry_write(original_budget_write)
             yield base
         finally:
+            budgeted_run.write_json = original_budget_write
             for key, value in original.items():
                 setattr(base, key, value)
 
@@ -290,6 +307,7 @@ def run_probe(effort="none"):
                                "calls": list(observed)}
                         rt = get_current_run_tree()
                         if rt:
+                            row["trace_id"] = str(rt.id)
                             rt.add_metadata({"predicted_route": route["route"], "predicted_escalate": decision.escalate})
                         return row
 

@@ -282,3 +282,35 @@ def test_recovered_unknown_probe_reservation_stops_at_probe_subcap(offline_probe
     saved = json.loads(ledger.read_text())
     assert saved["accounted_inr"]>=9.99
     assert saved["calls"][0]["purpose"]=="compatibility_probe"
+
+
+def test_transient_ledger_lock_retries_write_without_repeating_provider(offline_probe, monkeypatch):
+    from evals import budgeted_run
+    mod, state, _ = offline_probe
+    original = budgeted_run.write_json
+    failures = []
+    def temporarily_locked(path, payload):
+        if path.name=="spend.json" and payload.get("pending") and len(failures)<2:
+            failures.append("file lock")
+            raise PermissionError("transient Windows read lock")
+        return original(path, payload)
+    monkeypatch.setattr(budgeted_run, "write_json", temporarily_locked)
+    monkeypatch.setattr(mod.time, "sleep", lambda _: None)
+    assert mod.run_probe("none")["passed"]
+    assert len(failures)==2 and len(state["calls"])==16
+    assert budgeted_run.write_json is temporarily_locked
+
+
+def test_permanent_ledger_lock_is_bounded_and_never_calls_provider(offline_probe, monkeypatch):
+    from evals import budgeted_run
+    mod, state, _ = offline_probe
+    writes = []
+    def locked(*args):
+        writes.append(1)
+        raise PermissionError("permanent lock")
+    monkeypatch.setattr(budgeted_run, "write_json", locked)
+    monkeypatch.setattr(mod.time, "sleep", lambda _: None)
+    with pytest.raises(PermissionError, match="permanent lock"):
+        mod.run_probe("none")
+    assert 1<len(writes)<=6 and state["calls"]==[]
+    assert budgeted_run.write_json is locked
