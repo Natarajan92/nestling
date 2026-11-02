@@ -1,0 +1,135 @@
+{
+  "read_at": "2026-11-02T04:48:48.109167+00:00",
+  "scope": "four slowest saved R1 MAIN llm spans; read-only; no new inference",
+  "model_calls_made": 0,
+  "rows": [
+    {
+      "run_id": "01a19880-6e78-7985-9323-bad237636009",
+      "duration_s": 4.061487,
+      "tokens_out": 470,
+      "output_fields": [
+        "choices",
+        "created",
+        "id",
+        "metadata",
+        "model",
+        "moderation",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage_metadata"
+      ],
+      "message_fields": [
+        [
+          "annotations",
+          "audio",
+          "content",
+          "function_call",
+          "reasoning_content",
+          "refusal",
+          "role",
+          "tool_calls"
+        ]
+      ],
+      "visible_chars": 1723,
+      "reasoning_chars": 0,
+      "usage": null
+    },
+    {
+      "run_id": "01a19880-d111-70d4-a38a-6b9a979ed148",
+      "duration_s": 3.714507,
+      "tokens_out": 311,
+      "output_fields": [
+        "choices",
+        "created",
+        "id",
+        "metadata",
+        "model",
+        "moderation",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage_metadata"
+      ],
+      "message_fields": [
+        [
+          "annotations",
+          "audio",
+          "content",
+          "function_call",
+          "reasoning_content",
+          "refusal",
+          "role",
+          "tool_calls"
+        ]
+      ],
+      "visible_chars": 1294,
+      "reasoning_chars": 0,
+      "usage": null
+    },
+    {
+      "run_id": "01a19879-b26f-7e13-9196-ba2b7e096cdf",
+      "duration_s": 3.577705,
+      "tokens_out": 434,
+      "output_fields": [
+        "choices",
+        "created",
+        "id",
+        "metadata",
+        "model",
+        "moderation",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage_metadata"
+      ],
+      "message_fields": [
+        [
+          "annotations",
+          "audio",
+          "content",
+          "function_call",
+          "reasoning_content",
+          "refusal",
+          "role",
+          "tool_calls"
+        ]
+      ],
+      "visible_chars": 1347,
+      "reasoning_chars": 0,
+      "usage": null
+    },
+    {
+      "run_id": "01a1987c-362b-790c-b5b0-b061d23b999c",
+      "duration_s": 3.338051,
+      "tokens_out": 371,
+      "output_fields": [
+        "choices",
+        "created",
+        "id",
+        "metadata",
+        "model",
+        "moderation",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage_metadata"
+      ],
+      "message_fields": [
+        [
+          "annotations",
+          "audio",
+          "content",
+          "function_call",
+          "reasoning_content",
+          "refusal",
+          "role",
+          "tool_calls"
+        ]
+      ],
+      "visible_chars": 1381,
+      "reasoning_chars": 0,
+      "usage": null
+    }
+  ]
+}

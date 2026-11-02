@@ -27,6 +27,8 @@ Code-only deletion of unsupported claims was **not implemented**. The checker's 
 
 Cached R1 MAIN spans show **38 specialist calls with median 2.112s**, **33 strict-check calls with median 1.683s**, and **26 subsequent rewrite calls with median 1.564s**. These are call counts, not counts of distinct answers. Generation, strict checking and any rewrite occur sequentially and contribute a cumulative tail. The cache preserves durations and aggregate token counts, so MAIN hidden reasoning is **unknown**; these timings cannot be attributed to it. A MAIN reasoning-effort experiment would require separate future scope and was not performed in this FAST/warmup campaign.
 
+A subsequent **read-only** inspection of the four slowest saved R1 MAIN calls found **zero exposed reasoning characters** in each, with 311-470 output tokens and durations 3.338-4.061s. The [derived diagnostic](../evals/results/golden_v3/latency_budget/main-trace-diagnostic.json) records trace IDs and counts, with no new inference or source text. This small sample does not prove anything about all MAIN calls or unexposed internal computation. It provides no basis for assuming that FAST-style reasoning removal will fix MAIN latency. Prioritize improving first-pass source support to reduce rewrites, and measure provider time-to-first-token separately from decoding before choosing another paid optimization.
+
 ## Completed measured decisions
 
 ### latency1: FAST direct mode
